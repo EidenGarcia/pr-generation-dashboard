@@ -1,0 +1,37 @@
+[{
+  "note": "Installed (rated) capacity in MW. Leave null where no figure is published; the dashboard then uses the highest output it has observed. Edit freely.",
+  "units": {
+    "AES|Unit 1": { "rated_mw": 227, "source": "AAFAF/PREPA RFQ 2025-02 (New Flexible Generation Capacity), existing fleet table" },
+    "AES|Unit 2": { "rated_mw": 227, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Aguirre Steam|Unit 1": { "rated_mw": 450, "source": "AAFAF/PREPA RFQ 2025-02; PREB PROMOD assumptions 2023" },
+    "Aguirre Steam|Unit 2": { "rated_mw": 450, "source": "AAFAF/PREPA RFQ 2025-02; PREB PROMOD assumptions 2023" },
+    "Costa Sur Steam|Unit 5": { "rated_mw": 410, "source": "AAFAF/PREPA RFQ 2025-02; PREB filing NEPR-MI-2020-0001 (2021)" },
+    "Costa Sur Steam|Unit 6": { "rated_mw": 410, "source": "AAFAF/PREPA RFQ 2025-02; PREB filing NEPR-MI-2020-0001 (2021)" },
+    "Costa Sur Steam|Unit 3": { "rated_mw": 85, "source": "PREPA RFQ 2020-1 (thermal facilities): units 3–4, 170 MW total" },
+    "Costa Sur Steam|Unit 4": { "rated_mw": 85, "source": "PREPA RFQ 2020-1: units 3–4, 170 MW total" },
+    "Palo Seco Steam|Unit 3": { "rated_mw": 216, "source": "AAFAF/PREPA RFQ 2025-02; PREB filing NEPR-MI-2020-0001 (2021)" },
+    "Palo Seco Steam|Unit 4": { "rated_mw": 216, "source": "PREB filing NEPR-MI-2020-0001 (2021)" },
+    "Palo Seco Steam|Unit 1": { "rated_mw": 85, "source": "PREPA RFQ 2020-1: units 1–2, 170 MW total" },
+    "Palo Seco Steam|Unit 2": { "rated_mw": 85, "source": "PREPA RFQ 2020-1: units 1–2, 170 MW total" },
+    "San Juan Steam|Unit 7": { "rated_mw": 100, "source": "PREPA RFQ 2020-1: four steam units, 400 MW total" },
+    "San Juan Steam|Unit 8": { "rated_mw": 100, "source": "PREPA RFQ 2020-1" },
+    "San Juan Steam|Unit 9": { "rated_mw": 100, "source": "PREPA RFQ 2020-1" },
+    "San Juan Steam|Unit 10": { "rated_mw": 100, "source": "PREPA RFQ 2020-1" },
+    "San Juan CC|STG 5": { "rated_mw": 50, "source": "PREB filing NEPR-MI-2020-0001 (2021)" },
+    "San Juan CC|STG 6": { "rated_mw": 50, "source": "PREB filing NEPR-MI-2020-0001 (2021)" },
+    "San Juan CC|CTG 5": { "rated_mw": 182, "source": "Derived: 232 MW per combined-cycle unit (PREPA, 2007) minus 50 MW steam turbine" },
+    "San Juan CC|CTG 6": { "rated_mw": 182, "source": "Derived: 232 MW per combined-cycle unit (PREPA, 2007) minus 50 MW steam turbine" },
+    "Cambalache|Gas 1": { "rated_mw": 82.5, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Cambalache|Gas 2": { "rated_mw": 82.5, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Cambalache|Gas 3": { "rated_mw": 82.5, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Mayagüez|Gas 1": { "rated_mw": 55, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Mayagüez|Gas 2": { "rated_mw": 55, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Mayagüez|Gas 3": { "rated_mw": 50, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Mayagüez|Gas 4": { "rated_mw": 56, "source": "Derived: 216 MW for four units (PREPA RFQ 2020-1) minus units 1–3" }
+  },
+  "plants": {
+    "EcoEléctrica": { "rated_mw": 545, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Aguirre CC 1": { "rated_mw": 296, "source": "AAFAF/PREPA RFQ 2025-02" },
+    "Aguirre CC 2": { "rated_mw": 296, "source": "AAFAF/PREPA RFQ 2025-02" }
+  }
+}]
