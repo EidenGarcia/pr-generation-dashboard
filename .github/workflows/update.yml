@@ -1,0 +1,40 @@
+name: PREPA update (every 15 min)
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes; GitHub may start a run a few minutes late
+  workflow_dispatch:       # "Run workflow" button for a manual update
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepa-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch PREPA feeds and rebuild data
+        run: node scripts/update.mjs data
+
+      - name: Commit updated data
+        run: |
+          git config user.name "prepa-update-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data logs
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "data: update $(date -u +'%Y-%m-%dT%H:%MZ')"
+            git pull --rebase --autostash
+            git push
+          fi
