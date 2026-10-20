@@ -1,1 +1,1 @@
-[]
+[{"at":"2026-10-20T14:20:18-04:00","feed":"dataSource","ok":true,"http_status":200,"ms":238,"bytes":10585,"error":null,"feed_time":"2026-10-20T14:18:39-04:00","feed_age_min":2,"feed_changed":true},{"at":"2026-10-20T14:20:18-04:00","feed":"dataGraph","ok":true,"http_status":200,"ms":37,"bytes":17968,"error":null}]
