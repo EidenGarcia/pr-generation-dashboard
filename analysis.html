@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Puerto Rico generation — cost and trends</title>
+<meta name="description" content="What fuel costs Puerto Rico’s customers per kWh, live dispatch cost trends, Genera’s fuel cost by plant and fuel, and generation statistics.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💲%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+.jump { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 var(--cds-gap-lg); position: sticky; top: 0; z-index: 4; background: var(--paper); padding: 8px 0; border-bottom: 1px solid var(--line); }
+.jump a { text-decoration: none; font-size: var(--cds-font-size-caption); padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--muted); }
+.jump a:hover { color: var(--ink); }
+section { scroll-margin-top: 56px; }
+.gx-takeaway { border-left-color: var(--amber); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand">
+      <h1>Cost and trends</h1>
+      <p id="feed-line">Fuel cost per customer, live dispatch cost, Genera’s fuel bill and generation statistics.</p>
+    </div>
+    <nav class="nav" aria-label="Dashboards"><a href="index.html">Live operations</a><a href="analysis.html" aria-current="page">Cost &amp; trends</a></nav>
+  </header>
+  <p class="gx-takeaway" id="takeaway"><span class="dash-skeleton">Loading the latest figures…</span></p>
+  <nav class="jump" aria-label="Sections"><a href="#customer">Customer cost</a><a href="#livetrend">Live cost trend</a><a href="#filings">Fuel cost from filings</a><a href="#stats">Statistics</a><a href="#sources">Sources &amp; method</a></nav>
+
+  <section id="customer">
+<h2 class="gx-sec">What a kWh costs a customer</h2>
+    <p class="gx-secnote">Every customer bill carries a fuel charge (FCA) and a purchased-power charge (PPCA), set by PREB each quarter in ¢ per kWh. The dashed lines show what Genera’s fuel costs per kWh it generates, so you can see how the customer charge compares.</p>
+    <div class="gx-kpis" id="cust-kpis">
+      <div class="gx-kpi"><div class="gx-kpi-l">Fuel charge now (FCA)</div><div class="gx-kpi-v dash-skeleton" data-source="customer_now" data-field="fca_cents_kwh" data-row="0">—</div><div class="gx-kpi-n">¢/kWh · <span data-source="customer_now" data-field="period" data-row="0">—</span></div></div>
+      <div class="gx-kpi"><div class="gx-kpi-l">Purchased power (PPCA)</div><div class="gx-kpi-v dash-skeleton" data-source="customer_now" data-field="ppca_cents_kwh" data-row="0">—</div><div class="gx-kpi-n">¢/kWh</div></div>
+      <div class="gx-kpi bad"><div class="gx-kpi-l">Fuel + power per kWh</div><div class="gx-kpi-v dash-skeleton" data-source="customer_now" data-field="total_cents_kwh" data-row="0">—</div><div class="gx-kpi-n"><span data-source="customer_now" data-field="change_cents_kwh" data-row="0">—</span> ¢ vs last quarter</div></div>
+      <div class="gx-kpi"><div class="gx-kpi-l">Genera fuel cost now</div><div class="gx-kpi-v dash-skeleton" data-source="live_kpis" data-field="genera_avg_cents_kwh" data-row="0">—</div><div class="gx-kpi-n">¢ per kWh generated, live feed</div></div>
+    </div>
+    <div class="gx-grid">
+      <div class="gx-card" id="custrate-card">
+        <h3>Customer charge per kWh, by quarter</h3>
+        <p class="gx-note">Stacked FCA + PPCA in ¢/kWh. Dashed: Genera’s fuel cost per kWh generated, at the latest check, over the last 7 days of checks, and over the filed months at current prices.</p>
+        <div class="gx-legend" id="custrate-legend"></div>
+        <div class="gx-chart" id="custrate-chart" style="min-height:270px" data-source="customer_fuel_charges live_kpis fy_kpis"></div>
+      </div>
+      <div class="gx-card" id="custbill-card">
+        <h3>Monthly fuel &amp; power charges for a household</h3>
+        <p class="gx-note">FCA + PPCA × monthly use, by quarter. These two charges only; the base rate, customer charge and other riders come on top.</p>
+        <div class="gx-controls"><div class="gx-seg" id="kwh-seg" role="group" aria-label="Monthly use">
+          <button data-v="300" aria-pressed="false">300 kWh</button><button data-v="425" aria-pressed="false">425 kWh</button><button data-v="600" aria-pressed="true">600 kWh</button><button data-v="800" aria-pressed="false">800 kWh</button><button data-v="1000" aria-pressed="false">1,000 kWh</button>
+        </div></div>
+        <div class="gx-chart" id="custbill-chart" style="min-height:230px" data-source="household_charges"></div>
+      </div>
+    </div>
+
+    
+  </section>
+
+  <section id="livetrend">
+    <h2 class="gx-sec">Live cost trend</h2>
+    <p class="gx-secnote">Built from every hourly check of PREPA’s feed: what the dispatched units cost per hour (MW × each unit’s reported ¢/kWh) and per kWh. The history grows by one row an hour.</p>
+    <div class="gx-kpis" id="lt-kpis"></div>
+    <div class="gx-grid">
+      <div class="gx-card">
+        <h3>Dispatch cost per hour, by fuel</h3>
+        <p class="gx-note">Stacked $/hour at each check.</p>
+        <div class="gx-legend" id="lt-cost-legend"></div>
+        <div class="gx-chart" id="lt-cost" style="min-height:240px"></div>
+      </div>
+      <div class="gx-card">
+        <h3>Cost per kWh generated</h3>
+        <p class="gx-note">All producers and Genera only, at each check. Dashed: what customers pay this quarter (FCA + PPCA).</p>
+        <div class="gx-legend" id="lt-ckwh-legend"></div>
+        <div class="gx-chart" id="lt-ckwh" style="min-height:240px"></div>
+      </div>
+    </div>
+    <div class="gx-card" style="margin-bottom:var(--cds-gap-md)">
+      <h3>Daily summary</h3>
+      <p class="gx-note">Estimated cost per day = average $/hour across that day’s checks × 24. Forecast error compares the dashboard’s forecast with the demand measured at the next check.</p>
+      <div class="gx-tablewrap">
+        <table class="gx-table" id="lt-daily">
+          <thead><tr><th>Day</th><th class="num">Checks</th><th class="num">Avg demand</th><th class="num">Peak demand</th><th class="num">Avg $/hour</th><th class="num">Est. cost/day</th><th class="num">Avg ¢/kWh</th><th class="num">Genera offline (avg)</th><th class="num">Forecast error</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="filings">
+<h2 class="gx-sec">Fuel cost from Genera’s filings</h2>
+
+    <div class="gx-controls">
+      <div class="gx-seg" id="fy-seg" role="group" aria-label="Fiscal year">
+        <button data-v="All" aria-pressed="true">All filed months</button>
+        <button data-v="FY24-25" aria-pressed="false">FY 2024-25</button>
+        <button data-v="FY25-26" aria-pressed="false">FY 2025-26</button>
+      </div>
+    </div>
+    <p class="gx-secnote">Fuel consumed (barrels and MMBtu) comes from Genera’s filings; each barrel or MMBtu is priced at the current price for that plant and fuel (see Sources &amp; method). This is a like-for-like estimate at today’s prices, not the invoiced cost at the time. Fiscal years run July–June.</p>
+    <div class="gx-kpis" id="cost-kpis">
+      <div class="gx-kpi"><div class="gx-kpi-l">Estimated fuel cost</div><div class="gx-kpi-v dash-skeleton" data-kpi="est_fuel_cost_musd" data-source="fy_kpis" data-field="est_fuel_cost_musd" data-where="fy=All">—</div><div class="gx-kpi-n">$ million, at current prices</div></div>
+      <div class="gx-kpi"><div class="gx-kpi-l">Net generation</div><div class="gx-kpi-v dash-skeleton" data-kpi="net_gwh" data-source="fy_kpis" data-field="net_gwh" data-where="fy=All">—</div><div class="gx-kpi-n">GWh, Genera fleet</div></div>
+      <div class="gx-kpi"><div class="gx-kpi-l">Fuel cost per MWh</div><div class="gx-kpi-v dash-skeleton" data-kpi="usd_per_mwh" data-source="fy_kpis" data-field="usd_per_mwh" data-where="fy=All">—</div><div class="gx-kpi-n">$ per net MWh</div></div>
+      <div class="gx-kpi"><div class="gx-kpi-l">Fleet net heat rate</div><div class="gx-kpi-v dash-skeleton" data-kpi="net_heat_rate_btu_kwh" data-source="fy_kpis" data-field="net_heat_rate_btu_kwh" data-where="fy=All">—</div><div class="gx-kpi-n">Btu/kWh (lower is better)</div></div>
+      <div class="gx-kpi"><div class="gx-kpi-l">Months covered</div><div class="gx-kpi-v dash-skeleton" data-kpi="months" data-source="fy_kpis" data-field="months" data-where="fy=All">—</div><div class="gx-kpi-n">monthly records filed</div></div>
+    </div>
+
+    <div class="gx-card wide" id="monthcost-card" style="margin-bottom:var(--cds-gap-md)">
+      <h3>Monthly estimated fuel cost by fuel type</h3>
+      <p class="gx-note">Stacked by fuel. Hatched slots are months with no filing in the uploaded set (Q3 of FY 2025-26, January–March 2026).</p>
+      <div class="gx-legend" id="monthcost-legend"></div>
+      <div class="gx-chart" id="monthcost-chart" style="min-height:280px" data-source="cost_by_month_fuel"></div>
+    </div>
+
+    <div class="gx-grid">
+      <div class="gx-card" id="fuelcost-card">
+        <h3>Cost by fuel type</h3>
+        <p class="gx-note">Share of the estimated fuel bill for the selected period.</p>
+        <div class="gx-chart" id="fuelcost-chart" style="min-height:160px" data-source="cost_by_fy_fuel"></div>
+      </div>
+      <div class="gx-card" id="plantcost-card">
+        <h3>Cost by plant</h3>
+        <p class="gx-note">Stacked by fuel; label shows $ per net MWh for the plant.</p>
+        <div class="gx-chart" id="plantcost-chart" style="min-height:300px" data-source="cost_by_fy_plant"></div>
+      </div>
+    </div>
+
+    <div class="gx-card wide" id="costtable-card">
+      <h3>Fuel consumption and cost by plant and fuel</h3>
+      <p class="gx-note">Barrels (LNG shown as barrel-equivalent, as filed), heat input, price applied and resulting cost for the selected period.</p>
+      <div class="gx-tablewrap">
+        <table class="gx-table" id="cost-table" data-source="cost_table" data-row-key="key">
+          <thead><tr>
+            <th data-field="plant">Plant</th><th data-field="fuel">Fuel</th><th class="num" data-field="barrels">Barrels</th><th class="num" data-field="mmbtu">MMBtu</th>
+            <th class="num" data-field="price">Price</th><th data-field="price_unit">Unit</th><th class="num" data-field="cost_usd">Est. cost ($)</th><th class="num" data-field="share_pct">Share</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  
+  </section>
+
+  <section id="stats">
+
+    <h2 class="gx-sec" id="stats-trend-h">Fleet trend</h2>
+    <p class="gx-secnote">Monthly totals across all Genera-operated units in the filings.</p>
+    <div class="gx-grid">
+      <div class="gx-card" id="fleetgen-card">
+        <h3>Net generation per month</h3>
+        <p class="gx-note">GWh. Gaps are months without a filing.</p>
+        <div class="gx-chart" id="fleetgen-chart" style="min-height:240px" data-source="fleet_month"></div>
+      </div>
+      <div class="gx-card" id="fleetusd-card">
+        <h3>Fuel cost per MWh and heat rate</h3>
+        <p class="gx-note">Estimated $/net MWh (line, left) and fleet net heat rate in Btu/kWh (dashed, right).</p>
+        <div class="gx-chart" id="fleetusd-chart" style="min-height:240px" data-source="fleet_month"></div>
+      </div>
+    </div>
+
+    <h2 class="gx-sec" id="stats-sm-h">Net generation by plant</h2>
+    <p class="gx-secnote">Monthly net GWh on one shared scale, so plants compare directly.</p>
+    <div class="gx-card" style="margin-bottom:var(--cds-gap-md)">
+      <div class="gx-sm" id="sm-grid" data-source="hist_plant_month"></div>
+    </div>
+
+    <h2 class="gx-sec" id="stats-desc-h">Descriptive statistics by plant</h2>
+    <p class="gx-secnote">Across every filed month. CV (coefficient of variation) = standard deviation ÷ mean: higher means a plant’s output swings more month to month. Heat rate = MMBtu burned ÷ net MWh.</p>
+    <div class="gx-card" style="margin-bottom:var(--cds-gap-md)">
+      <div class="gx-tablewrap">
+        <table class="gx-table" id="stats-table" data-source="plant_stats" data-row-key="plant">
+          <thead><tr>
+            <th data-field="plant">Plant</th><th data-field="technology">Technology</th><th class="num" data-field="months">Months</th><th class="num" data-field="total_net_gwh">Total GWh</th><th class="num" data-field="share_pct">Share</th>
+            <th class="num" data-field="mean_net_gwh">Mean GWh/mo</th><th class="num" data-field="sd_net_gwh">Std dev</th><th class="num" data-field="cv_pct">CV</th><th class="num" data-field="min_net_gwh">Min</th><th class="num" data-field="max_net_gwh">Max</th>
+            <th class="num" data-field="net_heat_rate_btu_kwh">Heat rate</th><th class="num" data-field="est_usd_per_mwh">$/MWh</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2 class="gx-sec" id="stats-yoy-h">Year-over-year, same months</h2>
+    <p class="gx-secnote">Only months filed in both years are compared: July–December and April–June.</p>
+    <div class="gx-card" style="margin-bottom:var(--cds-gap-md)">
+      <div class="gx-tablewrap">
+        <table class="gx-table" id="yoy-table" data-source="yoy_plant" data-row-key="plant">
+          <thead><tr>
+            <th data-field="plant">Plant</th><th class="num" data-field="jul_dec_2024_gwh">Jul–Dec 2024</th><th class="num" data-field="jul_dec_2025_gwh">Jul–Dec 2025</th><th class="num" data-field="change_jul_dec_pct">Change</th>
+            <th class="num" data-field="apr_jun_2025_gwh">Apr–Jun 2025</th><th class="num" data-field="apr_jun_2026_gwh">Apr–Jun 2026</th><th class="num" data-field="change_apr_jun_pct">Change</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2 class="gx-sec" id="stats-units-h">Generation by unit</h2>
+    <p class="gx-secnote">Net GWh per unit for the fiscal year chosen in “Fuel cost from Genera’s filings”, and how many months each unit produced power.</p>
+    <div class="gx-card" style="margin-bottom:var(--cds-gap-md)">
+      <div class="gx-controls"><input type="search" id="hu-q" placeholder="Search unit or plant…" aria-label="Search units"><span class="gx-badge" id="hu-fy"></span></div>
+      <div class="gx-tablewrap">
+        <table class="gx-table" id="hu-table" data-source="unit_totals" data-row-key="key">
+          <thead><tr><th data-field="plant">Plant</th><th data-field="unit">Unit</th><th class="num" data-field="net_gwh">Net GWh</th><th class="num" data-field="gross_gwh">Gross GWh</th><th class="num" data-field="months_running">Months running</th><th class="num" data-field="months">Months filed</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2 class="gx-sec" id="stats-dq-h">Data quality check</h2>
+    <p class="gx-secnote">Each month, the sum of the unit sheets is compared with the “System” summary sheet in the same workbook. This dashboard uses the unit sheets. In the FY 2024-25 filings, the Q4 summary sheet repeats Q3’s figures, and January 2025’s summary overstates San Juan Steam relative to its unit sheet.</p>
+    <div class="gx-card">
+      <div class="gx-tablewrap">
+        <table class="gx-table" id="dq-table" data-source="hist_reconciliation" data-row-key="month">
+          <thead><tr><th data-field="month">Month</th><th data-field="fy">FY</th><th class="num" data-field="unit_sheets_net_mwh">Unit sheets (MWh)</th><th class="num" data-field="system_sheet_net_mwh">System sheet (MWh)</th><th class="num" data-field="difference_mwh">Difference</th><th data-field="status">Status</th><th data-field="plants_affected">Plants affected</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  
+  </section>
+
+  <section id="sources">
+    <h2 class="gx-sec">Sources &amp; method</h2>
+
+    <div class="gx-grid">
+      <div class="gx-card" id="links-card">
+        <h3>Data sources</h3>
+        <p class="gx-note">Every figure on this dashboard traces to one of these.</p>
+        <ul class="gx-links">
+          <li><a href="https://operationdata.prepa.pr.gov/dataSource.js" target="_blank" rel="noopener">operationdata.prepa.pr.gov/dataSource.js</a><div class="d">PREPA operational data — all generation by plant (central) and unit: MW, MVAr, unit cost (¢/kWh), fuel prices, fuel mix, reserves and peaks. Drives the Live operations tab.</div></li>
+          <li><a href="https://operationdata.prepa.pr.gov/dataGraph.js" target="_blank" rel="noopener">operationdata.prepa.pr.gov/dataGraph.js</a><div class="d">PREPA operational data — historical generation, last 24 hours at 5-minute intervals. Read hourly; drives the live generation and frequency chart.</div></li>
+          <li><a href="https://operationdata.prepa.pr.gov/" target="_blank" rel="noopener">operationdata.prepa.pr.gov</a><div class="d">PREPA Operational Data portal (index of the feeds above).</div></li>
+          <li><a href="https://energia.pr.gov/" target="_blank" rel="noopener">energia.pr.gov</a><div class="d">Puerto Rico Energy Bureau (PREB). Docket NEPR-MI-2019-0007 holds Genera’s quarterly “Fuel Consumption, Generation &amp; Heat Rates” exhibits: Exhibits 1A–1D (FY 2024-25, filed 2026-09-22) and Exhibits 7, 8, 9 (FY 2025-26 Q1, Q2, Q4, filed 2026-10-07).</div></li>
+          <li><a href="https://energia.pr.gov/wp-content/uploads/sites/7/2026/04/20260402-MI20190007-Resolution-and-Order.pdf" target="_blank" rel="noopener">PREB Resolution and Order, 2026-04-02 (NEPR-MI-2019-0007)</a><div class="d">Sets Genera’s quarterly reporting templates and performance incentive metrics.</div></li>
+          <li><a href="https://energia.pr.gov/wp-content/uploads/sites/7/2026/01/20251219-MI20190007-Resolution-and-Order-1.pdf" target="_blank" rel="noopener">PREB Resolution and Order, 2025-12-19 (NEPR-MI-2019-0007)</a><div class="d">Directs LUMA and Genera to file supporting data and workpapers for performance metrics.</div></li>
+          <li><a href="https://energia.pr.gov/wp-content/uploads/sites/7/2025/12/20251219-MI20200001-Resolucion-y-Orden.pdf" target="_blank" rel="noopener">PREB Resolución y Orden, 2025-12-19 (NEPR-MI-2020-0001)</a><div class="d">Approved FCA and PPCA factors for January–March 2026.</div></li>
+          <li><a href="https://energia.pr.gov/wp-content/uploads/sites/7/2026/09/20260925-MI20200001-Resolution-and-Order.pdf" target="_blank" rel="noopener">PREB Resolution and Order, 2026-09-25 (NEPR-MI-2020-0001)</a><div class="d">FCA/PPCA factors in effect July–September 2026 and LUMA’s October–December proposal.</div></li>
+          <li><a href="https://www.elvocero.com/gobierno/agencias/negociado-de-energ-a-aprueba-nueva-alza-en-la-factura-de-luz/article_91f2eb12-7895-4e0c-9d66-6b8f1d92a60d.html" target="_blank" rel="noopener">El Vocero — PREB approves October–December 2026 factors</a><div class="d">Approved FCA and PPCA for October–December 2026.</div></li>
+          <li><a href="https://www.metro.pr/noticias/2026/06/16/luma-solicita-aumento-en-los-cargos-por-combustible-y-compra-de-energia-para-el-nuevo-trimestre/" target="_blank" rel="noopener">Metro PR — LUMA’s July–September 2026 filing</a><div class="d">FCA and PPCA in effect April–June 2026.</div></li>
+          <li><a href="https://ir.newfortressenergy.com/news-releases/news-release-details/new-fortress-energy-reaches-milestone-agreement-long-term-gas" target="_blank" rel="noopener">New Fortress Energy — Puerto Rico gas supply agreement (2025-09-16)</a><div class="d">LNG contract pricing formula used for San Juan 5&amp;6 and the temporary units.</div></li>
+          <li><a href="https://www.rigzone.com/news/usa_eia_raises_henry_hub_price_forecast_for_2026_2027-15-jul-2026-184139-article/" target="_blank" rel="noopener">EIA Short-Term Energy Outlook, July 2026 (via Rigzone)</a><div class="d">Henry Hub 4Q 2026 forecast used in the LNG contract formula.</div></li>
+          <li><a href="https://www.eia.gov/todayinEnergy/detail.php?id=67004" target="_blank" rel="noopener">EIA Today in Energy — Henry Hub outlook</a><div class="d">Background on the Henry Hub benchmark.</div></li>
+        </ul>
+      </div>
+      <div class="gx-card" id="method-card">
+        <h3>Method</h3>
+        <div class="gx-prose">
+          <p><b>Live status.</b> Each unit in <code>dataSource.js</code> is read as published. Units below 1 MW are “offline”. Operator: Genera PR runs PREPA’s legacy thermal plants (steam, combined cycle, gas turbines, temporary units); AES, EcoEléctrica and renewables are independent producers under PPOAs; hydro stays with PREPA. Primary fuel for dual-fuel plants follows Genera’s latest filing (San Juan CC and Costa Sur steam mostly on LNG).</p>
+          <p><b>Live cost.</b> The feed’s unit cost is in ¢/kWh — it lines up with fuel price × heat rate (for example Costa Sur on LNG, Palo Seco on Bunker C). Cost per hour = MW × ¢/kWh × 10. Units with no reported cost (hydro, some peakers) add MW but no cost.</p>
+          <p><b>Historical cost.</b> From each filing’s unit sheets: fuel consumed (barrels), heat value (Btu/barrel) and gross/net generation. Oil is priced per barrel; LNG per MMBtu. Prices come from the feed where it publishes one for that plant and fuel; otherwise the average feed ULSD price, or the NFE contract formula for LNG (115% × Henry Hub plus an adder). All months are priced the same way, so changes reflect fuel volumes and mix, not price swings.</p>
+          <p><b>Customer charges.</b> FCA and PPCA are PREB’s approved quarterly factors, in ¢ per kWh billed. They cover fuel for all of Genera’s plants plus energy bought from AES, EcoEléctrica and renewables, and they include reconciliations of past quarters and grid losses, so they won’t equal Genera’s fuel cost per kWh generated. Household amounts are those two charges × monthly use.</p>
+          <p><b>Not included.</b> Fixed O&amp;M, capacity payments, PPOA energy purchases, fuel logistics and hedging. Q3 of FY 2025-26 (January–March 2026) was not in the uploaded workbooks.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="gx-card wide" id="prices-card" style="margin-bottom:var(--cds-gap-md)">
+      <h3>Fuel prices applied to the historical estimate</h3>
+      <p class="gx-note">One price per plant and fuel. “Live feed” prices come straight from PREPA’s operational data; “Derived” and “Contract formula” rows explain how the price was set.</p>
+      <div class="gx-tablewrap">
+        <table class="gx-table" id="prices-table" data-source="fuel_prices" data-row-key="key">
+          <thead><tr><th data-field="plant">Plant</th><th data-field="fuel">Fuel</th><th class="num" data-field="price">Price</th><th data-field="price_unit">Unit</th><th data-field="basis">Basis</th><th data-field="source">Source</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="gx-card wide" id="update-card">
+      <h3>How these pages update</h3>
+      <div class="gx-prose">
+        <p><b>Every hour</b> a GitHub Action reads PREPA’s <code>dataSource.js</code> and <code>dataGraph.js</code>, logs whether the portal answered, records any unit that stopped or restarted, adds a row to the hourly history, rebuilds the 24-hour forecast and commits the files in <code>data/</code>. GitHub Pages publishes the commit and open pages pick it up within five minutes.</p>
+        <p><b>Each quarter</b>, add Genera’s new “Fuel Consumption, Generation &amp; Heat Rates” exhibit to the filings data and PREB’s new FCA/PPCA factors to <code>data/customer_fuel_charges.json</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><p>Data: PREPA operational feeds (hourly), Genera quarterly filings in PREB docket NEPR-MI-2019-0007, PREB FCA/PPCA resolutions in NEPR-MI-2020-0001. Estimates are labelled as such; see Sources &amp; method.</p></footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/calcs.js"></script>
+<script src="assets/analysis.js"></script>
+</body>
+</html>
