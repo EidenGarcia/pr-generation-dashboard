@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, October 21, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-21 01:07 AST)
-Coverage ........ 0.3 h of feed checks (1 checks), 14 five-minute readings
+Status .......... In progress (updated 2026-10-21 06:07 AST)
+Coverage ........ 2.0 h of feed checks (2 checks), 87 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,192 MW at 01:06
-  Minimum ....... 2,192 MW at 01:06
-  Average ....... 2,192 MW
+  Minimum ....... 2,147 MW at 06:04
+  Average ....... 2,170 MW
   PREPA peak .... 2,313 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,306.7 MW at 00:01
-  Minimum ....... 2,191.9 MW at 01:06
-  Average ....... 2,245 MW
-  Energy ........ 2,620 MWh
+  Minimum ....... 2,032.7 MW at 03:59
+  Average ....... 2,137 MW
+  Energy ........ 15,494 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.00 Hz
-  Minimum ....... 60.00 Hz
-  Average ....... 60.000 Hz
+  Maximum ....... 60.10 Hz
+  Minimum ....... 59.90 Hz
+  Average ....... 59.995 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............      266 MWh   47.8 %
-  Bunker C .......      120 MWh   21.5 %
-  Diesel (ULSD) ..       51 MWh   9.2 %
-  Coal ...........      119 MWh   21.4 %
-  Landfill gas ...        1 MWh   0.2 %
+  LNG ............    2,158 MWh   48.8 %
+  Bunker C .......      971 MWh   22.0 %
+  Diesel (ULSD) ..      334 MWh   7.6 %
+  Coal ...........      953 MWh   21.6 %
+  Landfill gas ...        5 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $81,458 over 0.3 h  (full-day estimate $7,819,920)
-  Average cost ............ $0.1464 per kWh
+  Total cost of the day ... $622,455 over 2.0 h  (full-day estimate $7,469,460)
+  Average cost ............ $0.1408 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 0   Came back: 0
