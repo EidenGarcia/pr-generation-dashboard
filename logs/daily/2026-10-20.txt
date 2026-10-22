@@ -1,6 +1,6 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, October 20, 2026 (Puerto Rico time, UTC-4)
-Status .......... Ended, partial data (updated 2026-10-21 18:35 AST)
+Status .......... Ended, partial data (updated 2026-10-21 20:54 AST)
 Coverage ........ 3.0 h of feed checks (3 checks), 1201 five-minute readings
 
 DEMAND (PREPA total generation at each check)
