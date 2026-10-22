@@ -1,1 +1,1 @@
-[{"layout":"dataGraph: Hour, Frequency, Generation","mapping":{"generation_mw":"Generation","frequency_hz":"Frequency","time":"Hour"},"variables":{"temperatura":"string","dataGraph":"array(289)"},"captured_at":"2026-10-22T18:46:10-04:00"}]
+[{"layout":"dataGraph: Hour, Frequency, Generation","mapping":{"generation_mw":"Generation","frequency_hz":"Frequency","time":"Hour"},"variables":{"temperatura":"string","dataGraph":"array(289)"},"captured_at":"2026-10-22T19:00:22-04:00"}]
