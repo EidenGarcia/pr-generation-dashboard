@@ -1,4 +1,0 @@
-# Unit outage log, 2026-10-21 (Puerto Rico time, UTC-4)
-# A unit counts as offline below 1 MW. Times are when the change was first seen; it happened after the previous check.
-2026-10-21 20:52 AST  ONLINE    Dos Bocas (hydro) / Hidro 1              0.0 MW ->     5.1 MW  (PREPA (hydro), Hydro; previous check 18:34)
-2026-10-21 20:52 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.1 MW  (PREPA (hydro), Hydro; previous check 18:34)
