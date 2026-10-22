@@ -9,3 +9,5 @@
 2026-10-22 15:29 AST  OFFLINE   Wind / Punta Lima                        1.4 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 15:12)
 2026-10-22 15:58 AST  ONLINE    Aguirre CC 2 / Gas 2                     0.0 MW ->    29.5 MW  (Genera PR, ULSD (diesel); previous check 15:44)
 2026-10-22 15:58 AST  OFFLINE   Solar / San Fermin                       1.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 15:44)
+2026-10-22 16:14 AST  ONLINE    Aguirre CC 1 / Gas 1                     0.1 MW ->    47.8 MW  (Genera PR, ULSD (diesel); previous check 15:58)
+2026-10-22 16:14 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     1.8 MW  (Independent (PPOA), Solar; previous check 15:58)
