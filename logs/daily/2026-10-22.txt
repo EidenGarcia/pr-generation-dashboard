@@ -1,36 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, October 22, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-22 01:44 AST)
-Coverage ........ 0.3 h of feed checks (1 checks), 21 five-minute readings
+Status .......... In progress (updated 2026-10-22 06:40 AST)
+Coverage ........ 2.0 h of feed checks (2 checks), 101 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,316 MW at 01:42
-  Minimum ....... 2,316 MW at 01:42
-  Average ....... 2,316 MW
+  Minimum ....... 2,274 MW at 06:39
+  Average ....... 2,295 MW
   PREPA peak .... 2,484 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,478.4 MW at 00:02
-  Minimum ....... 2,315.2 MW at 01:37
-  Average ....... 2,391 MW
-  Energy ........ 4,184 MWh
+  Minimum ....... 2,197.1 MW at 03:54
+  Average ....... 2,304 MW
+  Energy ........ 19,388 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.20 Hz
+  Maximum ....... 60.40 Hz
   Minimum ....... 59.40 Hz
-  Average ....... 59.967 Hz
-  In Normal band  90.5 %   Excursions: 2
+  Average ....... 59.986 Hz
+  In Normal band  94.1 %   Excursions: 4
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............      281 MWh   47.8 %
-  Bunker C .......       78 MWh   13.3 %
-  Diesel (ULSD) ..      110 MWh   18.7 %
-  Coal ...........      119 MWh   20.2 %
+  LNG ............    2,219 MWh   47.6 %
+  Bunker C .......      613 MWh   13.2 %
+  Diesel (ULSD) ..      870 MWh   18.7 %
+  Coal ...........      954 MWh   20.5 %
+  Landfill gas ...        3 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $97,831 over 0.3 h  (full-day estimate $9,391,752)
-  Average cost ............ $0.1664 per kWh
+  Total cost of the day ... $780,154 over 2.0 h  (full-day estimate $9,361,848)
+  Average cost ............ $0.1674 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 0   Came back: 0
