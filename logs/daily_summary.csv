@@ -1,4 +1,4 @@
 day,status,coverage_h,checks,demand_max_mw,demand_max_at,demand_min_mw,demand_min_at,demand_avg_mw,prepa_peak_mw,gen_max_mw,gen_max_at,gen_min_mw,gen_min_at,gen_avg_mw,gen_energy_mwh,freq_max_hz,freq_min_hz,freq_avg_hz,freq_normal_pct,freq_excursions,majority_fuel,share_lng_pct,share_bunker_c_pct,share_ulsd_pct,share_coal_pct,share_renewable_pct,share_hydro_pct,total_cost_usd,cost_full_day_estimate_usd,avg_cost_usd_per_kwh,units_went_offline,units_came_back
 2026-10-18,"Ended, partial data",0.3,1,2515,19:36,2515,19:36,2515,2519,,,,,,,,,,,0,LNG,42.6,20.7,17.6,18.8,0.1,0.2,126534,12147240,0.1983,0,0
-2026-10-21,"Ended, partial data",0,0,,,,,,,2884.5,19:45,2056.8,13:59,2680,100949,60.3,59.7,60.048,92.5,10,,,,,,,,0,,,0,0
-2026-10-22,In progress,2.7,13,2673,16:28,2289,13:59,2465,2661,2673.9,16:23,2025.1,12:28,2255,143366,60.4,59.3,59.992,98.6,4,LNG,47.3,21.6,9.9,19.1,1.9,0.3,1037499,9104198,0.1519,5,10
+2026-10-21,"Ended, partial data",0,0,,,,,,,2884.5,19:45,2056.8,13:59,2680,100953,60.3,59.7,60.048,92.5,10,,,,,,,,0,,,0,0
+2026-10-22,In progress,3,14,2713,16:42,2289,13:59,2484,2713,2712.9,16:42,2025.1,12:28,2262,147242,60.4,59.3,59.993,98.6,4,LNG,47.2,21.5,10.3,19,1.8,0.3,1137885,9248659,0.1532,7,11
