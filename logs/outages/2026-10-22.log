@@ -6,3 +6,4 @@
 2026-10-22 14:58 AST  ONLINE    Aguirre CC 1 / Gas 4                     0.2 MW ->    28.5 MW  (Genera PR, ULSD (diesel); previous check 14:42)
 2026-10-22 15:12 AST  ONLINE    Dos Bocas (hydro) / Hidro 2              0.1 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 14:58)
 2026-10-22 15:12 AST  ONLINE    Aguirre CC 2 / Gas 4                     0.0 MW ->    31.2 MW  (Genera PR, ULSD (diesel); previous check 14:58)
+2026-10-22 15:29 AST  OFFLINE   Wind / Punta Lima                        1.4 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 15:12)
