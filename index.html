@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Puerto Rico generation — live</title>
+<meta name="description" content="Live generation, frequency, forecast, outages and portal health for Puerto Rico’s power plants, updated hourly from PREPA’s operational feeds.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css?v=20261024">
+<link rel="stylesheet" href="assets/live.css?v=20261024">
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand">
+      <h1>Puerto Rico generation, live</h1>
+      <p id="feed-line">Reading PREPA’s operational feed…</p>
+    </div>
+    <span class="portal" id="portal-pill" title="Health of PREPA’s operational data portal"><span class="lamp"></span><span id="portal-text">Checking portal</span></span>
+  </header>
+  <div class="livectl" id="livectl" role="status" aria-live="polite">
+    <span class="live-dot" aria-hidden="true"></span>
+    <span class="live-stat" id="live-stat">Connecting to PREPA…</span>
+    <label class="toggle"><input type="checkbox" id="auto-toggle" checked> Auto-refresh every 5 min</label>
+    <label class="toggle"><input type="checkbox" id="wake-toggle"> Keep screen on</label>
+    <button class="btn" id="refresh-btn" type="button">Refresh now</button>
+  </div>
+  <div class="histbar" id="histbar">
+    <span id="hist-text">Loading the history saved on this device…</span>
+    <button class="btn ghost" id="hist-csv" type="button">Download history (CSV)</button>
+  </div>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#overview">Overview</a><a href="#plants">Plants right now</a><a href="#overtime">Over time</a><a href="#outages">Unit availability</a><a href="#frequency">Frequency</a><a href="#units">Unit gauges</a><a href="#cost">Cost</a><a href="#summary">Daily summary</a><a href="#portal">Portal health</a>
+  </nav>
+
+  <div class="gx-alert" id="alert-banner">
+    <div class="gx-alert-h"><span class="gx-alert-ic" aria-hidden="true">!</span><b>Unit alerts</b><span class="gx-alert-age" id="alert-age"></span></div>
+    <div class="gx-alert-b dash-skeleton" id="alert-body"></div>
+  </div>
+
+  <!-- Hero: generation, frequency, capacity and forecast -->
+  <div class="fs-wrap" id="hero-wrap">
+  <section class="hero" id="overview" aria-labelledby="hero-h">
+    <div class="hero-main">
+      <div class="hero-head">
+        <h2 id="hero-h">Generation and frequency, last 24 hours and next 24</h2>
+        <div class="chart-tools"><button class="tool" type="button" id="hero-reset" hidden>Reset zoom</button><button class="tool" type="button" data-fs="hero-wrap" aria-label="Full screen">⤢ Full screen</button></div>
+        <div class="hero-legend" id="hero-legend" role="group" aria-label="Show or hide lines"></div>
+      </div>
+      <div class="hero-chart" id="hero-chart"></div>
+      <p class="hero-note" id="hero-note"></p>
+      <p class="hero-hint">Drag across the graph to zoom in; double-click to zoom out.</p>
+    </div>
+    <aside class="rail" id="rail" aria-label="System readouts"></aside>
+  </section>
+
+  <!-- Reserves below the main graph -->
+  <div class="gx-card reserve-card" id="reserve-card">
+    <div class="card-head"><h3>Reserves</h3><span class="gx-note" style="margin:0">Same time span as the graph above; zooming one zooms both.</span></div>
+    <p class="gx-note">Capacity margin = available capacity minus generation (every 5 minutes). Spinning and operating reserve are PREPA’s figures at each reading. Dashed: projected margin from the forecast. The dotted line marks the largest unit online; a margin below it means losing that unit could not be covered.</p>
+    <div class="gx-legend" id="reserve-legend"></div>
+    <div class="gx-chart" id="reserve-chart" style="min-height:220px"></div>
+  </div>
+  </div>
+
+
+  <!-- Plants right now: map and full table -->
+  <h2 class="gx-sec" id="plants">Plants right now</h2>
+  <p class="gx-secnote">Where the island’s power comes from at the latest reading. Dots sit at each plant’s approximate location, sized by output. Select a dot or a table row to see that plant’s units; sort by any column and narrow the list with the filters.</p>
+  <div class="gx-card" style="margin-bottom:var(--cds-gap-lg)">
+    <div class="gx-controls pt-controls">
+      <input type="search" id="pt-q" placeholder="Search plant, unit or fuel…" aria-label="Search plants and units">
+      <div class="gx-seg" id="map-filter" role="group" aria-label="Operator">
+        <button data-v="all" aria-pressed="true">All</button><button data-v="Genera PR" aria-pressed="false">Genera PR</button><button data-v="Independent (PPOA)" aria-pressed="false">Independent</button><button data-v="renew" aria-pressed="false">Renewable &amp; hydro</button>
+      </div>
+      <div class="gx-seg" id="pt-status" role="group" aria-label="Status">
+        <button data-v="all" aria-pressed="true">Any status</button><button data-v="on" aria-pressed="false">Generating</button><button data-v="off" aria-pressed="false">Offline</button>
+      </div>
+      <div class="gx-seg" id="pt-mode" role="group" aria-label="Rows">
+        <button data-v="plants" aria-pressed="true">Plants</button><button data-v="units" aria-pressed="false">Units</button>
+      </div>
+    </div>
+    <div class="pt-chip" id="pt-chip" hidden></div>
+    <div class="map-top">
+      <div id="pr-map" class="pr-map"></div>
+      <div class="map-legend" id="map-legend"></div>
+      <div class="gx-kpis pt-kpis" id="pt-kpis"></div>
+    </div>
+    <div>
+      <div class="pt-tablewrap">
+        <table class="gx-table" id="pt-table"><thead><tr></tr></thead><tbody></tbody></table>
+        <p class="gx-note" id="pt-empty" hidden>No plants or units match these filters.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generation over time -->
+  <h2 class="gx-sec" id="overtime">Generation over time</h2>
+  <p class="gx-secnote">How much each plant or fuel supplied. The total follows PREPA’s 5-minute generation record, so the chart has no gaps; the split between plants and fuels comes from the nearest readings of every unit (ticks under the chart) and is estimated in between. 30 days and All show energy per day (GWh). Drag to zoom.</p>
+  <div class="gx-card fs-card" id="ot-card" style="margin-bottom:var(--cds-gap-lg)">
+    <div class="card-head">
+      <div class="gx-seg" id="ot-view" role="group" aria-label="Group by"><button data-v="plant" aria-pressed="true">By plant</button><button data-v="fuel" aria-pressed="false">By fuel</button></div>
+      <div class="chart-tools"><button class="tool" type="button" id="ot-reset" hidden>Reset zoom</button><button class="tool" type="button" data-fs="ot-card" aria-label="Full screen">⤢ Full screen</button></div>
+      <div class="gx-seg" id="ot-range" role="group" aria-label="Period"><button data-v="24h" aria-pressed="true">24 hours</button><button data-v="7d" aria-pressed="false">7 days</button><button data-v="30d" aria-pressed="false">30 days</button><button data-v="all" aria-pressed="false">All</button></div>
+    </div>
+    <div id="ot-plant" class="plant-wrap" style="margin-top:var(--cds-gap-sm)">
+      <div class="gx-chart" id="plant-chart" style="min-height:360px"></div>
+      <div class="plant-legend" id="plant-legend"></div>
+    </div>
+    <div id="ot-fuel" hidden style="margin-top:var(--cds-gap-sm)">
+      <div class="gx-legend fuel-legend" id="fuel-legend"></div>
+      <div class="gx-chart" id="fuel-chart" style="min-height:320px"></div>
+    </div>
+    <p class="gx-note" id="fuel-note"></p>
+  </div>
+
+  <!-- Outages -->
+  <h2 class="gx-sec" id="outages">Unit availability</h2>
+  <p class="gx-secnote">Generating units that are out of service now, ranked by what each produced in the latest filed month, and every unit that tripped or returned to service in the last 24 hours.</p>
+  <div class="gx-grid">
+    <div class="gx-card" id="alerts-card">
+      <h3>Units out of service now</h3>
+      <p class="gx-note">A baseload unit (steam or San Juan combined cycle) that ran last month and is down now is the one to act on. Peakers start and stop every day.</p>
+      <div class="gx-tablewrap" style="max-height:26rem">
+        <table class="gx-table" id="alerts-table">
+          <thead><tr><th>Alert</th><th>Plant</th><th>Unit</th><th class="num">Net MWh last month</th><th class="num">MW now</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="gx-card" id="events-card">
+      <h3>Unit outage log, last 24 hours</h3>
+      <p class="gx-note">Every unit that went down in the last 24 hours, when it went out, when it came back and the megawatts lost. Times are when the change was first seen (checks every 15 minutes, every 5 while this page is open). The same entries appear as markers on the generation graph.</p>
+      <p class="gx-note" id="events-empty" hidden>No unit has tripped or gone out of service in the last 24 hours of monitoring.</p>
+      <div class="gx-tablewrap" style="max-height:26rem">
+        <table class="gx-table" id="outlog-table">
+          <thead><tr><th>Unit</th><th>Went out</th><th>Came back</th><th class="num">Duration</th><th class="num">MW lost</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="gx-note" style="margin-top:8px">Every change is also written to a text log on GitHub, one file per day in <code>logs/outages/</code>; open a day from the summary log below.</p>
+    </div>
+  </div>
+  <div class="gx-card" id="offline-trend-card" style="margin-bottom:var(--cds-gap-md)">
+    <h3>Genera units out of service and spinning reserve</h3>
+    <p class="gx-note">From every hourly check since monitoring began. Bars: Genera units not generating. Line: spinning reserve (MW, right).</p>
+    <div class="gx-chart" id="offline-trend" style="min-height:200px"></div>
+  </div>
+
+  <!-- Frequency against limits -->
+  <h2 class="gx-sec" id="frequency">Frequency against IEEE limits</h2>
+  <p class="gx-secnote">The grid runs at 60 Hz. The further frequency strays and the longer it stays away, the closer generators and inverters get to tripping off. Each 5-minute reading from PREPA is placed in a level below; any reading outside Normal starts an excursion, logged with its duration and whether it outlasted the time allowed at that level.</p>
+  <div class="gx-kpis" id="fq-kpis"></div>
+  <div class="fq-grid">
+    <div class="gx-card">
+      <h3>Last 24 hours on the limit scale</h3>
+      <p class="gx-note">The scale stretches the area near 60 Hz so small swings stay visible while the IEEE limits remain on the chart. Dashed lines are IEEE 1547-2018 trip settings.</p>
+      <div class="gx-chart fq-chart" id="fq-chart" style="min-height:340px"></div>
+    </div>
+    <div class="gx-card">
+      <h3>Levels and where they come from</h3>
+      <ul class="fq-levels" id="fq-levels"></ul>
+      <p class="gx-note" style="margin-top:12px">Readings are 5 minutes apart, so short dips between readings can be missed and durations are estimates. “Possibly exceeded” means a single reading was outside the range and the event could have lasted longer than allowed.</p>
+    </div>
+  </div>
+  <div class="gx-card" style="margin-bottom:var(--cds-gap-md)">
+    <h3>Frequency excursions</h3>
+    <p class="gx-note">Every period outside the Normal range since monitoring began, newest first.</p>
+    <p class="gx-note" id="fq-empty" hidden>No excursions recorded yet.</p>
+    <div class="gx-tablewrap" style="max-height:24rem">
+      <table class="gx-table" id="fq-table">
+        <thead><tr><th>Started</th><th>Direction</th><th>Worst level</th><th class="num">Extreme</th><th class="num">Duration</th><th class="num">Allowed</th><th>Time limit</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Plant board -->
+  <h2 class="gx-sec" id="units">Unit gauges</h2>
+  <p class="gx-secnote">Each unit as a gauge from 0 to its rated capacity, with its status. The pale band marks the lowest and highest output seen while it was running since monitoring began. Where no rating is published, the scale uses the highest output observed (marked “obs.”).</p>
+  <div class="gx-controls">
+    <div class="gx-seg" id="board-filter" role="group" aria-label="Operator">
+      <button data-v="Genera PR" aria-pressed="true">Genera PR</button>
+      <button data-v="Independent (PPOA)" aria-pressed="false">Independent producers</button>
+      <button data-v="PREPA (hydro)" aria-pressed="false">Hydro</button>
+      <button data-v="all" aria-pressed="false">All</button>
+    </div>
+  </div>
+  <div class="gauges" id="gauges"></div>
+
+  <!-- Energy mix and cost now -->
+  <h2 class="gx-sec" id="cost">Cost and energy mix right now</h2>
+  <div class="gx-grid">
+    <div class="gx-card">
+      <h3>Energy source</h3>
+      <p class="gx-note">Share of generation as published by the operator.</p>
+      <div class="gx-rings" id="rings"></div>
+      <div class="mixbar" id="mixbar"></div>
+    </div>
+    <div class="gx-card">
+      <h3>Dispatch cost</h3>
+      <p class="gx-note">MW × each unit’s reported cost. Totals use every unit with a reported cost; 24-hour figures add up each check over the last day.</p>
+      <div class="gx-kpis" id="cost-kpis-live"></div>
+      <div class="gx-chart" id="livecost-chart" style="min-height:180px"></div>
+    </div>
+  </div>
+
+  <!-- Daily summary -->
+  <h2 class="gx-sec" id="summary">Daily summary</h2>
+  <p class="gx-secnote">Written automatically on GitHub after every check, as a text log for each day. Demand comes from PREPA’s total at each check, generation and frequency from the 5-minute readings, fuel shares and cost from each unit’s output and reported cost.</p>
+  <div class="gx-kpis" id="day-kpis"></div>
+  <div class="gx-card" style="margin-bottom:var(--cds-gap-md)">
+    <h3>Summary log</h3>
+    <p class="gx-note">One row per day. <a href="logs/daily_summary.csv">Download all days (CSV)</a>.</p>
+    <div class="gx-tablewrap" style="max-height:26rem">
+      <table class="gx-table" id="day-table">
+        <thead><tr><th>Day</th><th class="num">Max demand</th><th class="num">Min demand</th><th class="num">Max gen.</th><th class="num">Min gen.</th><th>Majority fuel</th><th class="num">Total cost</th><th class="num">$/kWh</th><th class="num">Freq. max</th><th class="num">Freq. min</th><th class="num">Freq. avg</th><th class="num">Outages</th><th>Text log</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Portal health -->
+  <h2 class="gx-sec" id="portal">Portal health</h2>
+  <p class="gx-secnote">Every 15 minutes a GitHub Action requests both PREPA feeds, whether or not anyone has this page open. Uptime and the check map use those checks; reads made by your browser appear in the table as “This browser”.</p>
+  <div class="gx-kpis" id="health-kpis"></div>
+  <div class="gx-grid">
+    <div class="gx-card">
+      <h3>Checks by hour, last 7 days</h3>
+      <p class="gx-note">One square per hour. Teal: answered. Red: failed. Grey: no check that hour.</p>
+      <div id="heat"></div>
+    </div>
+    <div class="gx-card">
+      <h3>Response time</h3>
+      <p class="gx-note">Seconds for PREPA’s server to deliver each feed.</p>
+      <div class="gx-chart" id="resp-chart" style="min-height:180px"></div>
+    </div>
+  </div>
+  <div class="gx-card">
+    <h3>Recent checks</h3>
+    <div class="gx-tablewrap" style="max-height:18rem">
+      <table class="gx-table" id="checks-table">
+        <thead><tr><th>Checked</th><th>By</th><th>Feed</th><th>Result</th><th class="num">Response</th><th class="num">Size</th><th>PREPA timestamp</th><th class="num">Data age</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Live data is read directly from PREPA every 5 minutes while this page is open, and every 15 minutes by a GitHub Action that keeps the outage log, the daily summary text logs, frequency excursions and portal health. Sources: PREPA operational data — <a href="https://operationdata.prepa.pr.gov/dataSource.js" rel="noopener">dataSource.js</a> (plants, units, metrics) and <a href="https://operationdata.prepa.pr.gov/dataGraph.js" rel="noopener">dataGraph.js</a> (24-hour generation), checked hourly. Units below 1 MW count as offline; the feed does not say whether a unit is on outage, maintenance or reserve. Frequency levels: IEEE 1547-2018 continuous-operation range and default trip settings, generator continuous-operation limits used in WECC and AESO practice, and a ±0.2 Hz normal range set in data/frequency_limits.json. The forecast is this dashboard’s own estimate, not PREPA’s. Unit rankings use Genera’s quarterly filings in PREB docket NEPR-MI-2019-0007.</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/core.js?v=20261024"></script>
+<script src="assets/prepa-core.js?v=20261024"></script>
+<script src="assets/calcs.js?v=20261024"></script>
+<script src="assets/history-db.js?v=20261024"></script>
+<script src="assets/live-feed.js?v=20261024"></script>
+<script src="assets/live-extra.js?v=20261024"></script>
+<script src="assets/live.js?v=20261024"></script>
+</body>
+</html>
