@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, October 22, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-22 15:30 AST)
-Coverage ........ 1.7 h of feed checks (8 checks), 549 five-minute readings
+Status .......... In progress (updated 2026-10-22 15:31 AST)
+Coverage ........ 1.8 h of feed checks (9 checks), 736 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,484 MW at 15:29
   Minimum ....... 2,289 MW at 13:59
-  Average ....... 2,388 MW
+  Average ....... 2,389 MW
   PREPA peak .... 2,484 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,484.1 MW at 15:29
-  Minimum ....... 2,026.6 MW at 12:28
-  Average ....... 2,243 MW
-  Energy ........ 102,603 MWh
+  Minimum ....... 2,026.5 MW at 12:25
+  Average ....... 2,244 MW
+  Energy ........ 137,617 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
   Minimum ....... 59.40 Hz
-  Average ....... 59.993 Hz
-  In Normal band  98.4 %   Excursions: 4
+  Average ....... 59.994 Hz
+  In Normal band  98.6 %   Excursions: 4
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    1,988 MWh   47.2 %
-  Bunker C .......      935 MWh   22.2 %
-  Diesel (ULSD) ..      357 MWh   8.5 %
-  Coal ...........      832 MWh   19.7 %
+  LNG ............    2,016 MWh   47.2 %
+  Bunker C .......      947 MWh   22.2 %
+  Diesel (ULSD) ..      362 MWh   8.5 %
+  Coal ...........      842 MWh   19.7 %
   Solar ..........       81 MWh   1.9 %
-  Wind ...........       12 MWh   0.3 %
+  Wind ...........       13 MWh   0.3 %
   Hydro ..........        7 MWh   0.2 %
   Landfill gas ...        3 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $623,531 over 1.7 h  (full-day estimate $8,578,515)
+  Total cost of the day ... $631,774 over 1.8 h  (full-day estimate $8,587,993)
   Average cost ............ $0.1480 per kWh
 
 OUTAGES (units that stopped or restarted)
