@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 23, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-23 07:30 AST)
-Coverage ........ 7.5 h of feed checks (31 checks), 283 five-minute readings
+Status .......... In progress (updated 2026-10-23 07:36 AST)
+Coverage ........ 7.6 h of feed checks (32 checks), 375 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,450 MW at 00:14
   Minimum ....... 2,224 MW at 03:58
-  Average ....... 2,299 MW
+  Average ....... 2,300 MW
   PREPA peak .... 2,481 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,479.2 MW at 00:00
-  Minimum ....... 2,220.6 MW at 04:02
-  Average ....... 2,308 MW
-  Energy ........ 54,431 MWh
+  Minimum ....... 2,218.8 MW at 04:01
+  Average ....... 2,307 MW
+  Energy ........ 72,086 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.70 Hz
-  Average ....... 59.988 Hz
-  In Normal band  99.6 %   Excursions: 2
+  Average ....... 59.989 Hz
+  In Normal band  99.5 %   Excursions: 2
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    8,176 MWh   47.5 %
-  Bunker C .......    3,753 MWh   21.8 %
-  Diesel (ULSD) ..    1,669 MWh   9.7 %
-  Coal ...........    3,574 MWh   20.8 %
-  Solar ..........        9 MWh   0.1 %
-  Wind ...........       31 MWh   0.2 %
+  LNG ............    8,290 MWh   47.5 %
+  Bunker C .......    3,806 MWh   21.8 %
+  Diesel (ULSD) ..    1,693 MWh   9.7 %
+  Coal ...........    3,624 MWh   20.7 %
+  Solar ..........       13 MWh   0.1 %
+  Wind ...........       32 MWh   0.2 %
   Landfill gas ...       12 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $2,631,829 over 7.5 h  (full-day estimate $8,427,159)
+  Total cost of the day ... $2,668,694 over 7.6 h  (full-day estimate $8,427,455)
   Average cost ............ $0.1528 per kWh
 
 OUTAGES (units that stopped or restarted)
