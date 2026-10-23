@@ -14,3 +14,6 @@
 2026-10-23 04:28 AST  ONLINE    Wind / Punta Lima                        0.9 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 04:14)
 2026-10-23 04:42 AST  OFFLINE   Wind / Punta Lima                        1.0 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 04:28)
 2026-10-23 05:44 AST  ONLINE    Wind / Punta Lima                        0.6 MW ->     1.7 MW  (Independent (PPOA), Wind; previous check 05:28)
+2026-10-23 06:58 AST  ONLINE    Solar / Ilumina                          0.2 MW ->     1.4 MW  (Independent (PPOA), Solar; previous check 06:42)
+2026-10-23 06:58 AST  ONLINE    Solar / Oriana                           0.1 MW ->     3.1 MW  (Independent (PPOA), Solar; previous check 06:42)
+2026-10-23 06:58 AST  ONLINE    Solar / Fonroche                         0.0 MW ->     2.5 MW  (Independent (PPOA), Solar; previous check 06:42)
