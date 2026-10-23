@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 23, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-23 03:00 AST)
-Coverage ........ 3.0 h of feed checks (13 checks), 103 five-minute readings
+Status .......... In progress (updated 2026-10-23 03:15 AST)
+Coverage ........ 3.2 h of feed checks (14 checks), 109 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,450 MW at 00:14
-  Minimum ....... 2,258 MW at 02:58
-  Average ....... 2,340 MW
+  Minimum ....... 2,247 MW at 03:14
+  Average ....... 2,333 MW
   PREPA peak .... 2,481 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,479.2 MW at 00:00
-  Minimum ....... 2,258.4 MW at 02:58
-  Average ....... 2,364 MW
-  Energy ........ 20,290 MWh
+  Minimum ....... 2,247.4 MW at 03:14
+  Average ....... 2,358 MW
+  Energy ........ 21,417 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.70 Hz
   Average ....... 59.980 Hz
-  In Normal band  98.1 %   Excursions: 2
+  In Normal band  98.2 %   Excursions: 2
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    3,286 MWh   47.3 %
-  Bunker C .......    1,465 MWh   21.1 %
-  Diesel (ULSD) ..      768 MWh   11.1 %
-  Coal ...........    1,417 MWh   20.4 %
+  LNG ............    3,580 MWh   47.4 %
+  Bunker C .......    1,603 MWh   21.2 %
+  Diesel (ULSD) ..      819 MWh   10.8 %
+  Coal ...........    1,547 MWh   20.5 %
   Wind ...........        3 MWh   0.0 %
   Landfill gas ...        5 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $1,092,583 over 3.0 h  (full-day estimate $8,825,649)
-  Average cost ............ $0.1574 per kWh
+  Total cost of the day ... $1,185,193 over 3.2 h  (full-day estimate $8,767,180)
+  Average cost ............ $0.1568 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 7   Came back: 2
