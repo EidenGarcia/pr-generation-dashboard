@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, October 22, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-22 21:10 AST)
-Coverage ........ 7.4 h of feed checks (33 checks), 981 five-minute readings
+Status .......... In progress (updated 2026-10-22 21:15 AST)
+Coverage ........ 7.5 h of feed checks (34 checks), 984 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,845 MW at 19:42
   Minimum ....... 2,289 MW at 13:59
-  Average ....... 2,675 MW
+  Average ....... 2,676 MW
   PREPA peak .... 2,855 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,853.8 MW at 19:09
   Minimum ....... 2,026.6 MW at 12:27
-  Average ....... 2,368 MW
-  Energy ........ 193,625 MWh
+  Average ....... 2,370 MW
+  Energy ........ 194,313 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
@@ -22,19 +22,19 @@ FREQUENCY (5-minute readings)
   In Normal band  98.0 %   Excursions: 8
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    9,543 MWh   47.8 %
-  Bunker C .......    4,005 MWh   20.1 %
-  Diesel (ULSD) ..    2,675 MWh   13.4 %
-  Coal ...........    3,528 MWh   17.7 %
+  LNG ............    9,658 MWh   47.8 %
+  Bunker C .......    4,055 MWh   20.1 %
+  Diesel (ULSD) ..    2,718 MWh   13.4 %
+  Coal ...........    3,572 MWh   17.7 %
   Solar ..........      115 MWh   0.6 %
   Wind ...........       18 MWh   0.1 %
-  Hydro ..........       65 MWh   0.3 %
+  Hydro ..........       66 MWh   0.3 %
   Landfill gas ...       12 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,229,437 over 7.4 h  (full-day estimate $10,484,869)
-  Average cost ............ $0.1618 per kWh
+  Total cost of the day ... $3,273,391 over 7.5 h  (full-day estimate $10,496,231)
+  Average cost ............ $0.1619 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 17   Came back: 17
