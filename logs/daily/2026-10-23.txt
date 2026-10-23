@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 23, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-23 02:30 AST)
-Coverage ........ 2.5 h of feed checks (11 checks), 88 five-minute readings
+Status .......... In progress (updated 2026-10-23 02:45 AST)
+Coverage ........ 2.7 h of feed checks (12 checks), 91 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,450 MW at 00:14
-  Minimum ....... 2,286 MW at 02:29
-  Average ....... 2,356 MW
+  Minimum ....... 2,266 MW at 02:44
+  Average ....... 2,347 MW
   PREPA peak .... 2,481 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,479.2 MW at 00:00
-  Minimum ....... 2,284.9 MW at 02:24
-  Average ....... 2,378 MW
-  Energy ........ 17,441 MWh
+  Minimum ....... 2,265.7 MW at 02:44
+  Average ....... 2,374 MW
+  Energy ........ 18,006 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.70 Hz
-  Average ....... 59.972 Hz
-  In Normal band  97.7 %   Excursions: 2
+  Average ....... 59.971 Hz
+  In Normal band  97.8 %   Excursions: 2
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    2,753 MWh   47.1 %
-  Bunker C .......    1,221 MWh   20.9 %
-  Diesel (ULSD) ..      677 MWh   11.6 %
-  Coal ...........    1,185 MWh   20.3 %
+  LNG ............    3,039 MWh   47.3 %
+  Bunker C .......    1,351 MWh   21.0 %
+  Diesel (ULSD) ..      726 MWh   11.3 %
+  Coal ...........    1,309 MWh   20.4 %
   Wind ...........        2 MWh   0.0 %
   Landfill gas ...        4 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $927,555 over 2.5 h  (full-day estimate $8,960,283)
-  Average cost ............ $0.1588 per kWh
+  Total cost of the day ... $1,015,903 over 2.7 h  (full-day estimate $8,883,109)
+  Average cost ............ $0.1579 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 7   Came back: 1
