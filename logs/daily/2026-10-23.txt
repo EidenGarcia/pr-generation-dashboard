@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 23, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-23 08:15 AST)
-Coverage ........ 8.2 h of feed checks (35 checks), 390 five-minute readings
+Status .......... In progress (updated 2026-10-23 08:30 AST)
+Coverage ........ 8.4 h of feed checks (36 checks), 400 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,450 MW at 00:14
   Minimum ....... 2,224 MW at 03:58
-  Average ....... 2,303 MW
+  Average ....... 2,304 MW
   PREPA peak .... 2,481 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,479.2 MW at 00:00
-  Minimum ....... 2,218.8 MW at 04:01
-  Average ....... 2,308 MW
-  Energy ........ 75,004 MWh
+  Minimum ....... 2,220.6 MW at 04:02
+  Average ....... 2,309 MW
+  Energy ........ 76,955 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.20 Hz
+  Maximum ....... 60.30 Hz
   Minimum ....... 59.70 Hz
-  Average ....... 59.988 Hz
-  In Normal band  99.5 %   Excursions: 2
+  Average ....... 59.989 Hz
+  In Normal band  99.5 %   Excursions: 3
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    8,989 MWh   47.4 %
-  Bunker C .......    4,137 MWh   21.8 %
-  Diesel (ULSD) ..    1,837 MWh   9.7 %
-  Coal ...........    3,929 MWh   20.7 %
-  Solar ..........       33 MWh   0.2 %
-  Wind ...........       37 MWh   0.2 %
-  Landfill gas ...       13 MWh   0.1 %
+  LNG ............    9,199 MWh   47.3 %
+  Bunker C .......    4,248 MWh   21.8 %
+  Diesel (ULSD) ..    1,881 MWh   9.7 %
+  Coal ...........    4,024 MWh   20.7 %
+  Solar ..........       39 MWh   0.2 %
+  Wind ...........       39 MWh   0.2 %
+  Landfill gas ...       14 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $2,895,924 over 8.2 h  (full-day estimate $8,429,898)
+  Total cost of the day ... $2,967,348 over 8.4 h  (full-day estimate $8,432,406)
   Average cost ............ $0.1526 per kWh
 
 OUTAGES (units that stopped or restarted)
