@@ -40,3 +40,5 @@
 2026-10-23 16:29 AST  ONLINE    GT stations (peakers) / Daguao           0.0 MW ->    14.3 MW  (Genera PR, ULSD (diesel); previous check 16:12)
 2026-10-23 16:29 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.5 MW  (Genera PR, ULSD (diesel); previous check 16:12)
 2026-10-23 16:29 AST  OFFLINE   Solar / San Fermin                       1.4 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:12)
+2026-10-23 16:42 AST  ONLINE    Mayagüez / Gas 2                         0.0 MW ->    21.4 MW  (Genera PR, ULSD (diesel); previous check 16:29)
+2026-10-23 16:42 AST  ONLINE    Solar / Coto Laurel                      1.0 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 16:29)
