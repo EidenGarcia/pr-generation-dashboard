@@ -49,3 +49,4 @@
 2026-10-23 17:13 AST  OFFLINE   Solar / Horizon                          2.4 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 16:58)
 2026-10-23 17:27 AST  ONLINE    Dos Bocas (hydro) / Hidro 1              0.0 MW ->     4.9 MW  (PREPA (hydro), Hydro; previous check 17:13)
 2026-10-23 17:27 AST  OFFLINE   Solar / Coto Laurel                      1.2 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 17:13)
+2026-10-23 17:43 AST  OFFLINE   Solar / Oriana                           1.7 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 17:27)
