@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, October 22, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-22 22:45 AST)
-Coverage ........ 9.0 h of feed checks (40 checks), 1018 five-minute readings
+Status .......... In progress (updated 2026-10-22 23:00 AST)
+Coverage ........ 9.2 h of feed checks (41 checks), 1024 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,845 MW at 19:42
   Minimum ....... 2,289 MW at 13:59
-  Average ....... 2,678 MW
+  Average ....... 2,677 MW
   PREPA peak .... 2,855 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,853.7 MW at 19:09
   Minimum ....... 2,026.6 MW at 12:27
-  Average ....... 2,381 MW
-  Energy ........ 201,948 MWh
+  Average ....... 2,382 MW
+  Energy ........ 203,269 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
@@ -22,19 +22,19 @@ FREQUENCY (5-minute readings)
   In Normal band  97.9 %   Excursions: 8
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   11,440 MWh   47.3 %
-  Bunker C .......    4,849 MWh   20.0 %
-  Diesel (ULSD) ..    3,421 MWh   14.1 %
-  Coal ...........    4,281 MWh   17.7 %
+  LNG ............   11,725 MWh   47.2 %
+  Bunker C .......    4,983 MWh   20.0 %
+  Diesel (ULSD) ..    3,540 MWh   14.2 %
+  Coal ...........    4,401 MWh   17.7 %
   Solar ..........      115 MWh   0.5 %
-  Wind ...........       18 MWh   0.1 %
+  Wind ...........       19 MWh   0.1 %
   Hydro ..........       69 MWh   0.3 %
-  Landfill gas ...       14 MWh   0.1 %
+  Landfill gas ...       15 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,980,320 over 9.0 h  (full-day estimate $10,647,377)
-  Average cost ............ $0.1644 per kWh
+  Total cost of the day ... $4,098,783 over 9.2 h  (full-day estimate $10,665,105)
+  Average cost ............ $0.1648 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 19   Came back: 18
