@@ -37,3 +37,4 @@
 2026-10-24 14:44 AST  ONLINE    Aguirre CC 1 / Gas 4                     0.0 MW ->    24.8 MW  (Genera PR, ULSD (diesel); previous check 14:28)
 2026-10-24 14:58 AST  ONLINE    Cambalache / Gas 3                       0.0 MW ->    20.7 MW  (Genera PR, ULSD (diesel); previous check 14:44)
 2026-10-24 14:58 AST  ONLINE    Aguirre CC 1 / Gas 1                     0.1 MW ->    11.9 MW  (Genera PR, ULSD (diesel); previous check 14:44)
+2026-10-24 15:42 AST  OFFLINE   Solar / San Fermin                       1.5 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 15:29)
