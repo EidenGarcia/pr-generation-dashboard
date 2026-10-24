@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, October 24, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-24 14:15 AST)
-Coverage ........ 14.2 h of feed checks (60 checks), 655 five-minute readings
+Status .......... In progress (updated 2026-10-24 14:30 AST)
+Coverage ........ 14.5 h of feed checks (61 checks), 667 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,542 MW at 00:14
@@ -11,29 +11,29 @@ DEMAND (PREPA total generation at each check)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,564.3 MW at 00:00
-  Minimum ....... 1,908.3 MW at 12:03
-  Average ....... 2,197 MW
-  Energy ........ 119,943 MWh
+  Minimum ....... 1,917.6 MW at 12:03
+  Average ....... 2,195 MW
+  Energy ........ 122,018 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.993 Hz
+  Average ....... 59.992 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   14,584 MWh   46.5 %
-  Bunker C .......    6,808 MWh   21.7 %
-  Diesel (ULSD) ..    2,378 MWh   7.6 %
-  Coal ...........    6,776 MWh   21.6 %
-  Solar ..........      477 MWh   1.5 %
-  Wind ...........      297 MWh   0.9 %
+  LNG ............   14,872 MWh   46.6 %
+  Bunker C .......    6,938 MWh   21.7 %
+  Diesel (ULSD) ..    2,401 MWh   7.5 %
+  Coal ...........    6,907 MWh   21.6 %
+  Solar ..........      494 MWh   1.5 %
+  Wind ...........      305 MWh   1.0 %
   Landfill gas ...       23 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $4,648,496 over 14.2 h  (full-day estimate $7,854,155)
-  Average cost ............ $0.1483 per kWh
+  Total cost of the day ... $4,728,320 over 14.5 h  (full-day estimate $7,837,296)
+  Average cost ............ $0.1480 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 19   Came back: 14
