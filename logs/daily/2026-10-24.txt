@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, October 24, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-24 13:45 AST)
-Coverage ........ 13.7 h of feed checks (58 checks), 646 five-minute readings
+Status .......... In progress (updated 2026-10-24 14:00 AST)
+Coverage ........ 14.0 h of feed checks (59 checks), 649 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,542 MW at 00:14
   Minimum ....... 1,921 MW at 10:42
-  Average ....... 2,191 MW
+  Average ....... 2,188 MW
   PREPA peak .... 2,565 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,564.3 MW at 00:00
   Minimum ....... 1,908.3 MW at 12:03
-  Average ....... 2,200 MW
-  Energy ........ 118,413 MWh
+  Average ....... 2,199 MW
+  Energy ........ 118,921 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
@@ -22,18 +22,18 @@ FREQUENCY (5-minute readings)
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   14,158 MWh   46.6 %
-  Bunker C .......    6,588 MWh   21.7 %
-  Diesel (ULSD) ..    2,338 MWh   7.7 %
-  Coal ...........    6,552 MWh   21.6 %
-  Solar ..........      436 MWh   1.4 %
-  Wind ...........      285 MWh   0.9 %
+  LNG ............   14,381 MWh   46.6 %
+  Bunker C .......    6,704 MWh   21.7 %
+  Diesel (ULSD) ..    2,359 MWh   7.6 %
+  Coal ...........    6,672 MWh   21.6 %
+  Solar ..........      455 MWh   1.5 %
+  Wind ...........      292 MWh   0.9 %
   Landfill gas ...       22 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $4,514,930 over 13.7 h  (full-day estimate $7,889,211)
-  Average cost ............ $0.1486 per kWh
+  Total cost of the day ... $4,585,053 over 14.0 h  (full-day estimate $7,868,522)
+  Average cost ............ $0.1485 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 19   Came back: 14
