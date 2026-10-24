@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, October 24, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-24 10:24 AST)
-Coverage ........ 10.4 h of feed checks (43 checks), 474 five-minute readings
+Status .......... In progress (updated 2026-10-24 10:30 AST)
+Coverage ........ 10.5 h of feed checks (44 checks), 477 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,542 MW at 00:14
-  Minimum ....... 1,981 MW at 10:22
-  Average ....... 2,268 MW
+  Minimum ....... 1,944 MW at 10:28
+  Average ....... 2,264 MW
   PREPA peak .... 2,565 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,564.5 MW at 00:00
-  Minimum ....... 1,981.4 MW at 10:22
-  Average ....... 2,284 MW
-  Energy ........ 90,233 MWh
+  Minimum ....... 1,943.6 MW at 10:28
+  Average ....... 2,282 MW
+  Energy ........ 90,718 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.997 Hz
+  Average ....... 59.996 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   11,068 MWh   46.4 %
-  Bunker C .......    5,250 MWh   22.0 %
-  Diesel (ULSD) ..    2,241 MWh   9.4 %
-  Coal ...........    4,948 MWh   20.7 %
-  Solar ..........      169 MWh   0.7 %
-  Wind ...........      162 MWh   0.7 %
+  LNG ............   11,160 MWh   46.4 %
+  Bunker C .......    5,297 MWh   22.0 %
+  Diesel (ULSD) ..    2,243 MWh   9.3 %
+  Coal ...........    5,000 MWh   20.8 %
+  Solar ..........      178 MWh   0.7 %
+  Wind ...........      167 MWh   0.7 %
   Landfill gas ...       17 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,694,021 over 10.4 h  (full-day estimate $8,548,637)
-  Average cost ............ $0.1548 per kWh
+  Total cost of the day ... $3,720,857 over 10.5 h  (full-day estimate $8,521,047)
+  Average cost ............ $0.1546 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 17   Came back: 11
