@@ -22,3 +22,5 @@
 2026-10-24 08:14 AST  OFFLINE   Solar / Horizon                          4.1 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 07:58)
 2026-10-24 08:14 AST  ONLINE    Solar / Coto Laurel                      0.9 MW ->     2.7 MW  (Independent (PPOA), Solar; previous check 07:58)
 2026-10-24 08:28 AST  ONLINE    Solar / Horizon                          0.7 MW ->     3.3 MW  (Independent (PPOA), Solar; previous check 08:14)
+2026-10-24 09:00 AST  OFFLINE   Aguirre CC 1 / Gas 1                    17.2 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 08:42)
+2026-10-24 09:00 AST  OFFLINE   Aguirre CC 1 / Gas 4                    29.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:42)
