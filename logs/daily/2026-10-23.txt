@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 23, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-23 23:45 AST)
-Coverage ........ 23.7 h of feed checks (100 checks), 1295 five-minute readings
+Status .......... Complete (updated 2026-10-24 00:00 AST)
+Coverage ........ 23.8 h of feed checks (101 checks), 1301 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,839 MW at 17:58
@@ -13,7 +13,7 @@ GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,843.8 MW at 17:59
   Minimum ....... 2,118.5 MW at 11:01
   Average ....... 2,403 MW
-  Energy ........ 259,286 MWh
+  Energy ........ 260,579 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
@@ -22,10 +22,10 @@ FREQUENCY (5-minute readings)
   In Normal band  98.1 %   Excursions: 10
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   26,449 MWh   45.8 %
-  Bunker C .......   12,073 MWh   20.9 %
-  Diesel (ULSD) ..    6,778 MWh   11.7 %
-  Coal ...........   11,306 MWh   19.6 %
+  LNG ............   26,501 MWh   45.8 %
+  Bunker C .......   12,095 MWh   20.9 %
+  Diesel (ULSD) ..    6,800 MWh   11.7 %
+  Coal ...........   11,327 MWh   19.6 %
   Solar ..........      536 MWh   0.9 %
   Wind ...........      533 MWh   0.9 %
   Hydro ..........       69 MWh   0.1 %
@@ -33,7 +33,7 @@ FUEL USE (share of energy, time-weighted from unit outputs)
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $9,659,072 over 23.7 h
+  Total cost of the day ... $9,680,431 over 23.8 h
   Average cost ............ $0.1672 per kWh
 
 OUTAGES (units that stopped or restarted)
