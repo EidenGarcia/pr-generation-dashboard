@@ -46,3 +46,5 @@
 2026-10-24 16:43 AST  OFFLINE   Solar / Oriana                           1.7 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 16:29)
 2026-10-24 16:43 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 16:29)
 2026-10-24 16:43 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 16:29)
+2026-10-24 16:59 AST  ONLINE    GT stations (peakers) / Jobos            0.0 MW ->    17.9 MW  (Genera PR, ULSD (diesel); previous check 16:43)
+2026-10-24 16:59 AST  ONLINE    Solar / Oriana                           0.7 MW ->     4.2 MW  (Independent (PPOA), Solar; previous check 16:43)
