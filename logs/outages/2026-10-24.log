@@ -26,3 +26,5 @@
 2026-10-24 09:00 AST  OFFLINE   Aguirre CC 1 / Gas 4                    29.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:42)
 2026-10-24 09:44 AST  OFFLINE   Solar / San Fermin                       1.9 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 09:28)
 2026-10-24 09:58 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 09:44)
+2026-10-24 10:13 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
+2026-10-24 10:13 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
