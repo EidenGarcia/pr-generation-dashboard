@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, October 24, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-24 11:00 AST)
-Coverage ........ 11.0 h of feed checks (46 checks), 487 five-minute readings
+Status .......... In progress (updated 2026-10-24 11:15 AST)
+Coverage ........ 11.2 h of feed checks (47 checks), 505 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,542 MW at 00:14
   Minimum ....... 1,921 MW at 10:42
-  Average ....... 2,249 MW
+  Average ....... 2,242 MW
   PREPA peak .... 2,565 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,564.5 MW at 00:00
   Minimum ....... 1,920.6 MW at 10:42
-  Average ....... 2,275 MW
-  Energy ........ 92,326 MWh
+  Average ....... 2,264 MW
+  Energy ........ 95,287 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
@@ -22,18 +22,18 @@ FREQUENCY (5-minute readings)
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   11,601 MWh   46.4 %
-  Bunker C .......    5,491 MWh   22.0 %
-  Diesel (ULSD) ..    2,255 MWh   9.0 %
-  Coal ...........    5,237 MWh   20.9 %
-  Solar ..........      221 MWh   0.9 %
-  Wind ...........      191 MWh   0.8 %
+  LNG ............   11,847 MWh   46.4 %
+  Bunker C .......    5,590 MWh   21.9 %
+  Diesel (ULSD) ..    2,262 MWh   8.9 %
+  Coal ...........    5,362 MWh   21.0 %
+  Solar ..........      244 MWh   1.0 %
+  Wind ...........      202 MWh   0.8 %
   Landfill gas ...       18 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,842,050 over 11.0 h  (full-day estimate $8,399,624)
-  Average cost ............ $0.1536 per kWh
+  Total cost of the day ... $3,906,268 over 11.2 h  (full-day estimate $8,339,962)
+  Average cost ............ $0.1530 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 18   Came back: 11
