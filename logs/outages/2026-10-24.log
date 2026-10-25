@@ -62,3 +62,5 @@
 2026-10-24 19:58 AST  ONLINE    Wind / Punta Lima                        0.9 MW ->     1.6 MW  (Independent (PPOA), Wind; previous check 19:44)
 2026-10-24 21:44 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
 2026-10-24 21:44 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-10-24 23:58 AST  OFFLINE   GT stations (peakers) / Jobos           18.7 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 23:42)
+2026-10-24 23:58 AST  OFFLINE   GT stations (peakers) / Daguao          15.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:42)
