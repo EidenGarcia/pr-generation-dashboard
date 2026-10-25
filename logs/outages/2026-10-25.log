@@ -19,3 +19,5 @@
 2026-10-25 07:42 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-10-25 07:42 AST  ONLINE    Solar / Horizon                          0.8 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-10-25 07:59 AST  OFFLINE   Solar / Coto Laurel                      2.0 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 07:42)
+2026-10-25 08:12 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:59)
+2026-10-25 08:12 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:59)
