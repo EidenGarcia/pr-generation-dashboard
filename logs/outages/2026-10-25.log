@@ -48,3 +48,6 @@
 2026-10-25 16:58 AST  ONLINE    Solar / Ilumina                          0.8 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 16:44)
 2026-10-25 16:58 AST  OFFLINE   Solar / Coto Laurel                      1.2 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:44)
 2026-10-25 17:12 AST  OFFLINE   Solar / Ilumina                          1.2 MW ->     0.4 MW  (Independent (PPOA), Solar; previous check 16:58)
+2026-10-25 17:28 AST  OFFLINE   Aguirre CC 2 / Gas 2                    48.4 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 17:12)
+2026-10-25 17:28 AST  OFFLINE   Solar / Oriana                           1.7 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 17:12)
+2026-10-25 17:28 AST  OFFLINE   Solar / Fonroche                         3.4 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 17:12)
