@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, October 25, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-25 15:57 AST)
-Coverage ........ 15.9 h of feed checks (68 checks), 787 five-minute readings
+Status .......... In progress (updated 2026-10-25 16:00 AST)
+Coverage ........ 16.0 h of feed checks (69 checks), 790 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,512 MW at 00:14
@@ -12,28 +12,28 @@ DEMAND (PREPA total generation at each check)
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,536.1 MW at 00:01
   Minimum ....... 1,766.2 MW at 11:52
-  Average ....... 2,130 MW
-  Energy ........ 139,688 MWh
+  Average ....... 2,131 MW
+  Energy ........ 140,303 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
-  Minimum ....... 59.80 Hz
+  Minimum ....... 59.70 Hz
   Average ....... 59.989 Hz
-  In Normal band  100.0 %   Excursions: 1
+  In Normal band  99.9 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   15,959 MWh   46.9 %
-  Bunker C .......    7,580 MWh   22.3 %
-  Diesel (ULSD) ..    2,030 MWh   6.0 %
-  Coal ...........    7,367 MWh   21.7 %
-  Solar ..........      574 MWh   1.7 %
-  Wind ...........      488 MWh   1.4 %
+  LNG ............   15,981 MWh   46.9 %
+  Bunker C .......    7,595 MWh   22.3 %
+  Diesel (ULSD) ..    2,044 MWh   6.0 %
+  Coal ...........    7,380 MWh   21.6 %
+  Solar ..........      575 MWh   1.7 %
+  Wind ...........      489 MWh   1.4 %
   Landfill gas ...       26 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $4,811,143 over 15.9 h  (full-day estimate $7,239,463)
-  Average cost ............ $0.1414 per kWh
+  Total cost of the day ... $4,824,961 over 16.0 h  (full-day estimate $7,248,642)
+  Average cost ............ $0.1415 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 17   Came back: 22
