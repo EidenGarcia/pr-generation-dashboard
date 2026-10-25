@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, October 25, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-25 04:30 AST)
-Coverage ........ 4.5 h of feed checks (19 checks), 157 five-minute readings
+Status .......... In progress (updated 2026-10-25 04:45 AST)
+Coverage ........ 4.8 h of feed checks (20 checks), 163 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,512 MW at 00:14
-  Minimum ....... 2,245 MW at 04:28
-  Average ....... 2,354 MW
+  Minimum ....... 2,240 MW at 04:44
+  Average ....... 2,348 MW
   PREPA peak .... 2,536 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,533.2 MW at 00:00
-  Minimum ....... 2,243.1 MW at 04:23
-  Average ....... 2,383 MW
-  Energy ........ 31,173 MWh
+  Minimum ....... 2,237.6 MW at 04:39
+  Average ....... 2,378 MW
+  Energy ........ 32,295 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
@@ -22,17 +22,17 @@ FREQUENCY (5-minute readings)
   In Normal band  100.0 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    4,937 MWh   46.0 %
-  Bunker C .......    2,329 MWh   21.7 %
-  Diesel (ULSD) ..    1,271 MWh   11.8 %
-  Coal ...........    2,145 MWh   20.0 %
-  Wind ...........       48 MWh   0.4 %
-  Landfill gas ...        7 MWh   0.1 %
+  LNG ............    5,231 MWh   46.1 %
+  Bunker C .......    2,463 MWh   21.7 %
+  Diesel (ULSD) ..    1,317 MWh   11.6 %
+  Coal ...........    2,272 MWh   20.0 %
+  Wind ...........       52 MWh   0.5 %
+  Landfill gas ...        8 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $1,667,030 over 4.5 h  (full-day estimate $8,898,515)
-  Average cost ............ $0.1552 per kWh
+  Total cost of the day ... $1,752,071 over 4.8 h  (full-day estimate $8,831,396)
+  Average cost ............ $0.1545 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 9   Came back: 2
