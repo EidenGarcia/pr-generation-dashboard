@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, October 25, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-25 09:30 AST)
-Coverage ........ 9.5 h of feed checks (40 checks), 440 five-minute readings
+Status .......... In progress (updated 2026-10-25 09:45 AST)
+Coverage ........ 9.7 h of feed checks (41 checks), 446 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,512 MW at 00:14
-  Minimum ....... 1,951 MW at 09:28
-  Average ....... 2,244 MW
+  Minimum ....... 1,911 MW at 09:42
+  Average ....... 2,236 MW
   PREPA peak .... 2,536 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,533.2 MW at 00:00
-  Minimum ....... 1,951.1 MW at 09:28
-  Average ....... 2,280 MW
-  Energy ........ 83,618 MWh
+  Minimum ....... 1,911.0 MW at 09:42
+  Average ....... 2,276 MW
+  Energy ........ 84,588 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
@@ -22,18 +22,18 @@ FREQUENCY (5-minute readings)
   In Normal band  99.8 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   10,116 MWh   46.9 %
-  Bunker C .......    4,785 MWh   22.2 %
-  Diesel (ULSD) ..    1,826 MWh   8.5 %
-  Coal ...........    4,527 MWh   21.0 %
-  Solar ..........      112 MWh   0.5 %
-  Wind ...........      200 MWh   0.9 %
-  Landfill gas ...       15 MWh   0.1 %
+  LNG ............   10,322 MWh   46.9 %
+  Bunker C .......    4,886 MWh   22.2 %
+  Diesel (ULSD) ..    1,826 MWh   8.3 %
+  Coal ...........    4,640 MWh   21.1 %
+  Solar ..........      126 MWh   0.6 %
+  Wind ...........      215 MWh   1.0 %
+  Landfill gas ...       16 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,150,885 over 9.5 h  (full-day estimate $7,970,385)
-  Average cost ............ $0.1460 per kWh
+  Total cost of the day ... $3,208,333 over 9.7 h  (full-day estimate $7,917,285)
+  Average cost ............ $0.1456 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 16   Came back: 9
