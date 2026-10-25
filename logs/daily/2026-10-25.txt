@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, October 25, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-25 00:15 AST)
-Coverage ........ 0.3 h of feed checks (1 checks), 3 five-minute readings
+Status .......... In progress (updated 2026-10-25 00:30 AST)
+Coverage ........ 0.5 h of feed checks (2 checks), 9 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,512 MW at 00:14
-  Minimum ....... 2,512 MW at 00:14
-  Average ....... 2,512 MW
+  Minimum ....... 2,492 MW at 00:28
+  Average ....... 2,502 MW
   PREPA peak .... 2,536 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,525.6 MW at 00:04
-  Minimum ....... 2,511.7 MW at 00:14
-  Average ....... 2,519 MW
-  Energy ........ 630 MWh
+  Maximum ....... 2,527.9 MW at 00:03
+  Minimum ....... 2,491.8 MW at 00:28
+  Average ....... 2,511 MW
+  Energy ........ 1,884 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.00 Hz
@@ -22,16 +22,17 @@ FREQUENCY (5-minute readings)
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............      281 MWh   44.1 %
-  Bunker C .......      134 MWh   21.0 %
-  Diesel (ULSD) ..      100 MWh   15.7 %
-  Coal ...........      120 MWh   18.8 %
-  Wind ...........        2 MWh   0.3 %
+  LNG ............      523 MWh   43.9 %
+  Bunker C .......      251 MWh   21.1 %
+  Diesel (ULSD) ..      188 MWh   15.8 %
+  Coal ...........      224 MWh   18.8 %
+  Wind ...........        4 MWh   0.3 %
+  Landfill gas ...        1 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $106,429 over 0.3 h  (full-day estimate $10,217,208)
-  Average cost ............ $0.1672 per kWh
+  Total cost of the day ... $199,951 over 0.5 h  (full-day estimate $10,210,248)
+  Average cost ............ $0.1678 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 2   Came back: 0
