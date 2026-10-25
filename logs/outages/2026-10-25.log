@@ -14,3 +14,5 @@
 2026-10-25 06:58 AST  ONLINE    Solar / Ilumina                         -0.1 MW ->     1.3 MW  (Independent (PPOA), Solar; previous check 06:42)
 2026-10-25 06:58 AST  ONLINE    Solar / Oriana                           0.7 MW ->     2.4 MW  (Independent (PPOA), Solar; previous check 06:42)
 2026-10-25 06:58 AST  ONLINE    Solar / Fonroche                         0.3 MW ->     1.9 MW  (Independent (PPOA), Solar; previous check 06:42)
+2026-10-25 07:12 AST  OFFLINE   Cambalache / Gas 2                      49.5 MW ->     0.4 MW  (Genera PR, ULSD (diesel); previous check 06:58)
+2026-10-25 07:12 AST  ONLINE    Solar / Coto Laurel                      0.5 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 06:58)
