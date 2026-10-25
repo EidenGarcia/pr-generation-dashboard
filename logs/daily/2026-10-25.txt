@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, October 25, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-25 13:00 AST)
-Coverage ........ 13.0 h of feed checks (55 checks), 536 five-minute readings
+Status .......... In progress (updated 2026-10-25 13:15 AST)
+Coverage ........ 13.2 h of feed checks (56 checks), 572 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,512 MW at 00:14
   Minimum ....... 1,768 MW at 11:59
-  Average ....... 2,126 MW
+  Average ....... 2,122 MW
   PREPA peak .... 2,536 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,533.2 MW at 00:00
   Minimum ....... 1,767.0 MW at 11:29
-  Average ....... 2,200 MW
-  Energy ........ 98,279 MWh
+  Average ....... 2,175 MW
+  Energy ........ 103,667 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.989 Hz
+  Average ....... 59.988 Hz
   In Normal band  100.0 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   13,085 MWh   46.9 %
-  Bunker C .......    6,211 MWh   22.3 %
+  LNG ............   13,274 MWh   46.9 %
+  Bunker C .......    6,298 MWh   22.3 %
   Diesel (ULSD) ..    1,826 MWh   6.5 %
-  Coal ...........    5,982 MWh   21.4 %
-  Solar ..........      402 MWh   1.4 %
-  Wind ...........      380 MWh   1.4 %
+  Coal ...........    6,077 MWh   21.5 %
+  Solar ..........      418 MWh   1.5 %
+  Wind ...........      389 MWh   1.4 %
   Landfill gas ...       21 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,980,084 over 13.0 h  (full-day estimate $7,342,357)
-  Average cost ............ $0.1426 per kWh
+  Total cost of the day ... $4,030,652 over 13.2 h  (full-day estimate $7,314,144)
+  Average cost ............ $0.1424 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 16   Came back: 9
