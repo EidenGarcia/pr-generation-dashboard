@@ -1,0 +1,41 @@
+PUERTO RICO GENERATION - DAILY SUMMARY
+Date ............ Sunday, October 25, 2026 (Puerto Rico time, UTC-4)
+Status .......... In progress (updated 2026-10-25 00:15 AST)
+Coverage ........ 0.3 h of feed checks (1 checks), 3 five-minute readings
+
+DEMAND (PREPA total generation at each check)
+  Maximum ....... 2,512 MW at 00:14
+  Minimum ....... 2,512 MW at 00:14
+  Average ....... 2,512 MW
+  PREPA peak .... 2,536 MW (as reported by PREPA)
+
+GENERATION (5-minute readings, dataGraph.js)
+  Maximum ....... 2,525.6 MW at 00:04
+  Minimum ....... 2,511.7 MW at 00:14
+  Average ....... 2,519 MW
+  Energy ........ 630 MWh
+
+FREQUENCY (5-minute readings)
+  Maximum ....... 60.00 Hz
+  Minimum ....... 60.00 Hz
+  Average ....... 60.000 Hz
+  In Normal band  100.0 %   Excursions: 0
+
+FUEL USE (share of energy, time-weighted from unit outputs)
+  LNG ............      281 MWh   44.1 %
+  Bunker C .......      134 MWh   21.0 %
+  Diesel (ULSD) ..      100 MWh   15.7 %
+  Coal ...........      120 MWh   18.8 %
+  Wind ...........        2 MWh   0.3 %
+  Majority fuel . LNG
+
+COST (dispatch cost: MW x each unit's reported cost)
+  Total cost of the day ... $106,429 over 0.3 h  (full-day estimate $10,217,208)
+  Average cost ............ $0.1672 per kWh
+
+OUTAGES (units that stopped or restarted)
+  Went offline: 2   Came back: 0
+  00:14  OFFLINE  Mayagüez / Gas 2  22.5 -> 0.0 MW
+  00:14  OFFLINE  Mayagüez / Gas 4  22.2 -> 0.0 MW
+
+Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
