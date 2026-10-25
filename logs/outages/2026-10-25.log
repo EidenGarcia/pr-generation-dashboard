@@ -6,3 +6,5 @@
 2026-10-25 01:44 AST  OFFLINE   Aguirre CC 1 / Gas 1                     5.3 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 01:28)
 2026-10-25 01:58 AST  OFFLINE   Aguirre CC 1 / Gas 4                    23.9 MW ->     0.6 MW  (Genera PR, ULSD (diesel); previous check 01:44)
 2026-10-25 02:28 AST  OFFLINE   Wind / Punta Lima                        2.0 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 02:14)
+2026-10-25 02:44 AST  OFFLINE   Aguirre CC 2 / Gas 2                    29.5 MW ->     0.3 MW  (Genera PR, ULSD (diesel); previous check 02:28)
+2026-10-25 02:44 AST  ONLINE    Wind / Punta Lima                        0.7 MW ->     1.8 MW  (Independent (PPOA), Wind; previous check 02:28)
