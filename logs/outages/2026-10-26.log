@@ -43,3 +43,6 @@
 2026-10-26 14:28 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 14:12)
 2026-10-26 14:28 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 14:12)
 2026-10-26 15:12 AST  OFFLINE   Solar / San Fermin                       1.9 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 14:58)
+2026-10-26 15:28 AST  ONLINE    Mayagüez / Gas 2                         0.0 MW ->    21.9 MW  (Genera PR, ULSD (diesel); previous check 15:12)
+2026-10-26 15:28 AST  ONLINE    Aguirre CC 1 / Gas 4                     0.0 MW ->    13.3 MW  (Genera PR, ULSD (diesel); previous check 15:12)
+2026-10-26 15:28 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 15:12)
