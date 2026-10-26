@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Monday, October 26, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-26 01:45 AST)
-Coverage ........ 1.8 h of feed checks (8 checks), 46 five-minute readings
+Status .......... In progress (updated 2026-10-26 02:00 AST)
+Coverage ........ 2.0 h of feed checks (9 checks), 54 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,551 MW at 00:12
-  Minimum ....... 2,425 MW at 01:44
-  Average ....... 2,484 MW
+  Minimum ....... 2,408 MW at 01:58
+  Average ....... 2,475 MW
   PREPA peak .... 2,575 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,569.0 MW at 00:02
-  Minimum ....... 2,424.7 MW at 01:44
-  Average ....... 2,504 MW
-  Energy ........ 9,599 MWh
+  Minimum ....... 2,407.9 MW at 01:58
+  Average ....... 2,492 MW
+  Energy ........ 11,214 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.00 Hz
+  Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.998 Hz
+  Average ....... 59.996 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    2,027 MWh   45.2 %
-  Bunker C .......      886 MWh   19.8 %
-  Diesel (ULSD) ..      668 MWh   14.9 %
-  Coal ...........      848 MWh   18.9 %
-  Wind ...........       50 MWh   1.1 %
+  LNG ............    2,296 MWh   45.3 %
+  Bunker C .......    1,011 MWh   20.0 %
+  Diesel (ULSD) ..      735 MWh   14.5 %
+  Coal ...........      962 MWh   19.0 %
+  Wind ...........       57 MWh   1.1 %
   Landfill gas ...        3 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $738,792 over 1.8 h  (full-day estimate $9,964,348)
-  Average cost ............ $0.1649 per kWh
+  Total cost of the day ... $829,017 over 2.0 h  (full-day estimate $9,861,911)
+  Average cost ............ $0.1637 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 6   Came back: 0
