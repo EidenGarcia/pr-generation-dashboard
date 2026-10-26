@@ -52,3 +52,6 @@
 2026-10-26 15:59 AST  OFFLINE   Solar / Horizon                          6.9 MW ->     0.2 MW  (Independent (PPOA), Solar; previous check 15:42)
 2026-10-26 16:13 AST  ONLINE    GT stations (peakers) / Jobos            0.1 MW ->     1.8 MW  (Genera PR, ULSD (diesel); previous check 15:59)
 2026-10-26 16:13 AST  OFFLINE   Solar / Coto Laurel                      1.4 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 15:59)
+2026-10-26 16:28 AST  ONLINE    GT stations (peakers) / Daguao           0.0 MW ->    13.8 MW  (Genera PR, ULSD (diesel); previous check 16:13)
+2026-10-26 16:28 AST  OFFLINE   Solar / San Fermin                       1.4 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:13)
+2026-10-26 16:28 AST  OFFLINE   Solar / Fonroche                         8.6 MW ->     0.0 MW  (Independent (PPOA), Solar; previous check 16:13)
