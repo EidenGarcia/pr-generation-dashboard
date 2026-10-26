@@ -28,3 +28,6 @@
 2026-10-26 08:58 AST  OFFLINE   Aguirre CC 1 / Gas 4                    22.2 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:42)
 2026-10-26 09:29 AST  OFFLINE   Mayagüez / Gas 2                         9.3 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:14)
 2026-10-26 09:42 AST  OFFLINE   Mayagüez / Gas 4                         1.7 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:29)
+2026-10-26 10:14 AST  OFFLINE   Mayagüez / Gas 3                         1.9 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 09:58)
+2026-10-26 10:14 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
+2026-10-26 10:14 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
