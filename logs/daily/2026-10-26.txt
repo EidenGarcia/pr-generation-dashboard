@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Monday, October 26, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-26 11:00 AST)
-Coverage ........ 11.0 h of feed checks (46 checks), 476 five-minute readings
+Status .......... In progress (updated 2026-10-26 11:15 AST)
+Coverage ........ 11.3 h of feed checks (47 checks), 482 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,551 MW at 00:12
   Minimum ....... 2,124 MW at 10:58
-  Average ....... 2,355 MW
+  Average ....... 2,350 MW
   PREPA peak .... 2,575 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,572.8 MW at 00:00
-  Minimum ....... 2,123.8 MW at 10:58
-  Average ....... 2,367 MW
-  Energy ........ 93,883 MWh
+  Minimum ....... 2,109.0 MW at 10:59
+  Average ....... 2,364 MW
+  Energy ........ 94,949 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.997 Hz
+  Average ....... 59.996 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   11,309 MWh   43.0 %
-  Bunker C .......    5,718 MWh   21.7 %
-  Diesel (ULSD) ..    3,427 MWh   13.0 %
-  Coal ...........    5,258 MWh   20.0 %
-  Solar ..........      219 MWh   0.8 %
-  Wind ...........      349 MWh   1.3 %
+  LNG ............   11,558 MWh   43.0 %
+  Bunker C .......    5,855 MWh   21.8 %
+  Diesel (ULSD) ..    3,455 MWh   12.9 %
+  Coal ...........    5,386 MWh   20.0 %
+  Solar ..........      242 MWh   0.9 %
+  Wind ...........      361 MWh   1.3 %
   Landfill gas ...       18 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $4,234,341 over 11.0 h  (full-day estimate $9,222,027)
-  Average cost ............ $0.1610 per kWh
+  Total cost of the day ... $4,319,041 over 11.3 h  (full-day estimate $9,182,891)
+  Average cost ............ $0.1607 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 19   Came back: 13
