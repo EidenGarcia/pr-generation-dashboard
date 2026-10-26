@@ -35,3 +35,5 @@
 2026-10-26 11:42 AST  OFFLINE   GT stations (peakers) / FEMA GT SJ      31.4 MW ->     0.0 MW  (Genera PR, LNG; previous check 11:28)
 2026-10-26 12:42 AST  ONLINE    Mayagüez / Gas 3                         0.1 MW ->    32.4 MW  (Genera PR, ULSD (diesel); previous check 12:29)
 2026-10-26 13:12 AST  ONLINE    GT stations (peakers) / Palo Seco        0.1 MW ->    23.9 MW  (Genera PR, ULSD (diesel); previous check 12:59)
+2026-10-26 13:28 AST  ONLINE    GT stations (peakers) / FEMA GT SJ       0.0 MW ->    25.0 MW  (Genera PR, LNG; previous check 13:12)
+2026-10-26 13:28 AST  ONLINE    Aguirre CC 2 / Gas 2                     0.0 MW ->    23.1 MW  (Genera PR, ULSD (diesel); previous check 13:12)
