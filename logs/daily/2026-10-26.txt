@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Monday, October 26, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-26 05:15 AST)
-Coverage ........ 5.3 h of feed checks (22 checks), 174 five-minute readings
+Status .......... In progress (updated 2026-10-26 05:30 AST)
+Coverage ........ 5.5 h of feed checks (23 checks), 180 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,551 MW at 00:12
   Minimum ....... 2,311 MW at 03:44
-  Average ....... 2,391 MW
+  Average ....... 2,390 MW
   PREPA peak .... 2,575 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,569.7 MW at 00:02
-  Minimum ....... 2,310.3 MW at 03:53
-  Average ....... 2,398 MW
-  Energy ........ 34,774 MWh
+  Minimum ....... 2,310.5 MW at 03:52
+  Average ....... 2,397 MW
+  Energy ........ 35,951 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
@@ -22,17 +22,17 @@ FREQUENCY (5-minute readings)
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    5,750 MWh   44.9 %
-  Bunker C .......    2,707 MWh   21.1 %
-  Diesel (ULSD) ..    1,723 MWh   13.4 %
-  Coal ...........    2,520 MWh   19.7 %
-  Wind ...........      105 MWh   0.8 %
-  Landfill gas ...        8 MWh   0.1 %
+  LNG ............    5,982 MWh   44.7 %
+  Bunker C .......    2,835 MWh   21.2 %
+  Diesel (ULSD) ..    1,810 MWh   13.5 %
+  Coal ...........    2,632 MWh   19.7 %
+  Wind ...........      109 MWh   0.8 %
+  Landfill gas ...        9 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $2,057,213 over 5.3 h  (full-day estimate $9,343,594)
-  Average cost ............ $0.1605 per kWh
+  Total cost of the day ... $2,151,529 over 5.5 h  (full-day estimate $9,357,299)
+  Average cost ............ $0.1609 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 9   Came back: 4
