@@ -49,3 +49,4 @@
 2026-10-26 15:42 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.6 MW  (Genera PR, ULSD (diesel); previous check 15:28)
 2026-10-26 15:42 AST  ONLINE    Aguirre CC 2 / Gas 4                     0.0 MW ->     8.2 MW  (Genera PR, ULSD (diesel); previous check 15:28)
 2026-10-26 15:42 AST  OFFLINE   Solar / Ilumina                          7.7 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 15:28)
+2026-10-26 15:59 AST  OFFLINE   Solar / Horizon                          6.9 MW ->     0.2 MW  (Independent (PPOA), Solar; previous check 15:42)
