@@ -21,3 +21,5 @@
 2026-10-26 07:42 AST  ONLINE    Solar / San Fermin                       0.7 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-10-26 07:42 AST  OFFLINE   Solar / Horizon                          2.5 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-10-26 07:42 AST  OFFLINE   Solar / Coto Laurel                      2.1 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-10-26 07:58 AST  ONLINE    Solar / Horizon                          0.9 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:42)
+2026-10-26 07:58 AST  ONLINE    Solar / Coto Laurel                      0.5 MW ->     2.9 MW  (Independent (PPOA), Solar; previous check 07:42)
