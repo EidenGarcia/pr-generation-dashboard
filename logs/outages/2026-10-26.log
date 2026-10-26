@@ -55,3 +55,7 @@
 2026-10-26 16:28 AST  ONLINE    GT stations (peakers) / Daguao           0.0 MW ->    13.8 MW  (Genera PR, ULSD (diesel); previous check 16:13)
 2026-10-26 16:28 AST  OFFLINE   Solar / San Fermin                       1.4 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:13)
 2026-10-26 16:28 AST  OFFLINE   Solar / Fonroche                         8.6 MW ->     0.0 MW  (Independent (PPOA), Solar; previous check 16:13)
+2026-10-26 16:42 AST  ONLINE    Dos Bocas (hydro) / Hidro 2              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:28)
+2026-10-26 16:42 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:28)
+2026-10-26 16:42 AST  OFFLINE   Aguirre CC 2 / Gas 2                    47.7 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 16:28)
+2026-10-26 16:42 AST  ONLINE    Solar / Ilumina                          0.9 MW ->     1.7 MW  (Independent (PPOA), Solar; previous check 16:28)
