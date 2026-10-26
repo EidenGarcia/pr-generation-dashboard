@@ -59,3 +59,5 @@
 2026-10-26 16:42 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:28)
 2026-10-26 16:42 AST  OFFLINE   Aguirre CC 2 / Gas 2                    47.7 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 16:28)
 2026-10-26 16:42 AST  ONLINE    Solar / Ilumina                          0.9 MW ->     1.7 MW  (Independent (PPOA), Solar; previous check 16:28)
+2026-10-26 16:59 AST  OFFLINE   Wind / Pattern                           1.1 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 16:42)
+2026-10-26 16:59 AST  OFFLINE   Solar / Ilumina                          1.7 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 16:42)
