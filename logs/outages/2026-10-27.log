@@ -37,3 +37,4 @@
 2026-10-27 15:42 AST  ONLINE    Mayagüez / Gas 2                         0.0 MW ->    21.5 MW  (Genera PR, ULSD (diesel); previous check 15:28)
 2026-10-27 15:58 AST  OFFLINE   Solar / Ilumina                          1.9 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 15:42)
 2026-10-27 15:58 AST  OFFLINE   Solar / Horizon                          1.4 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 15:42)
+2026-10-27 16:29 AST  ONLINE    Dos Bocas (hydro) / Hidro 2              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:12)
