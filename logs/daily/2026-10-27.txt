@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, October 27, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-27 14:30 AST)
-Coverage ........ 14.5 h of feed checks (59 checks), 624 five-minute readings
+Status .......... In progress (updated 2026-10-27 14:45 AST)
+Coverage ........ 14.8 h of feed checks (60 checks), 636 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,510 MW at 00:12
   Minimum ....... 2,073 MW at 12:42
-  Average ....... 2,276 MW
+  Average ....... 2,277 MW
   PREPA peak .... 2,527 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,525.4 MW at 00:01
   Minimum ....... 2,063.2 MW at 12:43
   Average ....... 2,289 MW
-  Energy ........ 119,050 MWh
+  Energy ........ 121,314 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
@@ -22,18 +22,18 @@ FREQUENCY (5-minute readings)
   In Normal band  99.5 %   Excursions: 2
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   15,620 MWh   46.7 %
-  Bunker C .......    6,593 MWh   19.7 %
-  Diesel (ULSD) ..    3,451 MWh   10.3 %
-  Coal ...........    6,918 MWh   20.7 %
-  Solar ..........      467 MWh   1.4 %
-  Wind ...........      344 MWh   1.0 %
-  Landfill gas ...       23 MWh   0.1 %
+  LNG ............   15,842 MWh   46.6 %
+  Bunker C .......    6,686 MWh   19.7 %
+  Diesel (ULSD) ..    3,551 MWh   10.5 %
+  Coal ...........    7,030 MWh   20.7 %
+  Solar ..........      477 MWh   1.4 %
+  Wind ...........      357 MWh   1.1 %
+  Landfill gas ...       24 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $7,475,503 over 14.5 h  (full-day estimate $12,358,804)
-  Average cost ............ $0.2237 per kWh
+  Total cost of the day ... $7,570,912 over 14.8 h  (full-day estimate $12,314,597)
+  Average cost ............ $0.2229 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 14   Came back: 20
