@@ -13,7 +13,7 @@ GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,941.5 MW at 19:23
   Minimum ....... 2,101.6 MW at 11:27
   Average ....... 2,465 MW
-  Energy ........ 221,636 MWh
+  Energy ........ 221,635 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
