@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, October 27, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-27 03:00 AST)
-Coverage ........ 3.0 h of feed checks (13 checks), 90 five-minute readings
+Status .......... In progress (updated 2026-10-27 03:15 AST)
+Coverage ........ 3.3 h of feed checks (14 checks), 96 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,510 MW at 00:12
-  Minimum ....... 2,312 MW at 02:58
-  Average ....... 2,395 MW
+  Minimum ....... 2,298 MW at 03:14
+  Average ....... 2,387 MW
   PREPA peak .... 2,527 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,522.2 MW at 00:02
-  Minimum ....... 2,311.8 MW at 02:58
-  Average ....... 2,409 MW
-  Energy ........ 18,067 MWh
+  Minimum ....... 2,298.5 MW at 03:14
+  Average ....... 2,403 MW
+  Energy ........ 19,222 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.70 Hz
-  Average ....... 59.987 Hz
-  In Normal band  98.9 %   Excursions: 1
+  Average ....... 59.985 Hz
+  In Normal band  99.0 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    3,448 MWh   47.1 %
-  Bunker C .......    1,589 MWh   21.7 %
-  Diesel (ULSD) ..      819 MWh   11.2 %
-  Coal ...........    1,437 MWh   19.6 %
-  Wind ...........       21 MWh   0.3 %
+  LNG ............    3,735 MWh   47.2 %
+  Bunker C .......    1,719 MWh   21.7 %
+  Diesel (ULSD) ..      873 MWh   11.0 %
+  Coal ...........    1,560 MWh   19.7 %
+  Wind ...........       27 MWh   0.3 %
   Landfill gas ...        5 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $1,135,614 over 3.0 h  (full-day estimate $9,048,051)
-  Average cost ............ $0.1552 per kWh
+  Total cost of the day ... $1,224,722 over 3.3 h  (full-day estimate $8,990,310)
+  Average cost ............ $0.1546 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 6   Came back: 2
