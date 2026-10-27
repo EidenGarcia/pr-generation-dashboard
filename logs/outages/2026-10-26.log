@@ -70,3 +70,4 @@
 2026-10-26 17:50 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    18.5 MW  (Genera PR, ULSD (diesel); previous check 17:42)
 2026-10-26 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
 2026-10-26 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-10-26 22:44 AST  OFFLINE   Wind / Punta Lima                        2.4 MW ->     0.6 MW  (Independent (PPOA), Wind; previous check 22:28)
