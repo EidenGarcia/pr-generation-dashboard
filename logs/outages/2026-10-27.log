@@ -3,3 +3,5 @@
 2026-10-27 00:28 AST  OFFLINE   Aguirre CC 2 / Gas 4                    10.5 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 00:12)
 2026-10-27 00:44 AST  OFFLINE   Cambalache / Gas 2                      45.4 MW ->     0.4 MW  (Genera PR, ULSD (diesel); previous check 00:28)
 2026-10-27 00:44 AST  OFFLINE   Wind / Pattern                           2.8 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 00:28)
+2026-10-27 01:28 AST  OFFLINE   Mayagüez / Gas 2                         1.5 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 01:12)
+2026-10-27 01:28 AST  OFFLINE   Mayagüez / Gas 4                         1.5 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 01:12)

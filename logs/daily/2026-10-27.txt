@@ -1,43 +1,45 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, October 27, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-27 01:15 AST)
-Coverage ........ 1.3 h of feed checks (5 checks), 36 five-minute readings
+Status .......... In progress (updated 2026-10-27 01:30 AST)
+Coverage ........ 1.5 h of feed checks (6 checks), 42 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,510 MW at 00:12
-  Minimum ....... 2,416 MW at 01:12
-  Average ....... 2,461 MW
+  Minimum ....... 2,394 MW at 01:28
+  Average ....... 2,449 MW
   PREPA peak .... 2,527 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,521.7 MW at 00:02
-  Minimum ....... 2,416.3 MW at 01:12
-  Average ....... 2,471 MW
-  Energy ........ 7,412 MWh
+  Minimum ....... 2,394.1 MW at 01:28
+  Average ....... 2,462 MW
+  Energy ........ 8,616 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.997 Hz
+  Average ....... 60.000 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    1,438 MWh   45.4 %
-  Bunker C .......      696 MWh   22.0 %
-  Diesel (ULSD) ..      423 MWh   13.4 %
-  Coal ...........      605 MWh   19.1 %
+  LNG ............    1,739 MWh   45.8 %
+  Bunker C .......      836 MWh   22.0 %
+  Diesel (ULSD) ..      492 MWh   12.9 %
+  Coal ...........      730 MWh   19.2 %
   Wind ...........        1 MWh   0.0 %
   Landfill gas ...        2 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $516,012 over 1.3 h  (full-day estimate $9,764,221)
-  Average cost ............ $0.1630 per kWh
+  Total cost of the day ... $613,613 over 1.5 h  (full-day estimate $9,621,814)
+  Average cost ............ $0.1614 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 3   Came back: 0
+  Went offline: 5   Came back: 0
   00:28  OFFLINE  Aguirre CC 2 / Gas 4  10.5 -> 0.0 MW
   00:44  OFFLINE  Cambalache / Gas 2  45.4 -> 0.4 MW
   00:44  OFFLINE  Wind / Pattern  2.8 -> 0.8 MW
+  01:28  OFFLINE  Mayagüez / Gas 2  1.5 -> 0.0 MW
+  01:28  OFFLINE  Mayagüez / Gas 4  1.5 -> 0.0 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
