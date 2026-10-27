@@ -1,31 +1,31 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Monday, October 26, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-26 23:45 AST)
-Coverage ........ 23.8 h of feed checks (100 checks), 1043 five-minute readings
+Status .......... Complete (updated 2026-10-27 00:00 AST)
+Coverage ........ 23.8 h of feed checks (101 checks), 1055 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,937 MW at 19:28
   Minimum ....... 2,105 MW at 11:28
-  Average ....... 2,485 MW
+  Average ....... 2,486 MW
   PREPA peak .... 2,945 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,944.3 MW at 19:23
+  Maximum ....... 2,944.7 MW at 19:23
   Minimum ....... 2,101.1 MW at 11:37
-  Average ....... 2,460 MW
-  Energy ........ 213,778 MWh
+  Average ....... 2,461 MW
+  Energy ........ 216,367 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
   Minimum ....... 59.40 Hz
   Average ....... 60.007 Hz
-  In Normal band  95.0 %   Excursions: 11
+  In Normal band  95.1 %   Excursions: 11
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   26,336 MWh   44.1 %
-  Bunker C .......   12,456 MWh   20.8 %
-  Diesel (ULSD) ..    8,327 MWh   13.9 %
-  Coal ...........   11,340 MWh   19.0 %
+  LNG ............   26,358 MWh   44.1 %
+  Bunker C .......   12,468 MWh   20.8 %
+  Diesel (ULSD) ..    8,337 MWh   13.9 %
+  Coal ...........   11,350 MWh   19.0 %
   Solar ..........      541 MWh   0.9 %
   Wind ...........      663 MWh   1.1 %
   Hydro ..........       51 MWh   0.1 %
@@ -33,11 +33,11 @@ FUEL USE (share of energy, time-weighted from unit outputs)
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $9,821,906 over 23.8 h
+  Total cost of the day ... $9,831,489 over 23.8 h
   Average cost ............ $0.1644 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 37   Came back: 35
+  Went offline: 38   Came back: 35
   00:28  OFFLINE  GT stations (peakers) / Jobos  7.5 -> 0.0 MW
   00:42  OFFLINE  GT stations (peakers) / Daguao  1.0 -> 0.0 MW
   00:42  OFFLINE  Aguirre CC 2 / Gas 4  30.5 -> 0.4 MW
@@ -110,5 +110,6 @@ OUTAGES (units that stopped or restarted)
   21:42  OFFLINE  Dos Bocas (hydro) / Hidro 3  5.0 -> 0.0 MW
   22:44  OFFLINE  Wind / Punta Lima  2.4 -> 0.6 MW
   23:44  OFFLINE  GT stations (peakers) / Daguao  15.2 -> 0.1 MW
+  23:58  OFFLINE  GT stations (peakers) / Jobos  12.1 -> 0.1 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
