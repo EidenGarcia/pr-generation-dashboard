@@ -31,3 +31,5 @@
 2026-10-27 13:28 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 13:14)
 2026-10-27 13:42 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.4 MW  (Genera PR, ULSD (diesel); previous check 13:28)
 2026-10-27 13:42 AST  ONLINE    Cambalache / Gas 3                       0.0 MW ->    20.5 MW  (Genera PR, ULSD (diesel); previous check 13:28)
+2026-10-27 13:59 AST  ONLINE    GT stations (peakers) / Jobos            0.0 MW ->    18.2 MW  (Genera PR, ULSD (diesel); previous check 13:42)
+2026-10-27 13:59 AST  ONLINE    GT stations (peakers) / Daguao           0.0 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 13:42)
