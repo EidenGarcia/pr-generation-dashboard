@@ -68,3 +68,5 @@
 2026-10-26 17:42 AST  ONLINE    Wind / Pattern                           0.7 MW ->    27.9 MW  (Independent (PPOA), Wind; previous check 17:28)
 2026-10-26 17:42 AST  OFFLINE   Solar / Oriana                           2.2 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 17:28)
 2026-10-26 17:50 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    18.5 MW  (Genera PR, ULSD (diesel); previous check 17:42)
+2026-10-26 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-10-26 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
