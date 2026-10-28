@@ -25,3 +25,6 @@
 2026-10-28 09:28 AST  OFFLINE   Mayagüez / Gas 2                         2.1 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:12)
 2026-10-28 09:43 AST  OFFLINE   Mayagüez / Gas 4                         1.6 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:28)
 2026-10-28 09:58 AST  OFFLINE   Mayagüez / Gas 3                         1.6 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 09:43)
+2026-10-28 10:12 AST  OFFLINE   GT stations (peakers) / Palo Seco       42.6 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 09:58)
+2026-10-28 10:12 AST  OFFLINE   Wind / Pattern                           3.2 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 09:58)
+2026-10-28 10:12 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
