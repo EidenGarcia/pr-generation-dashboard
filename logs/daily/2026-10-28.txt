@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, October 28, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-28 19:00 AST)
-Coverage ........ 19.0 h of feed checks (79 checks), 1068 five-minute readings
+Status .......... In progress (updated 2026-10-28 19:15 AST)
+Coverage ........ 19.2 h of feed checks (80 checks), 1074 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,801 MW at 17:58
   Minimum ....... 1,994 MW at 11:12
-  Average ....... 2,331 MW
+  Average ....... 2,337 MW
   PREPA peak .... 2,817 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,810.5 MW at 18:02
+  Maximum ....... 2,811.1 MW at 18:02
   Minimum ....... 1,989.6 MW at 11:11
-  Average ....... 2,302 MW
-  Energy ........ 204,898 MWh
+  Average ....... 2,305 MW
+  Energy ........ 206,297 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
   Minimum ....... 59.70 Hz
   Average ....... 60.010 Hz
-  In Normal band  97.3 %   Excursions: 7
+  In Normal band  97.2 %   Excursions: 7
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   19,448 MWh   43.5 %
-  Bunker C .......    7,989 MWh   17.9 %
-  Diesel (ULSD) ..    7,706 MWh   17.2 %
-  Coal ...........    8,849 MWh   19.8 %
+  LNG ............   19,754 MWh   43.6 %
+  Bunker C .......    8,116 MWh   17.9 %
+  Diesel (ULSD) ..    7,814 MWh   17.2 %
+  Coal ...........    8,955 MWh   19.8 %
   Solar ..........      533 MWh   1.2 %
   Wind ...........       84 MWh   0.2 %
-  Hydro ..........       48 MWh   0.1 %
-  Landfill gas ...       30 MWh   0.1 %
+  Hydro ..........       52 MWh   0.1 %
+  Landfill gas ...       31 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $7,539,536 over 19.0 h  (full-day estimate $9,531,986)
+  Total cost of the day ... $7,650,612 over 19.2 h  (full-day estimate $9,556,767)
   Average cost ............ $0.1687 per kWh
 
 OUTAGES (units that stopped or restarted)
