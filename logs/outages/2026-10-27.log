@@ -54,3 +54,4 @@
 2026-10-27 22:28 AST  ONLINE    Wind / Punta Lima                        0.8 MW ->     1.1 MW  (Independent (PPOA), Wind; previous check 22:12)
 2026-10-27 22:42 AST  OFFLINE   Wind / Punta Lima                        1.1 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 22:28)
 2026-10-27 22:59 AST  ONLINE    Wind / Pattern                           0.2 MW ->     4.5 MW  (Independent (PPOA), Wind; previous check 22:42)
+2026-10-27 23:28 AST  OFFLINE   Wind / Pattern                           4.3 MW ->     0.0 MW  (Independent (PPOA), Wind; previous check 23:12)
