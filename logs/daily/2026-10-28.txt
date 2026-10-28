@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, October 28, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-28 11:00 AST)
-Coverage ........ 11.0 h of feed checks (46 checks), 511 five-minute readings
+Status .......... In progress (updated 2026-10-28 11:15 AST)
+Coverage ........ 11.2 h of feed checks (47 checks), 517 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,508 MW at 00:14
-  Minimum ....... 2,016 MW at 10:59
-  Average ....... 2,279 MW
+  Minimum ....... 1,994 MW at 11:12
+  Average ....... 2,274 MW
   PREPA peak .... 2,551 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,549.8 MW at 00:02
-  Minimum ....... 2,015.8 MW at 10:59
-  Average ....... 2,291 MW
-  Energy ........ 97,539 MWh
+  Minimum ....... 1,993.9 MW at 11:12
+  Average ....... 2,287 MW
+  Energy ........ 98,547 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
@@ -22,18 +22,18 @@ FREQUENCY (5-minute readings)
   In Normal band  99.2 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   10,865 MWh   42.8 %
-  Bunker C .......    4,464 MWh   17.6 %
-  Diesel (ULSD) ..    4,688 MWh   18.5 %
-  Coal ...........    5,113 MWh   20.2 %
-  Solar ..........      175 MWh   0.7 %
+  LNG ............   11,058 MWh   42.8 %
+  Bunker C .......    4,548 MWh   17.6 %
+  Diesel (ULSD) ..    4,738 MWh   18.4 %
+  Coal ...........    5,218 MWh   20.2 %
+  Solar ..........      191 MWh   0.7 %
   Wind ...........       46 MWh   0.2 %
   Landfill gas ...       18 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $4,341,632 over 11.0 h  (full-day estimate $9,488,945)
-  Average cost ............ $0.1711 per kWh
+  Total cost of the day ... $4,414,175 over 11.2 h  (full-day estimate $9,452,381)
+  Average cost ............ $0.1710 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 17   Came back: 16
