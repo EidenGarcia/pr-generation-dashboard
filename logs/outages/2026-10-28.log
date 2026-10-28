@@ -16,3 +16,5 @@
 2026-10-28 07:56 AST  ONLINE    Solar / Fonroche                         0.0 MW ->     2.3 MW  (Independent (PPOA), Solar; previous check 07:42)
 2026-10-28 08:12 AST  OFFLINE   Solar / Coto Laurel                      3.5 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 07:56)
 2026-10-28 08:29 AST  ONLINE    Solar / Coto Laurel                      0.8 MW ->     1.7 MW  (Independent (PPOA), Solar; previous check 08:12)
+2026-10-28 08:42 AST  ONLINE    Wind / Pattern                           0.0 MW ->     9.3 MW  (Independent (PPOA), Wind; previous check 08:29)
+2026-10-28 08:42 AST  OFFLINE   Solar / Ilumina                          6.7 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 08:29)
