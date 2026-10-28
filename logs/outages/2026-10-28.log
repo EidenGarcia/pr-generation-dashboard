@@ -59,3 +59,4 @@
 2026-10-28 16:29 AST  OFFLINE   Solar / Fonroche                         3.9 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:13)
 2026-10-28 16:43 AST  OFFLINE   Solar / Horizon                          1.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:29)
 2026-10-28 16:43 AST  ONLINE    Solar / Fonroche                         0.6 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 16:29)
+2026-10-28 17:12 AST  ONLINE    Wind / Pattern                           0.3 MW ->     1.6 MW  (Independent (PPOA), Wind; previous check 16:56)
