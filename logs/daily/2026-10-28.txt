@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, October 28, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-28 05:00 AST)
-Coverage ........ 5.0 h of feed checks (21 checks), 174 five-minute readings
+Status .......... In progress (updated 2026-10-28 05:15 AST)
+Coverage ........ 5.2 h of feed checks (22 checks), 192 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,508 MW at 00:14
   Minimum ....... 2,244 MW at 03:58
-  Average ....... 2,330 MW
+  Average ....... 2,327 MW
   PREPA peak .... 2,551 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,550.8 MW at 00:02
   Minimum ....... 2,242.6 MW at 03:58
-  Average ....... 2,352 MW
-  Energy ........ 34,106 MWh
+  Average ....... 2,343 MW
+  Energy ........ 37,481 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 60.037 Hz
-  In Normal band  97.7 %   Excursions: 1
+  Average ....... 60.032 Hz
+  In Normal band  97.9 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    5,025 MWh   42.7 %
-  Bunker C .......    2,023 MWh   17.2 %
-  Diesel (ULSD) ..    2,381 MWh   20.2 %
-  Coal ...........    2,306 MWh   19.6 %
-  Wind ...........       19 MWh   0.2 %
+  LNG ............    5,279 MWh   42.6 %
+  Bunker C .......    2,132 MWh   17.2 %
+  Diesel (ULSD) ..    2,509 MWh   20.3 %
+  Coal ...........    2,430 MWh   19.6 %
+  Wind ...........       21 MWh   0.2 %
   Landfill gas ...        8 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $2,052,625 over 5.0 h  (full-day estimate $9,908,195)
-  Average cost ............ $0.1745 per kWh
+  Total cost of the day ... $2,161,981 over 5.2 h  (full-day estimate $9,903,252)
+  Average cost ............ $0.1746 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 1   Came back: 2
