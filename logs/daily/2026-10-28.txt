@@ -1,37 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, October 28, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-28 00:30 AST)
-Coverage ........ 0.5 h of feed checks (2 checks), 9 five-minute readings
+Status .......... In progress (updated 2026-10-28 00:45 AST)
+Coverage ........ 0.7 h of feed checks (3 checks), 18 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,508 MW at 00:14
-  Minimum ....... 2,472 MW at 00:28
-  Average ....... 2,490 MW
+  Minimum ....... 2,450 MW at 00:42
+  Average ....... 2,477 MW
   PREPA peak .... 2,551 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,544.0 MW at 00:03
-  Minimum ....... 2,472.1 MW at 00:28
-  Average ....... 2,507 MW
-  Energy ........ 1,880 MWh
+  Maximum ....... 2,551.0 MW at 00:02
+  Minimum ....... 2,450.4 MW at 00:42
+  Average ....... 2,499 MW
+  Energy ........ 3,748 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 60.089 Hz
-  In Normal band  77.8 %   Excursions: 0
+  Average ....... 60.078 Hz
+  In Normal band  83.3 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............      567 MWh   47.0 %
-  Bunker C .......      194 MWh   16.1 %
-  Diesel (ULSD) ..      224 MWh   18.6 %
-  Coal ...........      220 MWh   18.2 %
+  LNG ............      826 MWh   46.6 %
+  Bunker C .......      287 MWh   16.2 %
+  Diesel (ULSD) ..      333 MWh   18.8 %
+  Coal ...........      325 MWh   18.3 %
+  Wind ...........        1 MWh   0.1 %
   Landfill gas ...        1 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $201,951 over 0.5 h  (full-day estimate $10,144,536)
-  Average cost ............ $0.1673 per kWh
+  Total cost of the day ... $298,097 over 0.7 h  (full-day estimate $10,140,002)
+  Average cost ............ $0.1682 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 0   Came back: 1
