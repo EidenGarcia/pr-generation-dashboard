@@ -29,3 +29,5 @@
 2026-10-28 10:12 AST  OFFLINE   Wind / Pattern                           3.2 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 09:58)
 2026-10-28 10:12 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
 2026-10-28 10:16 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 10:12)
+2026-10-28 10:42 AST  OFFLINE   Solar / San Fermin                       1.0 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 10:28)
+2026-10-28 10:42 AST  OFFLINE   Solar / Horizon                          1.1 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 10:28)
