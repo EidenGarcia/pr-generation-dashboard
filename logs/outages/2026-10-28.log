@@ -47,3 +47,6 @@
 2026-10-28 15:12 AST  ONLINE    Mayagüez / Gas 2                         0.0 MW ->    21.6 MW  (Genera PR, ULSD (diesel); previous check 14:56)
 2026-10-28 15:12 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.7 MW  (Genera PR, ULSD (diesel); previous check 14:56)
 2026-10-28 15:58 AST  ONLINE    Yauco (hydro) / Hidro 3                  0.0 MW ->     2.0 MW  (PREPA (hydro), Hydro; previous check 15:42)
+2026-10-28 16:13 AST  ONLINE    San Juan CC / CTG 5                      0.0 MW ->    10.6 MW  (Genera PR, LNG; previous check 15:58)
+2026-10-28 16:13 AST  OFFLINE   Solar / Ilumina                          1.4 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 15:58)
+2026-10-28 16:13 AST  OFFLINE   Solar / Coto Laurel                      1.7 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 15:58)
