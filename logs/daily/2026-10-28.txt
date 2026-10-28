@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, October 28, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-28 03:45 AST)
-Coverage ........ 3.7 h of feed checks (16 checks), 132 five-minute readings
+Status .......... In progress (updated 2026-10-28 04:00 AST)
+Coverage ........ 4.0 h of feed checks (17 checks), 138 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,508 MW at 00:14
-  Minimum ....... 2,246 MW at 03:44
-  Average ....... 2,356 MW
+  Minimum ....... 2,244 MW at 03:58
+  Average ....... 2,350 MW
   PREPA peak .... 2,551 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,550.4 MW at 00:02
-  Minimum ....... 2,245.7 MW at 03:44
-  Average ....... 2,383 MW
-  Energy ........ 26,215 MWh
+  Minimum ....... 2,243.5 MW at 03:58
+  Average ....... 2,378 MW
+  Energy ........ 27,343 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 60.037 Hz
-  In Normal band  97.0 %   Excursions: 1
+  Average ....... 60.039 Hz
+  In Normal band  97.1 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    3,888 MWh   43.5 %
-  Bunker C .......    1,520 MWh   17.0 %
-  Diesel (ULSD) ..    1,788 MWh   20.0 %
-  Coal ...........    1,729 MWh   19.3 %
+  LNG ............    4,102 MWh   43.3 %
+  Bunker C .......    1,615 MWh   17.1 %
+  Diesel (ULSD) ..    1,899 MWh   20.1 %
+  Coal ...........    1,837 MWh   19.4 %
   Wind ...........       10 MWh   0.1 %
   Landfill gas ...        6 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $1,548,715 over 3.7 h  (full-day estimate $9,944,928)
-  Average cost ............ $0.1732 per kWh
+  Total cost of the day ... $1,643,077 over 4.0 h  (full-day estimate $9,934,352)
+  Average cost ............ $0.1735 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 1   Came back: 1
