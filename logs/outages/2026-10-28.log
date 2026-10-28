@@ -20,3 +20,5 @@
 2026-10-28 08:42 AST  OFFLINE   Solar / Ilumina                          6.7 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 08:29)
 2026-10-28 08:58 AST  ONLINE    Solar / Ilumina                          0.6 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 08:42)
 2026-10-28 08:58 AST  OFFLINE   Solar / Coto Laurel                      1.7 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 08:42)
+2026-10-28 09:12 AST  OFFLINE   GT stations (peakers) / Jobos            9.2 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 08:58)
+2026-10-28 09:12 AST  ONLINE    Solar / Coto Laurel                      0.7 MW ->     3.1 MW  (Independent (PPOA), Solar; previous check 08:58)
