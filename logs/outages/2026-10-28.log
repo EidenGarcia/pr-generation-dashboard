@@ -43,3 +43,6 @@
 2026-10-28 14:12 AST  ONLINE    Wind / Pattern                           0.0 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 13:57)
 2026-10-28 14:29 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 14:12)
 2026-10-28 14:42 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 14:29)
+2026-10-28 15:12 AST  ONLINE    GT stations (peakers) / Jobos            0.0 MW ->    18.8 MW  (Genera PR, ULSD (diesel); previous check 14:56)
+2026-10-28 15:12 AST  ONLINE    Mayagüez / Gas 2                         0.0 MW ->    21.6 MW  (Genera PR, ULSD (diesel); previous check 14:56)
+2026-10-28 15:12 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.7 MW  (Genera PR, ULSD (diesel); previous check 14:56)
