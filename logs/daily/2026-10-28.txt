@@ -1,38 +1,40 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, October 28, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-28 00:15 AST)
-Coverage ........ 0.3 h of feed checks (1 checks), 3 five-minute readings
+Status .......... In progress (updated 2026-10-28 00:30 AST)
+Coverage ........ 0.5 h of feed checks (2 checks), 9 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,508 MW at 00:14
-  Minimum ....... 2,508 MW at 00:14
-  Average ....... 2,508 MW
+  Minimum ....... 2,472 MW at 00:28
+  Average ....... 2,490 MW
   PREPA peak .... 2,551 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,534.7 MW at 00:04
-  Minimum ....... 2,505.8 MW at 00:09
-  Average ....... 2,516 MW
-  Energy ........ 629 MWh
+  Maximum ....... 2,544.0 MW at 00:03
+  Minimum ....... 2,472.1 MW at 00:28
+  Average ....... 2,507 MW
+  Energy ........ 1,880 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.30 Hz
+  Maximum ....... 60.40 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 60.133 Hz
-  In Normal band  66.7 %   Excursions: 0
+  Average ....... 60.089 Hz
+  In Normal band  77.8 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............      302 MWh   47.5 %
-  Bunker C .......      102 MWh   16.0 %
-  Diesel (ULSD) ..      117 MWh   18.4 %
-  Coal ...........      115 MWh   18.1 %
+  LNG ............      567 MWh   47.0 %
+  Bunker C .......      194 MWh   16.1 %
+  Diesel (ULSD) ..      224 MWh   18.6 %
+  Coal ...........      220 MWh   18.2 %
+  Landfill gas ...        1 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $105,888 over 0.3 h  (full-day estimate $10,165,224)
-  Average cost ............ $0.1664 per kWh
+  Total cost of the day ... $201,951 over 0.5 h  (full-day estimate $10,144,536)
+  Average cost ............ $0.1673 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 0   Came back: 0
+  Went offline: 0   Came back: 1
+  00:28  ONLINE   Wind / Pattern  0.2 -> 1.8 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
