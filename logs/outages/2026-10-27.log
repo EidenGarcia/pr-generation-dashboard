@@ -47,3 +47,5 @@
 2026-10-27 18:44 AST  ONLINE    Dos Bocas (hydro) / Hidro 1              0.0 MW ->     4.9 MW  (PREPA (hydro), Hydro; previous check 18:29)
 2026-10-27 20:58 AST  ONLINE    Wind / Pattern                           0.0 MW ->     1.4 MW  (Independent (PPOA), Wind; previous check 20:42)
 2026-10-27 21:32 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              4.9 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-10-27 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 1              4.8 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:32)
+2026-10-27 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              1.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:32)
