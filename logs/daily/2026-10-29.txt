@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, October 29, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-29 06:45 AST)
-Coverage ........ 6.7 h of feed checks (28 checks), 298 five-minute readings
+Status .......... In progress (updated 2026-10-29 07:00 AST)
+Coverage ........ 7.0 h of feed checks (29 checks), 318 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,466 MW at 00:13
@@ -12,30 +12,31 @@ DEMAND (PREPA total generation at each check)
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,480.3 MW at 00:01
   Minimum ....... 2,216.2 MW at 03:59
-  Average ....... 2,299 MW
-  Energy ........ 57,087 MWh
+  Average ....... 2,298 MW
+  Energy ........ 60,906 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
   Minimum ....... 59.70 Hz
-  Average ....... 59.991 Hz
-  In Normal band  98.3 %   Excursions: 2
+  Average ....... 59.990 Hz
+  In Normal band  98.4 %   Excursions: 2
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    7,071 MWh   45.0 %
-  Bunker C .......    3,490 MWh   22.2 %
-  Diesel (ULSD) ..    2,036 MWh   13.0 %
-  Coal ...........    3,094 MWh   19.7 %
+  LNG ............    7,317 MWh   45.0 %
+  Bunker C .......    3,607 MWh   22.2 %
+  Diesel (ULSD) ..    2,101 MWh   12.9 %
+  Coal ...........    3,200 MWh   19.7 %
+  Solar ..........        1 MWh   0.0 %
   Wind ...........       13 MWh   0.1 %
   Landfill gas ...       11 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $2,538,568 over 6.7 h  (full-day estimate $9,041,647)
-  Average cost ............ $0.1615 per kWh
+  Total cost of the day ... $2,623,527 over 7.0 h  (full-day estimate $9,034,025)
+  Average cost ............ $0.1614 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 12   Came back: 5
+  Went offline: 12   Came back: 7
   00:13  OFFLINE  GT stations (peakers) / Daguao  16.0 -> 0.0 MW
   00:13  OFFLINE  Wind / Pattern  4.0 -> 0.5 MW
   00:13  OFFLINE  Wind / Punta Lima  1.2 -> 0.4 MW
@@ -53,5 +54,7 @@ OUTAGES (units that stopped or restarted)
   04:42  ONLINE   Wind / Pattern  0.6 -> 1.6 MW
   05:14  OFFLINE  Wind / Punta Lima  1.1 -> 0.9 MW
   05:16  OFFLINE  Wind / Pattern  1.1 -> 0.6 MW
+  06:56  ONLINE   Solar / Oriana  0.2 -> 1.5 MW
+  06:56  ONLINE   Solar / Fonroche  0.5 -> 2.4 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
