@@ -48,3 +48,4 @@
 2026-10-29 15:12 AST  ONLINE    GT stations (peakers) / Jobos            0.1 MW ->    17.9 MW  (Genera PR, ULSD (diesel); previous check 14:58)
 2026-10-29 15:12 AST  ONLINE    GT stations (peakers) / Daguao           0.0 MW ->    14.4 MW  (Genera PR, ULSD (diesel); previous check 14:58)
 2026-10-29 15:12 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.7 MW  (Genera PR, ULSD (diesel); previous check 14:58)
+2026-10-29 15:26 AST  OFFLINE   GT stations (peakers) / Jobos           17.9 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 15:12)
