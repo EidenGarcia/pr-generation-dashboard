@@ -39,3 +39,4 @@
 2026-10-29 13:12 AST  ONLINE    Solar / Coto Laurel                      0.9 MW ->     2.2 MW  (Independent (PPOA), Solar; previous check 12:58)
 2026-10-29 13:29 AST  ONLINE    Aguirre CC 1 / Gas 1                     0.1 MW ->    15.4 MW  (Genera PR, ULSD (diesel); previous check 13:12)
 2026-10-29 13:43 AST  ONLINE    GT stations (peakers) / Palo Seco        0.1 MW ->    24.1 MW  (Genera PR, ULSD (diesel); previous check 13:29)
+2026-10-29 13:58 AST  OFFLINE   Solar / Coto Laurel                      1.7 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 13:43)
