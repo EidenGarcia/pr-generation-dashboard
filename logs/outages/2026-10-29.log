@@ -1,0 +1,5 @@
+# Unit outage log, 2026-10-29 (Puerto Rico time, UTC-4)
+# A unit counts as offline below 1 MW. Times are when the change was first seen; it happened after the previous check.
+2026-10-29 00:13 AST  OFFLINE   GT stations (peakers) / Daguao          16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:58)
+2026-10-29 00:13 AST  OFFLINE   Wind / Pattern                           4.0 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 23:58)
+2026-10-29 00:13 AST  OFFLINE   Wind / Punta Lima                        1.2 MW ->     0.4 MW  (Independent (PPOA), Wind; previous check 23:58)
