@@ -60,3 +60,4 @@
 2026-10-29 16:43 AST  OFFLINE   Solar / Oriana                           2.1 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 16:28)
 2026-10-29 16:43 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    17.3 MW  (Genera PR, ULSD (diesel); previous check 16:28)
 2026-10-29 16:58 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.4 MW  (PREPA (hydro), Hydro; previous check 16:43)
+2026-10-29 17:12 AST  OFFLINE   Solar / Horizon                          1.2 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 16:58)
