@@ -35,3 +35,5 @@
 2026-10-29 11:14 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 10:59)
 2026-10-29 11:28 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 11:14)
 2026-10-29 12:58 AST  OFFLINE   Solar / Coto Laurel                      1.4 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 12:43)
+2026-10-29 13:12 AST  ONLINE    Aguirre CC 2 / Gas 2                     0.0 MW ->     8.2 MW  (Genera PR, ULSD (diesel); previous check 12:58)
+2026-10-29 13:12 AST  ONLINE    Solar / Coto Laurel                      0.9 MW ->     2.2 MW  (Independent (PPOA), Solar; previous check 12:58)
