@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, October 29, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-29 03:30 AST)
-Coverage ........ 3.5 h of feed checks (14 checks), 108 five-minute readings
+Status .......... In progress (updated 2026-10-29 03:45 AST)
+Coverage ........ 3.8 h of feed checks (15 checks), 126 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,466 MW at 00:13
-  Minimum ....... 2,236 MW at 03:28
-  Average ....... 2,332 MW
+  Minimum ....... 2,228 MW at 03:42
+  Average ....... 2,325 MW
   PREPA peak .... 2,486 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,478.7 MW at 00:02
-  Minimum ....... 2,236.4 MW at 03:28
-  Average ....... 2,349 MW
-  Energy ........ 21,145 MWh
+  Maximum ....... 2,478.9 MW at 00:02
+  Minimum ....... 2,226.2 MW at 03:37
+  Average ....... 2,336 MW
+  Energy ........ 24,527 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.998 Hz
-  In Normal band  98.1 %   Excursions: 1
+  Average ....... 59.997 Hz
+  In Normal band  98.4 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    3,706 MWh   44.6 %
-  Bunker C .......    1,852 MWh   22.3 %
-  Diesel (ULSD) ..    1,119 MWh   13.5 %
-  Coal ...........    1,611 MWh   19.4 %
-  Wind ...........       10 MWh   0.1 %
+  LNG ............    3,953 MWh   44.6 %
+  Bunker C .......    1,977 MWh   22.3 %
+  Diesel (ULSD) ..    1,189 MWh   13.4 %
+  Coal ...........    1,723 MWh   19.4 %
+  Wind ...........       11 MWh   0.1 %
   Landfill gas ...        6 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $1,358,764 over 3.5 h  (full-day estimate $9,298,791)
-  Average cost ............ $0.1636 per kWh
+  Total cost of the day ... $1,447,995 over 3.8 h  (full-day estimate $9,260,992)
+  Average cost ............ $0.1634 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 9   Came back: 4
