@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, October 28, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-28 22:15 AST)
-Coverage ........ 22.2 h of feed checks (93 checks), 1185 five-minute readings
+Status .......... In progress (updated 2026-10-28 22:30 AST)
+Coverage ........ 22.5 h of feed checks (94 checks), 1191 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,801 MW at 17:58
   Minimum ....... 1,994 MW at 11:12
-  Average ....... 2,394 MW
+  Average ....... 2,397 MW
   PREPA peak .... 2,817 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,809.2 MW at 18:03
   Minimum ....... 1,988.7 MW at 11:17
-  Average ....... 2,348 MW
-  Energy ........ 231,847 MWh
+  Average ....... 2,349 MW
+  Energy ........ 233,184 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
@@ -22,10 +22,10 @@ FREQUENCY (5-minute readings)
   In Normal band  97.5 %   Excursions: 8
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   23,635 MWh   43.9 %
-  Bunker C .......    9,776 MWh   18.2 %
-  Diesel (ULSD) ..    9,277 MWh   17.2 %
-  Coal ...........   10,345 MWh   19.2 %
+  LNG ............   23,913 MWh   43.9 %
+  Bunker C .......    9,905 MWh   18.2 %
+  Diesel (ULSD) ..    9,402 MWh   17.3 %
+  Coal ...........   10,453 MWh   19.2 %
   Solar ..........      533 MWh   1.0 %
   Wind ...........       88 MWh   0.2 %
   Hydro ..........       91 MWh   0.2 %
@@ -33,8 +33,8 @@ FUEL USE (share of energy, time-weighted from unit outputs)
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $9,113,013 over 22.2 h  (full-day estimate $9,833,572)
-  Average cost ............ $0.1694 per kWh
+  Total cost of the day ... $9,228,156 over 22.5 h  (full-day estimate $9,853,706)
+  Average cost ............ $0.1696 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 36   Came back: 38
