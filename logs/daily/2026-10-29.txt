@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, October 29, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-29 02:30 AST)
-Coverage ........ 2.5 h of feed checks (10 checks), 78 five-minute readings
+Status .......... In progress (updated 2026-10-29 02:45 AST)
+Coverage ........ 2.8 h of feed checks (11 checks), 81 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,466 MW at 00:13
-  Minimum ....... 2,284 MW at 02:28
-  Average ....... 2,363 MW
+  Minimum ....... 2,270 MW at 02:43
+  Average ....... 2,355 MW
   PREPA peak .... 2,486 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,478.7 MW at 00:02
-  Minimum ....... 2,283.4 MW at 02:23
-  Average ....... 2,380 MW
-  Energy ........ 15,467 MWh
+  Minimum ....... 2,269.9 MW at 02:43
+  Average ....... 2,376 MW
+  Energy ........ 16,037 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.999 Hz
-  In Normal band  97.4 %   Excursions: 1
+  Average ....... 60.001 Hz
+  In Normal band  96.3 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    2,694 MWh   44.5 %
-  Bunker C .......    1,353 MWh   22.3 %
-  Diesel (ULSD) ..      839 MWh   13.9 %
-  Coal ...........    1,159 MWh   19.1 %
-  Wind ...........        6 MWh   0.1 %
+  LNG ............    2,947 MWh   44.6 %
+  Bunker C .......    1,476 MWh   22.3 %
+  Diesel (ULSD) ..      908 MWh   13.7 %
+  Coal ...........    1,270 MWh   19.2 %
+  Wind ...........        7 MWh   0.1 %
   Landfill gas ...        4 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $999,540 over 2.5 h  (full-day estimate $9,507,905)
-  Average cost ............ $0.1651 per kWh
+  Total cost of the day ... $1,088,312 over 2.8 h  (full-day estimate $9,445,523)
+  Average cost ............ $0.1646 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 8   Came back: 2
