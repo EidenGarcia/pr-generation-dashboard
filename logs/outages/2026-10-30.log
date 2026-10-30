@@ -28,3 +28,5 @@
 2026-10-30 07:29 AST  OFFLINE   Solar / Horizon                          1.2 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 07:12)
 2026-10-30 07:44 AST  ONLINE    Wind / Punta Lima                        0.9 MW ->     3.7 MW  (Independent (PPOA), Wind; previous check 07:29)
 2026-10-30 07:44 AST  ONLINE    Solar / San Fermin                       1.0 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:29)
+2026-10-30 07:58 AST  OFFLINE   Cambalache / Gas 2                      21.2 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:44)
+2026-10-30 07:58 AST  ONLINE    Solar / Horizon                          0.9 MW ->     2.7 MW  (Independent (PPOA), Solar; previous check 07:44)
