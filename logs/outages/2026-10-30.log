@@ -38,3 +38,5 @@
 2026-10-30 09:30 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     2.4 MW  (Independent (PPOA), Solar; previous check 09:13)
 2026-10-30 10:43 AST  OFFLINE   GT stations (peakers) / Palo Seco       24.1 MW ->     0.9 MW  (Genera PR, ULSD (diesel); previous check 10:28)
 2026-10-30 11:28 AST  ONLINE    Mayagüez / Gas 3                         0.1 MW ->    37.8 MW  (Genera PR, ULSD (diesel); previous check 11:14)
+2026-10-30 13:29 AST  OFFLINE   Wind / Punta Lima                        6.0 MW ->     0.6 MW  (Independent (PPOA), Wind; previous check 13:12)
+2026-10-30 13:29 AST  OFFLINE   Solar / San Fermin                       2.9 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 13:12)
