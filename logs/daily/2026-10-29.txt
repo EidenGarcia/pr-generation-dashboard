@@ -1,6 +1,6 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, October 29, 2026 (Puerto Rico time, UTC-4)
-Status .......... Complete (updated 2026-10-30 07:30 AST)
+Status .......... Complete (updated 2026-10-30 07:45 AST)
 Coverage ........ 23.8 h of feed checks (100 checks), 1372 five-minute readings
 
 DEMAND (PREPA total generation at each check)
@@ -10,15 +10,15 @@ DEMAND (PREPA total generation at each check)
   PREPA peak .... 2,679 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,678.4 MW at 19:14
+  Maximum ....... 2,677.6 MW at 19:13
   Minimum ....... 2,068.9 MW at 11:05
   Average ....... 2,375 MW
-  Energy ........ 271,561 MWh
+  Energy ........ 271,558 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
   Minimum ....... 59.70 Hz
-  Average ....... 59.982 Hz
+  Average ....... 59.983 Hz
   In Normal band  99.7 %   Excursions: 2
 
 FUEL USE (share of energy, time-weighted from unit outputs)
