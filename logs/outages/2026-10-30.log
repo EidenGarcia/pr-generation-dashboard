@@ -67,3 +67,4 @@
 2026-10-30 17:28 AST  OFFLINE   Solar / Coto Laurel                      1.1 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 17:12)
 2026-10-30 17:28 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    17.0 MW  (Genera PR, ULSD (diesel); previous check 17:12)
 2026-10-30 17:28 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    17.0 MW  (Genera PR, ULSD (diesel); previous check 17:12)
+2026-10-30 17:43 AST  OFFLINE   Solar / Ilumina                          1.1 MW ->    -0.1 MW  (Independent (PPOA), Solar; previous check 17:28)
