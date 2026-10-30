@@ -2,3 +2,5 @@
 # A unit counts as offline below 1 MW. Times are when the change was first seen; it happened after the previous check.
 2026-10-30 00:14 AST  OFFLINE   Aguirre CC 1 / Gas 1                    30.6 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:58)
 2026-10-30 00:14 AST  OFFLINE   Wind / Pattern                           1.5 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 23:58)
+2026-10-30 00:43 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 00:28)
+2026-10-30 00:43 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 00:28)
