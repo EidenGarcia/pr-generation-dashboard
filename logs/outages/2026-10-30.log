@@ -8,3 +8,4 @@
 2026-10-30 00:58 AST  OFFLINE   Mayagüez / Gas 4                         1.6 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 00:43)
 2026-10-30 00:58 AST  ONLINE    Wind / Pattern                           0.1 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 00:43)
 2026-10-30 01:12 AST  OFFLINE   Aguirre CC 2 / Gas 2                    29.8 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 00:58)
+2026-10-30 01:42 AST  OFFLINE   Wind / Punta Lima                        1.1 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 01:28)
