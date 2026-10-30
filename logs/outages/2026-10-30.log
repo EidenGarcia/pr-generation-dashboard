@@ -60,3 +60,6 @@
 2026-10-30 16:56 AST  ONLINE    GT stations (peakers) / Palo Seco        0.1 MW ->    24.0 MW  (Genera PR, ULSD (diesel); previous check 16:42)
 2026-10-30 16:56 AST  OFFLINE   Solar / San Fermin                       1.2 MW ->     0.2 MW  (Independent (PPOA), Solar; previous check 16:42)
 2026-10-30 16:56 AST  OFFLINE   Solar / Horizon                          3.0 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 16:42)
+2026-10-30 17:12 AST  ONLINE    GT stations (peakers) / Daguao           0.0 MW ->    16.0 MW  (Genera PR, ULSD (diesel); previous check 16:56)
+2026-10-30 17:12 AST  OFFLINE   Solar / Oriana                           1.5 MW ->     0.0 MW  (Independent (PPOA), Solar; previous check 16:56)
+2026-10-30 17:12 AST  OFFLINE   Solar / Fonroche                         4.0 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:56)
