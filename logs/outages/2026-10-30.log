@@ -49,3 +49,8 @@
 2026-10-30 14:58 AST  ONLINE    Cambalache / Gas 2                       0.0 MW ->    16.9 MW  (Genera PR, ULSD (diesel); previous check 14:42)
 2026-10-30 14:58 AST  ONLINE    Solar / San Fermin                       0.7 MW ->     2.3 MW  (Independent (PPOA), Solar; previous check 14:42)
 2026-10-30 15:12 AST  ONLINE    Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 14:58)
+2026-10-30 15:42 AST  ONLINE    Dos Bocas (hydro) / Hidro 2              0.0 MW ->     5.4 MW  (PREPA (hydro), Hydro; previous check 15:28)
+2026-10-30 15:42 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 15:28)
+2026-10-30 15:42 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.8 MW  (Genera PR, ULSD (diesel); previous check 15:28)
+2026-10-30 15:42 AST  ONLINE    Aguirre CC 2 / Gas 4                     0.0 MW ->    30.8 MW  (Genera PR, ULSD (diesel); previous check 15:28)
+2026-10-30 15:42 AST  OFFLINE   Solar / San Fermin                       1.5 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 15:28)
