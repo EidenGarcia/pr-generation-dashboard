@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 30, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-30 11:00 AST)
-Coverage ........ 11.0 h of feed checks (46 checks), 498 five-minute readings
+Status .......... In progress (updated 2026-10-30 11:15 AST)
+Coverage ........ 11.3 h of feed checks (47 checks), 504 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,369 MW at 00:14
   Minimum ....... 2,093 MW at 10:43
-  Average ....... 2,185 MW
+  Average ....... 2,183 MW
   PREPA peak .... 2,392 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,390.3 MW at 00:00
   Minimum ....... 2,082.9 MW at 10:39
-  Average ....... 2,190 MW
-  Energy ........ 90,899 MWh
+  Average ....... 2,189 MW
+  Energy ........ 91,949 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.999 Hz
+  Average ....... 59.998 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   11,592 MWh   48.3 %
-  Bunker C .......    5,575 MWh   23.3 %
-  Diesel (ULSD) ..    1,685 MWh   7.0 %
-  Coal ...........    4,846 MWh   20.2 %
-  Solar ..........      199 MWh   0.8 %
-  Wind ...........       61 MWh   0.3 %
+  LNG ............   11,862 MWh   48.4 %
+  Bunker C .......    5,711 MWh   23.3 %
+  Diesel (ULSD) ..    1,706 MWh   7.0 %
+  Coal ...........    4,956 MWh   20.2 %
+  Solar ..........      214 MWh   0.9 %
+  Wind ...........       63 MWh   0.3 %
   Landfill gas ...       18 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,521,387 over 11.0 h  (full-day estimate $7,692,545)
-  Average cost ............ $0.1469 per kWh
+  Total cost of the day ... $3,600,354 over 11.3 h  (full-day estimate $7,678,290)
+  Average cost ............ $0.1468 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 20   Came back: 17
