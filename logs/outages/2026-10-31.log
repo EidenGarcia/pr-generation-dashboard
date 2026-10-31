@@ -57,3 +57,7 @@
 2026-10-31 17:14 AST  ONLINE    Mayagüez / Gas 3                         0.1 MW ->    26.2 MW  (Genera PR, ULSD (diesel); previous check 16:58)
 2026-10-31 17:14 AST  OFFLINE   Wind / Pattern                           1.0 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 16:58)
 2026-10-31 17:14 AST  OFFLINE   Solar / Ilumina                          1.4 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:58)
+2026-10-31 17:28 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 17:14)
+2026-10-31 17:28 AST  ONLINE    GT stations (peakers) / Jobos            0.0 MW ->    18.1 MW  (Genera PR, ULSD (diesel); previous check 17:14)
+2026-10-31 17:28 AST  OFFLINE   Wind / Punta Lima                        2.2 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 17:14)
+2026-10-31 17:28 AST  OFFLINE   Solar / Fonroche                         1.6 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 17:14)
