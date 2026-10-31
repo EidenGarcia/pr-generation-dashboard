@@ -76,3 +76,4 @@
 2026-10-30 21:28 AST  OFFLINE   Wind / Pattern                           2.0 MW ->     0.6 MW  (Independent (PPOA), Wind; previous check 21:12)
 2026-10-30 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              1.7 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
 2026-10-30 21:42 AST  OFFLINE   Garzas (hydro) / Hidro 1                 3.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-10-30 21:58 AST  ONLINE    Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 21:42)
