@@ -30,3 +30,4 @@
 2026-10-31 07:58 AST  ONLINE    Solar / Horizon                          0.9 MW ->     2.7 MW  (Independent (PPOA), Solar; previous check 07:42)
 2026-10-31 08:28 AST  ONLINE    Wind / Pattern                           0.1 MW ->     1.9 MW  (Independent (PPOA), Wind; previous check 08:14)
 2026-10-31 08:44 AST  ONLINE    Wind / Punta Lima                        0.4 MW ->     2.4 MW  (Independent (PPOA), Wind; previous check 08:28)
+2026-10-31 08:58 AST  OFFLINE   GT stations (peakers) / Palo Seco       24.3 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 08:44)
