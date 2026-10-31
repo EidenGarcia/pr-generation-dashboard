@@ -8,3 +8,4 @@
 2026-10-31 01:59 AST  OFFLINE   Aguirre CC 1 / Gas 1                    30.3 MW ->     0.3 MW  (Genera PR, ULSD (diesel); previous check 01:42)
 2026-10-31 02:58 AST  ONLINE    Wind / Pattern                           0.3 MW ->     1.7 MW  (Independent (PPOA), Wind; previous check 02:42)
 2026-10-31 03:12 AST  OFFLINE   Wind / Pattern                           1.7 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 02:58)
+2026-10-31 03:28 AST  ONLINE    Costa Sur Steam / Unit 5                 0.5 MW ->    12.8 MW  (Genera PR, LNG; previous check 03:12)
