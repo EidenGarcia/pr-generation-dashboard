@@ -265,7 +265,8 @@
     Oriana: 'Isabela', Fonroche: 'Humacao', 'Toa Baja': 'Toa Baja', Fajardo: 'Fajardo' };
   const LABEL = { 'San Juan': [10, -10, 'start'], 'Palo Seco': [-10, -10, 'end'], 'Costa Sur': [-12, 16, 'end'], 'EcoEléctrica': [10, -12, 'start'], Aguirre: [-6, 24, 'end'],
     AES: [12, 18, 'start'], Cambalache: [0, -14, 'middle'], 'Mayagüez': [12, 4, 'start'] };
-  let mapPlant = '', mapFilter = 'all', ptStatus = 'all', ptMode = 'plants', ptQuery = '';
+  let mapPlant = '', mapFilter = 'all', ptStatus = 'all', ptMode = 'plants', ptQuery = '', showLines = true;
+  const LOOP_COLOR = { Central: 'var(--tl-central)', Western: 'var(--tl-western)', Eastern: 'var(--tl-eastern)', 'San Juan area': 'var(--tl-115)' };
   const RENEW = ['Hydro', 'Solar', 'Wind', 'Landfill gas'];
   function allSites() {
     const cap = (G.rows('unit_capacity')[0] || { units: {} }).units;
@@ -294,12 +295,32 @@
     // the whole island in one color, municipal lines hidden
     svg.append('g').selectAll('path').data(fc.features).join('path').attr('class', 'land').attr('d', path);
     const tip = G.tipFor(box.closest('.gx-card'));
+    // transmission lines traced from the published 230 kV / 115 kV map; drawn under the plant bubbles
+    const TX = G.rows('transmission')[0];
+    if (TX && showLines) {
+      const gl = svg.append('g').attr('class', 'tx');
+      const lineGen = d3.line().x((p) => proj(p)[0]).y((p) => proj(p)[1]).curve(d3.curveLinear);
+      for (const kv of [115, 230]) for (const ln of TX.lines.filter((l) => l.kv === kv)) {
+        const d = lineGen(ln.path);
+        gl.append('path').attr('class', 'tl kv' + kv + ((ln.circuits || 1) > 1 ? ' dbl' : '')).attr('d', d);
+        const nm = (k) => (TX.nodes[k] ? TX.nodes[k].name : k);
+        gl.append('path').attr('class', 'tl-hit').attr('d', d)
+          .on('mousemove', (ev) => tip.show(ev, kv + ' kV line' + (ln.id ? ' ' + ln.id : ''), [[null, ln.from && ln.to ? nm(ln.from) + ' – ' + nm(ln.to) : 'Branch', null], ...(ln.miles ? [[null, 'Length', G.f1(ln.miles) + ' miles']] : []), ...((ln.circuits || 1) > 1 ? [[null, 'Circuits', String(ln.circuits)]] : [])]))
+          .on('mouseleave', () => tip.hide());
+      }
+      for (const n of Object.values(TX.nodes)) {
+        if (n.type === 'plant') continue; // plants already have their bubbles
+        const [x, y] = proj([n.lon, n.lat]);
+        gl.append('circle').attr('class', 'tc kv' + n.kv).attr('cx', x).attr('cy', y).attr('r', n.kv === 230 ? 3.6 : 2.6)
+          .on('mousemove', (ev) => tip.show(ev, n.name, [[null, n.kv + ' kV transmission center', null]])).on('mouseleave', () => tip.hide());
+      }
+    }
     const gm = svg.append('g');
     for (const x of sites.slice().reverse()) {
       const [px, py] = proj([x.pos[1], x.pos[0]]), r = 3.5 + Math.sqrt(x.mw) * 0.55 * Math.min(1.4, W / 700);
       const g = gm.append('g').attr('class', 'site ' + x.state + (x.site === mapPlant ? ' sel' : '') + (mapPlant && x.site !== mapPlant ? ' dim' : '')).attr('transform', `translate(${px},${py})`).attr('tabindex', 0).attr('role', 'button')
         .attr('aria-label', x.pos[2] + ', ' + Math.round(x.mw) + ' MW');
-      g.append('circle').attr('class', 'halo').attr('r', r + 4); g.append('circle').attr('class', 'dot').attr('r', r);
+      g.append('circle').attr('class', 'halo').attr('r', r + 4); g.append('circle').attr('class', 'under').attr('r', r); g.append('circle').attr('class', 'dot').attr('r', r);
       const pick = () => { selectPlant(mapPlant === x.site ? '' : x.site); };
       g.on('click', pick).on('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); pick(); } })
         .on('mousemove', (ev) => tip.show(ev, x.pos[2], [[null, 'Output', G.f0(Math.round(x.mw)) + ' MW'], [null, 'Units on', x.on + ' of ' + x.us.length], [null, 'Cost', x.cost ? G.money(Math.round(x.cost)) + '/h' : 'no reported cost'], ...(x.cents ? [[null, 'Average', G.f1(x.cents) + ' ¢/kWh']] : [])]))
@@ -313,7 +334,8 @@
     }
     lg.replaceChildren();
     for (const [c, t] of [['ok', 'All units on'], ['partial', 'Some units on'], ['out', 'All units off'], ['idle', 'Solar, wind or hydro with no output']]) { const sp = el('span'); sp.append(el('i', c), t); lg.append(sp); }
-    lg.append(el('span', 'ap', 'Dot size follows MW. Locations approximate.'));
+    if (G.rows('transmission')[0] && showLines) for (const [cls, t] of [['l230', '230 kV line'], ['l115', '115 kV line'], ['n230', '230 kV transmission center'], ['n115', '115 kV transmission center']]) { const sp = el('span'); sp.append(el('span', 'tx-sw ' + cls), t); lg.append(sp); }
+    lg.append(el('span', 'ap', 'Dot size follows MW. Lines traced from the published transmission map; routes schematic, locations approximate.'));
   }
   function selectPlant(site) { mapPlant = site; if (site) ptMode = 'units'; mapView(); plantTable(); }
   function plantTable() {
@@ -365,6 +387,7 @@
     k('Cost per hour', G.moneyC(cAll), mwAll ? '$' + (cAll / (mwAll * 1000)).toFixed(3) + ' per kWh' : '');
     k('Units on', G.f0(d3.sum(all, (x) => x.on)) + ' / ' + G.f0(d3.sum(all, (x) => x.us.length)), 'generating now');
   }
+  const tlT = document.getElementById('tl-toggle'); if (tlT) tlT.addEventListener('change', () => { showLines = tlT.checked; mapView(); });
   document.getElementById('map-filter').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; mapFilter = b.dataset.v; mapPlant = ''; mapView(); plantTable(); });
   document.getElementById('pt-status').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; ptStatus = b.dataset.v; plantTable(); });
   document.getElementById('pt-mode').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; ptMode = b.dataset.v; plantTable(); });

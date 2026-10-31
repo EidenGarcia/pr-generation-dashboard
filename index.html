@@ -8,8 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/theme.css?v=20261102">
-<link rel="stylesheet" href="assets/live.css?v=20261102">
+<link rel="stylesheet" href="assets/theme.css?v=20261105">
+<link rel="stylesheet" href="assets/live.css?v=20261105">
 </head>
 <body>
 <div class="wrap">
@@ -72,7 +72,7 @@
 
   <!-- Plants right now: map and full table -->
   <h2 class="gx-sec" id="plants">Plants right now</h2>
-  <p class="gx-secnote">Where the island’s power comes from at the latest reading. Dots sit at each plant’s approximate location, sized by output. Select a dot or a table row to see that plant’s units; sort by any column and narrow the list with the filters.</p>
+  <p class="gx-secnote">Where the island’s power comes from at the latest reading, and the high-voltage lines that carry it from the plants in the south to the load centers in the north. Dots sit at each plant’s approximate location, sized by output. Select a dot or a table row to see that plant’s units; sort by any column and narrow the list with the filters.</p>
   <div class="gx-card" style="margin-bottom:var(--cds-gap-lg)">
     <div class="gx-controls pt-controls">
       <input type="search" id="pt-q" placeholder="Search plant, unit or fuel…" aria-label="Search plants and units">
@@ -82,6 +82,7 @@
       <div class="gx-seg" id="pt-status" role="group" aria-label="Status">
         <button data-v="all" aria-pressed="true">Any status</button><button data-v="on" aria-pressed="false">Generating</button><button data-v="off" aria-pressed="false">Offline</button>
       </div>
+      <label class="toggle"><input type="checkbox" id="tl-toggle" checked> Transmission lines</label>
       <div class="gx-seg" id="pt-mode" role="group" aria-label="Rows">
         <button data-v="plants" aria-pressed="true">Plants</button><button data-v="units" aria-pressed="false">Units</button>
       </div>
@@ -91,6 +92,7 @@
       <div id="pr-map" class="pr-map"></div>
       <div class="map-legend" id="map-legend"></div>
       <div class="gx-kpis pt-kpis" id="pt-kpis"></div>
+      <p class="refs">References: line numbers and lengths from the <a href="https://energia.pr.gov/wp-content/uploads/sites/7/2025/05/20250429-MI20240005-Motion-to-Subm-Corrected-Exhibit-1.pdf" target="_blank" rel="noopener">Energy Bureau filing NEPR-MI-2024-0005</a> (230 kV line numbers, end points, lengths), the <a href="https://docs.pr.gov/files/AAFAF/Financial_Documents/Fiscal%20Plans/CERTIFIED%20FISCAL%20PLANS/2023/June/FOMB%20-%202023%20PREPA%20Fiscal%20Plan%20FY24%20-%20June%2023,%202023.pdf" target="_blank" rel="noopener">2023 PREPA Fiscal Plan</a> (the three 230 kV loops) and <a href="https://energia.pr.gov/wp-content/uploads/sites/7/2025/07/20250627-MI20240005-Motion-to-Subm-June-2025-Monthly-Collaborative-Report.pdf" target="_blank" rel="noopener">LUMA’s June 2025 report</a> (San Juan-area 115 kV lines). Transmission map traced from <a href="https://www.bnamericas.com/en/news/puerto-rico-opens-3600mw-to-private-operators" target="_blank" rel="noopener">BNamericas, “Puerto Rico opens 3,600MW to private operators”</a> (Aug 11, 2020).</p>
     </div>
     <div>
       <div class="pt-tablewrap">
@@ -300,13 +302,13 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/core.js?v=20261102"></script>
-<script src="assets/prepa-core.js?v=20261102"></script>
-<script src="assets/calcs.js?v=20261102"></script>
-<script src="assets/history-db.js?v=20261102"></script>
-<script src="assets/live-feed.js?v=20261102"></script>
-<script src="assets/live-extra.js?v=20261102"></script>
-<script src="assets/dispatch.js?v=20261102"></script>
-<script src="assets/live.js?v=20261102"></script>
+<script src="assets/core.js?v=20261105"></script>
+<script src="assets/prepa-core.js?v=20261105"></script>
+<script src="assets/calcs.js?v=20261105"></script>
+<script src="assets/history-db.js?v=20261105"></script>
+<script src="assets/live-feed.js?v=20261105"></script>
+<script src="assets/live-extra.js?v=20261105"></script>
+<script src="assets/dispatch.js?v=20261105"></script>
+<script src="assets/live.js?v=20261105"></script>
 </body>
 </html>
