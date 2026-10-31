@@ -47,6 +47,35 @@
     } else if (G.st('live_units').status === 'error') line.textContent = 'Could not load data/live_units.json.';
   }
 
+  /* ---------- Supply adequacy: possible load shedding ---------- */
+  function shedBanner() {
+    const box = document.getElementById('shed-banner'), chip = document.getElementById('supply-chip');
+    const k = G.rows('live_kpis')[0]; if (!k || !box) return;
+    const fs = G.rows('forecast_summary')[0];
+    const largest = d3.max(G.rows('live_units').filter((u) => u.status === 'Generating'), (u) => Number(u.mw)) || 0;
+    const margin = k.available_capacity_mw - k.total_generation_mw;
+    const gr = G.rows('live_graph').filter((r) => num(r.frequency_hz) != null); const fNow = gr.length ? num(gr[gr.length - 1].frequency_hz) : null; const fl = level(fNow);
+    const crit = [], warn = [];
+    if (margin < 0) crit.push('Available capacity (' + G.f0(k.available_capacity_mw) + ' MW) is below demand (' + G.f0(k.total_generation_mw) + ' MW).');
+    if (k.next_hour_mw != null && k.next_hour_mw > k.available_capacity_mw) crit.push('PREPA expects ' + G.f0(k.next_hour_mw) + ' MW next hour, more than the ' + G.f0(k.available_capacity_mw) + ' MW available.');
+    if (fs && fs.status === 'ok' && fs.min_reserve_mw != null && fs.min_reserve_mw < 0) crit.push('The forecast has demand above available capacity around ' + hFmt(new Date(fs.min_reserve_time)) + ' (short by ' + G.f0(-fs.min_reserve_mw) + ' MW).');
+    if (fl === 'Critical' && fNow < 60) crit.push('Frequency is ' + fNow.toFixed(2) + ' Hz, low enough for automatic under-frequency load shedding to act.');
+    if (!crit.length) {
+      if (margin >= 0 && margin < largest) warn.push('The margin of ' + G.f0(margin) + ' MW is smaller than the largest unit online (' + G.f0(Math.round(largest)) + ' MW). If that unit trips, there is not enough capacity left.');
+      if (k.spinning_reserve_mw != null && k.spinning_reserve_mw < largest) warn.push('Spinning reserve (' + G.f0(k.spinning_reserve_mw) + ' MW) does not cover the largest unit online (' + G.f0(Math.round(largest)) + ' MW).');
+      if (fs && fs.status === 'ok' && fs.min_reserve_mw != null && fs.min_reserve_mw >= 0 && fs.min_reserve_mw < largest) warn.push('The forecast margin drops to ' + G.f0(fs.min_reserve_mw) + ' MW around ' + hFmt(new Date(fs.min_reserve_time)) + ', below the largest unit online.');
+      if (fl === 'Alert' && fNow < 60) warn.push('Frequency is ' + fNow.toFixed(2) + ' Hz, well below 60 Hz.');
+    }
+    const lvl = crit.length ? 'crit' : warn.length ? 'warn' : 'ok';
+    if (chip) { chip.className = 'supply-chip ' + lvl; chip.textContent = lvl === 'crit' ? 'Supply short' : lvl === 'warn' ? 'Supply tight' : 'Supply adequate'; chip.title = lvl === 'ok' ? 'Available capacity covers demand plus the largest unit online.' : (crit[0] || warn[0]); }
+    box.hidden = lvl === 'ok';
+    if (lvl === 'ok') return;
+    box.className = 'shed ' + lvl; box.replaceChildren();
+    const h = el('div', 'shed-h'); h.append(el('span', 'shed-ic', lvl === 'crit' ? '!' : '▲'), el('b', null, lvl === 'crit' ? 'Load shedding possible: generation may not cover the load' : 'Supply is tight: a unit trip could lead to load shedding'));
+    const ul = el('ul'); for (const t of (crit.length ? crit : warn)) ul.append(el('li', null, t));
+    box.append(h, ul, el('p', 'shed-n', 'Based on PREPA’s figures at ' + tFmt(new Date(k.snapshot)) + '. This is an early warning from public data, not an official notice; LUMA announces actual load relief.'));
+  }
+
   /* ---------- Alert banner ---------- */
   function alertBanner() {
     const box = document.getElementById('alert-banner'), body = document.getElementById('alert-body');
@@ -122,10 +151,10 @@
     const fv = gw.filter((d) => d.f != null);
     const showF = vis.freq && fv.length > 0, showE = vis.outages;
     const total = isFull(box) ? Math.max(520, Math.round(window.innerHeight * 0.7)) : Math.max(460, Math.min(720, railH ? railH - 150 : Math.round(W * 0.5)));
-    const axisH = 22, gap = 8, laneH = showE ? 20 : 0, fqH = showF ? Math.round(total * 0.22) : 0;
-    const mwTop = 16, mwBot = total - axisH - fqH - laneH - (showF ? gap + 14 : 0) - (showE ? gap : 0);
+    const axisH = 22, gap = 8, laneH = showE ? 20 : 0;
+    const mwTop = 16, mwBot = total - axisH - laneH - (showE ? gap : 0);
     const laneTop = mwBot + gap, laneBot = laneTop + laneH;
-    const fqTop = (showE ? laneBot : mwBot) + gap + 14, fqBot = total - axisH;
+    const fqTop = mwTop, fqBot = mwBot; // frequency shares the generation panel on a secondary (right) axis
     const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${total}`).attr('width', '100%').attr('height', total);
 
     const mw = [];
@@ -139,9 +168,10 @@
     if (!mw.length) mw.push(0, 1000);
     const y = d3.scaleLinear([d3.min(mw) * 0.95, d3.max(mw) * 1.03], [mwBot, mwTop]).nice();
     const nb = L ? L.bands[0] : { low: 59.8, high: 60.2 };
-    const y2 = d3.scaleLinear([Math.min(nb.low - 0.1, (d3.min(fv, (d) => d.f) ?? 60) - 0.05), Math.max(nb.high + 0.1, (d3.max(fv, (d) => d.f) ?? 60) + 0.05)], [fqBot, fqTop]);
-    const yt = y.ticks(Math.max(3, Math.round((mwBot - mwTop) / 60))), y2t = [nb.low, 60, nb.high];
-    const ml = Math.max(G.measure(svg, yt.map(G.f0)), G.measure(svg, ['60.0', 'MW'])) + 14, mr = 10;
+    const y2 = d3.scaleLinear([Math.min(nb.low - 0.05, (d3.min(fv, (d) => d.f) ?? 60) - 0.05), Math.max(nb.high + 0.05, (d3.max(fv, (d) => d.f) ?? 60) + 0.05)], [mwBot, mwTop]);
+    const yt = y.ticks(Math.max(3, Math.round((mwBot - mwTop) / 60)));
+    const y2t = d3.range(Math.ceil(y2.domain()[0] * 10), Math.floor(y2.domain()[1] * 10) + 1).map((v) => v / 10);
+    const ml = G.measure(svg, yt.map(G.f0)) + 14, mr = showF ? G.measure(svg, ['60.0 ']) + 16 : 10;
     const x = d3.scaleTime([x0, x1], [ml, W - mr]);
     const g = svg.append('g');
     // grid and axes
@@ -150,10 +180,10 @@
     g.append('text').attr('class', 'ax').attr('x', ml - 8).attr('y', mwTop - 6).attr('text-anchor', 'end').text('MW');
     const xt = x.ticks(Math.max(3, Math.floor((W - ml - mr) / 90)));
     g.selectAll('text.xl').data(xt).join('text').attr('class', 'ax').attr('x', x).attr('y', total - 6).attr('text-anchor', 'middle').text((d) => (prHour(d) === 0 ? dFmt(d) : hFmt(d)));
-    g.selectAll('line.xg').data(xt).join('line').attr('class', 'grid').attr('x1', x).attr('x2', x).attr('y1', mwTop).attr('y2', fqBot).attr('opacity', 0.5);
+    g.selectAll('line.xg').data(xt).join('line').attr('class', 'grid').attr('x1', x).attr('x2', x).attr('y1', mwTop).attr('y2', mwBot).attr('opacity', 0.5);
     // forecast zone
     const ax = Math.max(ml, Math.min(W - mr, x(anchor)));
-    if (fw.length && anchor < x1) g.append('rect').attr('class', 'fzone').attr('x', ax).attr('y', mwTop).attr('width', Math.max(0, W - mr - ax)).attr('height', fqBot - mwTop);
+    if (fw.length && anchor < x1) g.append('rect').attr('class', 'fzone').attr('x', ax).attr('y', mwTop).attr('width', Math.max(0, W - mr - ax)).attr('height', mwBot - mwTop);
     // ----- generation panel
     const line = (data, acc, yS, cls, curve = d3.curveMonotoneX) => g.append('path').datum(data).attr('class', cls).attr('d', d3.line().defined((d) => acc(d) != null).x((d) => x(d.t)).y((d) => yS(acc(d))).curve(curve));
     if (vis.fload && fw.length) g.append('path').datum(fw.filter((d) => d.lo != null && d.hi != null)).attr('class', 'band').attr('d', d3.area().x((d) => x(d.t)).y0((d) => y(d.lo)).y1((d) => y(d.hi)).curve(d3.curveMonotoneX));
@@ -190,28 +220,27 @@
           .on('mouseleave', () => tipO.hide());
       }
     }
-    // ----- frequency panel
+    // ----- frequency on the secondary (right) axis
     if (showF) {
-      g.append('text').attr('class', 'ax panel-t').attr('x', ml).attr('y', fqTop - 4).text('Frequency (Hz)');
-      g.append('rect').attr('class', 'fq-normal').attr('x', ml).attr('width', W - mr - ml).attr('y', y2(nb.high)).attr('height', Math.max(0, y2(nb.low) - y2(nb.high)));
-      g.selectAll('text.y2').data(y2t).join('text').attr('class', 'ax').attr('x', ml - 8).attr('y', y2).attr('dy', '0.35em').attr('text-anchor', 'end').text((t) => t.toFixed(1));
-      for (const v of [nb.low, nb.high]) g.append('line').attr('class', 'lim').attr('x1', ml).attr('x2', W - mr).attr('y1', y2(v)).attr('y2', y2(v)).attr('stroke', 'var(--hl-watch)');
+      g.selectAll('text.y2').data(y2t).join('text').attr('class', 'ax ax-hz').attr('x', W - mr + 8).attr('y', y2).attr('dy', '0.35em').text((t) => t.toFixed(1));
+      g.append('text').attr('class', 'ax ax-hz').attr('x', W - mr + 8).attr('y', mwTop - 6).text('Hz');
+      for (const v of [nb.low, nb.high]) g.append('line').attr('class', 'lim').attr('x1', ml).attr('x2', W - mr).attr('y1', y2(v)).attr('y2', y2(v)).attr('stroke', 'var(--hl-watch)').attr('stroke-opacity', 0.45);
       g.append('line').attr('class', 'hz60').attr('x1', ml).attr('x2', W - mr).attr('y1', y2(60)).attr('y2', y2(60));
-      for (const e of G.rows('frequency_events')) { const a = new Date(e.start), b = new Date(+new Date(e.end) + 300000); if (b < x0 || a > x1) continue;
-        g.append('rect').attr('class', 'exc').attr('x', x(a < x0 ? x0 : a)).attr('y', fqTop).attr('width', Math.max(3, x(b > x1 ? x1 : b) - x(a < x0 ? x0 : a))).attr('height', fqBot - fqTop).attr('fill', HLV[e.worst_level] || HLV.Alert); }
+      for (const e of G.rows('frequency_events')) { const a2 = new Date(e.start), b2 = new Date(+new Date(e.end) + 300000); if (b2 < x0 || a2 > x1) continue;
+        g.append('rect').attr('class', 'exc').attr('x', x(a2 < x0 ? x0 : a2)).attr('y', mwTop).attr('width', Math.max(3, x(b2 > x1 ? x1 : b2) - x(a2 < x0 ? x0 : a2))).attr('height', mwBot - mwTop).attr('fill', HLV[e.worst_level] || HLV.Alert); }
       const seq = []; fv.forEach((d, i) => { if (i && d.t - fv[i - 1].t > 15 * 60000) seq.push({ t: d.t, f: null }); seq.push(d); });
       g.append('path').datum(seq).attr('class', 's-freq').attr('d', d3.line().defined((d) => d.f != null).x((d) => x(d.t)).y((d) => y2(d.f)).curve(d3.curveStepAfter));
       g.selectAll('circle.fx').data(fv.filter((d) => level(d.f) && level(d.f) !== 'Normal')).join('circle').attr('cx', (d) => x(d.t)).attr('cy', (d) => y2(d.f)).attr('r', 2.6).attr('fill', (d) => HLV[level(d.f)]);
     }
     if (anchor >= x0 && anchor <= x1) {
-      g.append('line').attr('class', 'nowline').attr('x1', x(anchor)).attr('x2', x(anchor)).attr('y1', mwTop).attr('y2', fqBot);
+      g.append('line').attr('class', 'nowline').attr('x1', x(anchor)).attr('x2', x(anchor)).attr('y1', mwTop).attr('y2', showE ? laneBot : mwBot);
       g.append('text').attr('class', 'lbl').attr('x', x(anchor) + 6).attr('y', mwTop + 12).text(fw.length ? 'Latest data · forecast →' : 'Latest data');
     }
     // ----- hover and zoom
     const tip = G.tipFor(box.closest('.hero-main'));
-    const rule = g.append('line').attr('class', 'rule').attr('y1', mwTop).attr('y2', fqBot).attr('opacity', 0);
+    const rule = g.append('line').attr('class', 'rule').attr('y1', mwTop).attr('y2', showE ? laneBot : mwBot).attr('opacity', 0);
     const near = (arr, t, maxMs) => { if (!arr.length) return null; const i = d3.bisector((d) => d.t).center(arr, t); const d = arr[i]; return d && Math.abs(d.t - t) <= maxMs ? d : null; };
-    const brush = d3.brushX().extent([[ml, 0], [W - mr, fqBot]]).on('end', (ev) => { if (!ev.selection) return; const [a, b] = ev.selection; if (b - a < 8) { bg.call(brush.move, null); return; } heroZoom = [x.invert(a), x.invert(b)]; render(); });
+    const brush = d3.brushX().extent([[ml, 0], [W - mr, showE ? laneBot : mwBot]]).on('end', (ev) => { if (!ev.selection) return; const [a, b] = ev.selection; if (b - a < 8) { bg.call(brush.move, null); return; } heroZoom = [x.invert(a), x.invert(b)]; render(); });
     const bg = svg.append('g').attr('class', 'brush').call(brush);
     svg.on('dblclick', () => { if (heroZoom) { heroZoom = null; render(); } });
     g.raise();
@@ -607,7 +636,7 @@
   }
 
 
-  function render() { topbar(); alertBanner(); rail(); hero(); reserveChart(); frequency(); outages(); offlineTrend(); mix(); costTotals(); health(); }
+  function render() { topbar(); shedBanner(); alertBanner(); rail(); hero(); reserveChart(); frequency(); outages(); offlineTrend(); mix(); costTotals(); health(); }
   document.getElementById('hero-reset').addEventListener('click', () => { heroZoom = null; render(); });
   // full screen for the main graph (with reserves) and the over-time chart
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-fs]'); if (!b) return; const el2 = document.getElementById(b.dataset.fs);
@@ -621,6 +650,6 @@
     status: 'data/status.json', hist_units: 'data/hist_units.json',
     freq_limits: 'data/frequency_limits.json', frequency_events: 'data/frequency_events.json',
     unit_capacity: 'data/unit_capacity.json', unit_ranges: 'data/unit_ranges.json', daily_summary: 'data/daily_summary.json',
-    plant_hourly: 'data/plant_hourly.json', pr_map: 'data/pr_municipios.json', trace_recent: 'data/trace_recent.json',
+    plant_hourly: 'data/plant_hourly.json', pr_map: 'data/pr_municipios.json', trace_recent: 'data/trace_recent.json', settings: 'data/settings.json',
   });
 })();

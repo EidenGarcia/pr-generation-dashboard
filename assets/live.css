@@ -267,3 +267,51 @@
 .hero-hint { margin-top: 0; }
 /* Frequency section: cards size to their content */
 .fq-grid { align-items: start; }
+
+/* ===== Refresh: main graph as a light card; supply status; analysis cards ===== */
+.hero { --hero-bg: var(--panel); --hero-fg: var(--ink); --hero-muted: var(--muted); --hero-grid: var(--cds-chart-grid);
+  --h-gen: var(--c1); --h-dem: var(--ink); --h-cap: #98a2b3; --h-freq: #dc6803; --h-peak: #d92d20; --hl-watch: #dc6803; --hl-alert: #e04f16; --hl-critical: #d92d20;
+  border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(16,24,40,.04); border-radius: var(--cds-radius); }
+@media (prefers-color-scheme: dark) { .hero { --h-cap: #7d8a9c; --h-freq: #f79009; --h-peak: #f97066; } }
+.hero-head h2 { font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; }
+.hero-legend button { color: var(--ink); border-color: var(--line); background: var(--panel); }
+.hero .tool { color: var(--ink); border-color: var(--line); background: var(--panel); }
+.hero .tool:hover { border-color: var(--ink); }
+.hero .gx-tip { background: var(--cds-surface-popover); color: var(--ink); border-color: var(--line); }
+.hero .gx-tip .t { color: var(--muted); }
+.hero-chart .s-gen-area { opacity: .12; }
+.hero-chart .lbl { stroke: var(--panel); }
+.hero-chart .nowline { stroke: var(--muted); stroke-opacity: .6; }
+.hero-chart .rule { stroke: var(--muted); }
+.hero-chart .fzone { fill: var(--paper); opacity: .7; }
+.hero-chart .s-demand, .hero-chart .s-nexthr { fill: var(--panel); }
+.hero .brush .selection { fill: var(--c1); }
+.rail { border-left: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 55%, var(--panel)); }
+.ro { border-bottom-color: var(--line); }
+.ro-v { font-weight: 600; letter-spacing: -0.02em; }
+.ro-dot.ok { background: var(--teal); } .ro-dot.warn { background: var(--amber); } .ro-dot.bad { background: var(--alert); }
+@media (max-width: 960px) { .rail { border-top: 1px solid var(--line); } }
+
+.supply-chip { display: inline-flex; align-items: center; gap: 6px; font-size: var(--cds-font-size-caption); font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); }
+.supply-chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--steel); }
+.supply-chip.ok::before { background: var(--teal); } .supply-chip.warn { color: var(--amber); } .supply-chip.warn::before { background: var(--amber); }
+.supply-chip.crit { color: #fff; background: var(--alert); border-color: var(--alert); } .supply-chip.crit::before { background: #fff; }
+.shed { border-radius: var(--cds-radius); padding: 14px 18px; margin: 0 0 16px; border: 1px solid; }
+.shed.crit { background: color-mix(in srgb, var(--alert) 10%, var(--panel)); border-color: var(--alert); }
+.shed.warn { background: color-mix(in srgb, var(--amber) 9%, var(--panel)); border-color: var(--amber); }
+.shed-h { display: flex; align-items: center; gap: 10px; font-size: 1rem; }
+.shed-ic { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 13px; flex: none; }
+.shed.crit .shed-ic { background: var(--alert); } .shed.warn .shed-ic { background: var(--amber); }
+.shed ul { margin: 8px 0 4px 34px; padding: 0; } .shed li { margin: 2px 0; }
+.shed-n { margin: 6px 0 0 34px; font-size: var(--cds-font-size-caption); color: var(--muted); }
+
+.sub-sec { font-size: 1.05rem; font-weight: 600; margin: 28px 0 4px; }
+.an-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 32rem), 1fr)); }
+.an-card .an-what { color: var(--muted); margin-bottom: 10px; }
+.an-sum { font-size: var(--cds-font-size-body); font-weight: 500; margin: 10px 0 2px; min-height: 1.2em; }
+.ldc-lbl { fill: #fff; font-weight: 700; font-size: 12px; }
+.gx-alert { border-radius: var(--cds-radius); }
+.jump { background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(6px); }
+.livectl { border-radius: var(--cds-radius); }
+.hero-chart .ax-hz { fill: var(--h-freq); }
+.hero-chart .s-freq { stroke: var(--h-freq); stroke-width: 1.1; stroke-opacity: .7; }

@@ -171,3 +171,33 @@ a { color: inherit; }
 
 /* Elements hidden by the page must stay hidden, whatever display a component sets */
 [hidden] { display: none !important; }
+
+/* ===== Refresh: professional neutrals, one typeface, fuel colors used across every chart ===== */
+:root {
+  --ink: #101828; --paper: #f5f7fa; --panel: #ffffff; --line: #e4e7ec; --muted: #667085;
+  --amber: #dc6803; --teal: #079455; --alert: #d92d20; --steel: #98a2b3;
+  /* fuels: natural gas, Bunker C, diesel, coal, solar, wind, hydro, landfill gas */
+  --c1: #4c7de0; --c2: #4fae87; --c3: #e3a42c; --c4: #e07a3f; --c5: #e384b1; --c6: #a08be0; --c7: #59b4d9; --c8: #98b85a;
+  --cds-chart-grid: #eef0f3; --cds-chart-axis: #c5cbd3; --cds-chart-muted: #d0d5dd; --cds-chart-reference: #667085;
+  --cds-surface-popover: #ffffff; --cds-shadow-popover: 0 8px 24px rgba(16,24,40,.12); --cds-radius: 10px;
+  --font-anthropic-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-anthropic-serif: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --cds-font-size-title: 1.75rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e7ebf0; --paper: #0f141a; --panel: #161c24; --line: #263040; --muted: #98a2b3;
+    --amber: #f79009; --teal: #32d583; --alert: #f97066; --steel: #7d8a9c;
+    --c1: #6e98ee; --c2: #5fc79d; --c3: #f0b84a; --c4: #f08e57; --c5: #ee9cc3; --c6: #b4a2ee; --c7: #6fc6e8; --c8: #aecb6c;
+    --cds-chart-grid: #222b37; --cds-chart-axis: #3a4656; --cds-chart-muted: #3a4656; --cds-surface-popover: #1d2530;
+  }
+}
+body { font-feature-settings: "tnum" 1, "cv11" 1; letter-spacing: -0.005em; }
+.brand h1 { font-weight: 700; letter-spacing: -0.02em; font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+.gx-card { border-radius: var(--cds-radius); box-shadow: 0 1px 2px rgba(16,24,40,.04); }
+.gx-card h3 { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+.gx-sec { font-weight: 700; font-size: 1.3rem; letter-spacing: -0.015em; margin-top: 44px; }
+.gx-kpi { border-radius: var(--cds-radius); }
+.gx-kpi-v { font-weight: 600; letter-spacing: -0.02em; }
+.gx-seg { border-radius: 8px; }
+.gx-seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }

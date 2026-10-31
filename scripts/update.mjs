@@ -112,6 +112,56 @@ function dailyText(s, events) {
   return L.join('\n') + '\n';
 }
 
+/* ---------------- Recovery: merge an uploaded copy of older data, then remove it ---------------- */
+function mergeRecovered() {
+  const REC = path.join(DATA, 'recovered'), RECLOG = path.resolve(DATA, '..', 'logs', 'recovered');
+  const days = new Set();
+  if (!fs.existsSync(REC) && !fs.existsSync(RECLOG)) return days;
+  const rj = (f, d) => { try { return JSON.parse(fs.readFileSync(path.join(REC, f), 'utf8')); } catch { return d; } };
+  const unionBy = (file, key, recovered) => {
+    const cur = readJSON(file, []), m = new Map();
+    for (const r of [...recovered, ...cur]) { const k = typeof key === 'function' ? key(r) : r[key]; if (k != null) m.set(k, r); }
+    writeJSON(file, [...m.values()].sort((a, b) => (String(a.at || a.time || a.day || a.detected_at || a.start) < String(b.at || b.time || b.day || b.detected_at || b.start) ? -1 : 1)));
+  };
+  if (fs.existsSync(REC)) {
+    unionBy('history.json', 'at', rj('history.json', []));
+    unionBy('unit_events.json', 'event_id', rj('unit_events.json', []));
+    unionBy('feed_health.json', (r) => r.at + '|' + r.feed + '|' + (r.via || ''), rj('feed_health.json', []));
+    unionBy('frequency_events.json', 'event_id', rj('frequency_events.json', []));
+    unionBy('plant_hourly.json', 'at', rj('plant_hourly.json', []));
+    unionBy('trace_recent.json', 'time', rj('trace_recent.json', []));
+    const ranges = readJSON('unit_ranges.json', {});
+    for (const [k, r] of Object.entries(rj('unit_ranges.json', {}))) { const c = ranges[k]; ranges[k] = c ? { min_on_mw: Math.min(c.min_on_mw, r.min_on_mw), max_on_mw: Math.max(c.max_on_mw, r.max_on_mw), since: r.since < c.since ? r.since : c.since } : r; }
+    writeJSON('unit_ranges.json', ranges);
+    const DAYS0 = path.join(DATA, 'days'); fs.mkdirSync(DAYS0, { recursive: true });
+    const recDays = path.join(REC, 'days');
+    if (fs.existsSync(recDays)) for (const f of fs.readdirSync(recDays).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x))) {
+      const old = JSON.parse(fs.readFileSync(path.join(recDays, f), 'utf8'));
+      let cur = { day: f.slice(0, 10), checks: [], trace: [] }; try { cur = JSON.parse(fs.readFileSync(path.join(DAYS0, f), 'utf8')); } catch { /* new */ }
+      const ck = new Map(); for (const c of [...(old.checks || []), ...(cur.checks || [])]) ck.set(c.at, c);
+      const tr = new Map(); for (const r of [...(old.trace || []), ...(cur.trace || [])]) tr.set(Math.floor(new Date(r.time).getTime() / 300000), r);
+      fs.writeFileSync(path.join(DAYS0, f), JSON.stringify({ day: f.slice(0, 10), checks: [...ck.values()].sort((a, b) => (a.at < b.at ? -1 : 1)), trace: [...tr.values()].sort((a, b) => (a.time < b.time ? -1 : 1)) }));
+      days.add(f.slice(0, 10));
+    }
+    fs.rmSync(REC, { recursive: true, force: true });
+  }
+  if (fs.existsSync(RECLOG)) {
+    const recOut = path.join(RECLOG, 'outages'), OUT = path.resolve(DATA, '..', 'logs', 'outages'); fs.mkdirSync(OUT, { recursive: true });
+    if (fs.existsSync(recOut)) for (const f of fs.readdirSync(recOut).filter((x) => x.endsWith('.log'))) {
+      const a = fs.readFileSync(path.join(recOut, f), 'utf8').split('\n'), b = fs.existsSync(path.join(OUT, f)) ? fs.readFileSync(path.join(OUT, f), 'utf8').split('\n') : [];
+      const head = a.filter((l) => l.startsWith('#')), seen = new Set(), body = [];
+      for (const l of [...a, ...b]) if (l && !l.startsWith('#') && !seen.has(l)) { seen.add(l); body.push(l); }
+      fs.writeFileSync(path.join(OUT, f), [...head, ...body.sort()].join('\n') + '\n');
+    }
+    fs.rmSync(RECLOG, { recursive: true, force: true });
+  }
+  console.log('merged recovered data for', days.size, 'days');
+  return days;
+}
+const recoveredDays = mergeRecovered();
+const SETTINGS = (readJSON('settings.json', [])[0]) || {};
+const START = SETTINGS.start_date || null;
+
 /* ---------------- main ---------------- */
 const health = readJSON('feed_health.json', []);
 const status = (readJSON('status.json', [{}])[0]) || {};
@@ -163,7 +213,7 @@ if (src) {
   }
   newEvents = events.slice(eventsBefore).filter((e) => e.event === 'Went offline' || e.event === 'Back online');
   // keep 7 days in the page data; the text logs keep everything
-  events = events.filter((e) => new Date(e.detected_at).getTime() >= NOW.getTime() - 7 * DAY);
+  events = events.filter((e) => new Date(e.detected_at).getTime() >= NOW.getTime() - 31 * DAY);
   writeJSON('live_units.json', src.units); writeJSON('live_metrics.json', src.metrics);
   writeJSON('live_fuel_mix.json', src.mix); writeJSON('live_fuel_price.json', src.prices);
   writeJSON('unit_events.json', events);
@@ -240,6 +290,7 @@ for (const e of newEvents) {
 const LIM = (readJSON('frequency_limits.json', [])[0]) || null;
 const summaries = readJSON('daily_summary.json', []);
 const todayAST = isoAST(NOW).slice(0, 10);
+for (const d of recoveredDays) touched.add(d);
 // close off days that ended since the last run
 for (const sm of summaries) if (sm.status === 'In progress' && sm.day < todayAST && fs.existsSync(dayFile(sm.day))) touched.add(sm.day);
 for (const d of touched) {
@@ -251,6 +302,7 @@ for (const d of touched) {
   fs.writeFileSync(path.join(LOGS, 'daily', d + '.txt'), dailyText(sm, allEvents));
 }
 summaries.sort((a, b) => (a.day < b.day ? -1 : 1));
+if (START) for (let i = summaries.length - 1; i >= 0; i--) if (summaries[i].day < START) summaries.splice(i, 1);
 writeJSON('daily_summary.json', summaries.slice(-400));
 const CSV_COLS = ['day', 'status', 'coverage_h', 'checks', 'demand_max_mw', 'demand_max_at', 'demand_min_mw', 'demand_min_at', 'demand_avg_mw', 'prepa_peak_mw', 'gen_max_mw', 'gen_max_at', 'gen_min_mw', 'gen_min_at', 'gen_avg_mw', 'gen_energy_mwh', 'freq_max_hz', 'freq_min_hz', 'freq_avg_hz', 'freq_normal_pct', 'freq_excursions', 'majority_fuel', 'share_lng_pct', 'share_bunker_c_pct', 'share_ulsd_pct', 'share_coal_pct', 'share_renewable_pct', 'share_hydro_pct', 'total_cost_usd', 'cost_full_day_estimate_usd', 'avg_cost_usd_per_kwh', 'units_went_offline', 'units_came_back'];
 fs.writeFileSync(path.join(LOGS, 'daily_summary.csv'), CSV_COLS.join(',') + '\n' + summaries.map((s) => CSV_COLS.map((c) => (s[c] == null ? '' : String(s[c]).includes(',') ? '"' + s[c] + '"' : s[c])).join(',')).join('\n') + '\n');
@@ -307,3 +359,16 @@ for (const h of health.slice().reverse()) { if (h.feed !== 'dataSource') continu
 status.consecutive_failures = streak;
 writeJSON('status.json', [status]);
 console.log('done', { snapshot: src && src.snap, graphRows: graph ? graph.rows.length : 0, events: events.length, history: hist.length, forecast: fc.rows.length });
+
+// Remove everything before the start date (data/settings.json), so history begins where you chose.
+if (START) {
+  const before = (v) => v && String(v).slice(0, 10) < START;
+  for (const [file, key] of [['history.json', 'at'], ['unit_events.json', 'detected_at'], ['feed_health.json', 'at'], ['frequency_events.json', 'start'], ['plant_hourly.json', 'at'], ['trace_recent.json', 'time'], ['live_graph.json', 'time']]) {
+    const rows = readJSON(file, null); if (Array.isArray(rows)) { const kept = rows.filter((r) => !before(r[key])); if (kept.length !== rows.length) writeJSON(file, kept); }
+  }
+  const DAYS1 = path.join(DATA, 'days'), LOGS1 = path.resolve(DATA, '..', 'logs');
+  for (const [dir, re] of [[DAYS1, /^(\d{4}-\d{2}-\d{2})\.json$/], [path.join(LOGS1, 'daily'), /^(\d{4}-\d{2}-\d{2})\.txt$/], [path.join(LOGS1, 'outages'), /^(\d{4}-\d{2}-\d{2})\.log$/]]) {
+    if (!fs.existsSync(dir)) continue;
+    for (const f of fs.readdirSync(dir)) { const m = re.exec(f); if (m && m[1] < START) fs.unlinkSync(path.join(dir, f)); }
+  }
+}

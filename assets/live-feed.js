@@ -55,15 +55,17 @@ window.LIVE = (() => {
   loader = load;
   // Merge what this browser read (now and on earlier visits) with what the GitHub updater saved.
   const newer = (a, b) => String(a || '') >= String(b || '');
+  const startDate = () => { const s = (dash.raw('settings').data || [])[0]; return (s && s.start_date) || ''; };
+  const since = (rows, key) => { const d = startDate(); return d ? rows.filter((r) => !r[key] || String(r[key]).slice(0, 10) >= d) : rows; };
   const mergeBy = (key, ...lists) => { const m = new Map(); for (const l of lists) for (const r of l || []) if (r && r[key]) m.set(r[key], { ...(m.get(r[key]) || {}), ...r }); return [...m.values()].sort((x, y) => (x[key] < y[key] ? -1 : 1)); };
   dash.augment('live_units', (f) => (S.units && newer(S.units[0].snapshot, f[0] && f[0].snapshot) ? S.units : f));
   dash.augment('live_metrics', (f) => (S.metrics && newer(S.metrics[0] && S.metrics[0].snapshot, f[0] && f[0].snapshot) ? S.metrics : f));
   dash.augment('live_fuel_mix', (f) => (S.mix && newer(S.mix[0] && S.mix[0].snapshot, f[0] && f[0].snapshot) ? S.mix : f));
-  dash.augment('live_graph', (f) => mergeBy('time', f.filter((r) => r.time), LOC.trace, S.graph));
+  dash.augment('live_graph', (f) => since(mergeBy('time', f.filter((r) => r.time), LOC.trace, S.graph), 'time'));
   dash.augment('forecast', (f) => (S.forecast && S.forecast.length ? S.forecast : f));
   dash.augment('forecast_summary', (f) => (S.fsum && (!f[0] || f[0].status !== 'ok' || newer(S.fsum.generated_at, f[0].generated_at)) ? [S.fsum] : f));
-  dash.augment('history', (f) => mergeBy('at', f, LOC.checks, S.row ? [S.row] : []));
-  dash.augment('unit_events', (f) => mergeBy('event_id', f, LOC.events, S.events).sort((a, b) => (a.detected_at < b.detected_at ? -1 : 1)));
+  dash.augment('history', (f) => since(mergeBy('at', f, LOC.checks, S.row ? [S.row] : []), 'at'));
+  dash.augment('unit_events', (f) => since(mergeBy('event_id', f, LOC.events, S.events), 'detected_at').sort((a, b) => (a.detected_at < b.detected_at ? -1 : 1)));
   // excursions are rebuilt from the saved 5-minute trace, so they survive reloads
   let fexCache = { n: -1, ev: [], step: 300 };
   dash.augment('frequency_events', (f) => {
@@ -71,10 +73,10 @@ window.LIVE = (() => {
     if (L && LOC.trace.length && fexCache.n !== LOC.trace.length) { const ex = P.detectExcursions(LOC.trace, L); fexCache = { n: LOC.trace.length, ev: ex.episodes, step: ex.step || 300 }; }
     let out = fexCache.ev.length ? P.mergeExcursions(f, fexCache.ev, fexCache.step) : f;
     if (S.fevents.length) out = P.mergeExcursions(out, S.fevents, S.fstep);
-    return out;
+    return since(out, 'start');
   });
   dash.augment('feed_health', (f) => [...f, ...S.checks]);
-  dash.augment('daily_summary', (f) => { const today = P.isoAST(new Date()).slice(0, 10); const m = new Map(f.map((d) => [d.day, d.status === 'In progress' && d.day < today ? { ...d, status: (d.coverage_h || 0) >= 20 ? 'Complete' : 'Ended, partial data' } : d])); for (const d of LOC.daySums) { if (d.calc_version !== 2) continue; const o = m.get(d.day); if (!o || (d.coverage_h || 0) > (o.coverage_h || 0) + 0.25) m.set(d.day, { ...d, via: 'this device' }); } return [...m.values()].sort((a, b) => (a.day < b.day ? -1 : 1)); });
+  dash.augment('daily_summary', (f) => { const today = P.isoAST(new Date()).slice(0, 10); const m = new Map(f.map((d) => [d.day, d.status === 'In progress' && d.day < today ? { ...d, status: (d.coverage_h || 0) >= 20 ? 'Complete' : 'Ended, partial data' } : d])); for (const d of LOC.daySums) { if (d.calc_version !== 2) continue; const o = m.get(d.day); if (!o || (d.coverage_h || 0) > (o.coverage_h || 0) + 0.25) m.set(d.day, { ...d, via: 'this device' }); } return since([...m.values()], 'day').sort((a, b) => (a.day < b.day ? -1 : 1)); });
   dash.augment('status', (f) => { const s = { ...(f[0] || {}) }; if (S.temp != null) { s.temperature_f = S.temp; s.temperature_at = state.okGraph && P.isoAST(state.okGraph); } s.local_since = LOC.since; s.local_checks = LOC.checks.length; s.local_error = LOC.error; return [s]; });
 
   async function loadLocal() {

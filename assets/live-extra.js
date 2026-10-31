@@ -18,7 +18,7 @@
   const PLANT_ORDER = ['Aguirre Steam', 'Costa Sur Steam', 'San Juan CC', 'Palo Seco Steam', 'AES', 'EcoEléctrica', 'San Juan Steam', 'Cambalache', 'Mayagüez', 'GT stations (peakers)',
     'Aguirre CC 1', 'Aguirre CC 2', 'Palo Seco GT/CT', 'Costa Sur GT/CT', 'Aguirre GT/CT', 'Hydro', 'Solar', 'Wind', 'Landfill gas'];
   // Plant colors are shades of the plant's fuel color, so the plant and fuel charts and the rest of the page agree.
-  const FALLBACK = { '--c1': '#1f5fa8', '--c2': '#7a5534', '--c3': '#c47a14', '--c4': '#4a5560', '--c5': '#d8ac1c', '--c6': '#2a9d8f', '--c7': '#3d8fd1', '--c8': '#6f8f2f', '--cds-chart-muted': '#b9c6d2' };
+  const FALLBACK = { '--c1': '#4c7de0', '--c2': '#4fae87', '--c3': '#e3a42c', '--c4': '#e07a3f', '--c5': '#e384b1', '--c6': '#a08be0', '--c7': '#59b4d9', '--c8': '#98b85a', '--cds-chart-muted': '#d0d5dd' };
   const cssVar = (v) => { const m = /var\((--[\w-]+)\)/.exec(v); return m ? getComputedStyle(document.documentElement).getPropertyValue(m[1]).trim() || FALLBACK[m[1]] || '#888' : v; };
   let plantColorMap = {};
   function buildPlantColors(plants) {
@@ -209,7 +209,10 @@
   document.getElementById('hist-csv').addEventListener('click', () => window.LIVE && LIVE.exportCSV());
 
   /* ---------- 24-hour outage log (paired out / back) ---------- */
+  let evRange = 24, evType = 'all', evQ = '';
   function outageLog() {
+    document.querySelectorAll('#ev-range button').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.v) === evRange)));
+    document.querySelectorAll('#ev-type button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === evType)));
     const evs = G.rows('unit_events').filter((e) => e.event === 'Went offline' || e.event === 'Back online').map((e) => ({ ...e, t: new Date(e.detected_at) })).sort((a, b) => a.t - b.t);
     const units = G.rows('live_units');
     const anchor = units.length ? new Date(units[0].snapshot) : evs.length ? evs[evs.length - 1].t : new Date();
@@ -217,20 +220,26 @@
     for (const e of evs) {
       const k = e.plant + '|' + e.unit;
       if (e.event === 'Went offline') { if (!open.has(k)) open.set(k, e); }
-      else { const o = open.get(k); rows.push({ key: k + '|' + (o ? o.detected_at : 'before|' + e.detected_at), plant: e.plant, unit: e.unit, out: o ? o.t : null, back: e.t, lost: o ? Number(o.mw_before) : null }); open.delete(k); }
+      else { const o = open.get(k); rows.push({ key: k + '|' + (o ? o.detected_at : 'before|' + e.detected_at), plant: e.plant, unit: e.unit, out: o ? o.t : null, back: e.t, lost: o ? Number(o.mw_before) : Number(e.mw_after) }); open.delete(k); }
     }
     for (const [k, o] of open) rows.push({ key: k + '|' + o.detected_at, plant: o.plant, unit: o.unit, out: o.t, back: null, lost: Number(o.mw_before) });
-    const recent = rows.filter((r) => (r.out && anchor - r.out <= 24 * H) || (r.back && anchor - r.back <= 24 * H) || (!r.back));
-    document.getElementById('events-empty').hidden = !(G.ok('unit_events') && !recent.length);
-    G.table(document.getElementById('outlog-table'), recent.map((r) => ({ ...r, unit_name: r.plant + ', ' + r.unit, out_v: r.out ? +r.out : 0, back_v: r.back ? +r.back : 0, dur_v: (r.back || anchor) - (r.out || r.back || anchor), state: r.back ? 'Back in service' : 'Still out' })), [
-      { k: 'unit_name' },
-      { k: 'out_v', fmt: (v, r) => (r.out ? tFmt(r.out) : 'before monitoring') },
+    const from = new Date(+anchor - evRange * H), q = evQ.trim().toLowerCase();
+    const sel = rows.filter((r) => ((r.out && r.out >= from) || (r.back && r.back >= from) || !r.back) && (evType === 'all' || (evType === 'out' ? !r.back : !!r.back)) && (!q || (r.plant + ' ' + r.unit).toLowerCase().includes(q)));
+    const trips = sel.filter((r) => r.out && r.out >= from).length, rets = sel.filter((r) => r.back && r.back >= from).length, still = sel.filter((r) => !r.back).length;
+    document.getElementById('ev-sum').textContent = sel.length ? trips + ' unit(s) went out and ' + rets + ' came back in this period; ' + still + ' still out.' : '';
+    document.getElementById('events-empty').hidden = !(G.ok('unit_events') && !sel.length);
+    G.table(document.getElementById('outlog-table'), sel.map((r) => ({ ...r, unit_name: r.plant + ', ' + r.unit, out_v: r.out ? +r.out : 0, back_v: r.back ? +r.back : 0, dur_v: (r.back || anchor) - (r.out || r.back || anchor), state: r.back ? 'Back in service' : 'Still out' })), [
+      { k: 'unit_name', render: (td, r) => { td.append(el('span', 'pt-name', r.unit), el('span', 'pt-sub', r.plant)); } },
+      { k: 'out_v', fmt: (v, r) => (r.out ? tFmt(r.out) : 'before this period') },
       { k: 'back_v', fmt: (v, r) => (r.back ? tFmt(r.back) : '—') },
       { k: 'dur_v', num: true, fmt: (v, r) => (r.out ? (r.back ? '' : 'so far ') + dur(v) : '—') },
-      { k: 'lost', num: true, fmt: (v) => (v == null ? '—' : G.f1(v)) },
+      { k: 'lost', num: true, fmt: (v) => (v == null || isNaN(v) ? '—' : G.f1(v)) },
       { k: 'state', render: (td, r) => { const off = !r.back; const s = el('span', 'gx-pill ' + (off ? 'gx-t-bad' : 'gx-t-ok')); s.append(el('i', 'gx-dot ' + (off ? 'bad' : 'ok')), r.state); td.append(s); } },
-    ], { key: 'key', sortKey: 'out_v', redraw: () => dash.rerun() });
+    ], { key: 'key', sortKey: 'out_v', redraw: () => outageLog() });
   }
+  document.getElementById('ev-range').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; evRange = Number(b.dataset.v); outageLog(); });
+  document.getElementById('ev-type').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; evType = b.dataset.v; outageLog(); });
+  document.getElementById('ev-q').addEventListener('input', (e) => { evQ = e.target.value; outageLog(); });
 
   /* ---------- Municipal map ---------- */
   const SITES = {
