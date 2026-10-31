@@ -1,43 +1,43 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 30, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-30 21:30 AST)
-Coverage ........ 21.5 h of feed checks (90 checks), 871 five-minute readings
+Status .......... In progress (updated 2026-10-30 21:45 AST)
+Coverage ........ 21.7 h of feed checks (91 checks), 889 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,630 MW at 17:57
   Minimum ....... 2,006 MW at 13:29
-  Average ....... 2,277 MW
+  Average ....... 2,280 MW
   PREPA peak .... 2,643 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,637.4 MW at 17:59
   Minimum ....... 2,005.7 MW at 13:28
-  Average ....... 2,260 MW
-  Energy ........ 164,033 MWh
+  Average ....... 2,266 MW
+  Energy ........ 167,855 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 60.007 Hz
+  Average ....... 60.009 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   22,976 MWh   46.9 %
-  Bunker C .......   10,967 MWh   22.4 %
-  Diesel (ULSD) ..    5,095 MWh   10.4 %
-  Coal ...........    9,122 MWh   18.6 %
+  LNG ............   23,238 MWh   46.8 %
+  Bunker C .......   11,093 MWh   22.4 %
+  Diesel (ULSD) ..    5,211 MWh   10.5 %
+  Coal ...........    9,217 MWh   18.6 %
   Solar ..........      560 MWh   1.1 %
-  Wind ...........      173 MWh   0.4 %
+  Wind ...........      173 MWh   0.3 %
   Hydro ..........       80 MWh   0.2 %
-  Landfill gas ...       34 MWh   0.1 %
+  Landfill gas ...       35 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $7,673,765 over 21.5 h  (full-day estimate $8,572,709)
-  Average cost ............ $0.1566 per kWh
+  Total cost of the day ... $7,780,096 over 21.7 h  (full-day estimate $8,598,221)
+  Average cost ............ $0.1568 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 35   Came back: 39
+  Went offline: 37   Came back: 39
   00:14  OFFLINE  Aguirre CC 1 / Gas 1  30.6 -> 0.0 MW
   00:14  OFFLINE  Wind / Pattern  1.5 -> 0.1 MW
   00:43  OFFLINE  Palo Seco GT/CT / CT Block 1  18.0 -> 0.0 MW
@@ -112,5 +112,7 @@ OUTAGES (units that stopped or restarted)
   21:12  ONLINE   Wind / Pattern  0.4 -> 2.0 MW
   21:28  OFFLINE  Dos Bocas (hydro) / Hidro 3  5.1 -> 0.0 MW
   21:28  OFFLINE  Wind / Pattern  2.0 -> 0.6 MW
+  21:42  OFFLINE  Dos Bocas (hydro) / Hidro 2  1.7 -> 0.0 MW
+  21:42  OFFLINE  Garzas (hydro) / Hidro 1  3.0 -> 0.0 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
