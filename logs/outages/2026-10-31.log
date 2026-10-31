@@ -16,3 +16,4 @@
 2026-10-31 04:29 AST  OFFLINE   Mayagüez / Gas 3                         1.5 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 04:12)
 2026-10-31 04:36 AST  ONLINE    Wind / Punta Lima                        0.9 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 04:29)
 2026-10-31 04:59 AST  OFFLINE   Wind / Punta Lima                        1.0 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 04:42)
+2026-10-31 05:58 AST  OFFLINE   GT stations (peakers) / FEMA GT SJ      23.2 MW ->     0.0 MW  (Genera PR, LNG; previous check 05:42)
