@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, October 31, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-31 06:30 AST)
-Coverage ........ 6.0 h of feed checks (25 checks), 78 five-minute readings
+Status .......... In progress (updated 2026-10-31 06:45 AST)
+Coverage ........ 6.3 h of feed checks (26 checks), 81 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,298 MW at 00:42
-  Minimum ....... 2,057 MW at 06:29
-  Average ....... 2,134 MW
+  Minimum ....... 2,044 MW at 06:44
+  Average ....... 2,130 MW
   PREPA peak .... 2,385 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,377.0 MW at 00:09
-  Minimum ....... 2,057.1 MW at 06:29
-  Average ....... 2,152 MW
-  Energy ........ 13,989 MWh
+  Maximum ....... 2,377.8 MW at 00:09
+  Minimum ....... 2,044.3 MW at 06:44
+  Average ....... 2,148 MW
+  Energy ........ 14,500 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
-  Minimum ....... 59.80 Hz
-  Average ....... 59.988 Hz
+  Minimum ....... 59.90 Hz
+  Average ....... 59.985 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    6,019 MWh   46.7 %
-  Bunker C .......    2,942 MWh   22.9 %
-  Diesel (ULSD) ..    1,469 MWh   11.4 %
-  Coal ...........    2,434 MWh   18.9 %
+  LNG ............    6,305 MWh   47.1 %
+  Bunker C .......    3,055 MWh   22.8 %
+  Diesel (ULSD) ..    1,492 MWh   11.1 %
+  Coal ...........    2,537 MWh   18.9 %
   Wind ...........        1 MWh   0.0 %
   Landfill gas ...       10 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $2,120,335 over 6.0 h  (full-day estimate $8,430,599)
-  Average cost ............ $0.1647 per kWh
+  Total cost of the day ... $2,194,368 over 6.3 h  (full-day estimate $8,368,723)
+  Average cost ............ $0.1638 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 12   Came back: 5
