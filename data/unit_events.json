@@ -1,1 +1,1 @@
-[{"event_id":"baseline|2026-10-18T19:36:42-04:00","detected_at":"2026-10-18T19:36:42-04:00","previous_snapshot":null,"plant":"All units","unit":"—","operator":"—","fuel":"—","event":"Baseline captured","mw_before":null,"mw_after":null}]
+[{"event_id":"baseline|2026-10-31T00:28:38-04:00","detected_at":"2026-10-31T00:28:38-04:00","previous_snapshot":"2026-10-18T19:36:42-04:00","plant":"All units","unit":"—","operator":"—","fuel":"—","event":"Monitoring resumed after 293 h gap","mw_before":null,"mw_after":null}]
