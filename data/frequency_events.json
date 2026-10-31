@@ -1,1 +1,1 @@
-[]
+[{"event_id":"Low|2026-10-30T22:06:00-04:00","start":"2026-10-30T22:06:00-04:00","end":"2026-10-30T22:06:00-04:00","direction":"Low","worst_level":"Watch","extreme_hz":59.7,"extreme_at":"2026-10-30T22:06:00-04:00","samples":1,"sample_step_s":300,"approx_duration_s":300,"observed_span_s":0,"allowance_s":null,"allowance_status":"No time limit"}]
