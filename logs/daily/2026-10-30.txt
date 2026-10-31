@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 30, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-30 23:00 AST)
-Coverage ........ 23.0 h of feed checks (97 checks), 1088 five-minute readings
+Status .......... In progress (updated 2026-10-30 23:15 AST)
+Coverage ........ 23.2 h of feed checks (98 checks), 1094 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,630 MW at 17:57
   Minimum ....... 2,006 MW at 13:29
-  Average ....... 2,292 MW
+  Average ....... 2,293 MW
   PREPA peak .... 2,643 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,635.4 MW at 17:58
   Minimum ....... 2,003.2 MW at 13:28
-  Average ....... 2,287 MW
-  Energy ........ 207,395 MWh
+  Average ....... 2,288 MW
+  Energy ........ 208,631 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
@@ -22,19 +22,19 @@ FREQUENCY (5-minute readings)
   In Normal band  99.9 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   24,604 MWh   46.5 %
-  Bunker C .......   11,786 MWh   22.3 %
-  Diesel (ULSD) ..    5,910 MWh   11.2 %
-  Coal ...........    9,731 MWh   18.4 %
-  Solar ..........      560 MWh   1.1 %
+  LNG ............   24,832 MWh   46.5 %
+  Bunker C .......   11,905 MWh   22.3 %
+  Diesel (ULSD) ..    6,024 MWh   11.3 %
+  Coal ...........    9,819 MWh   18.4 %
+  Solar ..........      560 MWh   1.0 %
   Wind ...........      173 MWh   0.3 %
   Hydro ..........       81 MWh   0.2 %
   Landfill gas ...       37 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $8,378,287 over 23.0 h  (full-day estimate $8,745,624)
-  Average cost ............ $0.1584 per kWh
+  Total cost of the day ... $8,478,508 over 23.2 h  (full-day estimate $8,766,672)
+  Average cost ............ $0.1587 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 38   Came back: 40
