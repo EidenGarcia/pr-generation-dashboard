@@ -215,7 +215,14 @@ const dayFile = (d) => path.join(DAYS, d + '.json');
 const readDay = (d) => { try { return JSON.parse(fs.readFileSync(dayFile(d), 'utf8')); } catch { return { day: d, checks: [], trace: [] }; } };
 const dayCache = new Map(); const getDay = (d) => { if (!dayCache.has(d)) dayCache.set(d, readDay(d)); return dayCache.get(d); };
 if (src) { const row = history.find((x) => x.at === src.snap); if (row) { const D = getDay(row.at.slice(0, 10)); if (!D.checks.some((c) => c.at === row.at)) D.checks.push(row); else D.checks = D.checks.map((c) => (c.at === row.at ? row : c)); touched.add(row.at.slice(0, 10)); } }
-if (graph) for (const r of graph.rows) { const d = r.time.slice(0, 10); const D = getDay(d); if (!D._map) D._map = new Map(D.trace.map((x) => [x.time, x])); D._map.set(r.time, r); touched.add(d); }
+const slotOf = (iso) => Math.floor(new Date(iso).getTime() / 300000);
+const slotMapOf = (D) => { if (!D._map) { D._map = new Map(); for (const x of D.trace) D._map.set(slotOf(x.time), x); } return D._map; };
+if (graph) for (const r of graph.rows) { const d = r.time.slice(0, 10); const D = getDay(d); slotMapOf(D).set(slotOf(r.time), r); touched.add(d); }
+// one-time clean-up: days saved before traces were stored by slot, and summaries from before the energy fix
+for (const f of fs.readdirSync(DAYS).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x))) {
+  const d = f.slice(0, 10), old = (readJSON('daily_summary.json', []).find((x) => x.day === d) || {});
+  if (old.calc_version !== 2) { slotMapOf(getDay(d)); touched.add(d); }
+}
 for (const [d, D] of dayCache) { if (D._map) { D.trace = [...D._map.values()].sort((a, b) => (a.time < b.time ? -1 : 1)); delete D._map; } D.checks.sort((a, b) => (a.at < b.at ? -1 : 1)); fs.writeFileSync(dayFile(d), JSON.stringify(D)); }
 // remove day files older than 35 days
 for (const f of fs.readdirSync(DAYS)) if (/^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f.slice(0, 10) < isoAST(new Date(NOW.getTime() - 35 * DAY)).slice(0, 10)) fs.unlinkSync(path.join(DAYS, f));
@@ -278,7 +285,9 @@ fs.writeFileSync(path.join(LOGS, 'daily_summary.csv'), CSV_COLS.join(',') + '\n'
       const plants = {}, fuels = {}; let total = 0;
       for (const c of list) { for (const [p, mw] of Object.entries(c.plant_mw || {})) plants[p] = (plants[p] || 0) + mw / list.length; for (const [k] of FUEL_KEYS) fuels[k] = (fuels[k] || 0) + (Number(c['mw_' + k]) || 0) / list.length; total += (Number(c.total_mw) || 0) / list.length; }
       for (const p in plants) plants[p] = Math.round(plants[p] * 10) / 10;
-      const row = { at: hr + ':00:00-04:00', hourly: true, n: list.length, total_mw: Math.round(total), plant_mw: plants };
+      const avgOf = (k) => { const v = list.map((c) => Number(c[k])).filter(Number.isFinite); return v.length ? Math.round((v.reduce((x, y) => x + y, 0) / v.length) * 10) / 10 : null; };
+      const row = { at: hr + ':00:00-04:00', hourly: true, n: list.length, total_mw: Math.round(total), plant_mw: plants,
+        genera_units_offline: avgOf('genera_units_offline'), genera_units_total: avgOf('genera_units_total'), spinning_mw: avgOf('spinning_mw'), available_mw: avgOf('available_mw') };
       for (const k in fuels) row['mw_' + k] = Math.round(fuels[k] * 10) / 10;
       byHour.set(row.at, row);
     }
