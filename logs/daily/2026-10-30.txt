@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, October 30, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-10-30 22:20 AST)
-Coverage ........ 22.3 h of feed checks (94 checks), 1055 five-minute readings
+Status .......... In progress (updated 2026-10-30 22:30 AST)
+Coverage ........ 22.5 h of feed checks (95 checks), 1061 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,630 MW at 17:57
   Minimum ....... 2,006 MW at 13:29
-  Average ....... 2,286 MW
+  Average ....... 2,288 MW
   PREPA peak .... 2,643 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,637.4 MW at 17:59
   Minimum ....... 2,003.2 MW at 13:28
-  Average ....... 2,281 MW
-  Energy ........ 200,509 MWh
+  Average ....... 2,282 MW
+  Energy ........ 201,760 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
@@ -22,10 +22,10 @@ FREQUENCY (5-minute readings)
   In Normal band  99.9 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   23,888 MWh   46.7 %
-  Bunker C .......   11,420 MWh   22.3 %
-  Diesel (ULSD) ..    5,530 MWh   10.8 %
-  Coal ...........    9,459 MWh   18.5 %
+  LNG ............   24,076 MWh   46.7 %
+  Bunker C .......   11,513 MWh   22.3 %
+  Diesel (ULSD) ..    5,627 MWh   10.9 %
+  Coal ...........    9,528 MWh   18.5 %
   Solar ..........      560 MWh   1.1 %
   Wind ...........      173 MWh   0.3 %
   Hydro ..........       81 MWh   0.2 %
@@ -33,8 +33,8 @@ FUEL USE (share of energy, time-weighted from unit outputs)
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $8,058,942 over 22.3 h  (full-day estimate $8,666,392)
-  Average cost ............ $0.1576 per kWh
+  Total cost of the day ... $8,140,503 over 22.5 h  (full-day estimate $8,687,386)
+  Average cost ............ $0.1578 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 38   Came back: 40
