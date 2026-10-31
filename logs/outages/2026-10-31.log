@@ -27,3 +27,4 @@
 2026-10-31 07:28 AST  ONLINE    Solar / Coto Laurel                      1.0 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 07:13)
 2026-10-31 07:42 AST  OFFLINE   Wind / Pattern                           1.2 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 07:28)
 2026-10-31 07:42 AST  OFFLINE   Solar / Horizon                          2.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-10-31 07:58 AST  ONLINE    Solar / Horizon                          0.9 MW ->     2.7 MW  (Independent (PPOA), Solar; previous check 07:42)
