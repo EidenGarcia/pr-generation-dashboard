@@ -1,42 +1,43 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, November 1, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-01 01:45 AST)
-Coverage ........ 1.8 h of feed checks (7 checks), 21 five-minute readings
+Status .......... In progress (updated 2026-11-01 02:00 AST)
+Coverage ........ 2.0 h of feed checks (8 checks), 24 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,315 MW at 00:12
-  Minimum ....... 2,186 MW at 01:42
-  Average ....... 2,248 MW
+  Minimum ....... 2,180 MW at 01:58
+  Average ....... 2,239 MW
   PREPA peak .... 2,330 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,325.3 MW at 00:02
-  Minimum ....... 2,186.1 MW at 01:42
-  Average ....... 2,250 MW
-  Energy ........ 3,938 MWh
+  Maximum ....... 2,327.1 MW at 00:03
+  Minimum ....... 2,180.4 MW at 01:58
+  Average ....... 2,241 MW
+  Energy ........ 4,483 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 60.005 Hz
+  Average ....... 60.004 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    1,816 MWh   45.1 %
-  Bunker C .......      956 MWh   23.8 %
-  Diesel (ULSD) ..      543 MWh   13.5 %
-  Coal ...........      702 MWh   17.4 %
-  Wind ...........        4 MWh   0.1 %
+  LNG ............    2,074 MWh   45.1 %
+  Bunker C .......    1,099 MWh   23.9 %
+  Diesel (ULSD) ..      609 MWh   13.2 %
+  Coal ...........      808 MWh   17.6 %
+  Wind ...........        5 MWh   0.1 %
   Landfill gas ...        3 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $660,993 over 1.8 h  (full-day estimate $9,010,692)
-  Average cost ............ $0.1643 per kWh
+  Total cost of the day ... $754,705 over 2.0 h  (full-day estimate $8,949,565)
+  Average cost ............ $0.1642 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 2   Came back: 0
+  Went offline: 3   Came back: 0
   00:28  OFFLINE  Palo Seco GT/CT / GT1  18.0 -> 0.0 MW
   01:42  OFFLINE  Palo Seco GT/CT / GT2  18.0 -> 0.0 MW
+  01:58  OFFLINE  Palo Seco GT/CT / CT Block 1  18.0 -> 0.0 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
