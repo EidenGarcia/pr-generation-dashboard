@@ -13,3 +13,8 @@
 2026-11-01 05:43 AST  OFFLINE   Wind / Punta Lima                        4.2 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 05:28)
 2026-11-01 05:58 AST  ONLINE    Wind / Punta Lima                        0.8 MW ->     1.4 MW  (Independent (PPOA), Wind; previous check 05:43)
 2026-11-01 06:42 AST  OFFLINE   Wind / Punta Lima                        2.7 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 06:28)
+2026-11-01 06:59 AST  OFFLINE   Aguirre CC 1 / Gas 1                    17.1 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 06:42)
+2026-11-01 06:59 AST  OFFLINE   Aguirre CC 2 / Gas 2                    30.4 MW ->     0.3 MW  (Genera PR, ULSD (diesel); previous check 06:42)
+2026-11-01 06:59 AST  ONLINE    Wind / Punta Lima                        0.8 MW ->     2.1 MW  (Independent (PPOA), Wind; previous check 06:42)
+2026-11-01 06:59 AST  ONLINE    Solar / Oriana                           0.1 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 06:42)
+2026-11-01 06:59 AST  ONLINE    Solar / Fonroche                         0.8 MW ->     2.5 MW  (Independent (PPOA), Solar; previous check 06:42)
