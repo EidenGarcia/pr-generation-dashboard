@@ -168,10 +168,11 @@
     if (!mw.length) mw.push(0, 1000);
     const y = d3.scaleLinear([d3.min(mw) * 0.95, d3.max(mw) * 1.03], [mwBot, mwTop]).nice();
     const nb = L ? L.bands[0] : { low: 59.8, high: 60.2 };
-    const y2 = d3.scaleLinear([Math.min(nb.low - 0.05, (d3.min(fv, (d) => d.f) ?? 60) - 0.05), Math.max(nb.high + 0.05, (d3.max(fv, (d) => d.f) ?? 60) + 0.05)], [mwBot, mwTop]);
+    // frequency on PREPA's fixed scale, 57–63 Hz (widened only if a reading falls outside it)
+    const y2 = d3.scaleLinear([Math.min(57, Math.floor(d3.min(fv, (d) => d.f) ?? 57)), Math.max(63, Math.ceil(d3.max(fv, (d) => d.f) ?? 63))], [mwBot, mwTop]);
     const yt = y.ticks(Math.max(3, Math.round((mwBot - mwTop) / 60)));
-    const y2t = d3.range(Math.ceil(y2.domain()[0] * 10), Math.floor(y2.domain()[1] * 10) + 1).map((v) => v / 10);
-    const ml = G.measure(svg, yt.map(G.f0)) + 14, mr = showF ? G.measure(svg, ['60.0 ']) + 16 : 10;
+    const y2t = d3.range(Math.ceil(y2.domain()[0]), Math.floor(y2.domain()[1]) + 1);
+    const ml = G.measure(svg, yt.map(G.f0)) + 14, mr = showF ? G.measure(svg, ['63 ']) + 16 : 10;
     const x = d3.scaleTime([x0, x1], [ml, W - mr]);
     const g = svg.append('g');
     // grid and axes
@@ -222,7 +223,7 @@
     }
     // ----- frequency on the secondary (right) axis
     if (showF) {
-      g.selectAll('text.y2').data(y2t).join('text').attr('class', 'ax ax-hz').attr('x', W - mr + 8).attr('y', y2).attr('dy', '0.35em').text((t) => t.toFixed(1));
+      g.selectAll('text.y2').data(y2t).join('text').attr('class', 'ax ax-hz').attr('x', W - mr + 8).attr('y', y2).attr('dy', '0.35em').text((t) => String(t));
       g.append('text').attr('class', 'ax ax-hz').attr('x', W - mr + 8).attr('y', mwTop - 6).text('Hz');
       for (const v of [nb.low, nb.high]) g.append('line').attr('class', 'lim').attr('x1', ml).attr('x2', W - mr).attr('y1', y2(v)).attr('y2', y2(v)).attr('stroke', 'var(--hl-watch)').attr('stroke-opacity', 0.45);
       g.append('line').attr('class', 'hz60').attr('x1', ml).attr('x2', W - mr).attr('y1', y2(60)).attr('y2', y2(60));

@@ -34,44 +34,80 @@
   }
 
   /* ---------- Merit order ---------- */
+  let meritMode = 'now';
+  // Right now: only plants generating at the latest reading. Block width = capacity of the units online now
+  // (rated MW, or the most each unit has been seen producing), solid up to current output. Height = cost per MWh now.
+  function meritNow() {
+    const units = G.rows('live_units'), cap = (G.rows('unit_capacity')[0] || { units: {} }).units, rng = G.rows('unit_ranges')[0] || {};
+    const by = new Map();
+    for (const u of units) {
+      if (u.status !== 'Generating') continue;
+      const p = window.PREPA.plantGroup(u.plant), mw = Math.max(0, Number(u.mw));
+      const o = by.get(p) || { p, now: 0, avail: 0, cost: 0, costMW: 0, fuel: G.norm(u.fuel), units: 0 };
+      const c = cap[u.unit_id] && cap[u.unit_id].rated_mw, seen = rng[u.unit_id] && rng[u.unit_id].max_on_mw;
+      o.now += mw; o.avail += Math.max(mw, c || seen || mw); o.units++;
+      if (Number(u.cost_cents_kwh) > 0) { o.cost += Number(u.cost_usd_per_hour); o.costMW += mw; }
+      by.set(p, o);
+    }
+    const blocks = [...by.values()].filter((o) => o.now >= 1).map((o) => ({ ...o, max: MUST_TAKE.has(o.p) ? o.now : o.avail, price: o.costMW ? o.cost / o.costMW : MUST_TAKE.has(o.p) ? 0 : null }));
+    const demand = d3.sum(blocks, (b) => b.now);
+    return { blocks, demand, peak: null, when: units[0] ? tFmt(new Date(units[0].snapshot)) : '' };
+  }
+  function meritToday() {
+    const { rows, label } = windowRows(); if (!rows.length) return null;
+    const st = plantStats(rows), fm = plantFuel(), last = rows[rows.length - 1];
+    const blocks = Object.values(st).filter((o) => o.max >= 1).map((o) => ({ ...o, fuel: fm[o.p] }));
+    return { blocks, demand: num(last.total_mw), peak: d3.max(rows, (r) => num(r.total_mw)), label };
+  }
   function merit() {
     const box = card('merit-chart'); if (!box) return;
-    const { rows, label } = windowRows();
-    if (!rows.length) { G.failOrSkeleton(box, ['history']); return; }
-    const st = plantStats(rows), fm = plantFuel(), last = rows[rows.length - 1];
-    const blocks = Object.values(st).filter((o) => o.max >= 1);
-    const must = blocks.filter((o) => MUST_TAKE.has(o.p)).sort((a, b) => (a.price || 0) - (b.price || 0));
-    const disp = blocks.filter((o) => !MUST_TAKE.has(o.p) && o.price != null).sort((a, b) => a.price - b.price);
+    document.querySelectorAll('#merit-mode button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === meritMode)));
+    const M = meritMode === 'now' ? meritNow() : meritToday();
+    if (!M || !M.blocks.length) { G.failOrSkeleton(box, ['live_units']); return; }
+    const must = M.blocks.filter((o) => MUST_TAKE.has(o.p)).sort((a, b) => (a.price || 0) - (b.price || 0));
+    const disp = M.blocks.filter((o) => !MUST_TAKE.has(o.p) && o.price != null).sort((a, b) => a.price - b.price);
     const seq = [...must, ...disp]; let acc = 0; for (const b of seq) { b.x0 = acc; acc += b.max; b.x1 = acc; }
-    const demandNow = num(last.total_mw), peak = d3.max(rows, (r) => num(r.total_mw));
-    card('merit-note').textContent = 'Widths are the most each plant produced ' + label + '; heights are its cost per MWh at its latest reading. Plants with no reported cost are left out.';
-    legend(card('merit-legend'), [['Renewables (must-take)', fuelColor('Solar')], ['Coal', G.color('Coal')], ['Natural gas', G.color('LNG')], ['Bunker C', G.color('Bunker C')], ['Diesel', G.color('ULSD')]]);
+    const demandNow = M.demand, peak = M.peak;
+    card('merit-note').textContent = meritMode === 'now'
+      ? 'Plants generating at ' + M.when + '. Block width is the capacity of the units online now (rated MW, or the most each unit has been seen producing); the solid part is what each plant is producing, the light part its unused room. Height is its cost per MWh now. Renewables appear only when they are producing.'
+      : 'Widths are the most each plant produced ' + M.label + '; heights are its cost per MWh at its latest reading. Plants with no reported cost are left out.';
+    const fuelsShown = [...new Set(seq.map((b) => FUEL_LABEL[b.fuel] || b.fuel))];
+    legend(card('merit-legend'), [['Renewables (must-take)', fuelColor('Solar')], ['Coal', G.color('Coal')], ['Natural gas', G.color('LNG')], ['Bunker C', G.color('Bunker C')], ['Diesel', G.color('ULSD')]].filter(([n]) => fuelsShown.includes(n.replace(' (must-take)', ''))));
     box.replaceChildren(); box.classList.remove('dash-skeleton');
     const W = box.clientWidth || 640, Hh = 320;
     const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
     const y = d3.scaleLinear([0, (d3.max(seq, (b) => b.price || 0) || 100) * 1.12], [Hh - 34, 26]).nice();
     const ml = G.measure(svg, y.ticks(5).map((v) => '$' + G.f0(v))) + 14;
-    const x = d3.scaleLinear([0, Math.max(acc, peak || 0) * 1.02], [ml, W - 10]);
+    const x = d3.scaleLinear([0, Math.max(acc, peak || 0, demandNow || 0) * 1.02], [ml, W - 10]);
     svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - 10).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
     svg.append('g').selectAll('text').data(y.ticks(5)).join('text').attr('x', ml - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').text((v) => '$' + G.f0(v));
     svg.append('text').attr('x', 2).attr('y', 14).text('$/MWh');
     svg.append('g').selectAll('text').data(x.ticks(6)).join('text').attr('x', x).attr('y', Hh - 18).attr('text-anchor', 'middle').text(G.f0);
-    svg.append('text').attr('x', W - 10).attr('y', Hh - 3).attr('text-anchor', 'end').text('Cumulative MW');
+    svg.append('text').attr('x', W - 10).attr('y', Hh - 3).attr('text-anchor', 'end').text(meritMode === 'now' ? 'Cumulative MW online' : 'Cumulative MW');
     svg.append('line').attr('x1', ml).attr('x2', W - 10).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', 'var(--cds-chart-axis)');
     const tip = G.tipFor(box.closest('.gx-card'));
     for (const b of seq) {
-      const running = b.now >= 1, outOfMerit = running && demandNow != null && b.x0 > demandNow && !MUST_TAKE.has(b.p);
-      svg.append('rect').attr('x', x(b.x0) + 0.75).attr('y', y(b.price || 0)).attr('width', Math.max(1, x(b.x1) - x(b.x0) - 1.5)).attr('height', Math.max(1, y(0) - y(b.price || 0)))
-        .attr('rx', 2).attr('fill', fuelColor(fm[b.p])).attr('opacity', running ? 0.95 : 0.4).attr('stroke', outOfMerit ? 'var(--alert)' : 'none').attr('stroke-width', 1.5)
-        .on('mousemove', (ev) => tip.show(ev, b.p, [[fuelColor(fm[b.p]), FUEL_LABEL[fm[b.p]] || fm[b.p], null], [null, 'Cost', b.price ? '$' + G.f0(b.price) + '/MWh' : 'not reported'], [null, 'Most ' + label, G.f0(Math.round(b.max)) + ' MW'], [null, 'Now', running ? G.f0(Math.round(b.now)) + ' MW' : 'not running'], ...(outOfMerit ? [[null, 'Running out of merit', null]] : [])]))
+      const col = fuelColor(b.fuel), running = b.now >= 1, outOfMerit = running && demandNow != null && b.x0 > demandNow + 0.5 && !MUST_TAKE.has(b.p);
+      const top = y(b.price || 0), h = Math.max(1, y(0) - top), x0 = x(b.x0) + 0.75, wAll = Math.max(1, x(b.x1) - x(b.x0) - 1.5);
+      const wNow = meritMode === 'now' ? Math.max(1, Math.min(wAll, x(b.x0 + b.now) - x(b.x0) - 1.5)) : wAll;
+      if (meritMode === 'now' && wNow < wAll) svg.append('rect').attr('x', x0).attr('y', top).attr('width', wAll).attr('height', h).attr('rx', 2).attr('fill', col).attr('opacity', 0.28);
+      svg.append('rect').attr('x', x0).attr('y', top).attr('width', wNow).attr('height', h).attr('rx', 2).attr('fill', col).attr('opacity', meritMode === 'now' || running ? 0.95 : 0.4);
+      svg.append('rect').attr('x', x0).attr('y', top).attr('width', wAll).attr('height', h).attr('rx', 2).attr('fill', 'transparent').attr('stroke', outOfMerit ? 'var(--alert)' : 'none').attr('stroke-width', 1.6)
+        .on('mousemove', (ev) => tip.show(ev, b.p, [[col, FUEL_LABEL[b.fuel] || b.fuel, null], [null, 'Cost', b.price ? '$' + G.f0(b.price) + '/MWh' : 'no reported cost'], [null, 'Producing now', running ? G.f0(Math.round(b.now)) + ' MW' : 'not running'],
+          ...(meritMode === 'now' ? [[null, 'Online capacity', G.f0(Math.round(b.max)) + ' MW'], [null, 'Unused room', G.f0(Math.max(0, Math.round(b.max - b.now))) + ' MW']] : [[null, 'Most ' + M.label, G.f0(Math.round(b.max)) + ' MW']]), ...(outOfMerit ? [[null, 'Running out of merit', null]] : [])]))
         .on('mouseleave', () => tip.hide());
     }
-    const vline = (v, t, dy) => { if (v == null) return; svg.append('line').attr('x1', x(v)).attr('x2', x(v)).attr('y1', 22).attr('y2', y(0)).attr('stroke', 'var(--ink)').attr('stroke-dasharray', '4 4').attr('opacity', 0.7);
-      svg.append('text').attr('x', x(v)).attr('y', 12 + dy).attr('text-anchor', x(v) > W - 120 ? 'end' : 'middle').attr('class', 'lbl-strong').text(t + ' ' + G.f0(Math.round(v)) + ' MW'); };
-    vline(demandNow, 'Now', 0); if (peak && Math.abs(x(peak) - x(demandNow || 0)) > 40) vline(peak, 'Peak ' + (label === 'today' ? 'today' : '24 h'), 0);
-    const om = seq.filter((b) => b.now >= 1 && demandNow != null && b.x0 > demandNow && !MUST_TAKE.has(b.p));
-    card('merit-sum').textContent = demandNow == null ? '' : om.length ? om.length + ' plant(s) running out of merit now (outlined in red): ' + om.map((b) => b.p).join(', ') + '.' : 'Every plant running now sits within the merit order for current demand.';
+    const vline = (v, t) => { if (v == null) return; svg.append('line').attr('x1', x(v)).attr('x2', x(v)).attr('y1', 22).attr('y2', y(0)).attr('stroke', 'var(--ink)').attr('stroke-dasharray', '4 4').attr('opacity', 0.7);
+      svg.append('text').attr('x', x(v)).attr('y', 12).attr('text-anchor', x(v) > W - 120 ? 'end' : 'middle').attr('class', 'lbl-strong').text(t + ' ' + G.f0(Math.round(v)) + ' MW'); };
+    vline(demandNow, meritMode === 'now' ? 'Demand now' : 'Now');
+    if (peak && Math.abs(x(peak) - x(demandNow || 0)) > 40) vline(peak, 'Peak ' + (M.label === 'today' ? 'today' : '24 h'));
+    const om = seq.filter((b) => b.now >= 1 && demandNow != null && b.x0 > demandNow + 0.5 && !MUST_TAKE.has(b.p));
+    const room = meritMode === 'now' ? d3.sum(seq.filter((b) => demandNow != null && b.x1 <= demandNow + 0.5 && !MUST_TAKE.has(b.p)), (b) => Math.max(0, b.max - b.now)) : 0;
+    card('merit-sum').textContent = demandNow == null ? '' : om.length
+      ? om.length + ' plant(s) running out of merit now (outlined in red): ' + om.map((b) => b.p).join(', ') + '.' + (meritMode === 'now' && room >= 1 ? ' Cheaper plants online have about ' + G.f0(Math.round(room)) + ' MW of unused room.' : '')
+      : 'Every plant running now sits within the merit order for current demand.';
   }
+  document.addEventListener('click', (e) => { const b = e.target.closest('#merit-mode button'); if (!b) return; meritMode = b.dataset.v; try { merit(); } catch (err) { console.error(err); } });
 
   /* ---------- Who is carrying the load ---------- */
   function carriers() {
