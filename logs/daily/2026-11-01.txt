@@ -1,42 +1,42 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, November 1, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-01 09:15 AST)
-Coverage ........ 9.3 h of feed checks (38 checks), 111 five-minute readings
+Status .......... In progress (updated 2026-11-01 09:30 AST)
+Coverage ........ 9.5 h of feed checks (39 checks), 114 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,315 MW at 00:12
   Minimum ....... 1,942 MW at 09:14
-  Average ....... 2,096 MW
+  Average ....... 2,092 MW
   PREPA peak .... 2,330 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,325.4 MW at 00:04
-  Minimum ....... 1,941.6 MW at 09:14
-  Average ....... 2,097 MW
-  Energy ........ 19,398 MWh
+  Maximum ....... 2,325.5 MW at 00:03
+  Minimum ....... 1,940.8 MW at 09:13
+  Average ....... 2,094 MW
+  Energy ........ 19,891 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.10 Hz
-  Minimum ....... 59.80 Hz
-  Average ....... 59.995 Hz
+  Maximum ....... 60.20 Hz
+  Minimum ....... 59.90 Hz
+  Average ....... 60.006 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    9,563 MWh   49.0 %
-  Bunker C .......    4,543 MWh   23.3 %
-  Diesel (ULSD) ..    1,638 MWh   8.4 %
-  Coal ...........    3,707 MWh   19.0 %
-  Solar ..........       36 MWh   0.2 %
-  Wind ...........       24 MWh   0.1 %
+  LNG ............    9,795 MWh   49.0 %
+  Bunker C .......    4,657 MWh   23.3 %
+  Diesel (ULSD) ..    1,638 MWh   8.2 %
+  Coal ...........    3,800 MWh   19.0 %
+  Solar ..........       44 MWh   0.2 %
+  Wind ...........       27 MWh   0.1 %
   Landfill gas ...       15 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $2,912,997 over 9.3 h  (full-day estimate $7,523,030)
-  Average cost ............ $0.1492 per kWh
+  Total cost of the day ... $2,970,229 over 9.5 h  (full-day estimate $7,482,513)
+  Average cost ............ $0.1487 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 20   Came back: 14
+  Went offline: 20   Came back: 15
   00:28  OFFLINE  Palo Seco GT/CT / GT1  18.0 -> 0.0 MW
   01:42  OFFLINE  Palo Seco GT/CT / GT2  18.0 -> 0.0 MW
   01:58  OFFLINE  Palo Seco GT/CT / CT Block 1  18.0 -> 0.0 MW
@@ -71,5 +71,6 @@ OUTAGES (units that stopped or restarted)
   09:14  OFFLINE  GT stations (peakers) / FEMA GT SJ  45.2 -> 0.0 MW
   09:14  OFFLINE  Mayagüez / Gas 3  1.9 -> 0.1 MW
   09:14  OFFLINE  Solar / San Fermin  1.8 -> 0.6 MW
+  09:28  ONLINE   Solar / San Fermin  0.6 -> 1.4 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
