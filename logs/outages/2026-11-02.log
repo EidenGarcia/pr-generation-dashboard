@@ -1,0 +1,7 @@
+# Unit outage log, 2026-11-02 (Puerto Rico time, UTC-4)
+# A unit counts as offline below 1 MW. Times are when the change was first seen; it happened after the previous check.
+2026-11-02 00:12 AST  OFFLINE   GT stations (peakers) / Palo Seco       35.1 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:59)
+2026-11-02 00:12 AST  OFFLINE   GT stations (peakers) / Jobos           18.8 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:59)
+2026-11-02 00:12 AST  OFFLINE   Cambalache / Gas 3                      25.5 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:59)
+2026-11-02 00:12 AST  OFFLINE   Palo Seco GT/CT / GT1                   17.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:59)
+2026-11-02 00:12 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:59)
