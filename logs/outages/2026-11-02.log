@@ -30,3 +30,4 @@
 2026-11-02 07:14 AST  ONLINE    Solar / Fonroche                         0.0 MW ->     9.5 MW  (Independent (PPOA), Solar; previous check 06:58)
 2026-11-02 07:42 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-11-02 07:42 AST  ONLINE    Solar / Ilumina                          0.5 MW ->     2.5 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-11-02 07:58 AST  OFFLINE   Wind / Pattern                           2.9 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 07:42)
