@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Monday, November 2, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-02 13:30 AST)
-Coverage ........ 13.5 h of feed checks (55 checks), 162 five-minute readings
+Status .......... In progress (updated 2026-11-02 13:45 AST)
+Coverage ........ 13.8 h of feed checks (56 checks), 165 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,365 MW at 00:12
   Minimum ....... 2,040 MW at 11:43
-  Average ....... 2,167 MW
+  Average ....... 2,166 MW
   PREPA peak .... 2,416 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,375.1 MW at 00:03
-  Minimum ....... 2,044.8 MW at 11:53
+  Maximum ....... 2,381.1 MW at 00:02
+  Minimum ....... 2,047.2 MW at 10:47
   Average ....... 2,168 MW
-  Energy ........ 29,271 MWh
+  Energy ........ 29,808 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.993 Hz
+  Average ....... 59.995 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   15,573 MWh   53.2 %
-  Bunker C .......    6,481 MWh   22.2 %
-  Diesel (ULSD) ..    1,062 MWh   3.6 %
-  Coal ...........    5,398 MWh   18.5 %
-  Solar ..........      437 MWh   1.5 %
-  Wind ...........      283 MWh   1.0 %
+  LNG ............   15,826 MWh   53.2 %
+  Bunker C .......    6,588 MWh   22.1 %
+  Diesel (ULSD) ..    1,076 MWh   3.6 %
+  Coal ...........    5,492 MWh   18.5 %
+  Solar ..........      453 MWh   1.5 %
+  Wind ...........      292 MWh   1.0 %
   Landfill gas ...       22 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $4,167,702 over 13.5 h  (full-day estimate $7,394,792)
+  Total cost of the day ... $4,238,906 over 13.8 h  (full-day estimate $7,392,694)
   Average cost ............ $0.1425 per kWh
 
 OUTAGES (units that stopped or restarted)
