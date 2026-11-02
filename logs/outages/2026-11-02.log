@@ -5,3 +5,5 @@
 2026-11-02 00:12 AST  OFFLINE   Cambalache / Gas 3                      25.5 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:59)
 2026-11-02 00:12 AST  OFFLINE   Palo Seco GT/CT / GT1                   17.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:59)
 2026-11-02 00:12 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:59)
+2026-11-02 00:28 AST  OFFLINE   GT stations (peakers) / Daguao           1.4 MW ->     0.9 MW  (Genera PR, ULSD (diesel); previous check 00:12)
+2026-11-02 00:28 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 00:12)
