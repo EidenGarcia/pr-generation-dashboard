@@ -39,3 +39,5 @@
 2026-11-02 08:28 AST  ONLINE    Solar / Coto Laurel                      0.0 MW ->     3.6 MW  (Independent (PPOA), Solar; previous check 08:12)
 2026-11-02 08:43 AST  OFFLINE   Mayagüez / Gas 2                        10.8 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:28)
 2026-11-02 08:43 AST  ONLINE    Solar / Ilumina                          0.7 MW ->     7.3 MW  (Independent (PPOA), Solar; previous check 08:28)
+2026-11-02 08:59 AST  OFFLINE   Mayagüez / Gas 3                        18.8 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 08:43)
+2026-11-02 08:59 AST  OFFLINE   Mayagüez / Gas 4                         1.5 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:43)
