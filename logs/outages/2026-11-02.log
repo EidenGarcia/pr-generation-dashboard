@@ -28,3 +28,5 @@
 2026-11-02 07:14 AST  OFFLINE   Aguirre CC 1 / Gas 4                    29.1 MW ->     0.3 MW  (Genera PR, ULSD (diesel); previous check 06:58)
 2026-11-02 07:14 AST  ONLINE    Solar / Horizon                          0.5 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 06:58)
 2026-11-02 07:14 AST  ONLINE    Solar / Fonroche                         0.0 MW ->     9.5 MW  (Independent (PPOA), Solar; previous check 06:58)
+2026-11-02 07:42 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-11-02 07:42 AST  ONLINE    Solar / Ilumina                          0.5 MW ->     2.5 MW  (Independent (PPOA), Solar; previous check 07:28)
