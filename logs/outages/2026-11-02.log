@@ -15,3 +15,4 @@
 2026-11-02 02:42 AST  OFFLINE   Wind / Punta Lima                        1.4 MW ->     0.3 MW  (Independent (PPOA), Wind; previous check 02:28)
 2026-11-02 03:14 AST  ONLINE    Wind / Punta Lima                        0.1 MW ->     2.0 MW  (Independent (PPOA), Wind; previous check 02:58)
 2026-11-02 03:28 AST  OFFLINE   Mayagüez / Gas 3                         1.8 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 03:14)
+2026-11-02 03:42 AST  OFFLINE   Wind / Pattern                           1.8 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 03:28)
