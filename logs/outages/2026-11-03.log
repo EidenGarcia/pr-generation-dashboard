@@ -21,3 +21,4 @@
 2026-11-03 07:29 AST  ONLINE    Solar / Fonroche                         0.6 MW ->     2.4 MW  (Independent (PPOA), Solar; previous check 07:12)
 2026-11-03 07:44 AST  ONLINE    Solar / San Fermin                       0.8 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:29)
 2026-11-03 07:58 AST  OFFLINE   Aguirre CC 2 / Gas 2                    29.4 MW ->     0.2 MW  (Genera PR, ULSD (diesel); previous check 07:44)
+2026-11-03 08:44 AST  ONLINE    Wind / Pattern                           0.2 MW ->     2.8 MW  (Independent (PPOA), Wind; previous check 08:28)
