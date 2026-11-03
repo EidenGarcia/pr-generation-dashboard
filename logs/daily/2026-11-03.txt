@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, November 3, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-03 00:30 AST)
-Coverage ........ 0.5 h of feed checks (2 checks), 6 five-minute readings
+Status .......... In progress (updated 2026-11-03 00:45 AST)
+Coverage ........ 0.8 h of feed checks (3 checks), 9 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,416 MW at 00:12
-  Minimum ....... 2,393 MW at 00:28
-  Average ....... 2,404 MW
+  Minimum ....... 2,356 MW at 00:44
+  Average ....... 2,388 MW
   PREPA peak .... 2,436 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,431.0 MW at 00:03
-  Minimum ....... 2,393.2 MW at 00:28
-  Average ....... 2,410 MW
-  Energy ........ 1,205 MWh
+  Maximum ....... 2,425.2 MW at 00:04
+  Minimum ....... 2,356.5 MW at 00:44
+  Average ....... 2,392 MW
+  Energy ........ 1,794 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.00 Hz
-  Minimum ....... 59.90 Hz
-  Average ....... 59.983 Hz
+  Minimum ....... 60.00 Hz
+  Average ....... 60.000 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............      607 MWh   47.2 %
-  Bunker C .......      282 MWh   21.9 %
-  Diesel (ULSD) ..      188 MWh   14.6 %
-  Coal ...........      208 MWh   16.2 %
+  LNG ............      917 MWh   46.9 %
+  Bunker C .......      432 MWh   22.1 %
+  Diesel (ULSD) ..      288 MWh   14.7 %
+  Coal ...........      318 MWh   16.3 %
   Landfill gas ...        1 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $220,874 over 0.5 h  (full-day estimate $10,205,088)
-  Average cost ............ $0.1717 per kWh
+  Total cost of the day ... $337,077 over 0.8 h  (full-day estimate $10,172,364)
+  Average cost ............ $0.1723 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 3   Came back: 0
