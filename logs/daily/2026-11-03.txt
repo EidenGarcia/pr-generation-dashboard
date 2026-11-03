@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, November 3, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-03 02:00 AST)
-Coverage ........ 2.0 h of feed checks (8 checks), 24 five-minute readings
+Status .......... In progress (updated 2026-11-03 02:15 AST)
+Coverage ........ 2.3 h of feed checks (9 checks), 27 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,416 MW at 00:12
-  Minimum ....... 2,256 MW at 01:58
-  Average ....... 2,325 MW
+  Minimum ....... 2,230 MW at 02:14
+  Average ....... 2,314 MW
   PREPA peak .... 2,436 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,427.4 MW at 00:03
-  Minimum ....... 2,251.4 MW at 01:53
-  Average ....... 2,330 MW
-  Energy ........ 4,659 MWh
+  Maximum ....... 2,424.2 MW at 00:04
+  Minimum ....... 2,230.5 MW at 02:14
+  Average ....... 2,317 MW
+  Energy ........ 5,214 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.00 Hz
-  Minimum ....... 59.90 Hz
-  Average ....... 59.992 Hz
+  Maximum ....... 60.10 Hz
+  Minimum ....... 59.80 Hz
+  Average ....... 59.978 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    2,313 MWh   48.5 %
-  Bunker C .......    1,100 MWh   23.1 %
-  Diesel (ULSD) ..      544 MWh   11.4 %
-  Coal ...........      808 MWh   16.9 %
-  Landfill gas ...        3 MWh   0.1 %
+  LNG ............    2,606 MWh   48.5 %
+  Bunker C .......    1,248 MWh   23.2 %
+  Diesel (ULSD) ..      598 MWh   11.1 %
+  Coal ...........      917 MWh   17.1 %
+  Landfill gas ...        4 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $792,166 over 2.0 h  (full-day estimate $9,397,653)
-  Average cost ............ $0.1662 per kWh
+  Total cost of the day ... $889,291 over 2.3 h  (full-day estimate $9,302,023)
+  Average cost ............ $0.1655 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 7   Came back: 0
