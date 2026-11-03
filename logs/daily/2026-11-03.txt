@@ -1,37 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, November 3, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-03 05:30 AST)
-Coverage ........ 5.5 h of feed checks (23 checks), 66 five-minute readings
+Status .......... In progress (updated 2026-11-03 05:45 AST)
+Coverage ........ 5.7 h of feed checks (24 checks), 69 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,416 MW at 00:12
   Minimum ....... 2,161 MW at 03:44
-  Average ....... 2,238 MW
+  Average ....... 2,237 MW
   PREPA peak .... 2,436 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,427.9 MW at 00:03
-  Minimum ....... 2,159.7 MW at 03:48
+  Maximum ....... 2,433.0 MW at 00:02
+  Minimum ....... 2,159.5 MW at 03:47
   Average ....... 2,238 MW
-  Energy ........ 12,311 MWh
+  Energy ........ 12,868 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.10 Hz
-  Minimum ....... 59.90 Hz
-  Average ....... 59.988 Hz
+  Maximum ....... 60.20 Hz
+  Minimum ....... 59.80 Hz
+  Average ....... 59.987 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    6,216 MWh   50.1 %
-  Bunker C .......    3,003 MWh   24.2 %
-  Diesel (ULSD) ..      982 MWh   7.9 %
-  Coal ...........    2,206 MWh   17.8 %
+  LNG ............    6,474 MWh   50.2 %
+  Bunker C .......    3,123 MWh   24.2 %
+  Diesel (ULSD) ..    1,007 MWh   7.8 %
+  Coal ...........    2,294 MWh   17.8 %
+  Wind ...........        1 MWh   0.0 %
   Landfill gas ...        9 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $1,955,597 over 5.5 h  (full-day estimate $8,494,901)
-  Average cost ............ $0.1575 per kWh
+  Total cost of the day ... $2,028,866 over 5.7 h  (full-day estimate $8,474,863)
+  Average cost ............ $0.1572 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 10   Came back: 1
