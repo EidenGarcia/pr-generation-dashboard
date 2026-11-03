@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, November 3, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-03 04:15 AST)
-Coverage ........ 4.3 h of feed checks (17 checks), 51 five-minute readings
+Status .......... In progress (updated 2026-11-03 04:30 AST)
+Coverage ........ 4.5 h of feed checks (18 checks), 54 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,416 MW at 00:12
   Minimum ....... 2,161 MW at 03:44
-  Average ....... 2,253 MW
+  Average ....... 2,248 MW
   PREPA peak .... 2,436 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,435.7 MW at 00:02
-  Minimum ....... 2,158.3 MW at 03:52
-  Average ....... 2,256 MW
-  Energy ........ 9,589 MWh
+  Maximum ....... 2,427.7 MW at 00:03
+  Minimum ....... 2,159.0 MW at 03:48
+  Average ....... 2,250 MW
+  Energy ........ 10,127 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.20 Hz
-  Minimum ....... 59.80 Hz
-  Average ....... 59.980 Hz
+  Maximum ....... 60.10 Hz
+  Minimum ....... 59.90 Hz
+  Average ....... 59.998 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    4,791 MWh   49.7 %
-  Bunker C .......    2,314 MWh   24.0 %
-  Diesel (ULSD) ..      838 MWh   8.7 %
-  Coal ...........    1,699 MWh   17.6 %
+  LNG ............    5,088 MWh   49.7 %
+  Bunker C .......    2,460 MWh   24.0 %
+  Diesel (ULSD) ..      868 MWh   8.5 %
+  Coal ...........    1,807 MWh   17.7 %
   Landfill gas ...        7 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $1,538,436 over 4.3 h  (full-day estimate $8,676,865)
-  Average cost ............ $0.1595 per kWh
+  Total cost of the day ... $1,626,427 over 4.5 h  (full-day estimate $8,627,412)
+  Average cost ............ $0.1590 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 10   Came back: 0
