@@ -87,3 +87,4 @@
 2026-11-02 21:44 AST  OFFLINE   Palo Seco GT/CT / GT1                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 21:27)
 2026-11-02 21:58 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 21:46)
 2026-11-02 22:12 AST  ONLINE    Wind / Pattern                           0.4 MW ->     1.9 MW  (Independent (PPOA), Wind; previous check 21:58)
+2026-11-02 22:28 AST  ONLINE    Wind / Punta Lima                        0.7 MW ->     1.3 MW  (Independent (PPOA), Wind; previous check 22:12)
