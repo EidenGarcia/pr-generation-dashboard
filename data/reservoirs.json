@@ -1,0 +1,26 @@
+[{
+  "note": "Alert thresholds in meters above sea level, from the reservoir alert-levels chart published by AAA (acueductos.pr.gov). At or above 'overflow' is Overflow (Desborde); from 'safe' up to overflow is Safe (Seguridad); from 'watch' is Watch (Observación); from 'adjust' is Adjustments (Ajustes); from 'control' is Control; below 'control' is Out of service (Fuera de servicio). Edit when AAA publishes new limits.",
+  "source": { "label": "AAA, Niveles de alerta de los embalses", "url": "https://www.acueductos.pr.gov" },
+  "live": { "label": "PREPA operational data, dataLevels.js", "url": "https://operationdata.prepa.pr.gov/dataLevels.js" },
+  "reservoirs": {
+    "carite":    { "name": "Carite",     "town": "Guayama",     "overflow": 542.94, "safe": 541.16, "watch": 538.16, "adjust": 536.16, "control": 532.16 },
+    "patillas":  { "name": "Patillas",   "town": "Patillas",    "overflow": 66.00,  "safe": 62.18,  "watch": 58.82,  "adjust": 57.00,  "control": 53.34 },
+    "guineo":    { "name": "Guineo",     "town": "Orocovis",    "overflow": 902.21, "safe": 899.16, "watch": 897.33, "adjust": 895.50, "control": 893.98 },
+    "matrullas": { "name": "Matrullas",  "town": "Orocovis",    "overflow": 736.09, "safe": 733.04, "watch": 731.22, "adjust": 729.39, "control": 727.86 },
+    "guayabal":  { "name": "Guayabal",   "town": "Juana Díaz",  "overflow": 103.94, "safe": 102.72, "watch": 101.80, "adjust": 99.97,  "control": 98.45 },
+    "garzas":    { "name": "Garzas",     "town": "Adjuntas",    "overflow": 736.09, "safe": 733.04, "watch": 731.22, "adjust": 729.39, "control": 727.86 },
+    "guayo":     { "name": "Guayo",      "town": "Lares",       "overflow": 445.01, "safe": 441.96, "watch": 440.13, "adjust": 438.30, "control": 436.78 },
+    "lucchetti": { "name": "Lucchetti",  "town": "Yauco",       "overflow": 173.74, "safe": 170.69, "watch": 168.86, "adjust": 167.03, "control": 165.51 },
+    "loco":      { "name": "Loco",       "town": "Yauco",       "overflow": 70.17,  "safe": 69.49,  "watch": 68.88,  "adjust": 68.58,  "control": 67.06 },
+    "dosbocas":  { "name": "Dos Bocas",  "town": "Arecibo",     "overflow": 89.92,  "safe": 88.09,  "watch": 86.26,  "adjust": 84.43,  "control": 82.91 },
+    "caonillas": { "name": "Caonillas",  "town": "Utuado",      "overflow": 252.00, "safe": 248.00, "watch": 244.00, "adjust": 242.00, "control": 235.00 },
+    "guajataca": { "name": "Guajataca",  "town": "Quebradillas","overflow": 196.50, "safe": 194.00, "watch": 190.00, "adjust": 186.00, "control": 184.00 }
+  },
+  "plants": {
+    "Dos Bocas (hydro)": ["dosbocas"],
+    "Caonillas (hydro)": ["caonillas"],
+    "Garzas (hydro)": ["garzas"],
+    "Toro Negro (hydro)": ["matrullas", "guineo"],
+    "Yauco (hydro)": ["lucchetti", "loco", "guayo"]
+  }
+}]

@@ -394,6 +394,50 @@
   document.getElementById('pt-q').addEventListener('input', (e) => { ptQuery = e.target.value; plantTable(); });
 
   /* ---------- Unit gauges ---------- */
+  /* ---------- Reservoir level bars for hydro plants (PREPA dataLevels.js, AAA alert limits) ---------- */
+  const RES_BANDS = [['Out of service', 'Fuera de servicio', 'var(--rv-out)'], ['Control', 'Control', 'var(--rv-control)'], ['Adjustments', 'Ajustes', 'var(--rv-adjust)'],
+    ['Watch', 'Observación', 'var(--rv-watch)'], ['Safe', 'Seguridad', 'var(--rv-safe)'], ['Overflow', 'Desborde', 'var(--rv-over)']];
+  function resPos(v, t) { // 0..6 on equal-width bands, like the AAA chart
+    const edges = [t.control - (t.adjust - t.control), t.control, t.adjust, t.watch, t.safe, t.overflow, t.overflow + (t.overflow - t.safe)];
+    if (v <= edges[0]) return { pos: 0, band: 0 }; if (v >= edges[6]) return { pos: 6, band: 5 };
+    for (let i = 0; i < 6; i++) if (v < edges[i + 1]) return { pos: i + (v - edges[i]) / (edges[i + 1] - edges[i]), band: i };
+    return { pos: 6, band: 5 };
+  }
+  function reservoirBlock(plant) {
+    const R = G.rows('reservoirs')[0]; if (!R || !R.plants[plant]) return null;
+    const lv = new Map(G.rows('reservoir_levels').map((r) => [r.embalse, r]));
+    const keys = R.plants[plant].filter((k) => lv.has(k) && R.reservoirs[k]); if (!keys.length) return null;
+    const wrap = el('div', 'res');
+    const at = lv.get(keys[0]).at;
+    const head = el('div', 'res-h'); head.append(el('span', null, keys.length > 1 ? 'Reservoir levels' : 'Reservoir level'), el('span', 'res-t', at ? 'as of ' + tFmt(new Date(at)) : ''));
+    wrap.append(head);
+    const tip = G.tipFor(document.getElementById('gauges'));
+    for (const k of keys) {
+      const t = R.reservoirs[k], r = lv.get(k), p = resPos(r.level_m, t), b = RES_BANDS[p.band];
+      const row = el('div', 'res-row');
+      const top = el('div', 'res-top');
+      const chg = r.change_m == null ? '' : (r.change_m > 0 ? '▲ +' : r.change_m < 0 ? '▼ ' : '■ ') + Math.abs(r.change_m).toFixed(2) + ' m today';
+      const pill = el('span', 'res-pill', b[0]); pill.style.background = b[2];
+      top.append(el('span', 'res-n', t.name), el('span', 'res-v', r.level_m.toFixed(2) + ' m'), el('span', 'res-c' + (r.change_m < 0 ? ' dn' : r.change_m > 0 ? ' up' : ''), chg), pill);
+      row.append(top);
+      const svg = d3.select(row).append('svg').attr('viewBox', '0 0 300 30').attr('width', '100%').attr('height', 30).attr('preserveAspectRatio', 'none');
+      RES_BANDS.forEach(([, , c], i) => svg.append('rect').attr('x', i * 50 + (i ? 1 : 0)).attr('y', 9).attr('width', 50 - (i ? 1 : 0)).attr('height', 12).attr('fill', c).attr('opacity', i === p.band ? 1 : 0.38).attr('rx', i === 0 || i === 5 ? 3 : 0));
+      const mx = Math.max(2, Math.min(298, p.pos * 50));
+      svg.append('path').attr('d', `M${mx - 5},1L${mx + 5},1L${mx},8Z`).attr('fill', 'var(--ink)');
+      svg.append('line').attr('x1', mx).attr('x2', mx).attr('y1', 8).attr('y2', 23).attr('stroke', 'var(--ink)').attr('stroke-width', 2);
+      const lab = el('div', 'res-lab'); for (const [en] of RES_BANDS) lab.append(el('span', null, en)); row.append(lab);
+      row.append(el('div', 'res-rng', 'Safe range ' + t.safe.toFixed(2) + '–' + t.overflow.toFixed(2) + ' m; overflows at ' + t.overflow.toFixed(2) + ' m. ' + (r.level_m >= t.overflow ? 'Now at or above overflow level.' : (t.overflow - r.level_m).toFixed(2) + ' m below overflow.')));
+      row.addEventListener('mousemove', (ev) => tip.show(ev, t.name + ' (' + t.town + ')', [[b[2], 'Now: ' + b[0] + ' (' + b[1] + ')', r.level_m.toFixed(2) + ' m'],
+        [RES_BANDS[5][2], 'Overflow (Desborde) from', t.overflow.toFixed(2) + ' m'], [RES_BANDS[4][2], 'Safe (Seguridad) from', t.safe.toFixed(2) + ' m'], [RES_BANDS[3][2], 'Watch (Observación) from', t.watch.toFixed(2) + ' m'],
+        [RES_BANDS[2][2], 'Adjustments (Ajustes) from', t.adjust.toFixed(2) + ' m'], [RES_BANDS[1][2], 'Control from', t.control.toFixed(2) + ' m'], [RES_BANDS[0][2], 'Out of service below', t.control.toFixed(2) + ' m']]));
+      row.addEventListener('mouseleave', () => tip.hide());
+      wrap.append(row);
+    }
+    const src = el('div', 'res-src'); src.append('Levels: '); const a1 = el('a', null, 'PREPA dataLevels.js'); a1.href = R.live.url; a1.target = '_blank'; a1.rel = 'noopener';
+    const a2 = el('a', null, 'AAA alert levels'); a2.href = R.source.url; a2.target = '_blank'; a2.rel = 'noopener'; src.append(a1, '. Limits: ', a2, '.'); wrap.append(src);
+    return wrap;
+  }
+
   function gauges() {
     const box = document.getElementById('gauges');
     document.querySelectorAll('#board-filter button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === gaugeOp)));
@@ -433,7 +477,9 @@
         const ft = el('div', 'gunit-f'); ft.append(el('span', 'gunit-n', u.unit), el('span', 'gstat ' + (on ? 'on' : 'off'), on ? 'ON' : 'OFF'));
         tile.append(ft); grid.append(tile);
       }
-      card.append(grid); box.append(card);
+      card.append(grid);
+      const res = reservoirBlock(pl.p); if (res) card.append(res);
+      box.append(card);
     }
   }
   document.getElementById('board-filter').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; gaugeOp = b.dataset.v; gauges(); });

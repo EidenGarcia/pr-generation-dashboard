@@ -428,5 +428,11 @@ function archiveSnapshot(src) {
   return { at: src.snap, units: src.units.map((u) => [u.unit_id, Math.round(u.mw * 100) / 100, Math.round(u.mvar * 100) / 100, u.cost_cents_kwh, u.status === 'Generating' ? 1 : 0]) };
 }
 
-root.PREPA = { summarizeDay, plantGroup, FUEL_KEYS, buildForecast, num, DAY, pad, isoAST, parseFeed, parseStamp, processSource, processGraph, freqLevel, detectExcursions, mergeExcursions, allowanceStatus, buildHistoryRow, archiveSnapshot, RANK, OFFLINE_MW };
+function processLevels(v) {
+  const at = parseStamp(v.fechaembalse);
+  if (!Array.isArray(v.niveles)) throw new Error('dataLevels.js layout not recognised');
+  return v.niveles.map((n) => ({ embalse: String(n.embalse).toLowerCase(), level_m: num(n.lectura), change_m: num(String(n.diferencia).replace('+', '')), at }))
+    .filter((r) => r.level_m != null);
+}
+root.PREPA = { processLevels, summarizeDay, plantGroup, FUEL_KEYS, buildForecast, num, DAY, pad, isoAST, parseFeed, parseStamp, processSource, processGraph, freqLevel, detectExcursions, mergeExcursions, allowanceStatus, buildHistoryRow, archiveSnapshot, RANK, OFFLINE_MW };
 })(typeof globalThis !== 'undefined' ? globalThis : window);

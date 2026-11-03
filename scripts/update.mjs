@@ -15,14 +15,15 @@ import path from 'node:path';
 import https from 'node:https';
 import { fileURLToPath } from 'node:url';
 await import(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'assets', 'prepa-core.js'));
-const { summarizeDay, FUEL_KEYS, buildForecast, parseFeed, processSource, processGraph, freqLevel, detectExcursions, mergeExcursions, buildHistoryRow, OFFLINE_MW } = globalThis.PREPA;
+const { processLevels, summarizeDay, FUEL_KEYS, buildForecast, parseFeed, processSource, processGraph, freqLevel, detectExcursions, mergeExcursions, buildHistoryRow, OFFLINE_MW } = globalThis.PREPA;
 
 const DATA = path.resolve(process.argv[2] || 'data');
 const SOURCES = {
   dataSource: 'https://operationdata.prepa.pr.gov/dataSource.js',
   dataGraph: 'https://operationdata.prepa.pr.gov/dataGraph.js',
+  dataLevels: 'https://operationdata.prepa.pr.gov/dataLevels.js',
 };
-const LOCAL = { dataSource: process.env.LOCAL_DATASOURCE, dataGraph: process.env.LOCAL_DATAGRAPH };
+const LOCAL = { dataSource: process.env.LOCAL_DATASOURCE, dataGraph: process.env.LOCAL_DATAGRAPH, dataLevels: process.env.LOCAL_DATALEVELS };
 const NOW = process.env.NOW_OVERRIDE ? new Date(process.env.NOW_OVERRIDE) : new Date();
 const DAY = 86400000;
 
@@ -173,7 +174,7 @@ status.last_run = isoAST(NOW);
 status.runner = process.env.GITHUB_ACTIONS ? 'GitHub Actions' : 'manual';
 
 const results = {}, healthIdx = {};
-for (const name of ['dataSource', 'dataGraph']) {
+for (const name of ['dataSource', 'dataGraph', 'dataLevels']) {
   const r = await fetchFeed(name);
   results[name] = r;
   if (!r.local) { health.push({ at: isoAST(NOW), feed: name, ok: !!r.ok, http_status: r.status, ms: r.ms, bytes: r.bytes, error: r.ok ? null : (r.error || `HTTP ${r.status}`) }); healthIdx[name] = health.length - 1; }
@@ -185,6 +186,18 @@ let src = null, newEvents = [];
 if (results.dataSource.ok) {
   try { src = processSource(parseFeed(results.dataSource.text)); }
   catch (e) { console.error('dataSource parse error:', e.message); markParseError('dataSource', e); }
+}
+// Reservoir levels: latest reading, plus every new reading (90 days).
+if (results.dataLevels && results.dataLevels.ok) {
+  try {
+    const lv = processLevels(parseFeed(results.dataLevels.text));
+    if (lv.length) {
+      writeJSON('reservoir_levels.json', lv);
+      const lh = readJSON('reservoir_history.json', []), seen = new Set(lh.map((r) => r.at + '|' + r.embalse));
+      for (const r of lv) if (!seen.has(r.at + '|' + r.embalse)) lh.push(r);
+      writeJSON('reservoir_history.json', lh.filter((r) => r.at && new Date(r.at).getTime() >= NOW.getTime() - 90 * DAY));
+    }
+  } catch (e) { console.error('dataLevels parse error:', e.message); markParseError('dataLevels', e); }
 }
 let graph = null;
 if (results.dataGraph.ok) {

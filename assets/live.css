@@ -336,3 +336,23 @@
 
 /* solid backing so map lines never show through a plant bubble */
 .pr-map .site .under { fill: var(--panel); }
+
+/* Reservoir level bars on hydro plant cards */
+:root { --rv-out: #d92d20; --rv-control: #ef6820; --rv-adjust: #eaaa08; --rv-watch: #2e90fa; --rv-safe: #66a80f; --rv-over: #7a5af8; }
+@media (prefers-color-scheme: dark) { :root { --rv-out: #f97066; --rv-control: #f38744; --rv-adjust: #fac515; --rv-watch: #53b1fd; --rv-safe: #85c43c; --rv-over: #9b8afb; } }
+.gauges .gplant:has(.res) { grid-column: span 1; }
+.res { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+.res-h { display: flex; justify-content: space-between; align-items: baseline; font-weight: 600; font-size: var(--cds-font-size-caption); margin-bottom: 4px; }
+.res-t { font-weight: 400; color: var(--muted); font-size: 11.5px; }
+.res-row { padding: 6px 0 8px; cursor: help; }
+.res-row + .res-row { border-top: 1px dashed var(--line); }
+.res-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: var(--cds-font-size-caption); }
+.res-n { font-weight: 600; min-width: 5.5rem; }
+.res-v { font-variant-numeric: tabular-nums; font-weight: 600; }
+.res-c { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; } .res-c.up { color: var(--teal); } .res-c.dn { color: var(--amber); }
+.res-pill { margin-left: auto; font-size: 11px; font-weight: 700; color: #fff; padding: 1px 8px; border-radius: 999px; }
+.res-row svg { display: block; margin-top: 4px; }
+.res-lab { display: grid; grid-template-columns: repeat(6, 1fr); font-size: 10px; color: var(--muted); text-align: center; margin-top: 1px; }
+.res-lab span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.res-rng { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+.res-src { font-size: 11px; color: var(--muted); margin-top: 4px; } .res-src a { color: inherit; }

@@ -11,13 +11,15 @@ window.LIVE = (() => {
   const URLS = {
     dataSource: 'https://operationdata.prepa.pr.gov/dataSource.js',
     dataGraph: 'https://operationdata.prepa.pr.gov/dataGraph.js',
+    dataLevels: 'https://operationdata.prepa.pr.gov/dataLevels.js',
   };
   const NAMES = {
     dataSource: ['dataFechaAcualizado', 'dataFechaActualizado', 'dataFuelCost', 'dataByFuel', 'dataMetrics', 'dataLoadPerSite'],
     dataGraph: ['temperatura', 'dataGraph'],
+    dataLevels: ['fechaembalse', 'niveles'],
   };
   const AUTO_MS = 5 * 60000;
-  const S = { units: null, metrics: null, mix: null, graph: null, temp: null, forecast: null, fsum: null, events: [], fevents: [], fstep: 300, checks: [], row: null };
+  const S = { units: null, metrics: null, mix: null, graph: null, temp: null, forecast: null, fsum: null, events: [], fevents: [], fstep: 300, checks: [], row: null, levels: null };
   const state = { wake: false, busy: false, lastTry: null, okSource: null, okGraph: null, errSource: null, errGraph: null, snap: null, auto: true, next: null };
   try { state.auto = localStorage.getItem('pr-live-auto') !== 'off'; state.wake = localStorage.getItem('pr-live-wake') === 'on'; } catch { /* storage unavailable */ }
   let seq = 0, timer = null, loader = null;
@@ -77,6 +79,7 @@ window.LIVE = (() => {
   });
   dash.augment('feed_health', (f) => [...f, ...S.checks]);
   dash.augment('daily_summary', (f) => { const today = P.isoAST(new Date()).slice(0, 10); const m = new Map(f.map((d) => [d.day, d.status === 'In progress' && d.day < today ? { ...d, status: (d.coverage_h || 0) >= 20 ? 'Complete' : 'Ended, partial data' } : d])); for (const d of LOC.daySums) { if (d.calc_version !== 2) continue; const o = m.get(d.day); if (!o || (d.coverage_h || 0) > (o.coverage_h || 0) + 0.25) m.set(d.day, { ...d, via: 'this device' }); } return since([...m.values()], 'day').sort((a, b) => (a.day < b.day ? -1 : 1)); });
+  dash.augment('reservoir_levels', (f) => (S.levels && S.levels.length && (!f[0] || String(S.levels[0].at) >= String(f[0].at)) ? S.levels : f));
   dash.augment('status', (f) => { const s = { ...(f[0] || {}) }; if (S.temp != null) { s.temperature_f = S.temp; s.temperature_at = state.okGraph && P.isoAST(state.okGraph); } s.local_since = LOC.since; s.local_checks = LOC.checks.length; s.local_error = LOC.error; return [s]; });
 
   async function loadLocal() {
@@ -152,7 +155,8 @@ window.LIVE = (() => {
     if (state.busy) return;
     state.busy = true; state.lastTry = new Date(); ui();
     const now = new Date();
-    const [ds, gr] = await Promise.all([loader('dataSource'), loader('dataGraph')]);
+    const [ds, gr, lv] = await Promise.all([loader('dataSource'), loader('dataGraph'), loader('dataLevels')]);
+    if (lv && lv.vars) { try { S.levels = P.processLevels(lv.vars); } catch (e) { /* reservoir levels unavailable */ } }
     if (gr.vars) { try { ingestGraph(gr.vars, now); state.okGraph = now; state.errGraph = null; } catch (e) { state.errGraph = e.message; } }
     else state.errGraph = gr.error;
     let info = null;
