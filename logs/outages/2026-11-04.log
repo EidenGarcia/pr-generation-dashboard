@@ -30,3 +30,7 @@
 2026-11-04 12:26 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 12:10)
 2026-11-04 13:26 AST  ONLINE    Mayagüez / Gas 3                         0.0 MW ->    41.6 MW  (Genera PR, ULSD (diesel); previous check 13:10)
 2026-11-04 13:28 AST  ONLINE    Mayagüez / Gas 2                         0.0 MW ->     3.6 MW  (Genera PR, ULSD (diesel); previous check 13:26)
+2026-11-04 13:40 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.9 MW  (Genera PR, ULSD (diesel); previous check 13:28)
+2026-11-04 13:40 AST  ONLINE    Aguirre CC 2 / Gas 2                     0.0 MW ->    29.8 MW  (Genera PR, ULSD (diesel); previous check 13:28)
+2026-11-04 13:40 AST  ONLINE    Wind / Punta Lima                        0.8 MW ->     1.5 MW  (Independent (PPOA), Wind; previous check 13:28)
+2026-11-04 13:40 AST  OFFLINE   Solar / San Fermin                       2.2 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 13:28)
