@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, November 4, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-04 02:00 AST)
-Coverage ........ 2.0 h of feed checks (8 checks), 24 five-minute readings
+Status .......... In progress (updated 2026-11-04 02:15 AST)
+Coverage ........ 2.3 h of feed checks (9 checks), 27 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,492 MW at 00:14
-  Minimum ....... 2,315 MW at 01:58
-  Average ....... 2,391 MW
+  Minimum ....... 2,295 MW at 02:14
+  Average ....... 2,380 MW
   PREPA peak .... 2,517 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,512.5 MW at 00:03
-  Minimum ....... 2,315.2 MW at 01:58
-  Average ....... 2,397 MW
-  Energy ........ 4,793 MWh
+  Maximum ....... 2,507.2 MW at 00:04
+  Minimum ....... 2,294.8 MW at 02:14
+  Average ....... 2,385 MW
+  Energy ........ 5,365 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.967 Hz
+  Average ....... 59.978 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    2,580 MWh   53.0 %
-  Bunker C .......    1,029 MWh   21.1 %
-  Diesel (ULSD) ..      465 MWh   9.5 %
-  Coal ...........      793 MWh   16.3 %
-  Landfill gas ...        3 MWh   0.1 %
+  LNG ............    2,948 MWh   53.6 %
+  Bunker C .......    1,157 MWh   21.0 %
+  Diesel (ULSD) ..      487 MWh   8.9 %
+  Coal ...........      902 MWh   16.4 %
+  Landfill gas ...        4 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $818,052 over 2.0 h  (full-day estimate $9,872,846)
-  Average cost ............ $0.1680 per kWh
+  Total cost of the day ... $914,946 over 2.3 h  (full-day estimate $9,709,077)
+  Average cost ............ $0.1664 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 10   Came back: 0
