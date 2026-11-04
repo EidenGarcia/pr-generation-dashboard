@@ -27,3 +27,4 @@
 2026-11-04 11:24 AST  ONLINE    Solar / Coto Laurel                      0.7 MW ->     2.0 MW  (Independent (PPOA), Solar; previous check 10:56)
 2026-11-04 11:24 AST  OFFLINE   Landfill / Fajardo                       1.6 MW ->     0.0 MW  (Independent (PPOA), Landfill gas; previous check 10:56)
 2026-11-04 12:10 AST  OFFLINE   Solar / San Fermin                       2.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 11:57)
+2026-11-04 12:26 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 12:10)
