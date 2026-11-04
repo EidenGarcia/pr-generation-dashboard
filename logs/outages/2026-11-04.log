@@ -46,3 +46,4 @@
 2026-11-04 14:56 AST  OFFLINE   Wind / Pattern                           1.6 MW ->     0.2 MW  (Independent (PPOA), Wind; previous check 14:40)
 2026-11-04 14:56 AST  OFFLINE   Solar / Coto Laurel                      1.0 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 14:40)
 2026-11-04 14:56 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 14:40)
+2026-11-04 15:10 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 14:56)
