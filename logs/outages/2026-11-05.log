@@ -9,3 +9,4 @@
 2026-11-05 04:56 AST  ONLINE    Wind / Punta Lima                        0.8 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 04:40)
 2026-11-05 05:12 AST  OFFLINE   Wind / Pattern                           1.2 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 04:56)
 2026-11-05 05:40 AST  OFFLINE   Yauco (hydro) / Hidro 3                  2.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 05:26)
+2026-11-05 05:55 AST  OFFLINE   Wind / Punta Lima                        1.4 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 05:40)
