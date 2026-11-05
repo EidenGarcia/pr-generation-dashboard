@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, November 5, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-05 02:45 AST)
-Coverage ........ 2.8 h of feed checks (11 checks), 33 five-minute readings
+Status .......... In progress (updated 2026-11-05 03:00 AST)
+Coverage ........ 3.0 h of feed checks (12 checks), 36 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,309 MW at 00:12
-  Minimum ....... 2,111 MW at 02:42
-  Average ....... 2,198 MW
+  Minimum ....... 2,100 MW at 02:56
+  Average ....... 2,190 MW
   PREPA peak .... 2,329 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,317.1 MW at 00:04
-  Minimum ....... 2,111.4 MW at 02:44
-  Average ....... 2,201 MW
-  Energy ........ 6,052 MWh
+  Maximum ....... 2,318.1 MW at 00:03
+  Minimum ....... 2,099.8 MW at 02:58
+  Average ....... 2,193 MW
+  Energy ........ 6,579 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.10 Hz
+  Maximum ....... 60.20 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 60.006 Hz
+  Average ....... 59.994 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    3,548 MWh   57.1 %
-  Bunker C .......    1,336 MWh   21.5 %
-  Diesel (ULSD) ..      223 MWh   3.6 %
-  Coal ...........    1,100 MWh   17.7 %
+  LNG ............    3,835 MWh   57.2 %
+  Bunker C .......    1,435 MWh   21.4 %
+  Diesel (ULSD) ..      237 MWh   3.5 %
+  Coal ...........    1,192 MWh   17.8 %
   Hydro ..........        6 MWh   0.1 %
-  Landfill gas ...        4 MWh   0.1 %
+  Landfill gas ...        5 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $963,171 over 2.8 h  (full-day estimate $8,388,060)
+  Total cost of the day ... $1,039,379 over 3.0 h  (full-day estimate $8,360,705)
   Average cost ............ $0.1549 per kWh
 
 OUTAGES (units that stopped or restarted)
