@@ -35,3 +35,4 @@
 2026-11-05 11:40 AST  OFFLINE   GT stations (peakers) / FEMA GT SJ       2.9 MW ->     0.0 MW  (Genera PR, LNG; previous check 11:26)
 2026-11-05 12:40 AST  ONLINE    GT stations (peakers) / Palo Seco        0.1 MW ->    24.7 MW  (Genera PR, ULSD (diesel); previous check 12:26)
 2026-11-05 12:40 AST  ONLINE    GT stations (peakers) / FEMA GT SJ       0.0 MW ->    21.5 MW  (Genera PR, LNG; previous check 12:26)
+2026-11-05 13:12 AST  OFFLINE   GT stations (peakers) / Palo Seco       24.6 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 12:56)
