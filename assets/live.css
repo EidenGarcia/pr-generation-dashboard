@@ -364,3 +364,100 @@
 .ratio { font-size: 12px; font-weight: 600; fill: var(--muted); } .ratio.hot { fill: var(--alert); } .ratio.cool { fill: var(--teal); }
 .ratio-cell { font-weight: 600; } .ratio-cell.hot { color: var(--alert); } .ratio-cell.cool { color: var(--teal); }
 .share-tables { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); margin-top: 8px; }
+
+/* =====================================================================
+   Professional palette: navy brand header, blue accent, refined cards.
+   Fuel colors (--c1 … --c8) are unchanged.
+   ===================================================================== */
+:root {
+  --brand-900: #0b1f3a; --brand-800: #102a4c; --brand-700: #163a68; --brand-600: #1d4f8f;
+  --accent: #1570ef; --accent-600: #175cd3; --accent-50: #eff5ff; --accent-100: #d1e3ff;
+  --paper: #f2f5fa; --panel: #ffffff; --line: #e1e7ef; --ink: #0f1b2d; --muted: #5d6b82;
+  --teal: #079455; --amber: #dc6803; --alert: #d92d20; --steel: #8a98ad;
+  --table-head: #f5f8fc; --row-hover: #f7faff;
+  --card-shadow: 0 1px 2px rgba(16,24,40,.05), 0 6px 16px -6px rgba(16,24,40,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-900: #07111f; --brand-800: #0b1a30; --brand-700: #12284a; --brand-600: #1b3a6b;
+    --accent: #4d94ff; --accent-600: #6aa6ff; --accent-50: #12233f; --accent-100: #1c3561;
+    --paper: #0a1220; --panel: #111b2d; --line: #22314a; --ink: #e8eef7; --muted: #93a3bb;
+    --teal: #3ccb7f; --amber: #f7a33a; --alert: #f97066; --steel: #7c8ba3;
+    --table-head: #15223a; --row-hover: #15223a;
+    --card-shadow: 0 1px 2px rgba(0,0,0,.35), 0 8px 20px -8px rgba(0,0,0,.5);
+  }
+}
+body { background: var(--paper); }
+a { color: var(--accent); }
+.footer a, .refs a, .res-src a { color: inherit; }
+
+/* Header banner */
+.topbar { background: linear-gradient(120deg, var(--brand-900) 0%, var(--brand-800) 45%, var(--brand-600) 100%); color: #fff;
+  border: 0; border-radius: 16px; padding: 22px 26px; margin: 16px 0 14px; box-shadow: 0 10px 30px -12px rgba(11,31,58,.55); position: relative; overflow: hidden; }
+.topbar::after { content: ""; position: absolute; right: -60px; top: -80px; width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(77,148,255,.28), transparent 65%); pointer-events: none; }
+.topbar .brand h1 { color: #fff; font-size: clamp(1.45rem, 2.6vw, 2rem); }
+.topbar .brand p { color: rgba(255,255,255,.72); }
+.topbar .portal, .topbar .supply-chip { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.18); color: #fff; backdrop-filter: blur(4px); position: relative; z-index: 1; }
+.topbar .supply-chip.warn { color: #fec84b; } .topbar .supply-chip.crit { background: var(--alert); border-color: var(--alert); color: #fff; }
+.topbar .portal.ok .lamp, .topbar .supply-chip.ok::before { background: #47cd89; box-shadow: 0 0 0 3px rgba(71,205,137,.25); }
+
+/* Live and history bars */
+.livectl { background: var(--panel); border: 1px solid var(--line); box-shadow: var(--card-shadow); border-left: 4px solid var(--accent); }
+.histbar { color: var(--muted); }
+.btn { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 1px 2px rgba(21,112,239,.3); }
+.btn:hover { background: var(--accent-600); opacity: 1; }
+.btn.ghost { background: var(--panel); color: var(--ink); border-color: var(--line); box-shadow: none; }
+.toggle input { accent-color: var(--accent); }
+
+/* Section menu */
+.jump { border-bottom-color: var(--line); }
+.jump a { border-color: var(--line); background: var(--panel); color: var(--muted); font-weight: 500; transition: all .15s; }
+.jump a:hover { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+/* Section titles with an accent marker */
+.gx-sec { display: flex; align-items: center; gap: 10px; color: var(--ink); }
+.gx-sec::before { content: ""; width: 5px; height: 1.15em; border-radius: 3px; background: linear-gradient(180deg, var(--accent), var(--brand-600)); flex: none; }
+.gx-secnote { color: var(--muted); }
+.sub-sec { color: var(--brand-700); }
+@media (prefers-color-scheme: dark) { .sub-sec { color: var(--accent-600); } }
+
+/* Cards, KPIs, tables */
+.gx-card, .gx-kpi, .hero, .gplant, .shed { box-shadow: var(--card-shadow); border-color: var(--line); }
+.gx-card { border-radius: 14px; }
+.gx-card h3 { color: var(--ink); }
+.gx-kpi { border-radius: 12px; border-top: 3px solid var(--accent); background: var(--panel); }
+.gx-kpi.bad { border-top-color: var(--alert); }
+.gx-kpi-l { color: var(--muted); font-weight: 500; }
+.gx-kpi-v { color: var(--ink); }
+.gx-seg { border-color: var(--line); background: var(--panel); }
+.gx-seg button { color: var(--muted); font-weight: 500; }
+.gx-seg button:hover { color: var(--accent); }
+.gx-seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.gx-tablewrap { border-color: var(--line); border-radius: 10px; }
+.gx-table th { background: var(--table-head); color: var(--muted); font-weight: 600; }
+.gx-table tbody tr:hover td { background: var(--row-hover); }
+.gx-table td { border-bottom-color: var(--line); }
+.gx-controls input, .gx-controls select { border-color: var(--line); background: var(--panel); color: var(--ink); border-radius: 8px; }
+.gx-controls input:focus, .gx-controls select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-100); }
+
+/* Main graph */
+.hero { border-radius: 16px; border-top: 4px solid var(--accent); }
+.rail { background: linear-gradient(180deg, var(--accent-50), color-mix(in srgb, var(--accent-50) 40%, var(--panel))); }
+.hero-legend button[aria-pressed="true"] { border-color: var(--accent-100); background: var(--accent-50); }
+.ro-l { color: var(--muted); font-weight: 500; }
+
+/* Alerts */
+.gx-alert { border-radius: 14px; box-shadow: var(--card-shadow); background: var(--panel); }
+.shed { border-radius: 14px; }
+
+/* Plant gauges and map */
+.gplant { border-radius: 14px; }
+.gunit { background: color-mix(in srgb, var(--accent-50) 45%, var(--panel)); border-color: var(--line); border-radius: 10px; }
+.pr-map .land { fill: color-mix(in srgb, var(--brand-600) 14%, var(--panel)); stroke: color-mix(in srgb, var(--brand-600) 14%, var(--panel)); }
+.pt-chip { background: var(--accent-50); border-color: var(--accent-100); color: var(--ink); }
+.linkbtn { color: var(--accent); }
+
+/* Footer */
+.footer { border-top-color: var(--line); color: var(--muted); }
+.topbar .brand { position: relative; z-index: 1; }
