@@ -31,3 +31,4 @@
 2026-11-05 09:26 AST  OFFLINE   Mayagüez / Gas 3                         1.5 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 09:10)
 2026-11-05 10:10 AST  OFFLINE   Palo Seco Steam / Unit 3                71.9 MW ->     0.0 MW  (Genera PR, Bunker C; previous check 09:56)
 2026-11-05 10:41 AST  ONLINE    Wind / Pattern                           0.6 MW ->     1.4 MW  (Independent (PPOA), Wind; previous check 10:26)
+2026-11-05 10:55 AST  ONLINE    Wind / Punta Lima                        0.9 MW ->     2.3 MW  (Independent (PPOA), Wind; previous check 10:41)
