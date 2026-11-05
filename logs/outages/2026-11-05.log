@@ -54,3 +54,4 @@
 2026-11-05 15:56 AST  OFFLINE   Solar / San Fermin                       1.2 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 15:40)
 2026-11-05 15:56 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 15:40)
 2026-11-05 16:10 AST  ONLINE    Cambalache / Gas 3                       0.0 MW ->     3.6 MW  (Genera PR, ULSD (diesel); previous check 15:56)
+2026-11-05 16:26 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 16:10)
