@@ -19,3 +19,7 @@
 2026-11-05 07:10 AST  OFFLINE   Solar / Oriana                           1.1 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 06:56)
 2026-11-05 07:10 AST  ONLINE    Solar / Fonroche                         0.9 MW ->     2.8 MW  (Independent (PPOA), Solar; previous check 06:56)
 2026-11-05 07:10 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 06:56)
+2026-11-05 07:25 AST  ONLINE    Solar / Horizon                          0.7 MW ->     1.7 MW  (Independent (PPOA), Solar; previous check 07:10)
+2026-11-05 07:25 AST  ONLINE    Solar / Coto Laurel                      0.9 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 07:10)
+2026-11-05 07:25 AST  ONLINE    Solar / Oriana                           0.6 MW ->     3.8 MW  (Independent (PPOA), Solar; previous check 07:10)
+2026-11-05 07:25 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:10)
