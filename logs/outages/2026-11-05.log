@@ -50,3 +50,6 @@
 2026-11-05 14:56 AST  ONLINE    Palo Seco Steam / Unit 3                 0.3 MW ->    14.0 MW  (Genera PR, Bunker C; previous check 14:42)
 2026-11-05 15:10 AST  ONLINE    GT stations (peakers) / Daguao           0.8 MW ->    14.0 MW  (Genera PR, ULSD (diesel); previous check 14:56)
 2026-11-05 15:40 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 15:26)
+2026-11-05 15:56 AST  ONLINE    GT stations (peakers) / Palo Seco        0.1 MW ->    36.7 MW  (Genera PR, ULSD (diesel); previous check 15:40)
+2026-11-05 15:56 AST  OFFLINE   Solar / San Fermin                       1.2 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 15:40)
+2026-11-05 15:56 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 15:40)
