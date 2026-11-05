@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, November 4, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-04 23:30 AST)
-Coverage ........ 23.5 h of feed checks (91 checks), 282 five-minute readings
+Status .......... In progress (updated 2026-11-04 23:45 AST)
+Coverage ........ 23.7 h of feed checks (92 checks), 285 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,716 MW at 19:26
@@ -10,22 +10,22 @@ DEMAND (PREPA total generation at each check)
   PREPA peak .... 2,721 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,715.7 MW at 19:18
-  Minimum ....... 1,985.5 MW at 10:43
+  Maximum ....... 2,716.5 MW at 19:27
+  Minimum ....... 1,983.5 MW at 10:47
   Average ....... 2,362 MW
-  Energy ........ 55,507 MWh
+  Energy ........ 56,103 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
-  Minimum ....... 59.90 Hz
+  Minimum ....... 59.80 Hz
   Average ....... 59.995 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   30,772 MWh   55.5 %
-  Bunker C .......   11,326 MWh   20.4 %
-  Diesel (ULSD) ..    3,675 MWh   6.6 %
-  Coal ...........    9,126 MWh   16.5 %
+  LNG ............   31,065 MWh   55.5 %
+  Bunker C .......   11,444 MWh   20.4 %
+  Diesel (ULSD) ..    3,713 MWh   6.6 %
+  Coal ...........    9,214 MWh   16.4 %
   Solar ..........      454 MWh   0.8 %
   Wind ...........       32 MWh   0.1 %
   Hydro ..........       69 MWh   0.1 %
@@ -33,11 +33,11 @@ FUEL USE (share of energy, time-weighted from unit outputs)
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $9,005,203 over 23.5 h
+  Total cost of the day ... $9,092,939 over 23.7 h
   Average cost ............ $0.1623 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 50   Came back: 47
+  Went offline: 51   Came back: 47
   00:30  OFFLINE  Palo Seco GT/CT / GT1  18.0 -> 0.0 MW
   00:44  OFFLINE  Aguirre CC 2 / Gas 4  30.9 -> 0.6 MW
   01:00  OFFLINE  Aguirre CC 1 / Gas 1  6.8 -> 0.1 MW
@@ -135,5 +135,6 @@ OUTAGES (units that stopped or restarted)
   23:11  OFFLINE  Aguirre CC 2 / Gas 4  29.7 -> 0.7 MW
   23:11  OFFLINE  Palo Seco GT/CT / GT1  1.0 -> 0.0 MW
   23:26  OFFLINE  Aguirre CC 1 / Gas 1  30.1 -> 0.0 MW
+  23:40  OFFLINE  Aguirre CC 2 / Gas 2  30.5 -> 0.1 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
