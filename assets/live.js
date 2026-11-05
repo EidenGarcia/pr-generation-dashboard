@@ -541,7 +541,7 @@
     }
     const lc = document.getElementById('livecost-chart');
     if (!G.ok('live_cost_by_fuel')) G.failOrSkeleton(lc, ['live_units']);
-    else G.hbars(lc, G.rows('live_cost_by_fuel').filter((f) => f.mw > 0).map((f) => ({ label: G.norm(f.fuel), total: f.cost_usd_per_hour, segments: [{ value: f.cost_usd_per_hour, color: G.color(f.fuel) }],
+    else G.hbars(lc, G.rows('live_cost_by_fuel').filter((f) => f.mw >= 1).map((f) => ({ label: G.norm(f.fuel), total: f.cost_usd_per_hour, segments: [{ value: f.cost_usd_per_hour, color: G.color(f.fuel) }],
       endLabel: G.moneyC(f.cost_usd_per_hour) + '/h, ' + G.pct(f.share_pct) + (f.avg_cents_kwh != null ? ', ' + G.f1(f.avg_cents_kwh) + '¢' : ''),
       tip: [[G.color(f.fuel), G.norm(f.fuel), null], [null, 'Cost', G.money(f.cost_usd_per_hour) + '/h'], [null, 'Output', G.f1(f.mw) + ' MW'], [null, 'Average', f.avg_cents_kwh == null ? 'not reported' : G.f2(f.avg_cents_kwh) + ' ¢/kWh']] })));
   }
@@ -651,6 +651,6 @@
     status: 'data/status.json', hist_units: 'data/hist_units.json',
     freq_limits: 'data/frequency_limits.json', frequency_events: 'data/frequency_events.json',
     unit_capacity: 'data/unit_capacity.json', unit_ranges: 'data/unit_ranges.json', daily_summary: 'data/daily_summary.json',
-    plant_hourly: 'data/plant_hourly.json', pr_map: 'data/pr_municipios.json', trace_recent: 'data/trace_recent.json', settings: 'data/settings.json', reservoir_levels: 'data/reservoir_levels.json', reservoirs: 'data/reservoirs.json', transmission: 'data/transmission.json',
+    plant_hourly: 'data/plant_hourly.json', pr_map: 'data/pr_municipios.json', trace_recent: 'data/trace_recent.json', settings: 'data/settings.json', reservoir_levels: 'data/reservoir_levels.json', cost_hourly: 'data/cost_hourly.json', reservoirs: 'data/reservoirs.json', transmission: 'data/transmission.json',
   });
 })();

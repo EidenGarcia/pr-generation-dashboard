@@ -11,9 +11,10 @@
   const BASELOAD = new Set(['San Juan Steam', 'Palo Seco Steam', 'Aguirre Steam', 'Costa Sur Steam', 'AES', 'EcoEléctrica', 'San Juan CC']);
   const FUEL_LABEL = { LNG: 'Natural gas', 'Bunker C': 'Bunker C', ULSD: 'Diesel', Coal: 'Coal', Solar: 'Renewables', Wind: 'Renewables', Hydro: 'Renewables', 'Landfill gas': 'Renewables' };
   const fuelColor = (f) => (FUEL_LABEL[f] === 'Renewables' ? G.color('Solar') : G.color(f));
+  const up2 = (v) => d3.format(',.2f')(Math.ceil(v * 100 - 1e-9) / 100); // round up to two decimals
   const legend = (box, items) => { box.replaceChildren(); for (const [n, c] of items) { const s = el('span'); const sw = el('span', 'gx-sw'); sw.style.background = c; s.append(sw, n); box.append(s); } };
   const card = (id) => document.getElementById(id);
-  function plantFuel() { const m = { Hydro: 'Hydro', Solar: 'Solar', Wind: 'Wind', 'Landfill gas': 'Landfill gas' }; for (const u of G.rows('live_units')) { const g = window.PREPA.plantGroup(u.plant); if (!m[g]) m[g] = G.norm(u.fuel); } return m; }
+  function plantFuel() { const m = { Hydro: 'Hydro', Solar: 'Solar', Wind: 'Wind', 'Landfill gas': 'Landfill gas', AES: 'Coal', 'EcoEléctrica': 'LNG', 'San Juan CC': 'LNG', 'Costa Sur Steam': 'LNG', 'Palo Seco Steam': 'Bunker C', 'Aguirre Steam': 'Bunker C', 'San Juan Steam': 'Bunker C', Cambalache: 'ULSD', 'Mayagüez': 'ULSD', 'Aguirre CC 1': 'ULSD', 'Aguirre CC 2': 'ULSD', 'GT stations (peakers)': 'ULSD', 'Palo Seco GT/CT': 'ULSD', 'Aguirre GT/CT': 'ULSD', 'Costa Sur GT/CT': 'ULSD' }; for (const u of G.rows('live_units')) { const g = window.PREPA.plantGroup(u.plant); if (!m[g]) m[g] = G.norm(u.fuel); } return m; }
   // Readings with per-plant data: since midnight (Puerto Rico) when there are enough, otherwise the last 24 hours.
   function windowRows() {
     const rows = G.rows('history').filter((r) => r.plant_mw).map((r) => ({ ...r, t: new Date(r.at) })).sort((a, b) => a.t - b.t);
@@ -93,7 +94,7 @@
       if (meritMode === 'now' && wNow < wAll) svg.append('rect').attr('x', x0).attr('y', top).attr('width', wAll).attr('height', h).attr('rx', 2).attr('fill', col).attr('opacity', 0.28);
       svg.append('rect').attr('x', x0).attr('y', top).attr('width', wNow).attr('height', h).attr('rx', 2).attr('fill', col).attr('opacity', meritMode === 'now' || running ? 0.95 : 0.4);
       svg.append('rect').attr('x', x0).attr('y', top).attr('width', wAll).attr('height', h).attr('rx', 2).attr('fill', 'transparent').attr('stroke', outOfMerit ? 'var(--alert)' : 'none').attr('stroke-width', 1.6)
-        .on('mousemove', (ev) => tip.show(ev, b.p, [[col, FUEL_LABEL[b.fuel] || b.fuel, null], [null, 'Cost', b.price ? '$' + G.f0(b.price) + '/MWh' : 'no reported cost'], [null, 'Producing now', running ? G.f0(Math.round(b.now)) + ' MW' : 'not running'],
+        .on('mousemove', (ev) => tip.show(ev, b.p, [[col, FUEL_LABEL[b.fuel] || b.fuel, null], [null, 'Cost', b.price ? '$' + up2(b.price) + '/MWh' : 'no reported cost'], [null, 'Producing now', running ? G.f0(Math.round(b.now)) + ' MW' : 'not running'],
           ...(meritMode === 'now' ? [[null, 'Online capacity', G.f0(Math.round(b.max)) + ' MW'], [null, 'Unused room', G.f0(Math.max(0, Math.round(b.max - b.now))) + ' MW']] : [[null, 'Most ' + M.label, G.f0(Math.round(b.max)) + ' MW']]), ...(outOfMerit ? [[null, 'Running out of merit', null]] : [])]))
         .on('mouseleave', () => tip.hide());
     }
@@ -151,7 +152,7 @@
     card('redis-note').textContent = 'Megawatts each running plant would gain or lose if today’s demand at the latest reading were met cheapest-first, keeping every plant between the lowest and highest output it ran at ' + label + '. Sorted cheapest at top. It ignores ramp rates, reserve needs, transmission limits and contracts, so it shows direction, not an instruction.';
     legend(card('redis-legend'), [['Load more', G.color('LNG')], ['Load less', G.color('ULSD')]]);
     box.replaceChildren(); box.classList.remove('dash-skeleton');
-    const shown = online.filter((o) => Math.abs(o.delta) >= 0.5);
+    const shown = online.filter((o) => Math.abs(o.delta) >= 1.5); // ignore changes of 1 MW or less
     if (!shown.length) { box.append(el('p', 'gx-note', 'The plants running now are already in cost order for current demand.')); card('redis-sum').textContent = ''; return; }
     const W = box.clientWidth || 640, rowH = 30, Hh = shown.length * rowH + 16;
     const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
@@ -163,7 +164,7 @@
       const yy = 6 + i * rowH, up = o.delta > 0;
       svg.append('text').attr('x', lw - 8).attr('y', yy + 11).attr('dy', '0.35em').attr('text-anchor', 'end').attr('class', 'lbl-strong').text(o.p);
       svg.append('rect').attr('x', up ? x(0) : x(o.delta)).attr('y', yy).attr('width', Math.max(2, Math.abs(x(o.delta) - x(0)))).attr('height', rowH - 8).attr('rx', 3).attr('fill', up ? G.color('LNG') : G.color('ULSD'))
-        .on('mousemove', (ev) => tip.show(ev, o.p, [[null, 'Now', G.f0(Math.round(o.now)) + ' MW'], [null, 'Cheapest-first', G.f0(Math.round(o.opt)) + ' MW'], [null, 'Range ' + label, G.f0(Math.round(o.min)) + '–' + G.f0(Math.round(o.max)) + ' MW'], [null, 'Cost', '$' + G.f0(o.price) + '/MWh']]))
+        .on('mousemove', (ev) => tip.show(ev, o.p, [[null, 'Now', G.f0(Math.round(o.now)) + ' MW'], [null, 'Cheapest-first', G.f0(Math.round(o.opt)) + ' MW'], [null, 'Range ' + label, G.f0(Math.round(o.min)) + '–' + G.f0(Math.round(o.max)) + ' MW'], [null, 'Cost', '$' + up2(o.price) + '/MWh']]))
         .on('mouseleave', () => tip.hide());
       svg.append('text').attr('x', up ? x(o.delta) + 6 : x(o.delta) - 6).attr('y', yy + 11).attr('dy', '0.35em').attr('text-anchor', up ? 'start' : 'end').text((up ? '+' : '−') + G.f0(Math.abs(Math.round(o.delta))) + ' MW');
     });
@@ -204,5 +205,151 @@
     card('ldc-sum').textContent = 'Peak ' + G.f0(Math.round(peak)) + ' MW, base ' + G.f0(Math.round(base)) + ' MW. Load was above ' + G.f0(Math.round(above90)) + ' MW for only 10% of the time, so about ' + G.f0(Math.round(peak - above90)) + ' MW of capacity is needed for just a few hours a day.';
   }
 
-  dash.onData(() => { for (const f of [merit, carriers, redispatch, ldc]) { try { f(); } catch (e) { console.error(f.name, e); } } });
+  /* ---------- Cost through the day (average by hour of day) ---------- */
+  let cdPeriod = '7d', pdPeriod = '7d', pdPlant = '';
+  const FK = [['lng', 'LNG', 'Natural gas'], ['bunker_c', 'Bunker C', 'Bunker C'], ['ulsd', 'ULSD', 'Diesel'], ['coal', 'Coal', 'Coal'], ['solar', 'Solar', 'Solar'], ['wind', 'Wind', 'Wind'], ['hydro', 'Hydro', 'Hydro'], ['landfill_gas', 'Landfill gas', 'Landfill gas']];
+  const prHour = (d) => Number(pr({ hour: 'numeric', hourCycle: 'h23' })(d)) % 24;
+  const hLabel = (h) => (h === 0 ? '12 AM' : h < 12 ? h + ' AM' : h === 12 ? '12 PM' : h - 12 + ' PM');
+  // hourly rows: the updater's 35-day profile, plus this browser's own readings for hours the file doesn't have yet
+  function hourlyRows() {
+    const m = new Map(G.rows('cost_hourly').map((r) => [r.at.slice(0, 13), { ...r }]));
+    const loc = new Map();
+    for (const r of G.rows('history')) { if (!r.at || !r.plant_mw) continue; const k = r.at.slice(0, 13); if (m.has(k)) continue; (loc.get(k) || loc.set(k, []).get(k)).push(r); }
+    for (const [k, list] of loc) {
+      const row = { at: k + ':00:00-04:00', n: list.length, plant_mw: {}, plant_cost: {} };
+      for (const r of list) {
+        for (const [key, v] of Object.entries(r)) if (/^(total_mw|dispatch_cost_usd_h|cost_[a-z_]+|mw_[a-z_]+)$/.test(key) && Number.isFinite(Number(v))) row[key] = (row[key] || 0) + Number(v) / list.length;
+        for (const [p, v] of Object.entries(r.plant_mw || {})) row.plant_mw[p] = (row.plant_mw[p] || 0) + Number(v) / list.length;
+        for (const [p, v] of Object.entries(r.plant_cost || {})) row.plant_cost[p] = (row.plant_cost[p] || 0) + Number(v) / list.length;
+      }
+      m.set(k, row);
+    }
+    return [...m.values()].map((r) => ({ ...r, t: new Date(r.at) })).sort((a, b) => a.t - b.t);
+  }
+  function periodRows(period) {
+    const rows = hourlyRows(); if (!rows.length) return { rows, days: 0, label: '' };
+    const lastDay = dayKey(rows[rows.length - 1].t);
+    const sel = period === 'today' ? rows.filter((r) => dayKey(r.t) === lastDay) : rows.filter((r) => rows[rows.length - 1].t - r.t < (period === '7d' ? 7 : 30) * 24 * H);
+    const days = new Set(sel.map((r) => dayKey(r.t))).size;
+    return { rows: sel, days, label: period === 'today' ? 'today' : 'average of the last ' + days + ' day' + (days === 1 ? '' : 's') };
+  }
+  // average each value by hour of day
+  function profile(rows, get) {
+    const acc = Array.from({ length: 24 }, () => ({ s: {}, n: 0 }));
+    for (const r of rows) { const a = acc[prHour(r.t)]; a.n++; for (const [k, v] of Object.entries(get(r))) a.s[k] = (a.s[k] || 0) + (Number(v) || 0); }
+    return acc.map((a, h) => ({ h, n: a.n, v: Object.fromEntries(Object.entries(a.s).map(([k, s]) => [k, s / (a.n || 1)])) }));
+  }
+  function seg(id, val, set) { document.querySelectorAll('#' + id + ' button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === val))); }
+  function hourAxes(svg, W, Hh, y, yMoney, y2) {
+    const ml = G.measure(svg, y.ticks(5).map(yMoney)) + 14, mr = y2 ? G.measure(svg, ['$0.000']) + 14 : 10;
+    const x = d3.scaleBand(d3.range(24), [ml, W - mr]).padding(0.18);
+    svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(y.ticks(5)).join('text').attr('x', ml - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').text(yMoney);
+    svg.append('g').selectAll('text').data([0, 3, 6, 9, 12, 15, 18, 21]).join('text').attr('x', (h) => x(h) + x.bandwidth() / 2).attr('y', Hh - 6).attr('text-anchor', 'middle').text(hLabel);
+    if (y2) svg.append('g').selectAll('text').data(y2.ticks(4)).join('text').attr('x', W - mr + 6).attr('y', y2).attr('dy', '0.35em').attr('class', 'lbl-strong').text((v) => '$' + v.toFixed(3));
+    return { x, ml, mr };
+  }
+  function costDay() {
+    const box = card('costday-chart'); if (!box) return;
+    seg('cd-period', cdPeriod);
+    const P = periodRows(cdPeriod);
+    if (!P.rows.length) { G.failOrSkeleton(box, ['history']); return; }
+    const prof = profile(P.rows, (r) => { const o = { total: r.dispatch_cost_usd_h || 0, mw: r.total_mw || 0 }; for (const [k] of FK) if ((r['mw_' + k] || 0) >= 1) o[k] = r['cost_' + k] || 0; return o; });
+    const fuels = FK.filter(([k]) => prof.some((p) => (p.v[k] || 0) >= 1));
+    const tot = d3.sum(prof, (p) => p.v.total || 0) || 1;
+    legend(card('costday-legend'), fuels.filter(([k]) => d3.sum(prof, (p) => p.v[k] || 0) / tot >= 0.001).map(([k, f, n]) => [n + ' ' + G.pct((d3.sum(prof, (p) => p.v[k] || 0) / tot) * 100), G.color(f)]));
+    box.replaceChildren(); box.classList.remove('dash-skeleton');
+    const W = box.clientWidth || 640, Hh = 300;
+    const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
+    const y = d3.scaleLinear([0, (d3.max(prof, (p) => d3.sum(fuels, ([k]) => p.v[k] || 0)) || 1) * 1.1], [Hh - 26, 12]).nice();
+    const kwh = prof.map((p) => (p.v.mw ? p.v.total / (p.v.mw * 1000) : null));
+    const y2 = d3.scaleLinear([0, (d3.max(kwh) || 0.1) * 1.25], [Hh - 26, 12]).nice();
+    const { x } = hourAxes(svg, W, Hh, y, (v) => G.moneyC(v), y2);
+    const tip = G.tipFor(box.closest('.gx-card'));
+    for (const p of prof) {
+      if (!p.n) continue; let acc = 0;
+      for (const [k, f] of fuels) { const v = p.v[k] || 0; if (!v) continue; svg.append('rect').attr('x', x(p.h)).attr('width', x.bandwidth()).attr('y', y(acc + v)).attr('height', y(acc) - y(acc + v)).attr('fill', G.color(f)).attr('opacity', 0.92); acc += v; }
+      svg.append('rect').attr('x', x(p.h)).attr('width', x.bandwidth()).attr('y', 0).attr('height', Hh - 26).attr('fill', 'transparent')
+        .on('mousemove', (ev) => tip.show(ev, hLabel(p.h) + ' (' + P.label + ')', [...fuels.filter(([k]) => p.v[k] >= 1).sort((a, b) => p.v[b[0]] - p.v[a[0]]).map(([k, f, n]) => [G.color(f), n, G.money(Math.round(p.v[k])) + '/h, ' + G.pct((p.v[k] / (p.v.total || 1)) * 100)]), [null, 'Total', G.money(Math.round(p.v.total)) + '/h'], [null, 'Cost per kWh', kwh[p.h] == null ? '—' : '$' + kwh[p.h].toFixed(3) + '/kWh']]))
+        .on('mouseleave', () => tip.hide());
+    }
+    const pts = prof.filter((p) => kwh[p.h] != null);
+    svg.append('path').datum(pts).attr('fill', 'none').attr('stroke', 'var(--ink)').attr('stroke-width', 2).attr('d', d3.line().x((p) => x(p.h) + x.bandwidth() / 2).y((p) => y2(kwh[p.h])).curve(d3.curveMonotoneX));
+    svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx', (p) => x(p.h) + x.bandwidth() / 2).attr('cy', (p) => y2(kwh[p.h])).attr('r', 2.5).attr('fill', 'var(--ink)');
+    const hi = pts.reduce((a, p) => (p.v.total > a.v.total ? p : a), pts[0]), lo = pts.reduce((a, p) => (p.v.total < a.v.total ? p : a), pts[0]);
+    const topF = fuels.map(([k, f, n]) => [n, d3.sum(prof, (p) => p.v[k] || 0) / tot]).sort((a, b) => b[1] - a[1])[0];
+    card('costday-sum').textContent = 'Cost peaks around ' + hLabel(hi.h) + ' (' + G.moneyC(hi.v.total) + '/h, $' + (kwh[hi.h] || 0).toFixed(3) + '/kWh) and is lowest around ' + hLabel(lo.h) + ' (' + G.moneyC(lo.v.total) + '/h). ' + (topF ? topF[0] + ' accounts for ' + G.pct(topF[1] * 100) + ' of the cost.' : '');
+    card('costday-note').textContent = 'Bars: average dispatch cost per hour by fuel (left scale). Line: average cost per kWh of all generation (right scale). ' + (cdPeriod === 'today' ? 'Today so far.' : 'Each hour averaged over the ' + P.days + ' days with readings.');
+  }
+  /* ---------- Cost by plant through the day ---------- */
+  const FALLBACK = { '--c1': '#4c7de0', '--c2': '#4fae87', '--c3': '#e3a42c', '--c4': '#e07a3f', '--c5': '#e384b1', '--c6': '#a08be0', '--c7': '#59b4d9', '--c8': '#98b85a' };
+  const cssColor = (v) => { const m = /var\((--[\w-]+)\)/.exec(v); return m ? getComputedStyle(document.documentElement).getPropertyValue(m[1]).trim() || FALLBACK[m[1]] || '#888' : v; };
+  function plantColors(plants) {
+    const fm = plantFuel(), out = {};
+    for (const [fuel, ps] of d3.group(plants, (p) => fm[p] || 'Other')) { const base = d3.hsl(cssColor(fuelColor(fuel)));
+      ps.forEach((p, i) => { const c = d3.hsl(base); if (ps.length > 1) c.l = Math.max(0.3, Math.min(0.78, base.l + (i / (ps.length - 1) - 0.5) * 0.34)); out[p] = c.formatHex(); }); }
+    return out;
+  }
+  function plantDay() {
+    const box = card('plantday-chart'), sel = card('pd-plant'); if (!box || !sel) return;
+    seg('pd-period', pdPeriod);
+    const P = periodRows(pdPeriod);
+    if (!P.rows.length) { G.failOrSkeleton(box, ['history']); return; }
+    const costOf = (r, p) => ((r.plant_mw || {})[p] >= 1 ? (r.plant_cost || {})[p] || 0 : 0);
+    const totals = {}; for (const r of P.rows) for (const p of Object.keys(r.plant_cost || {})) totals[p] = (totals[p] || 0) + costOf(r, p);
+    const plants = Object.keys(totals).filter((p) => totals[p] > 0).sort((a, b) => totals[b] - totals[a]);
+    if (pdPlant && !plants.includes(pdPlant)) pdPlant = '';
+    sel.replaceChildren(...[['', 'All plants'], ...plants.map((p) => [p, p])].map(([v, t]) => { const o = el('option', null, t); o.value = v; if (v === pdPlant) o.selected = true; return o; }));
+    const colors = plantColors(plants);
+    box.replaceChildren(); box.classList.remove('dash-skeleton');
+    const W = box.clientWidth || 640, Hh = 300, tip = G.tipFor(box.closest('.gx-card'));
+    const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
+    if (!pdPlant) {
+      const top = plants.slice(0, 9), rest = plants.slice(9);
+      const prof = profile(P.rows, (r) => { const o = {}; for (const p of top) o[p] = costOf(r, p); if (rest.length) o.__other = d3.sum(rest, (p) => costOf(r, p)); return o; });
+      const keys = [...top, ...(rest.length ? ['__other'] : [])], col = (k) => (k === '__other' ? 'var(--cds-chart-muted)' : colors[k]);
+      legend(card('plantday-legend'), keys.map((k) => [k === '__other' ? 'Other plants' : k, col(k)]));
+      const y = d3.scaleLinear([0, (d3.max(prof, (p) => d3.sum(keys, (k) => p.v[k] || 0)) || 1) * 1.1], [Hh - 26, 12]).nice();
+      const { x } = hourAxes(svg, W, Hh, y, (v) => G.moneyC(v));
+      for (const p of prof) { if (!p.n) continue; let acc = 0;
+        for (const k of keys) { const v = p.v[k] || 0; if (v < 1) continue; svg.append('rect').attr('x', x(p.h)).attr('width', x.bandwidth()).attr('y', y(acc + v)).attr('height', y(acc) - y(acc + v)).attr('fill', col(k)).attr('opacity', 0.92); acc += v; }
+        svg.append('rect').attr('x', x(p.h)).attr('width', x.bandwidth()).attr('y', 0).attr('height', Hh - 26).attr('fill', 'transparent')
+          .on('mousemove', (ev) => tip.show(ev, hLabel(p.h) + ' (' + P.label + ')', [...keys.filter((k) => p.v[k] >= 1).sort((a, b) => p.v[b] - p.v[a]).map((k) => [col(k), k === '__other' ? 'Other plants' : k, G.money(Math.round(p.v[k])) + '/h']), [null, 'Total', G.money(Math.round(acc)) + '/h']]))
+          .on('mouseleave', () => tip.hide()); }
+      const hi = prof.reduce((a, p) => (d3.sum(keys, (k) => p.v[k] || 0) > d3.sum(keys, (k) => a.v[k] || 0) ? p : a), prof[0]);
+      const share = plants.length ? totals[plants[0]] / (d3.sum(plants, (p) => totals[p]) || 1) : 0;
+      card('plantday-sum').textContent = plants.length ? plants[0] + ' carries the largest share of the cost (' + G.pct(share * 100) + '). The most expensive hour is around ' + hLabel(hi.h) + '.' : '';
+    } else {
+      const p0 = pdPlant;
+      const prof = profile(P.rows, (r) => ({ cost: costOf(r, p0), mw: (r.plant_mw || {})[p0] >= 1 ? r.plant_mw[p0] : 0, on: (r.plant_mw || {})[p0] >= 1 ? 1 : 0 }));
+      const price = prof.map((p) => (p.v.mw >= 1 ? p.v.cost / p.v.mw : null));
+      legend(card('plantday-legend'), [[p0 + ', $/hour', colors[p0]], ['Cost per MWh', 'var(--ink)']]);
+      const y = d3.scaleLinear([0, (d3.max(prof, (p) => p.v.cost) || 1) * 1.15], [Hh - 26, 12]).nice();
+      const y2 = d3.scaleLinear([0, (d3.max(price) || 1) * 1.2], [Hh - 26, 12]).nice();
+      const ml = G.measure(svg, y.ticks(5).map(G.moneyC)) + 14, mr = G.measure(svg, ['$0,000']) + 14;
+      const x = d3.scaleBand(d3.range(24), [ml, W - mr]).padding(0.18);
+      svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+      svg.append('g').selectAll('text').data(y.ticks(5)).join('text').attr('x', ml - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').text(G.moneyC);
+      svg.append('g').selectAll('text').data(y2.ticks(4)).join('text').attr('x', W - mr + 6).attr('y', y2).attr('dy', '0.35em').attr('class', 'lbl-strong').text((v) => '$' + G.f0(v));
+      svg.append('g').selectAll('text').data([0, 3, 6, 9, 12, 15, 18, 21]).join('text').attr('x', (h) => x(h) + x.bandwidth() / 2).attr('y', Hh - 6).attr('text-anchor', 'middle').text(hLabel);
+      for (const p of prof) { if (!p.n) continue;
+        if (p.v.cost >= 1) svg.append('rect').attr('x', x(p.h)).attr('width', x.bandwidth()).attr('y', y(p.v.cost)).attr('height', y(0) - y(p.v.cost)).attr('rx', 2).attr('fill', colors[p0]).attr('opacity', 0.9);
+        svg.append('rect').attr('x', x(p.h)).attr('width', x.bandwidth()).attr('y', 0).attr('height', Hh - 26).attr('fill', 'transparent')
+          .on('mousemove', (ev) => tip.show(ev, p0 + ', ' + hLabel(p.h), [[colors[p0], 'Average cost', G.money(Math.round(p.v.cost)) + '/h'], [null, 'Average output', p.v.mw >= 1 ? G.f0(Math.round(p.v.mw)) + ' MW' : 'off'], [null, 'Cost per MWh', price[p.h] == null ? '—' : '$' + up2(price[p.h])], [null, 'Running', G.pct(p.v.on * 100) + ' of readings']]))
+          .on('mouseleave', () => tip.hide()); }
+      const pts = prof.filter((p) => price[p.h] != null);
+      svg.append('path').datum(pts).attr('fill', 'none').attr('stroke', 'var(--ink)').attr('stroke-width', 2).attr('d', d3.line().x((p) => x(p.h) + x.bandwidth() / 2).y((p) => y2(price[p.h])).curve(d3.curveMonotoneX));
+      svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx', (p) => x(p.h) + x.bandwidth() / 2).attr('cy', (p) => y2(price[p.h])).attr('r', 2.5).attr('fill', 'var(--ink)');
+      const avgP = d3.mean(pts, (p) => price[p.h]), runH = prof.filter((p) => p.v.on >= 0.5).length;
+      card('plantday-sum').textContent = pts.length ? p0 + ' averages $' + up2(avgP) + '/MWh and runs in most readings during ' + runH + ' of 24 hours.' : p0 + ' did not run in this period.';
+    }
+    card('plantday-note').textContent = (pdPlant ? 'Bars: average cost per hour (left scale). Line: cost per MWh (right scale).' : 'Average cost per hour of each plant, stacked; the nine most costly plants are shown, the rest grouped.') + ' Readings below 1 MW are left out. ' + (pdPeriod === 'today' ? 'Today so far.' : 'Each hour averaged over the ' + P.days + ' days with readings.');
+  }
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('#cd-period button'); if (a) { cdPeriod = a.dataset.v; try { costDay(); } catch (err) { console.error(err); } }
+    const b = e.target.closest('#pd-period button'); if (b) { pdPeriod = b.dataset.v; try { plantDay(); } catch (err) { console.error(err); } }
+  });
+  document.addEventListener('change', (e) => { if (e.target.id === 'pd-plant') { pdPlant = e.target.value; try { plantDay(); } catch (err) { console.error(err); } } });
+
+  dash.onData(() => { for (const f of [costDay, plantDay, merit, carriers, redispatch, ldc]) { try { f(); } catch (e) { console.error(f.name, e); } } });
 })();

@@ -8,8 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/theme.css?v=20261108">
-<link rel="stylesheet" href="assets/live.css?v=20261108">
+<link rel="stylesheet" href="assets/theme.css?v=20261109">
+<link rel="stylesheet" href="assets/live.css?v=20261109">
 </head>
 <body>
 <div class="wrap">
@@ -219,6 +219,28 @@
     </div>
   </div>
 
+  <div class="gx-grid an-grid">
+    <div class="gx-card an-card">
+      <div class="card-head"><h3>Cost through the day</h3>
+        <div class="gx-seg" id="cd-period" role="group" aria-label="Period"><button data-v="today" aria-pressed="false">Today</button><button data-v="7d" aria-pressed="true">Last 7 days</button><button data-v="30d" aria-pressed="false">Last 30 days</button></div></div>
+      <p class="gx-note an-what">How the cost of generation changes hour by hour, and how much of it each fuel accounts for. Use the last 7 or 30 days to see the typical daily pattern, or today to see how today compares.</p>
+      <div class="gx-legend" id="costday-legend"></div>
+      <div class="gx-chart" id="costday-chart" style="min-height:300px"></div>
+      <p class="an-sum" id="costday-sum"></p>
+      <p class="gx-note" id="costday-note"></p>
+    </div>
+    <div class="gx-card an-card">
+      <div class="card-head"><h3>Cost by plant through the day</h3>
+        <div class="gx-seg" id="pd-period" role="group" aria-label="Period"><button data-v="today" aria-pressed="false">Today</button><button data-v="7d" aria-pressed="true">Last 7 days</button><button data-v="30d" aria-pressed="false">Last 30 days</button></div></div>
+      <p class="gx-note an-what">Which plants make up the cost at each hour of the day. Pick one plant to see its hourly cost and its cost per MWh.</p>
+      <div class="gx-controls"><label class="sel-l" for="pd-plant">Plant</label><select id="pd-plant" aria-label="Plant"><option value="">All plants</option></select></div>
+      <div class="gx-legend" id="plantday-legend"></div>
+      <div class="gx-chart" id="plantday-chart" style="min-height:300px"></div>
+      <p class="an-sum" id="plantday-sum"></p>
+      <p class="gx-note" id="plantday-note"></p>
+    </div>
+  </div>
+
   <h3 class="sub-sec">How the island’s generation is dispatched</h3>
   <p class="gx-secnote">Live analysis from every saved reading: which plants are cheapest, which ones carry the load, what a cheapest-first dispatch would change, and how much of the demand is constant.</p>
   <div class="gx-grid an-grid">
@@ -303,13 +325,13 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/core.js?v=20261108"></script>
-<script src="assets/prepa-core.js?v=20261108"></script>
-<script src="assets/calcs.js?v=20261108"></script>
-<script src="assets/history-db.js?v=20261108"></script>
-<script src="assets/live-feed.js?v=20261108"></script>
-<script src="assets/live-extra.js?v=20261108"></script>
-<script src="assets/dispatch.js?v=20261108"></script>
-<script src="assets/live.js?v=20261108"></script>
+<script src="assets/core.js?v=20261109"></script>
+<script src="assets/prepa-core.js?v=20261109"></script>
+<script src="assets/calcs.js?v=20261109"></script>
+<script src="assets/history-db.js?v=20261109"></script>
+<script src="assets/live-feed.js?v=20261109"></script>
+<script src="assets/live-extra.js?v=20261109"></script>
+<script src="assets/dispatch.js?v=20261109"></script>
+<script src="assets/live.js?v=20261109"></script>
 </body>
 </html>

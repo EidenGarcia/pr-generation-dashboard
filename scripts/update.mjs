@@ -340,6 +340,33 @@ fs.writeFileSync(path.join(LOGS, 'daily_summary.csv'), CSV_COLS.join(',') + '\n'
   writeJSON('trace_recent.json', rows);
 }
 
+// Hourly cost profile (35 days) from every saved reading in the day files: total and per-fuel cost and output,
+// and each plant's cost and output. Rebuilt each run, so it covers all days already saved.
+{
+  const hours = new Map();
+  for (const f of fs.readdirSync(DAYS).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x)).sort().slice(-35)) {
+    const D = dayCache.get(f.slice(0, 10)) || JSON.parse(fs.readFileSync(path.join(DAYS, f), 'utf8'));
+    for (const c of D.checks || []) {
+      if (START && c.at.slice(0, 10) < START) continue;
+      const k = c.at.slice(0, 13); const h = hours.get(k) || { n: 0, sums: {}, plant_mw: {}, plant_cost: {} };
+      h.n++;
+      for (const [key, v] of Object.entries(c)) if (/^(total_mw|dispatch_cost_usd_h|cost_[a-z_]+|mw_[a-z_]+)$/.test(key) && Number.isFinite(Number(v))) h.sums[key] = (h.sums[key] || 0) + Number(v);
+      for (const [p, v] of Object.entries(c.plant_mw || {})) h.plant_mw[p] = (h.plant_mw[p] || 0) + Number(v);
+      for (const [p, v] of Object.entries(c.plant_cost || {})) h.plant_cost[p] = (h.plant_cost[p] || 0) + Number(v);
+      hours.set(k, h);
+    }
+  }
+  const r1 = (x) => Math.round(x * 10) / 10;
+  const rows = [...hours.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1)).map(([k, h]) => {
+    const row = { at: k + ':00:00-04:00', n: h.n };
+    for (const [key, v] of Object.entries(h.sums)) row[key] = r1(v / h.n);
+    row.plant_mw = Object.fromEntries(Object.entries(h.plant_mw).map(([p, v]) => [p, r1(v / h.n)]));
+    row.plant_cost = Object.fromEntries(Object.entries(h.plant_cost).map(([p, v]) => [p, Math.round(v / h.n)]));
+    return row;
+  });
+  writeJSON('cost_hourly.json', rows);
+}
+
 // Hourly average output per plant, 35 days, for the long-range plant chart.
 {
   const ph = readJSON('plant_hourly.json', []);
