@@ -356,3 +356,11 @@
 .res-lab span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .res-rng { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
 .res-src { font-size: 11px; color: var(--muted); margin-top: 4px; } .res-src a { color: inherit; }
+
+/* low-output units: reported cost per kWh not representative */
+.low-tag { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 0 6px; border-radius: 999px; background: color-mix(in srgb, var(--amber) 15%, transparent); color: var(--amber); cursor: help; white-space: nowrap; }
+
+/* energy vs cost shares */
+.ratio { font-size: 12px; font-weight: 600; fill: var(--muted); } .ratio.hot { fill: var(--alert); } .ratio.cool { fill: var(--teal); }
+.ratio-cell { font-weight: 600; } .ratio-cell.hot { color: var(--alert); } .ratio-cell.cool { color: var(--teal); }
+.share-tables { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); margin-top: 8px; }

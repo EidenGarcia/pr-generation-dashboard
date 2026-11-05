@@ -275,7 +275,8 @@
       const costMW = d3.sum(us.filter((u) => u.status === 'Generating' && Number(u.cost_cents_kwh) > 0), (u) => Number(u.mw));
       const renewable = us.every((u) => RENEW.includes(u.fuel));
       const fuels = [...new Set(us.map((u) => G.norm(u.fuel)))];
-      return { site, us, mw, on, cost, cents: costMW ? cost / (costMW * 10) : null, renewable, ops: new Set(us.map((u) => u.operator)), operator: [...new Set(us.map((u) => u.operator))].join(', '),
+      const pp = window.COSTS.plantPrice(window.PREPA.plantGroup(us[0].plant), us), lowUnits = us.filter((u) => window.COSTS.lowLoad(u)).length;
+      return { site, us, mw, on, cost, lowUnits, priceBasis: pp.basis, cents: pp.price != null ? pp.price / 10 : null, renewable, ops: new Set(us.map((u) => u.operator)), operator: [...new Set(us.map((u) => u.operator))].join(', '),
         fuel: fuels.join(', '), state: on === us.length ? 'ok' : on > 0 ? 'partial' : renewable ? 'idle' : 'out', pos: SITES[site], muni: MUNI[site], cap };
     }).filter((x) => x.pos);
   }
@@ -350,7 +351,7 @@
     let rows, cols;
     if (ptMode === 'plants') {
       rows = sites.filter((x) => (ptStatus === 'all' || (ptStatus === 'on' ? x.on > 0 : x.on === 0)) && (!q || (x.pos[2] + ' ' + x.fuel + ' ' + x.operator + ' ' + (x.muni || '')).toLowerCase().includes(q)))
-        .map((x) => ({ key: x.site, plant: label(x), muni: x.muni || '', operator: x.operator, fuel: x.fuel, state: x.state, units_on: x.on, units: x.us.length, mw: x.mw, cost: x.cost, cents: x.cents, _x: x }));
+        .map((x) => ({ key: x.site, plant: label(x), muni: x.muni || '', operator: x.operator, fuel: x.fuel, state: x.state, units_on: x.on, units: x.us.length, mw: x.mw, cost: x.cost, cents: x.cents, basis: x.priceBasis, lowUnits: x.lowUnits, _x: x }));
       const totMW = d3.sum(rows, (r) => r.mw) || 1;
       rows.forEach((r) => { r.share = (r.mw / totMW) * 100; });
       cols = [
@@ -358,17 +359,19 @@
         ['Operator', { k: 'operator' }], ['Fuel', { k: 'fuel' }],
         ['Status', { k: 'state', render: (td, r) => { const m = { ok: ['ok', 'All on'], partial: ['warn', 'Partly on'], out: ['bad', 'All off'], idle: ['', 'No output'] }[r.state]; const sp = el('span', 'gx-pill'); const d = el('i', 'gx-dot ' + m[0]); if (!m[0]) d.style.background = 'var(--steel)'; sp.append(d, m[1]); td.append(sp); } }],
         ['Units on', { k: 'units_on', num: true, fmt: (v, r) => v + ' / ' + r.units }], ['MW', { k: 'mw', num: true, fmt: (v) => G.f1(v) }], ['Share', { k: 'share', num: true, fmt: (v) => G.pct(v) }],
-        ['$/hour', { k: 'cost', num: true, fmt: (v) => (v ? G.money(Math.round(v)) : '—') }], ['¢/kWh', { k: 'cents', num: true, fmt: (v) => (v ? G.f2(v) : '—') }],
+        ['$/hour', { k: 'cost', num: true, fmt: (v) => (v ? G.money(Math.round(v)) : '—') }], ['¢/kWh', { k: 'cents', num: true, render: (td, r) => { if (r._total) return; td.textContent = r.cents ? (r.basis === 'typical' ? '≈ ' : '') + G.f2(r.cents) : '—';
+          if (r.basis === 'typical') td.title = 'All running units are at low output, so this is the plant’s typical cost at normal load over the last 7 days.';
+          if (r.lowUnits) { const t = el('span', 'low-tag', r.lowUnits + ' low'); t.title = r.lowUnits + ' unit(s) producing under ' + Math.round(window.COSTS.minPct() * 100) + '% of rated capacity; their reported cost per kWh is left out of the plant price.'; td.append(' ', t); } } }],
       ];
     } else {
       rows = sites.flatMap((x) => x.us.map((u) => ({ x, u }))).filter(({ u }) => (ptStatus === 'all' || (ptStatus === 'on' ? u.status === 'Generating' : u.status !== 'Generating')) && (!q || (u.unit + ' ' + u.plant + ' ' + u.fuel).toLowerCase().includes(q)))
-        .map(({ x, u }) => { const rated = (x.cap[u.unit_id] || {}).rated_mw ?? null; return { key: u.unit_id, unit: u.unit, plant: u.plant, fuel: G.norm(u.fuel), status: u.status, mw: Math.max(0, Number(u.mw)), rated, load: rated ? (Math.max(0, Number(u.mw)) / rated) * 100 : null, cents: Number(u.cost_cents_kwh) || null, cost: Number(u.cost_usd_per_hour) || 0 }; });
+        .map(({ x, u }) => { const rated = (x.cap[u.unit_id] || {}).rated_mw ?? null; return { key: u.unit_id, unit: u.unit, plant: u.plant, fuel: G.norm(u.fuel), status: u.status, mw: Math.max(0, Number(u.mw)), rated, load: rated ? (Math.max(0, Number(u.mw)) / rated) * 100 : null, cents: Number(u.cost_cents_kwh) || null, cost: Number(u.cost_usd_per_hour) || 0, low: window.COSTS.lowLoad(u) }; });
       cols = [
         ['Unit', { k: 'unit', render: (td, r) => { td.append(el('span', 'pt-name', r.unit)); td.append(el('span', 'pt-sub', r.plant)); } }],
         ['Fuel', { k: 'fuel' }],
         ['Status', { k: 'status', render: (td, r) => { const on = r.status === 'Generating'; const sp = el('span', 'gx-pill ' + (on ? 'gx-t-ok' : 'gx-t-bad')); sp.append(el('i', 'gx-dot ' + (on ? 'ok' : 'bad')), on ? 'ON' : 'OFF'); td.append(sp); } }],
         ['MW', { k: 'mw', num: true, fmt: (v) => G.f1(v) }], ['Rated MW', { k: 'rated', num: true, fmt: (v) => (v == null ? '—' : G.f0(v)) }], ['Load', { k: 'load', num: true, fmt: (v) => (v == null ? '—' : G.pct(v)) }],
-        ['¢/kWh', { k: 'cents', num: true, fmt: (v) => (v ? G.f2(v) : '—') }], ['$/hour', { k: 'cost', num: true, fmt: (v) => (v ? G.money(Math.round(v)) : '—') }],
+        ['¢/kWh', { k: 'cents', num: true, render: (td, r) => { td.textContent = r._total ? '' : r.cents ? G.f2(r.cents) : '—'; if (r.low && !r._total) { const t = el('span', 'low-tag', 'low output'); t.title = 'Producing under ' + Math.round(window.COSTS.minPct() * 100) + '% of rated capacity (idling or warming up). PREPA’s cost per kWh at this level is not representative and is not used for the plant’s price.'; td.append(' ', t); } } }], ['$/hour', { k: 'cost', num: true, fmt: (v) => (v ? G.money(Math.round(v)) : '—') }],
       ];
     }
     // header for the current mode (sorting resets when the columns change)
@@ -461,7 +464,7 @@
         const c = cap.units[u.unit_id] || {}, rg = ranges[u.unit_id] || null, mwv = Math.max(0, Number(u.mw)), on = u.status === 'Generating';
         const max = c.rated_mw ?? (Math.max(rg ? rg.max_on_mw : 0, mwv) || 1);
         const tile = el('div', 'gunit' + (on ? '' : ' off'));
-        tile.title = u.unit + ': ' + G.f2(Number(u.mw)) + ' MW' + (c.rated_mw ? ', rated ' + c.rated_mw + ' MW (' + c.source + ')' : ', no published rating') + (rg ? '. Seen running between ' + G.f1(rg.min_on_mw) + ' and ' + G.f1(rg.max_on_mw) + ' MW' : '') + (Number(u.cost_cents_kwh) > 0 ? '. Cost ' + G.f2(Number(u.cost_cents_kwh)) + ' ¢/kWh' : '');
+        tile.title = u.unit + ': ' + G.f2(Number(u.mw)) + ' MW' + (c.rated_mw ? ', rated ' + c.rated_mw + ' MW (' + c.source + ')' : ', no published rating') + (rg ? '. Seen running between ' + G.f1(rg.min_on_mw) + ' and ' + G.f1(rg.max_on_mw) + ' MW' : '') + (Number(u.cost_cents_kwh) > 0 ? '. Cost ' + G.f2(Number(u.cost_cents_kwh)) + ' ¢/kWh' + (window.COSTS.lowLoad(u) ? ' (low output: not representative)' : '') : '');
         const S = 96, R = 38, cx = S / 2, cy = 46;
         const svg = d3.select(tile).append('svg').attr('viewBox', `0 0 ${S} 58`).attr('width', '100%').attr('height', 58);
         const sc = d3.scaleLinear([0, max], [-Math.PI / 2, Math.PI / 2]).clamp(true);

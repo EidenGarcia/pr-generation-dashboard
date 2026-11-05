@@ -22,7 +22,7 @@
     const last = rows[rows.length - 1], today = rows.filter((r) => dayKey(r.t) === dayKey(last.t));
     return today.length >= 8 ? { rows: today, label: 'today' } : { rows: rows.filter((r) => last.t - r.t <= 24 * H), label: 'in the last 24 hours' };
   }
-  const price = (r, p) => { const mw = (r.plant_mw || {})[p], c = (r.plant_cost || {})[p]; return mw >= 1 && c > 0 ? c / mw : null; }; // $/MWh = ($/h) / MW
+  const price = (r, p) => { const mw = (r.plant_mw || {})[p], c = (r.plant_cost || {})[p]; return mw >= 1 && c > 0 && window.COSTS.normalPlantMW(p, mw) ? c / mw : null; }; // $/MWh = ($/h) / MW, only at normal load
   function plantStats(rows) {
     const out = {}; const last = rows[rows.length - 1];
     for (const r of rows) for (const [p, v] of Object.entries(r.plant_mw || {})) {
@@ -44,13 +44,14 @@
     for (const u of units) {
       if (u.status !== 'Generating') continue;
       const p = window.PREPA.plantGroup(u.plant), mw = Math.max(0, Number(u.mw));
-      const o = by.get(p) || { p, now: 0, avail: 0, cost: 0, costMW: 0, fuel: G.norm(u.fuel), units: 0 };
+      const o = by.get(p) || { p, now: 0, avail: 0, cost: 0, costMW: 0, fuel: G.norm(u.fuel), units: 0, us: [] };
+      o.us.push(u);
       const c = cap[u.unit_id] && cap[u.unit_id].rated_mw, seen = rng[u.unit_id] && rng[u.unit_id].max_on_mw;
       o.now += mw; o.avail += Math.max(mw, c || seen || mw); o.units++;
       if (Number(u.cost_cents_kwh) > 0) { o.cost += Number(u.cost_usd_per_hour); o.costMW += mw; }
       by.set(p, o);
     }
-    const blocks = [...by.values()].filter((o) => o.now >= 1).map((o) => ({ ...o, max: MUST_TAKE.has(o.p) ? o.now : o.avail, price: o.costMW ? o.cost / o.costMW : MUST_TAKE.has(o.p) ? 0 : null }));
+    const blocks = [...by.values()].filter((o) => o.now >= 1).map((o) => { const pp = window.COSTS.plantPrice(o.p, o.us); return { ...o, max: MUST_TAKE.has(o.p) ? o.now : o.avail, price: pp.price != null ? pp.price : MUST_TAKE.has(o.p) ? 0 : null, basis: pp.basis, lowUnits: o.us.filter((u) => window.COSTS.lowLoad(u)).length }; });
     const demand = d3.sum(blocks, (b) => b.now);
     return { blocks, demand, peak: null, when: units[0] ? tFmt(new Date(units[0].snapshot)) : '' };
   }
@@ -94,7 +95,7 @@
       if (meritMode === 'now' && wNow < wAll) svg.append('rect').attr('x', x0).attr('y', top).attr('width', wAll).attr('height', h).attr('rx', 2).attr('fill', col).attr('opacity', 0.28);
       svg.append('rect').attr('x', x0).attr('y', top).attr('width', wNow).attr('height', h).attr('rx', 2).attr('fill', col).attr('opacity', meritMode === 'now' || running ? 0.95 : 0.4);
       svg.append('rect').attr('x', x0).attr('y', top).attr('width', wAll).attr('height', h).attr('rx', 2).attr('fill', 'transparent').attr('stroke', outOfMerit ? 'var(--alert)' : 'none').attr('stroke-width', 1.6)
-        .on('mousemove', (ev) => tip.show(ev, b.p, [[col, FUEL_LABEL[b.fuel] || b.fuel, null], [null, 'Cost', b.price ? '$' + up2(b.price) + '/MWh' : 'no reported cost'], [null, 'Producing now', running ? G.f0(Math.round(b.now)) + ' MW' : 'not running'],
+        .on('mousemove', (ev) => tip.show(ev, b.p, [[col, FUEL_LABEL[b.fuel] || b.fuel, null], [null, 'Cost', b.price ? '$' + up2(b.price) + '/MWh' + (b.basis === 'typical' ? ' (typical at normal load)' : '') : 'no reported cost'], ...(b.lowUnits ? [[null, b.lowUnits + ' unit(s) at low output', 'cost not used']] : []), [null, 'Producing now', running ? G.f0(Math.round(b.now)) + ' MW' : 'not running'],
           ...(meritMode === 'now' ? [[null, 'Online capacity', G.f0(Math.round(b.max)) + ' MW'], [null, 'Unused room', G.f0(Math.max(0, Math.round(b.max - b.now))) + ' MW']] : [[null, 'Most ' + M.label, G.f0(Math.round(b.max)) + ' MW']]), ...(outOfMerit ? [[null, 'Running out of merit', null]] : [])]))
         .on('mouseleave', () => tip.hide());
     }
@@ -322,7 +323,7 @@
     } else {
       const p0 = pdPlant;
       const prof = profile(P.rows, (r) => ({ cost: costOf(r, p0), mw: (r.plant_mw || {})[p0] >= 1 ? r.plant_mw[p0] : 0, on: (r.plant_mw || {})[p0] >= 1 ? 1 : 0 }));
-      const price = prof.map((p) => (p.v.mw >= 1 ? p.v.cost / p.v.mw : null));
+      const price = prof.map((p) => (p.v.mw >= 1 && window.COSTS.normalPlantMW(p0, p.v.mw) ? p.v.cost / p.v.mw : null));
       legend(card('plantday-legend'), [[p0 + ', $/hour', colors[p0]], ['Cost per MWh', 'var(--ink)']]);
       const y = d3.scaleLinear([0, (d3.max(prof, (p) => p.v.cost) || 1) * 1.15], [Hh - 26, 12]).nice();
       const y2 = d3.scaleLinear([0, (d3.max(price) || 1) * 1.2], [Hh - 26, 12]).nice();
@@ -343,7 +344,7 @@
       const avgP = d3.mean(pts, (p) => price[p.h]), runH = prof.filter((p) => p.v.on >= 0.5).length;
       card('plantday-sum').textContent = pts.length ? p0 + ' averages $' + up2(avgP) + '/MWh and runs in most readings during ' + runH + ' of 24 hours.' : p0 + ' did not run in this period.';
     }
-    card('plantday-note').textContent = (pdPlant ? 'Bars: average cost per hour (left scale). Line: cost per MWh (right scale).' : 'Average cost per hour of each plant, stacked; the nine most costly plants are shown, the rest grouped.') + ' Readings below 1 MW are left out. ' + (pdPeriod === 'today' ? 'Today so far.' : 'Each hour averaged over the ' + P.days + ' days with readings.');
+    card('plantday-note').textContent = (pdPlant ? 'Bars: average cost per hour (left scale). Line: cost per MWh (right scale).' : 'Average cost per hour of each plant, stacked; the nine most costly plants are shown, the rest grouped.') + ' Readings below 1 MW are left out, and the cost per MWh line skips hours when the plant ran under ' + Math.round(window.COSTS.minPct() * 100) + '% of its capacity. ' + (pdPeriod === 'today' ? 'Today so far.' : 'Each hour averaged over the ' + P.days + ' days with readings.');
   }
   document.addEventListener('click', (e) => {
     const a = e.target.closest('#cd-period button'); if (a) { cdPeriod = a.dataset.v; try { costDay(); } catch (err) { console.error(err); } }
@@ -351,5 +352,101 @@
   });
   document.addEventListener('change', (e) => { if (e.target.id === 'pd-plant') { pdPlant = e.target.value; try { plantDay(); } catch (err) { console.error(err); } } });
 
-  dash.onData(() => { for (const f of [costDay, plantDay, merit, carriers, redispatch, ldc]) { try { f(); } catch (e) { console.error(f.name, e); } } });
+  /* ---------- Share of energy vs share of cost, by plant ---------- */
+  let shPeriod = '7d', shFuel = 'all';
+  const FAMILY = { LNG: 'gas', 'Bunker C': 'bunker', ULSD: 'diesel', Coal: 'coal', Solar: 'renew', Wind: 'renew', Hydro: 'renew', 'Landfill gas': 'renew' };
+  const FAM_LABEL = { gas: 'Natural gas', bunker: 'Bunker C', diesel: 'Diesel', coal: 'Coal', renew: 'Renewables' };
+  const FAM_FUEL = { gas: 'LNG', bunker: 'Bunker C', diesel: 'ULSD', coal: 'Coal', renew: 'Solar' };
+  function plantOperator() {
+    const m = { AES: 'Independent (PPOA)', 'EcoEléctrica': 'Independent (PPOA)', Solar: 'Independent (PPOA)', Wind: 'Independent (PPOA)', 'Landfill gas': 'Independent (PPOA)', Hydro: 'PREPA (hydro)' };
+    for (const u of G.rows('live_units')) { const g = window.PREPA.plantGroup(u.plant); if (!m[g]) m[g] = u.operator; }
+    return (p) => m[p] || 'Genera PR';
+  }
+  // energy (MWh) and cost ($) per plant over hourly rows; an hour counts for a plant when it averaged at least 1 MW
+  function plantTotals(rows) {
+    const E = {}, C = {}, Hr = {};
+    for (const r of rows) for (const [p, mw] of Object.entries(r.plant_mw || {})) { if (!(mw >= 1)) continue; E[p] = (E[p] || 0) + mw; C[p] = (C[p] || 0) + ((r.plant_cost || {})[p] || 0); Hr[p] = (Hr[p] || 0) + 1; }
+    return { E, C, Hr };
+  }
+  function shares() {
+    const box = card('share-chart'); if (!box) return;
+    seg('sh-period', shPeriod); seg('sh-fuel', shFuel);
+    const P = periodRows(shPeriod);
+    if (!P.rows.length) { G.failOrSkeleton(box, ['history']); return; }
+    const { E, C } = plantTotals(P.rows), fm = plantFuel(), op = plantOperator();
+    const totE = d3.sum(Object.values(E)) || 1, totC = d3.sum(Object.values(C)) || 1;
+    const all = Object.keys(E).filter((p) => E[p] >= 1).map((p) => ({ p, fam: FAMILY[fm[p]] || 'diesel', e: E[p] / totE, c: (C[p] || 0) / totC, kwh: (C[p] || 0) / (E[p] * 1000), op: op(p) }));
+    all.forEach((x) => { x.ratio = x.e > 0 ? x.c / x.e : null; });
+    const rows = all.filter((x) => shFuel === 'all' || x.fam === shFuel).sort((a, b) => b.c - a.c);
+    legend(card('share-legend'), [['Share of energy', 'var(--cds-chart-muted)'], ['Share of cost (fuel color)', G.color('LNG')]]);
+    box.replaceChildren(); box.classList.remove('dash-skeleton');
+    const W = box.clientWidth || 800, rowH = 34, Hh = rows.length * rowH + 22;
+    const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
+    const lw = G.measure(svg, rows.map((x) => x.p)) + 14, rw = 150;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.e, r.c)) || 0.01], [lw, W - rw]).nice();
+    svg.append('g').selectAll('line').data(x.ticks(5)).join('line').attr('x1', x).attr('x2', x).attr('y1', 14).attr('y2', Hh).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(x.ticks(5)).join('text').attr('x', x).attr('y', 10).attr('text-anchor', 'middle').text((v) => Math.round(v * 100) + '%');
+    svg.append('text').attr('x', W - rw + 12).attr('y', 10).text('Cost ÷ energy');
+    const tip = G.tipFor(box.closest('.gx-card'));
+    rows.forEach((r, i) => {
+      const y0 = 18 + i * rowH, col = fuelColor(FAM_FUEL[r.fam]);
+      svg.append('text').attr('x', lw - 8).attr('y', y0 + 13).attr('text-anchor', 'end').attr('class', 'lbl-strong').text(r.p);
+      svg.append('rect').attr('x', lw).attr('y', y0 + 2).attr('width', Math.max(1, x(r.e) - lw)).attr('height', 11).attr('rx', 2).attr('fill', 'var(--cds-chart-muted)');
+      svg.append('rect').attr('x', lw).attr('y', y0 + 15).attr('width', Math.max(1, x(r.c) - lw)).attr('height', 11).attr('rx', 2).attr('fill', col);
+      const hot = r.ratio >= 1.5, cool = r.ratio <= 0.75;
+      svg.append('text').attr('x', W - rw + 12).attr('y', y0 + 18).attr('class', 'ratio' + (r.c === 0 ? '' : hot ? ' hot' : cool ? ' cool' : '')).text(r.ratio == null ? '—' : r.c === 0 ? 'no cost reported' : '×' + r.ratio.toFixed(2) + '  $' + r.kwh.toFixed(3) + '/kWh');
+      svg.append('rect').attr('x', 0).attr('y', y0).attr('width', W).attr('height', rowH - 2).attr('fill', 'transparent')
+        .on('mousemove', (ev) => tip.show(ev, r.p, [[null, FAM_LABEL[r.fam] + ', ' + r.op, null], ['var(--cds-chart-muted)', 'Share of energy', G.pct(r.e * 100)], [col, 'Share of cost', G.pct(r.c * 100)], [null, 'Cost ÷ energy', r.ratio == null ? '—' : '×' + r.ratio.toFixed(2)], [null, 'Cost per kWh', '$' + r.kwh.toFixed(3)]]))
+        .on('mouseleave', () => tip.hide());
+    });
+    // summaries by fuel and by operator
+    const sumBy = (key) => { const m = new Map(); for (const x of all) { const k = key(x); const o = m.get(k) || { k, e: 0, c: 0 }; o.e += x.e; o.c += x.c; m.set(k, o); } return [...m.values()].map((o) => ({ ...o, ratio: o.e ? o.c / o.e : null, kwh: o.e ? (o.c * totC) / (o.e * totE * 1000) : null })).sort((a, b) => b.c - a.c); };
+    const fam = sumBy((x) => x.fam), ops = sumBy((x) => x.op);
+    G.table(card('share-fuel-table'), fam.map((o) => ({ ...o, name: FAM_LABEL[o.k] })), [
+      { k: 'name', render: (td, r) => { const s = el('span', 'gx-sw'); s.style.background = fuelColor(FAM_FUEL[r.k]); td.append(s, r.name); } },
+      { k: 'e', num: true, fmt: (v) => G.pct(v * 100) }, { k: 'c', num: true, fmt: (v) => G.pct(v * 100) },
+      { k: 'ratio', num: true, render: (td, r) => { td.textContent = r.ratio == null ? '—' : '×' + r.ratio.toFixed(2); td.className = 'num ratio-cell' + (r.ratio >= 1.5 ? ' hot' : r.ratio <= 0.75 ? ' cool' : ''); } },
+      { k: 'kwh', num: true, fmt: (v) => (v == null ? '—' : '$' + v.toFixed(3)) },
+    ], { key: 'k', sortKey: 'c', redraw: shares });
+    G.table(card('share-op-table'), ops.map((o) => ({ ...o, name: o.k === 'Independent (PPOA)' ? 'Private producers (PPOA)' : o.k })), [
+      { k: 'name' }, { k: 'e', num: true, fmt: (v) => G.pct(v * 100) }, { k: 'c', num: true, fmt: (v) => G.pct(v * 100) },
+      { k: 'ratio', num: true, render: (td, r) => { td.textContent = r.ratio == null || r.c === 0 ? '—' : '×' + r.ratio.toFixed(2); td.className = 'num ratio-cell' + (r.c === 0 ? '' : r.ratio >= 1.5 ? ' hot' : r.ratio <= 0.75 ? ' cool' : ''); } },
+      { k: 'kwh', num: true, fmt: (v, r) => (v == null || r.c === 0 ? 'no cost reported' : '$' + v.toFixed(3)) },
+    ], { key: 'k', sortKey: 'c', redraw: shares });
+    const worst = all.filter((x) => x.e >= 0.001 && x.c > 0).sort((a, b) => b.ratio - a.ratio)[0], priv = ops.find((o) => o.k === 'Independent (PPOA)'), gen = ops.find((o) => o.k === 'Genera PR');
+    const parts = [];
+    if (worst) parts.push(worst.p + ' produced ' + G.pct(worst.e * 100) + ' of the energy but ' + G.pct(worst.c * 100) + ' of the cost (×' + worst.ratio.toFixed(1) + ', $' + worst.kwh.toFixed(2) + '/kWh).');
+    if (priv && gen) parts.push('Private producers produced ' + G.pct(priv.e * 100) + ' of the energy for ' + G.pct(priv.c * 100) + ' of the cost; Genera’s plants ' + G.pct(gen.e * 100) + ' for ' + G.pct(gen.c * 100) + '.');
+    card('share-sum').textContent = parts.join(' ');
+    card('share-note').textContent = (shPeriod === 'today' ? 'Today so far' : 'The last ' + P.days + ' days') + ', from every saved reading. Cost is the dispatch cost PREPA reports for each unit (MW × its cost per kWh), including units idling at low output. A ratio above 1 means a plant costs more than its share of the energy; below 1, less.';
+  }
+
+  /* ---------- Highest-cost plants: cost per hour while running, and hours run ---------- */
+  function ranking() {
+    const tb = card('rank-table'); if (!tb) return;
+    const R30 = periodRows('30d'), R7 = periodRows('7d'), RT = periodRows('today');
+    if (!R30.rows.length) return;
+    const t30 = plantTotals(R30.rows), t7 = plantTotals(R7.rows), tt = plantTotals(RT.rows), fm = plantFuel();
+    const rows = Object.keys(t30.Hr).filter((p) => (t30.C[p] || 0) > 0).map((p) => {
+      const h7 = t7.Hr[p] || 0;
+      const perH = h7 ? (t7.C[p] || 0) / h7 : (t30.C[p] || 0) / t30.Hr[p];
+      const kwhE = h7 ? t7.E[p] : t30.E[p], kwhC = h7 ? t7.C[p] : t30.C[p];
+      return { p, fuel: fm[p], perH, kwh: kwhE ? kwhC / (kwhE * 1000) : null, today: tt.Hr[p] || 0, h7, h30: t30.Hr[p] || 0, perDay: (t30.Hr[p] || 0) / (R30.days || 1) };
+    });
+    const mx = d3.max(rows, (r) => r.perH) || 1;
+    G.table(tb, rows, [
+      { k: 'p', render: (td, r) => { const s = el('span', 'gx-sw'); s.style.background = fuelColor(r.fuel); td.append(s, r.p); } },
+      { k: 'perH', num: true, render: (td, r) => { const b = el('span', 'gx-inbar'); b.style.width = Math.max(2, (r.perH / mx) * 90) + 'px'; b.style.background = fuelColor(r.fuel); td.append(b, G.money(Math.round(r.perH))); } },
+      { k: 'kwh', num: true, fmt: (v) => (v == null ? '—' : '$' + v.toFixed(3)) },
+      { k: 'today', num: true, fmt: (v) => G.f0(v) + ' h' }, { k: 'h7', num: true, fmt: (v) => G.f0(v) + ' h' }, { k: 'h30', num: true, fmt: (v) => G.f0(v) + ' h' },
+      { k: 'perDay', num: true, fmt: (v) => G.f1(v) + ' h' },
+    ], { key: 'p', sortKey: 'perH', redraw: ranking });
+    card('rank-note').textContent = 'Cost per hour while running and $/kWh use the last 7 days. An hour counts as run when the plant averaged at least 1 MW in it. Hours are counted only where readings exist: ' + R30.days + ' day(s) of data so far, so the 30-day columns fill in over time.';
+  }
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('#sh-period button'); if (a) { shPeriod = a.dataset.v; try { shares(); } catch (err) { console.error(err); } }
+    const b = e.target.closest('#sh-fuel button'); if (b) { shFuel = b.dataset.v; try { shares(); } catch (err) { console.error(err); } }
+  });
+
+  dash.onData(() => { for (const f of [costDay, plantDay, shares, ranking, merit, carriers, redispatch, ldc]) { try { f(); } catch (e) { console.error(f.name, e); } } });
 })();

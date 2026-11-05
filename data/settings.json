@@ -1,4 +1,7 @@
-[{
-  "start_date": "2026-10-23",
-  "note": "Readings, events, summaries and logs before start_date are removed by the updater and hidden by the page. Change the date to keep more or less history."
-}]
+[
+  {
+    "start_date": "2026-10-23",
+    "note": "Readings, events, summaries and logs before start_date are removed by the updater and hidden by the page. Change the date to keep more or less history. min_load_pct: a thermal unit below this share of its rated capacity is treated as low output (idling); its reported cost per kWh is not used for plant prices.",
+    "min_load_pct": 10
+  }
+]
