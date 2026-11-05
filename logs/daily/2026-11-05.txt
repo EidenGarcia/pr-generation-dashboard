@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Thursday, November 5, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-05 02:30 AST)
-Coverage ........ 2.5 h of feed checks (10 checks), 30 five-minute readings
+Status .......... In progress (updated 2026-11-05 02:45 AST)
+Coverage ........ 2.8 h of feed checks (11 checks), 33 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,309 MW at 00:12
-  Minimum ....... 2,123 MW at 02:26
-  Average ....... 2,207 MW
+  Minimum ....... 2,111 MW at 02:42
+  Average ....... 2,198 MW
   PREPA peak .... 2,329 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,321.1 MW at 00:03
-  Minimum ....... 2,122.3 MW at 02:28
-  Average ....... 2,210 MW
-  Energy ........ 5,526 MWh
+  Maximum ....... 2,317.1 MW at 00:04
+  Minimum ....... 2,111.4 MW at 02:44
+  Average ....... 2,201 MW
+  Energy ........ 6,052 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.20 Hz
+  Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 60.013 Hz
+  Average ....... 60.006 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    3,228 MWh   57.0 %
-  Bunker C .......    1,221 MWh   21.6 %
-  Diesel (ULSD) ..      208 MWh   3.7 %
-  Coal ...........      999 MWh   17.6 %
-  Hydro ..........        5 MWh   0.1 %
+  LNG ............    3,548 MWh   57.1 %
+  Bunker C .......    1,336 MWh   21.5 %
+  Diesel (ULSD) ..      223 MWh   3.6 %
+  Coal ...........    1,100 MWh   17.7 %
+  Hydro ..........        6 MWh   0.1 %
   Landfill gas ...        4 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $877,495 over 2.5 h  (full-day estimate $8,420,205)
+  Total cost of the day ... $963,171 over 2.8 h  (full-day estimate $8,388,060)
   Average cost ............ $0.1549 per kWh
 
 OUTAGES (units that stopped or restarted)
