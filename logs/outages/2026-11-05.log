@@ -57,3 +57,5 @@
 2026-11-05 16:26 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 16:10)
 2026-11-05 16:40 AST  ONLINE    Dos Bocas (hydro) / Hidro 2              0.0 MW ->     5.4 MW  (PREPA (hydro), Hydro; previous check 16:26)
 2026-11-05 16:40 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:26)
+2026-11-05 17:10 AST  OFFLINE   Solar / Horizon                          1.6 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 16:56)
+2026-11-05 17:10 AST  OFFLINE   Solar / Coto Laurel                      1.2 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 16:56)
