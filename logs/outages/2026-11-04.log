@@ -88,3 +88,6 @@
 2026-11-04 21:26 AST  ONLINE    Aguirre CC 2 / Gas 2                     0.0 MW ->    30.6 MW  (Genera PR, ULSD (diesel); previous check 21:10)
 2026-11-04 21:26 AST  ONLINE    Aguirre CC 2 / Gas 4                     0.0 MW ->    30.0 MW  (Genera PR, ULSD (diesel); previous check 21:10)
 2026-11-04 21:26 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 21:10)
+2026-11-04 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:26)
+2026-11-04 21:42 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:26)
+2026-11-04 21:42 AST  ONLINE    Yauco (hydro) / Hidro 3                  0.0 MW ->     2.1 MW  (PREPA (hydro), Hydro; previous check 21:26)
