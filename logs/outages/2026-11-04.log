@@ -93,3 +93,4 @@
 2026-11-04 21:42 AST  ONLINE    Yauco (hydro) / Hidro 3                  0.0 MW ->     2.1 MW  (PREPA (hydro), Hydro; previous check 21:26)
 2026-11-04 22:10 AST  OFFLINE   Cambalache / Gas 3                      27.8 MW ->     0.5 MW  (Genera PR, ULSD (diesel); previous check 21:56)
 2026-11-04 22:40 AST  OFFLINE   GT stations (peakers) / Jobos           19.3 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 22:26)
+2026-11-04 22:54 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 22:40)
