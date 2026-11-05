@@ -68,3 +68,6 @@
 2026-11-04 18:12 AST  ONLINE    Cambalache / Gas 3                       0.0 MW ->    15.8 MW  (Genera PR, ULSD (diesel); previous check 17:56)
 2026-11-04 19:10 AST  ONLINE    Wind / Pattern                           0.1 MW ->     2.0 MW  (Independent (PPOA), Wind; previous check 18:56)
 2026-11-04 19:26 AST  OFFLINE   Wind / Pattern                           2.0 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 19:10)
+2026-11-04 20:12 AST  OFFLINE   Yauco (hydro) / Hidro 3                  2.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 19:58)
+2026-11-04 20:12 AST  OFFLINE   Mayagüez / Gas 4                        22.3 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 19:58)
+2026-11-04 20:12 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 19:58)
