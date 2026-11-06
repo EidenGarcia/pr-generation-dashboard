@@ -2,3 +2,4 @@
 # A unit counts as offline below 1 MW. Times are when the change was first seen; it happened after the previous check.
 2026-11-06 00:10 AST  OFFLINE   Cambalache / Gas 3                      15.6 MW ->     0.3 MW  (Genera PR, ULSD (diesel); previous check 23:55)
 2026-11-06 00:54 AST  OFFLINE   GT stations (peakers) / Jobos           18.1 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 00:40)
+2026-11-06 01:26 AST  OFFLINE   Palo Seco GT/CT / GT1                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 01:10)
