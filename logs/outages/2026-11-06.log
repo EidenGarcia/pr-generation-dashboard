@@ -62,3 +62,4 @@
 2026-11-06 14:58 AST  ONLINE    Solar / Coto Laurel                      0.4 MW ->     1.3 MW  (Independent (PPOA), Solar; previous check 14:42)
 2026-11-06 15:28 AST  OFFLINE   Solar / Coto Laurel                      1.0 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 15:14)
 2026-11-06 15:42 AST  OFFLINE   Wind / Pattern                           2.9 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 15:28)
+2026-11-06 15:48 AST  OFFLINE   GT stations (peakers) / FEMA GT SJ       5.0 MW ->     0.0 MW  (Genera PR, LNG; previous check 15:42)
