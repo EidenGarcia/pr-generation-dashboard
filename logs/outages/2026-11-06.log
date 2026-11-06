@@ -65,3 +65,4 @@
 2026-11-06 15:48 AST  OFFLINE   GT stations (peakers) / FEMA GT SJ       5.0 MW ->     0.0 MW  (Genera PR, LNG; previous check 15:42)
 2026-11-06 15:58 AST  OFFLINE   Solar / Fonroche                         1.7 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 15:48)
 2026-11-06 16:44 AST  ONLINE    Solar / Fonroche                         1.0 MW ->     1.4 MW  (Independent (PPOA), Solar; previous check 16:28)
+2026-11-06 16:58 AST  OFFLINE   Solar / Fonroche                         1.4 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:44)
