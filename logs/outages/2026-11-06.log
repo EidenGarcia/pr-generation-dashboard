@@ -52,3 +52,8 @@
 2026-11-06 13:42 AST  OFFLINE   Solar / San Fermin                       1.0 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 13:28)
 2026-11-06 13:58 AST  ONLINE    Aguirre CC 1 / Gas 1                     0.1 MW ->     7.3 MW  (Genera PR, ULSD (diesel); previous check 13:42)
 2026-11-06 13:58 AST  ONLINE    Aguirre CC 2 / Gas 4                     0.0 MW ->    30.6 MW  (Genera PR, ULSD (diesel); previous check 13:42)
+2026-11-06 14:12 AST  ONLINE    Aguirre CC 1 / Gas 4                     0.0 MW ->    13.9 MW  (Genera PR, ULSD (diesel); previous check 13:58)
+2026-11-06 14:12 AST  OFFLINE   Solar / Ilumina                          2.5 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 13:58)
+2026-11-06 14:12 AST  OFFLINE   Solar / Horizon                          1.1 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 13:58)
+2026-11-06 14:12 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 13:58)
+2026-11-06 14:12 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 13:58)
