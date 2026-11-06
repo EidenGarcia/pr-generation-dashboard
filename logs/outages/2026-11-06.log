@@ -35,3 +35,4 @@
 2026-11-06 09:58 AST  ONLINE    Solar / San Fermin                       1.0 MW ->     1.4 MW  (Independent (PPOA), Solar; previous check 09:44)
 2026-11-06 10:26 AST  ONLINE    Wind / Punta Lima                        0.1 MW ->     2.1 MW  (Independent (PPOA), Wind; previous check 10:14)
 2026-11-06 10:43 AST  ONLINE    Wind / Pattern                           0.1 MW ->     3.1 MW  (Independent (PPOA), Wind; previous check 10:26)
+2026-11-06 11:28 AST  OFFLINE   Wind / Punta Lima                        3.0 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 11:14)
