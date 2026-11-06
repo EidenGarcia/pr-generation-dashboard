@@ -50,3 +50,5 @@
 2026-11-06 13:42 AST  ONLINE    GT stations (peakers) / Daguao           0.8 MW ->     5.0 MW  (Genera PR, ULSD (diesel); previous check 13:28)
 2026-11-06 13:42 AST  ONLINE    Aguirre CC 2 / Gas 2                     0.0 MW ->    30.3 MW  (Genera PR, ULSD (diesel); previous check 13:28)
 2026-11-06 13:42 AST  OFFLINE   Solar / San Fermin                       1.0 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 13:28)
+2026-11-06 13:58 AST  ONLINE    Aguirre CC 1 / Gas 1                     0.1 MW ->     7.3 MW  (Genera PR, ULSD (diesel); previous check 13:42)
+2026-11-06 13:58 AST  ONLINE    Aguirre CC 2 / Gas 4                     0.0 MW ->    30.6 MW  (Genera PR, ULSD (diesel); previous check 13:42)
