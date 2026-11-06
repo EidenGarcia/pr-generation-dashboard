@@ -69,3 +69,5 @@
 2026-11-05 18:56 AST  ONLINE    Cambalache / Gas 2                       0.0 MW ->    11.1 MW  (Genera PR, ULSD (diesel); previous check 18:40)
 2026-11-05 20:10 AST  ONLINE    Yauco (hydro) / Hidro 3                  0.0 MW ->     2.1 MW  (PREPA (hydro), Hydro; previous check 19:56)
 2026-11-05 20:56 AST  OFFLINE   Cambalache / Gas 2                       2.5 MW ->     0.5 MW  (Genera PR, ULSD (diesel); previous check 20:40)
+2026-11-05 21:10 AST  ONLINE    Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 20:56)
+2026-11-05 21:10 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 20:56)
