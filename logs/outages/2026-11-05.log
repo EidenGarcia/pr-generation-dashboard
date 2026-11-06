@@ -71,3 +71,5 @@
 2026-11-05 20:56 AST  OFFLINE   Cambalache / Gas 2                       2.5 MW ->     0.5 MW  (Genera PR, ULSD (diesel); previous check 20:40)
 2026-11-05 21:10 AST  ONLINE    Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 20:56)
 2026-11-05 21:10 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 20:56)
+2026-11-05 21:40 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:26)
+2026-11-05 21:40 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:26)
