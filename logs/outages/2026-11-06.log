@@ -12,3 +12,6 @@
 2026-11-06 05:58 AST  OFFLINE   GT stations (peakers) / Palo Seco        1.1 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 05:44)
 2026-11-06 05:58 AST  OFFLINE   Palo Seco GT/CT / CT Block 1             1.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 05:44)
 2026-11-06 05:58 AST  OFFLINE   Palo Seco GT/CT / GT2                    1.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 05:44)
+2026-11-06 06:28 AST  ONLINE    GT stations (peakers) / Palo Seco        0.1 MW ->    10.1 MW  (Genera PR, ULSD (diesel); previous check 06:14)
+2026-11-06 06:28 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 06:14)
+2026-11-06 06:28 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    10.0 MW  (Genera PR, ULSD (diesel); previous check 06:14)
