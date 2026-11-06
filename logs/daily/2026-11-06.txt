@@ -1,38 +1,38 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, November 6, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-06 04:15 AST)
-Coverage ........ 4.3 h of feed checks (18 checks), 51 five-minute readings
+Status .......... In progress (updated 2026-11-06 04:30 AST)
+Coverage ........ 4.5 h of feed checks (19 checks), 54 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,384 MW at 00:10
   Minimum ....... 2,124 MW at 03:59
-  Average ....... 2,227 MW
+  Average ....... 2,222 MW
   PREPA peak .... 2,408 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,393.8 MW at 00:04
-  Minimum ....... 2,126.3 MW at 03:59
-  Average ....... 2,226 MW
-  Energy ........ 9,462 MWh
+  Maximum ....... 2,396.8 MW at 00:03
+  Minimum ....... 2,124.4 MW at 03:53
+  Average ....... 2,223 MW
+  Energy ........ 10,002 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.982 Hz
+  Average ....... 59.993 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    5,726 MWh   58.8 %
-  Bunker C .......    2,277 MWh   23.4 %
-  Diesel (ULSD) ..      845 MWh   8.7 %
-  Coal ...........      863 MWh   8.9 %
-  Hydro ..........       22 MWh   0.2 %
+  LNG ............    6,034 MWh   59.0 %
+  Bunker C .......    2,393 MWh   23.4 %
+  Diesel (ULSD) ..      866 MWh   8.5 %
+  Coal ...........      909 MWh   8.9 %
+  Hydro ..........       23 MWh   0.2 %
   Landfill gas ...        7 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $1,728,401 over 4.3 h  (full-day estimate $9,613,356)
-  Average cost ............ $0.1774 per kWh
+  Total cost of the day ... $1,809,823 over 4.5 h  (full-day estimate $9,556,821)
+  Average cost ............ $0.1769 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 7   Came back: 0
