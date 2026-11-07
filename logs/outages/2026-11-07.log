@@ -15,3 +15,4 @@
 2026-11-07 07:44 AST  ONLINE    Solar / Coto Laurel                      0.4 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-11-07 07:58 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:44)
 2026-11-07 08:14 AST  OFFLINE   Wind / Punta Lima                        1.8 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 07:58)
+2026-11-07 08:44 AST  OFFLINE   Mayagüez / Gas 2                         1.8 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:28)
