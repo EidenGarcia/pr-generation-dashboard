@@ -47,3 +47,7 @@
 2026-11-07 17:28 AST  OFFLINE   Solar / Ilumina                          1.8 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 17:14)
 2026-11-07 17:28 AST  OFFLINE   Solar / Horizon                          1.1 MW ->     0.4 MW  (Independent (PPOA), Solar; previous check 17:14)
 2026-11-07 17:28 AST  OFFLINE   Solar / Oriana                           1.2 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 17:14)
+2026-11-07 17:42 AST  ONLINE    GT stations (peakers) / Palo Seco        0.0 MW ->    18.1 MW  (Genera PR, ULSD (diesel); previous check 17:28)
+2026-11-07 17:42 AST  ONLINE    GT stations (peakers) / Daguao           0.0 MW ->     2.1 MW  (Genera PR, ULSD (diesel); previous check 17:28)
+2026-11-07 17:42 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 17:28)
+2026-11-07 17:42 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 17:28)
