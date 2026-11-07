@@ -1,31 +1,31 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, November 6, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-06 22:15 AST)
-Coverage ........ 22.3 h of feed checks (91 checks), 267 five-minute readings
+Status .......... In progress (updated 2026-11-06 22:30 AST)
+Coverage ........ 22.5 h of feed checks (92 checks), 270 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,493 MW at 19:28
   Minimum ....... 2,124 MW at 03:59
-  Average ....... 2,285 MW
+  Average ....... 2,286 MW
   PREPA peak .... 2,498 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,493.9 MW at 19:27
-  Minimum ....... 2,124.4 MW at 03:52
-  Average ....... 2,284 MW
-  Energy ........ 50,817 MWh
+  Maximum ....... 2,491.8 MW at 19:18
+  Minimum ....... 2,125.6 MW at 04:03
+  Average ....... 2,285 MW
+  Energy ........ 51,404 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.995 Hz
+  Average ....... 59.991 Hz
   In Normal band  99.3 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   27,862 MWh   54.1 %
-  Bunker C .......   11,423 MWh   22.2 %
-  Diesel (ULSD) ..    4,606 MWh   8.9 %
-  Coal ...........    7,202 MWh   14.0 %
+  LNG ............   28,175 MWh   54.0 %
+  Bunker C .......   11,562 MWh   22.2 %
+  Diesel (ULSD) ..    4,695 MWh   9.0 %
+  Coal ...........    7,313 MWh   14.0 %
   Solar ..........      268 MWh   0.5 %
   Wind ...........       27 MWh   0.1 %
   Hydro ..........       95 MWh   0.2 %
@@ -33,11 +33,11 @@ FUEL USE (share of energy, time-weighted from unit outputs)
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $8,575,256 over 22.3 h  (full-day estimate $9,238,988)
-  Average cost ............ $0.1665 per kWh
+  Total cost of the day ... $8,692,798 over 22.5 h  (full-day estimate $9,254,266)
+  Average cost ............ $0.1666 per kWh
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 40   Came back: 38
+  Went offline: 41   Came back: 38
   00:10  OFFLINE  Cambalache / Gas 3  15.6 -> 0.3 MW
   00:54  OFFLINE  GT stations (peakers) / Jobos  18.1 -> 0.1 MW
   01:26  OFFLINE  Palo Seco GT/CT / GT1  18.0 -> 0.0 MW
@@ -116,5 +116,6 @@ OUTAGES (units that stopped or restarted)
   21:44  OFFLINE  Dos Bocas (hydro) / Hidro 2  4.9 -> 0.0 MW
   21:44  OFFLINE  Dos Bocas (hydro) / Hidro 3  5.1 -> 0.0 MW
   22:12  ONLINE   Palo Seco GT/CT / GT2  0.0 -> 18.0 MW
+  22:28  OFFLINE  Wind / Punta Lima  1.2 -> 0.6 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.

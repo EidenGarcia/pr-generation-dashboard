@@ -78,3 +78,4 @@
 2026-11-06 21:44 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              4.9 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
 2026-11-06 21:44 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
 2026-11-06 22:12 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 21:59)
+2026-11-06 22:28 AST  OFFLINE   Wind / Punta Lima                        1.2 MW ->     0.6 MW  (Independent (PPOA), Wind; previous check 22:12)
