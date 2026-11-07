@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, November 7, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-07 00:45 AST)
-Coverage ........ 0.7 h of feed checks (3 checks), 9 five-minute readings
+Status .......... In progress (updated 2026-11-07 00:46 AST)
+Coverage ........ 0.8 h of feed checks (4 checks), 9 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,201 MW at 00:13
@@ -10,29 +10,29 @@ DEMAND (PREPA total generation at each check)
   PREPA peak .... 2,228 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,213.9 MW at 00:02
-  Minimum ....... 2,151.2 MW at 00:42
-  Average ....... 2,183 MW
-  Energy ........ 1,637 MWh
+  Maximum ....... 2,216.7 MW at 00:04
+  Minimum ....... 2,152.2 MW at 00:44
+  Average ....... 2,181 MW
+  Energy ........ 1,636 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.00 Hz
-  Minimum ....... 59.80 Hz
-  Average ....... 59.933 Hz
+  Maximum ....... 60.10 Hz
+  Minimum ....... 59.90 Hz
+  Average ....... 59.989 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............      818 MWh   49.3 %
-  Bunker C .......      361 MWh   21.8 %
-  Diesel (ULSD) ..      172 MWh   10.4 %
-  Coal ...........      305 MWh   18.4 %
+  LNG ............      847 MWh   49.5 %
+  Bunker C .......      372 MWh   21.7 %
+  Diesel (ULSD) ..      174 MWh   10.2 %
+  Coal ...........      315 MWh   18.4 %
   Hydro ..........        2 MWh   0.1 %
   Landfill gas ...        1 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $282,847 over 0.7 h  (full-day estimate $9,211,449)
-  Average cost ............ $0.1704 per kWh
+  Total cost of the day ... $290,945 over 0.8 h  (full-day estimate $9,181,030)
+  Average cost ............ $0.1699 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 1   Came back: 0
