@@ -74,3 +74,6 @@
 2026-11-06 19:28 AST  ONLINE    Dos Bocas (hydro) / Hidro 1              0.0 MW ->     5.2 MW  (PREPA (hydro), Hydro; previous check 19:14)
 2026-11-06 21:14 AST  ONLINE    Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
 2026-11-06 21:14 AST  OFFLINE   Yauco (hydro) / Hidro 3                  2.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
+2026-11-06 21:44 AST  OFFLINE   Dos Bocas (hydro) / Hidro 1              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-06 21:44 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              4.9 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-06 21:44 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
