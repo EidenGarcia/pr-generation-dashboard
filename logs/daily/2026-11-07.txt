@@ -1,40 +1,40 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, November 7, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-07 11:15 AST)
-Coverage ........ 11.3 h of feed checks (47 checks), 135 five-minute readings
+Status .......... In progress (updated 2026-11-07 11:30 AST)
+Coverage ........ 11.5 h of feed checks (48 checks), 138 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,201 MW at 00:13
   Minimum ....... 1,672 MW at 10:28
-  Average ....... 1,947 MW
+  Average ....... 1,942 MW
   PREPA peak .... 2,228 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,217.9 MW at 00:03
   Minimum ....... 1,672.0 MW at 10:48
-  Average ....... 1,949 MW
-  Energy ........ 21,922 MWh
+  Average ....... 1,943 MW
+  Energy ........ 22,347 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 60.000 Hz
+  Average ....... 59.997 Hz
   In Normal band  100.0 %   Excursions: 2
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   12,035 MWh   53.8 %
-  Bunker C .......    4,679 MWh   20.9 %
+  LNG ............   12,285 MWh   53.9 %
+  Bunker C .......    4,757 MWh   20.9 %
   Diesel (ULSD) ..      973 MWh   4.3 %
-  Coal ...........    4,397 MWh   19.6 %
-  Solar ..........      243 MWh   1.1 %
-  Wind ...........       27 MWh   0.1 %
+  Coal ...........    4,477 MWh   19.6 %
+  Solar ..........      256 MWh   1.1 %
+  Wind ...........       29 MWh   0.1 %
   Hydro ..........       15 MWh   0.1 %
   Landfill gas ...       18 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,561,324 over 11.3 h  (full-day estimate $7,596,554)
-  Average cost ............ $0.1591 per kWh
+  Total cost of the day ... $3,626,059 over 11.5 h  (full-day estimate $7,566,878)
+  Average cost ............ $0.1590 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 13   Came back: 11
