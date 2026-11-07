@@ -1,40 +1,40 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, November 7, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-07 17:00 AST)
-Coverage ........ 17.0 h of feed checks (72 checks), 204 five-minute readings
+Status .......... In progress (updated 2026-11-07 17:15 AST)
+Coverage ........ 17.3 h of feed checks (73 checks), 207 five-minute readings
 
 DEMAND (PREPA total generation at each check)
-  Maximum ....... 2,256 MW at 16:58
+  Maximum ....... 2,300 MW at 17:14
   Minimum ....... 1,672 MW at 10:28
-  Average ....... 1,977 MW
-  PREPA peak .... 2,256 MW (as reported by PREPA)
+  Average ....... 1,982 MW
+  PREPA peak .... 2,296 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,256.0 MW at 16:58
-  Minimum ....... 1,673.3 MW at 10:48
-  Average ....... 1,976 MW
-  Energy ........ 33,598 MWh
+  Maximum ....... 2,301.6 MW at 17:09
+  Minimum ....... 1,668.7 MW at 10:34
+  Average ....... 1,981 MW
+  Energy ........ 34,172 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
-  Minimum ....... 59.80 Hz
-  Average ....... 59.995 Hz
-  In Normal band  100.0 %   Excursions: 2
+  Minimum ....... 59.70 Hz
+  Average ....... 60.002 Hz
+  In Normal band  99.5 %   Excursions: 3
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   18,685 MWh   54.9 %
-  Bunker C .......    7,018 MWh   20.6 %
-  Diesel (ULSD) ..      981 MWh   2.9 %
-  Coal ...........    6,648 MWh   19.5 %
-  Solar ..........      523 MWh   1.5 %
-  Wind ...........      125 MWh   0.4 %
-  Hydro ..........       27 MWh   0.1 %
-  Landfill gas ...       27 MWh   0.1 %
+  LNG ............   19,050 MWh   55.0 %
+  Bunker C .......    7,152 MWh   20.6 %
+  Diesel (ULSD) ..      981 MWh   2.8 %
+  Coal ...........    6,758 MWh   19.5 %
+  Solar ..........      525 MWh   1.5 %
+  Wind ...........      127 MWh   0.4 %
+  Hydro ..........       30 MWh   0.1 %
+  Landfill gas ...       28 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $5,283,030 over 17.0 h  (full-day estimate $7,456,689)
-  Average cost ............ $0.1552 per kWh
+  Total cost of the day ... $5,373,309 over 17.3 h  (full-day estimate $7,466,049)
+  Average cost ............ $0.1551 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 23   Came back: 20
