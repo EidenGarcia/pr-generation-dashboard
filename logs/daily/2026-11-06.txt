@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, November 6, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-06 19:55 AST)
-Coverage ........ 20.0 h of feed checks (81 checks), 239 five-minute readings
+Status .......... In progress (updated 2026-11-06 20:00 AST)
+Coverage ........ 20.0 h of feed checks (82 checks), 240 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,493 MW at 19:28
@@ -10,30 +10,30 @@ DEMAND (PREPA total generation at each check)
   PREPA peak .... 2,498 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,490.4 MW at 18:44
-  Minimum ....... 2,127.2 MW at 03:54
-  Average ....... 2,267 MW
-  Energy ........ 45,144 MWh
+  Maximum ....... 2,491.9 MW at 19:18
+  Minimum ....... 2,125.6 MW at 04:03
+  Average ....... 2,268 MW
+  Energy ........ 45,354 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.992 Hz
+  Average ....... 59.990 Hz
   In Normal band  99.2 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   25,077 MWh   54.7 %
-  Bunker C .......   10,212 MWh   22.3 %
-  Diesel (ULSD) ..    3,958 MWh   8.6 %
-  Coal ...........    6,250 MWh   13.6 %
+  LNG ............   25,153 MWh   54.6 %
+  Bunker C .......   10,246 MWh   22.3 %
+  Diesel (ULSD) ..    3,975 MWh   8.6 %
+  Coal ...........    6,276 MWh   13.6 %
   Solar ..........      268 MWh   0.6 %
-  Wind ...........       23 MWh   0.1 %
-  Hydro ..........       64 MWh   0.1 %
+  Wind ...........       23 MWh   0.0 %
+  Hydro ..........       66 MWh   0.1 %
   Landfill gas ...       32 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $7,620,997 over 20.0 h  (full-day estimate $9,155,242)
+  Total cost of the day ... $7,647,410 over 20.0 h  (full-day estimate $9,158,068)
   Average cost ............ $0.1661 per kWh
 
 OUTAGES (units that stopped or restarted)
