@@ -33,3 +33,6 @@
 2026-11-07 15:42 AST  ONLINE    GT stations (peakers) / Palo Seco        0.1 MW ->    23.7 MW  (Genera PR, ULSD (diesel); previous check 15:28)
 2026-11-07 15:42 AST  ONLINE    Solar / Horizon                          0.9 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 15:28)
 2026-11-07 15:42 AST  OFFLINE   Solar / Fonroche                         1.6 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 15:28)
+2026-11-07 15:58 AST  ONLINE    Dos Bocas (hydro) / Hidro 2              0.0 MW ->     5.5 MW  (PREPA (hydro), Hydro; previous check 15:42)
+2026-11-07 15:58 AST  OFFLINE   GT stations (peakers) / Palo Seco       23.7 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 15:42)
+2026-11-07 15:58 AST  ONLINE    GT stations (peakers) / FEMA GT SJ       0.0 MW ->    21.1 MW  (Genera PR, LNG; previous check 15:42)
