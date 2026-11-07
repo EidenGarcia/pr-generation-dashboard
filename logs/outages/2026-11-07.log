@@ -4,3 +4,4 @@
 2026-11-07 01:28 AST  ONLINE    Wind / Punta Lima                        0.8 MW ->     1.7 MW  (Independent (PPOA), Wind; previous check 01:12)
 2026-11-07 01:58 AST  OFFLINE   Palo Seco GT/CT / GT1                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 01:44)
 2026-11-07 03:28 AST  OFFLINE   Mayagüez / Gas 4                         1.8 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 03:14)
+2026-11-07 04:28 AST  OFFLINE   Aguirre CC 2 / Gas 2                    31.4 MW ->     0.5 MW  (Genera PR, ULSD (diesel); previous check 04:12)
