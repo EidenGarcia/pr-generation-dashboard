@@ -39,3 +39,5 @@
 2026-11-07 16:12 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 15:58)
 2026-11-07 16:12 AST  ONLINE    GT stations (peakers) / Palo Seco        0.1 MW ->     3.4 MW  (Genera PR, ULSD (diesel); previous check 15:58)
 2026-11-07 16:12 AST  OFFLINE   Solar / Coto Laurel                      1.5 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 15:58)
+2026-11-07 16:28 AST  OFFLINE   GT stations (peakers) / Palo Seco        3.4 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 16:12)
+2026-11-07 16:28 AST  ONLINE    Solar / Coto Laurel                      0.7 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 16:12)
