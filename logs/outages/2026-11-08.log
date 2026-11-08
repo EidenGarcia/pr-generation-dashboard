@@ -47,3 +47,5 @@
 2026-11-08 15:58 AST  ONLINE    GT stations (peakers) / Palo Seco        0.0 MW ->    18.1 MW  (Genera PR, ULSD (diesel); previous check 15:44)
 2026-11-08 15:58 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 15:44)
 2026-11-08 15:58 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 15:44)
+2026-11-08 16:14 AST  OFFLINE   Wind / Punta Lima                        1.5 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 15:58)
+2026-11-08 16:14 AST  OFFLINE   Solar / Coto Laurel                      1.4 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 15:58)
