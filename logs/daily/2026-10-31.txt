@@ -1,6 +1,6 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, October 31, 2026 (Puerto Rico time, UTC-4)
-Status .......... Complete (updated 2026-11-02 00:00 AST)
+Status .......... Complete (updated 2026-11-08 17:30 AST)
 Coverage ........ 23.3 h of feed checks (97 checks), 288 five-minute readings
 
 DEMAND (PREPA total generation at each check)
@@ -35,6 +35,11 @@ FUEL USE (share of energy, time-weighted from unit outputs)
 COST (dispatch cost: MW x each unit's reported cost)
   Total cost of the day ... $8,448,013 over 23.3 h  (full-day estimate $8,706,071)
   Average cost ............ $0.1642 per kWh
+
+RAMPS (change in generation over 60 minutes, 5-minute readings)
+  Max ramp up ... +212 MW/h at 13:42
+  Max ramp down . -90 MW/h at 01:28
+  Demand swing .. 768 MW (max minus min)
 
 OUTAGES (units that stopped or restarted)
   Went offline: 38   Came back: 40
