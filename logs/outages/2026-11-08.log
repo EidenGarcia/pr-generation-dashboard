@@ -21,3 +21,6 @@
 2026-11-08 07:42 AST  OFFLINE   GT stations (peakers) / FEMA GT SJ       5.3 MW ->     0.0 MW  (Genera PR, LNG; previous check 07:28)
 2026-11-08 07:58 AST  ONLINE    Solar / San Fermin                       1.0 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:42)
 2026-11-08 09:58 AST  OFFLINE   San Juan CC / CTG 5                      5.5 MW ->     0.0 MW  (Genera PR, LNG; previous check 09:44)
+2026-11-08 10:12 AST  OFFLINE   Mayagüez / Gas 2                         1.8 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
+2026-11-08 10:12 AST  OFFLINE   Mayagüez / Gas 4                         1.8 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
+2026-11-08 10:12 AST  ONLINE    Wind / Pattern                           0.6 MW ->     1.9 MW  (Independent (PPOA), Wind; previous check 09:58)
