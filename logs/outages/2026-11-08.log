@@ -50,3 +50,5 @@
 2026-11-08 16:14 AST  OFFLINE   Wind / Punta Lima                        1.5 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 15:58)
 2026-11-08 16:14 AST  OFFLINE   Solar / Coto Laurel                      1.4 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 15:58)
 2026-11-08 16:44 AST  ONLINE    Solar / Coto Laurel                      0.4 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 16:28)
+2026-11-08 16:58 AST  ONLINE    Dos Bocas (hydro) / Hidro 2              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:44)
+2026-11-08 16:58 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.2 MW  (PREPA (hydro), Hydro; previous check 16:44)
