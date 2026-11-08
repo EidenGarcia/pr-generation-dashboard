@@ -57,3 +57,5 @@
 2026-11-07 18:28 AST  ONLINE    Mayagüez / Gas 2                         0.0 MW ->     2.4 MW  (Genera PR, ULSD (diesel); previous check 18:12)
 2026-11-07 18:28 AST  ONLINE    Mayagüez / Gas 4                         0.0 MW ->    21.6 MW  (Genera PR, ULSD (diesel); previous check 18:12)
 2026-11-07 20:14 AST  OFFLINE   GT stations (peakers) / Jobos           18.8 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 19:58)
+2026-11-07 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
+2026-11-07 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
