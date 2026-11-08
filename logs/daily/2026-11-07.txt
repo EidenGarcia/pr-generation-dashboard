@@ -1,31 +1,31 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, November 7, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-07 22:15 AST)
-Coverage ........ 22.2 h of feed checks (94 checks), 267 five-minute readings
+Status .......... In progress (updated 2026-11-07 22:30 AST)
+Coverage ........ 22.5 h of feed checks (95 checks), 270 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,448 MW at 18:44
   Minimum ....... 1,672 MW at 10:28
-  Average ....... 2,080 MW
+  Average ....... 2,083 MW
   PREPA peak .... 2,456 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,449.7 MW at 18:47
-  Minimum ....... 1,669.8 MW at 10:47
-  Average ....... 2,079 MW
-  Energy ........ 46,248 MWh
+  Maximum ....... 2,448.3 MW at 18:38
+  Minimum ....... 1,672.2 MW at 10:48
+  Average ....... 2,082 MW
+  Energy ........ 46,843 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
-  Minimum ....... 59.70 Hz
-  Average ....... 59.992 Hz
-  In Normal band  99.6 %   Excursions: 3
+  Minimum ....... 59.80 Hz
+  Average ....... 59.999 Hz
+  In Normal band  100.0 %   Excursions: 3
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   25,766 MWh   55.1 %
-  Bunker C .......    9,712 MWh   20.8 %
-  Diesel (ULSD) ..    1,754 MWh   3.7 %
-  Coal ...........    8,801 MWh   18.8 %
+  LNG ............   26,112 MWh   55.0 %
+  Bunker C .......    9,849 MWh   20.8 %
+  Diesel (ULSD) ..    1,806 MWh   3.8 %
+  Coal ...........    8,911 MWh   18.8 %
   Solar ..........      526 MWh   1.1 %
   Wind ...........      131 MWh   0.3 %
   Hydro ..........       69 MWh   0.1 %
@@ -33,7 +33,7 @@ FUEL USE (share of energy, time-weighted from unit outputs)
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $7,248,822 over 22.2 h  (full-day estimate $7,824,229)
+  Total cost of the day ... $7,349,141 over 22.5 h  (full-day estimate $7,839,955)
   Average cost ............ $0.1549 per kWh
 
 OUTAGES (units that stopped or restarted)
