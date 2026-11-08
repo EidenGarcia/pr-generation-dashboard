@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, November 7, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-07 23:30 AST)
-Coverage ........ 23.5 h of feed checks (99 checks), 282 five-minute readings
+Status .......... In progress (updated 2026-11-07 23:45 AST)
+Coverage ........ 23.8 h of feed checks (100 checks), 285 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,448 MW at 18:44
   Minimum ....... 1,672 MW at 10:28
-  Average ....... 2,093 MW
+  Average ....... 2,095 MW
   PREPA peak .... 2,456 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,448.5 MW at 18:38
-  Minimum ....... 1,672.0 MW at 10:48
-  Average ....... 2,092 MW
-  Energy ........ 49,162 MWh
+  Maximum ....... 2,449.3 MW at 18:44
+  Minimum ....... 1,670.4 MW at 10:39
+  Average ....... 2,094 MW
+  Energy ........ 49,725 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
-  Minimum ....... 59.80 Hz
+  Minimum ....... 59.70 Hz
   Average ....... 59.999 Hz
-  In Normal band  100.0 %   Excursions: 3
+  In Normal band  99.6 %   Excursions: 3
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   27,387 MWh   54.9 %
-  Bunker C .......   10,367 MWh   20.8 %
-  Diesel (ULSD) ..    2,003 MWh   4.0 %
-  Coal ...........    9,333 MWh   18.7 %
-  Solar ..........      526 MWh   1.1 %
+  LNG ............   27,713 MWh   54.9 %
+  Bunker C .......   10,506 MWh   20.8 %
+  Diesel (ULSD) ..    2,056 MWh   4.1 %
+  Coal ...........    9,446 MWh   18.7 %
+  Solar ..........      526 MWh   1.0 %
   Wind ...........      131 MWh   0.3 %
   Hydro ..........       69 MWh   0.1 %
   Landfill gas ...       38 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $7,724,104 over 23.5 h
+  Total cost of the day ... $7,822,455 over 23.8 h
   Average cost ............ $0.1549 per kWh
 
 OUTAGES (units that stopped or restarted)
