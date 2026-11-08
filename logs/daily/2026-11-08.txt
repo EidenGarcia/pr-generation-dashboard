@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, November 8, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-08 02:45 AST)
-Coverage ........ 2.8 h of feed checks (12 checks), 33 five-minute readings
+Status .......... In progress (updated 2026-11-08 03:00 AST)
+Coverage ........ 3.0 h of feed checks (13 checks), 36 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,220 MW at 00:12
-  Minimum ....... 2,039 MW at 02:44
-  Average ....... 2,121 MW
+  Minimum ....... 2,021 MW at 02:58
+  Average ....... 2,113 MW
   PREPA peak .... 2,237 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,231.8 MW at 00:04
-  Minimum ....... 2,038.9 MW at 02:44
-  Average ....... 2,123 MW
-  Energy ........ 5,837 MWh
+  Maximum ....... 2,230.6 MW at 00:03
+  Minimum ....... 2,021.3 MW at 02:58
+  Average ....... 2,115 MW
+  Energy ........ 6,346 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.982 Hz
+  Average ....... 59.983 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    3,158 MWh   51.0 %
-  Bunker C .......    1,378 MWh   22.2 %
-  Diesel (ULSD) ..      477 MWh   7.7 %
-  Coal ...........    1,180 MWh   19.0 %
-  Landfill gas ...        4 MWh   0.1 %
+  LNG ............    3,437 MWh   51.3 %
+  Bunker C .......    1,487 MWh   22.2 %
+  Diesel (ULSD) ..      491 MWh   7.3 %
+  Coal ...........    1,281 MWh   19.1 %
+  Landfill gas ...        5 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $961,516 over 2.8 h  (full-day estimate $8,276,050)
-  Average cost ............ $0.1552 per kWh
+  Total cost of the day ... $1,034,011 over 3.0 h  (full-day estimate $8,196,193)
+  Average cost ............ $0.1543 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 1   Came back: 0
