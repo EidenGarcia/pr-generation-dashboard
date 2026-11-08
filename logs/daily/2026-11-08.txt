@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, November 8, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-08 02:30 AST)
-Coverage ........ 2.5 h of feed checks (11 checks), 30 five-minute readings
+Status .......... In progress (updated 2026-11-08 02:45 AST)
+Coverage ........ 2.8 h of feed checks (12 checks), 33 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,220 MW at 00:12
-  Minimum ....... 2,044 MW at 02:28
-  Average ....... 2,129 MW
+  Minimum ....... 2,039 MW at 02:44
+  Average ....... 2,121 MW
   PREPA peak .... 2,237 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,230.6 MW at 00:03
-  Minimum ....... 2,044.1 MW at 02:28
-  Average ....... 2,132 MW
-  Energy ........ 5,329 MWh
+  Maximum ....... 2,231.8 MW at 00:04
+  Minimum ....... 2,038.9 MW at 02:44
+  Average ....... 2,123 MW
+  Energy ........ 5,837 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
-  Minimum ....... 59.90 Hz
-  Average ....... 59.980 Hz
+  Minimum ....... 59.80 Hz
+  Average ....... 59.982 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    2,857 MWh   50.6 %
-  Bunker C .......    1,253 MWh   22.2 %
-  Diesel (ULSD) ..      461 MWh   8.2 %
-  Coal ...........    1,069 MWh   18.9 %
+  LNG ............    3,158 MWh   51.0 %
+  Bunker C .......    1,378 MWh   22.2 %
+  Diesel (ULSD) ..      477 MWh   7.7 %
+  Coal ...........    1,180 MWh   19.0 %
   Landfill gas ...        4 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $881,745 over 2.5 h  (full-day estimate $8,371,735)
-  Average cost ............ $0.1562 per kWh
+  Total cost of the day ... $961,516 over 2.8 h  (full-day estimate $8,276,050)
+  Average cost ............ $0.1552 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 1   Came back: 0
