@@ -105,6 +105,11 @@ function dailyText(s, events) {
   L.push('  Total cost of the day ... ' + usd(s.total_cost_usd) + ' over ' + n(s.coverage_h, ' h', 1) + (s.coverage_h < 23.5 ? '  (full-day estimate ' + usd(s.cost_full_day_estimate_usd) + ')' : ''));
   L.push('  Average cost ............ ' + (s.avg_cost_usd_per_kwh == null ? 'n/a' : '$' + s.avg_cost_usd_per_kwh.toFixed(4) + ' per kWh'));
   L.push('');
+  L.push('RAMPS (change in generation over 60 minutes, 5-minute readings)');
+  L.push('  Max ramp up ... ' + (s.ramp_up_max_mw_h == null ? 'n/a' : '+' + n(s.ramp_up_max_mw_h, ' MW/h') + ' at ' + s.ramp_up_at));
+  L.push('  Max ramp down . ' + (s.ramp_down_max_mw_h == null ? 'n/a' : n(s.ramp_down_max_mw_h, ' MW/h') + ' at ' + s.ramp_down_at));
+  L.push('  Demand swing .. ' + (s.demand_max_mw != null && s.demand_min_mw != null ? n(s.demand_max_mw - s.demand_min_mw, ' MW') + ' (max minus min)' : 'n/a'));
+  L.push('');
   L.push('OUTAGES (units that stopped or restarted)');
   L.push('  Went offline: ' + s.units_went_offline + '   Came back: ' + s.units_came_back);
   for (const e of events) L.push('  ' + e.detected_at.slice(11, 16) + '  ' + (e.event === 'Went offline' ? 'OFFLINE' : 'ONLINE ') + '  ' + e.plant + ' / ' + e.unit + '  ' + Number(e.mw_before).toFixed(1) + ' -> ' + Number(e.mw_after).toFixed(1) + ' MW');
@@ -284,7 +289,7 @@ if (graph) for (const r of graph.rows) { const d = r.time.slice(0, 10); const D 
 // one-time clean-up: days saved before traces were stored by slot, and summaries from before the energy fix
 for (const f of fs.readdirSync(DAYS).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x))) {
   const d = f.slice(0, 10), old = (readJSON('daily_summary.json', []).find((x) => x.day === d) || {});
-  if (old.calc_version !== 2) { slotMapOf(getDay(d)); touched.add(d); }
+  if (old.calc_version !== 3) { slotMapOf(getDay(d)); touched.add(d); }
 }
 for (const [d, D] of dayCache) { if (D._map) { D.trace = [...D._map.values()].sort((a, b) => (a.time < b.time ? -1 : 1)); delete D._map; } D.checks.sort((a, b) => (a.at < b.at ? -1 : 1)); fs.writeFileSync(dayFile(d), JSON.stringify(D)); }
 // remove day files older than 35 days
@@ -338,6 +343,60 @@ fs.writeFileSync(path.join(LOGS, 'daily_summary.csv'), CSV_COLS.join(',') + '\n'
   const rows = [...slots.entries()].sort((a, b) => a[0] - b[0]).filter(([t]) => t >= NOW.getTime() - 8 * DAY)
     .map(([t, o]) => ({ time: isoAST(new Date(t)), generation_mw: o.gn ? Math.round((o.g / o.gn) * 10) / 10 : null, frequency_hz: o.fn ? Math.round((o.f / o.fn) * 100) / 100 : null }));
   writeJSON('trace_recent.json', rows);
+}
+
+// 15-minute generation trace for 35 days, from the day files (continuous 30-day view).
+{
+  const slots = new Map();
+  for (const f of fs.readdirSync(DAYS).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x)).sort().slice(-36)) {
+    const D = dayCache.get(f.slice(0, 10)) || JSON.parse(fs.readFileSync(path.join(DAYS, f), 'utf8'));
+    for (const r of D.trace || []) { if (!Number.isFinite(r.generation_mw)) continue; if (START && r.time.slice(0, 10) < START) continue;
+      const k = Math.floor(new Date(r.time).getTime() / 900000) * 900000; const o = slots.get(k) || { s: 0, n: 0, f: 0, fn: 0 };
+      o.s += r.generation_mw; o.n++; if (Number.isFinite(r.frequency_hz)) { o.f += r.frequency_hz; o.fn++; } slots.set(k, o); }
+  }
+  writeJSON('trace_long.json', [...slots.entries()].sort((a, b) => a[0] - b[0]).filter(([t]) => t >= NOW.getTime() - 35 * DAY)
+    .map(([t, o]) => ({ time: isoAST(new Date(t)), generation_mw: Math.round((o.s / o.n) * 10) / 10, frequency_hz: o.fn ? Math.round((o.f / o.fn) * 100) / 100 : null })));
+}
+// Per-plant ramp records from consecutive readings (5 to 25 minutes apart), in MW per hour.
+{
+  const rates = {}; // plant -> [{t, r}]
+  for (const f of fs.readdirSync(DAYS).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x)).sort().slice(-36)) {
+    const D = dayCache.get(f.slice(0, 10)) || JSON.parse(fs.readFileSync(path.join(DAYS, f), 'utf8'));
+    const cs = (D.checks || []).filter((c) => c.plant_mw).sort((a, b) => (a.at < b.at ? -1 : 1));
+    for (let i = 1; i < cs.length; i++) {
+      const t0 = new Date(cs[i - 1].at).getTime(), t1 = new Date(cs[i].at).getTime(), dt = (t1 - t0) / 60000;
+      if (dt < 5 || dt > 25) continue;
+      // skip glitches: total generation cannot jump more than 10% between two readings
+      const tot0 = Object.values(cs[i - 1].plant_mw).reduce((s, v) => s + (Number(v) || 0), 0), tot1 = Object.values(cs[i].plant_mw).reduce((s, v) => s + (Number(v) || 0), 0);
+      if (!tot0 || !tot1 || Math.abs(tot1 - tot0) / tot0 > 0.1) continue;
+      for (const p of new Set([...Object.keys(cs[i - 1].plant_mw), ...Object.keys(cs[i].plant_mw)])) {
+        const a0 = Number(cs[i - 1].plant_mw[p]) || 0, b0 = Number(cs[i].plant_mw[p]) || 0;
+        if (a0 < 1 || b0 < 1) continue; // ramping while online (starts and trips are logged as unit events instead)
+        (rates[p] = rates[p] || []).push({ t: t1, r: ((b0 - a0) / dt) * 60 });
+      }
+    }
+  }
+  const prev = new Map(readJSON('plant_ramps.json', []).map((r) => [r.plant, r]));
+  const out = [];
+  const med = (a) => { const s = a.slice().sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : null; };
+  for (const [p, list] of Object.entries(rates)) {
+    const win = (d) => list.filter((x) => x.t >= NOW.getTime() - d * DAY);
+    const best = (l, f) => l.reduce((a, x) => (!a || f(x.r, a.r) ? x : a), null);
+    const at = (x) => (x ? isoAST(new Date(x.t)).slice(0, 16).replace('T', ' ') : null);
+    const u7 = best(win(7), (a, b) => a > b), u30 = best(win(31), (a, b) => a > b), d7 = best(win(7), (a, b) => a < b), d30 = best(win(31), (a, b) => a < b);
+    const uAll = best(list, (a, b) => a > b), dAll = best(list, (a, b) => a < b), pr = prev.get(p);
+    const upAll = pr && pr.up_all != null && (!uAll || pr.up_all > uAll.r) ? { r: pr.up_all, at: pr.up_all_at } : uAll ? { r: uAll.r, at: at(uAll) } : null;
+    const dnAll = pr && pr.down_all != null && (!dAll || pr.down_all < dAll.r) ? { r: pr.down_all, at: pr.down_all_at } : dAll ? { r: dAll.r, at: at(dAll) } : null;
+    const days = new Map(); for (const x of win(7)) { const k = isoAST(new Date(x.t)).slice(0, 10); days.set(k, Math.max(days.get(k) ?? -Infinity, x.r)); }
+    const pos = [...days.values()].filter((v) => v > 0);
+    const R = (v) => (v == null ? null : Math.round(v));
+    out.push({ plant: p, typical_up: R(med(win(31).filter((x) => x.r > 5).map((x) => x.r))), typical_down: R(med(win(31).filter((x) => x.r < -5).map((x) => x.r))),
+      up_7d: u7 && u7.r > 0 ? R(u7.r) : null, up_7d_at: u7 && u7.r > 0 ? at(u7) : null, up_30d: u30 && u30.r > 0 ? R(u30.r) : null, up_30d_at: u30 && u30.r > 0 ? at(u30) : null,
+      up_all: upAll && upAll.r > 0 ? R(upAll.r) : null, up_all_at: upAll && upAll.r > 0 ? upAll.at : null,
+      down_7d: d7 && d7.r < 0 ? R(d7.r) : null, down_30d: d30 && d30.r < 0 ? R(d30.r) : null, down_all: dnAll && dnAll.r < 0 ? R(dnAll.r) : null, down_all_at: dnAll && dnAll.r < 0 ? dnAll.at : null,
+      avg_daily_max_up_7d: pos.length ? R(pos.reduce((a, b) => a + b, 0) / pos.length) : null });
+  }
+  writeJSON('plant_ramps.json', out.sort((a, b) => (b.up_30d || 0) - (a.up_30d || 0)));
 }
 
 // Hourly cost profile (35 days) from every saved reading in the day files: total and per-fuel cost and output,

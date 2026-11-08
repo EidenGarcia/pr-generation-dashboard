@@ -8,8 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/theme.css?v=20261112">
-<link rel="stylesheet" href="assets/live.css?v=20261112">
+<link rel="stylesheet" href="assets/theme.css?v=20261113">
+<link rel="stylesheet" href="assets/live.css?v=20261113">
 </head>
 <body>
 <div class="wrap">
@@ -34,7 +34,7 @@
   </div>
 
   <nav class="jump" aria-label="Sections">
-    <a href="#overview">Overview</a><a href="#plants">Plants right now</a><a href="#overtime">Over time</a><a href="#outages">Unit events</a><a href="#frequency">Frequency</a><a href="#units">Unit gauges</a><a href="#cost">Cost and dispatch</a><a href="#summary">Daily summary</a><a href="#portal">Portal health</a>
+    <a href="#overview">Overview</a><a href="#plants">Plants right now</a><a href="#overtime">Over time</a><a href="#ramps">Ramps</a><a href="#outages">Unit events</a><a href="#frequency">Frequency</a><a href="#units">Unit gauges</a><a href="#cost">Cost and dispatch</a><a href="#summary">Daily summary</a><a href="#portal">Portal health</a>
   </nav>
 
   <div class="shed" id="shed-banner" role="alert" hidden></div>
@@ -104,12 +104,13 @@
 
   <!-- Generation over time -->
   <h2 class="gx-sec" id="overtime">Generation over time</h2>
-  <p class="gx-secnote">How much each plant or fuel supplied. The total follows PREPA’s 5-minute generation record, so the chart has no gaps; the split between plants and fuels comes from the nearest readings of every unit (ticks under the chart) and is estimated in between. 30 days and All show energy per day (GWh). Drag to zoom.</p>
+  <p class="gx-secnote">How much each plant or fuel supplied. Pick today (from 12 AM), the last full day, any date, or the last 7 or 30 days. The total follows PREPA’s generation record; the split between plants and fuels comes from the nearest readings of every unit and is estimated in between. The right axis shows the ramp: how many MW per hour generation is rising or falling. Drag to zoom.</p>
   <div class="gx-card fs-card" id="ot-card" style="margin-bottom:var(--cds-gap-lg)">
     <div class="card-head">
       <div class="gx-seg" id="ot-view" role="group" aria-label="Group by"><button data-v="plant" aria-pressed="true">By plant</button><button data-v="fuel" aria-pressed="false">By fuel</button></div>
       <div class="chart-tools"><button class="tool" type="button" id="ot-reset" hidden>Reset zoom</button><button class="tool" type="button" data-fs="ot-card" aria-label="Full screen">⤢ Full screen</button></div>
-      <div class="gx-seg" id="ot-range" role="group" aria-label="Period"><button data-v="24h" aria-pressed="true">24 hours</button><button data-v="7d" aria-pressed="false">7 days</button><button data-v="30d" aria-pressed="false">30 days</button><button data-v="all" aria-pressed="false">All</button></div>
+      <div class="gx-seg" id="ot-range" role="group" aria-label="Period"><button data-v="today" aria-pressed="true">Today</button><button data-v="yday" aria-pressed="false">Last full day</button><button data-v="7d" aria-pressed="false">7 days</button><button data-v="30d" aria-pressed="false">30 days</button><button data-v="all" aria-pressed="false">All (daily)</button></div>
+      <label class="date-pick" title="Pick any day">Day <input type="date" id="ot-date" aria-label="Pick a day"></label>
     </div>
     <div id="ot-plant" class="plant-wrap" style="margin-top:var(--cds-gap-sm)">
       <div class="gx-chart" id="plant-chart" style="min-height:360px"></div>
@@ -119,7 +120,36 @@
       <div class="gx-legend fuel-legend" id="fuel-legend"></div>
       <div class="gx-chart" id="fuel-chart" style="min-height:320px"></div>
     </div>
+    <div class="ot-sum" id="ot-sum"></div>
+    <div class="gx-controls ot-opts"><label class="toggle"><input type="checkbox" id="ot-ramp" checked> Ramp rate (right axis)</label><label class="toggle"><input type="checkbox" id="ot-peaks" checked> Daily max and lowest demand</label></div>
     <p class="gx-note" id="fuel-note"></p>
+  </div>
+
+  <!-- Ramp rates -->
+  <h2 class="gx-sec" id="ramps">Ramp rates</h2>
+  <p class="gx-secnote">How fast generation has to rise or fall to follow demand, measured as the change over 60 minutes (MW per hour). Steep ramps, usually in the afternoon and evening, must be met by plants that can change output quickly. The older steam plants ramp slowly, so fast ramps often fall to the diesel turbines, which cost more.</p>
+  <div class="gx-kpis ramp-kpis" id="ramp-kpis"></div>
+  <div class="gx-grid an-grid">
+    <div class="gx-card an-card">
+      <h3>Steepest rise and drop each day</h3>
+      <p class="gx-note an-what">Each day’s largest increase (up) and decrease (down) in generation over any 60 minutes.</p>
+      <div class="gx-legend" id="ramp-legend"></div>
+      <div class="gx-chart" id="ramp-chart" style="min-height:260px"></div>
+    </div>
+    <div class="gx-card an-card">
+      <h3>Daily demand range</h3>
+      <p class="gx-note an-what">Each day’s lowest and highest demand. The taller the bar, the more generation had to be brought on and taken off during the day.</p>
+      <div class="gx-legend" id="range-legend"></div>
+      <div class="gx-chart" id="range-chart" style="min-height:260px"></div>
+    </div>
+  </div>
+  <div class="gx-card" style="margin:var(--cds-gap-md) 0 var(--cds-gap-lg)">
+    <h3>How fast each plant ramps</h3>
+    <p class="gx-note an-what">Measured from consecutive readings (every 15 minutes) while the plant was online, so start-ups and trips are not counted here. Typical is the median rate when the plant was ramping. Fast plants can follow quick changes in demand; slow ones cannot.</p>
+    <div class="gx-tablewrap" style="max-height:none">
+      <table class="gx-table" id="ramp-table"><thead><tr><th>Plant</th><th class="num">Typical ramp up</th><th class="num">Avg daily max up (7 d)</th><th class="num">Max up, 7 d</th><th class="num">Max up, 30 d</th><th class="num">Max up, all time</th><th class="num">Typical ramp down</th><th class="num">Max down, 30 d</th></tr></thead><tbody></tbody></table>
+    </div>
+    <p class="gx-note" id="ramp-note"></p>
   </div>
 
   <!-- Outages -->
@@ -349,14 +379,15 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/core.js?v=20261112"></script>
-<script src="assets/prepa-core.js?v=20261112"></script>
-<script src="assets/calcs.js?v=20261112"></script>
-<script src="assets/history-db.js?v=20261112"></script>
-<script src="assets/live-feed.js?v=20261112"></script>
-<script src="assets/costs.js?v=20261112"></script>
-<script src="assets/live-extra.js?v=20261112"></script>
-<script src="assets/dispatch.js?v=20261112"></script>
-<script src="assets/live.js?v=20261112"></script>
+<script src="assets/core.js?v=20261113"></script>
+<script src="assets/prepa-core.js?v=20261113"></script>
+<script src="assets/calcs.js?v=20261113"></script>
+<script src="assets/history-db.js?v=20261113"></script>
+<script src="assets/live-feed.js?v=20261113"></script>
+<script src="assets/costs.js?v=20261113"></script>
+<script src="assets/live-extra.js?v=20261113"></script>
+<script src="assets/dispatch.js?v=20261113"></script>
+<script src="assets/ramps.js?v=20261113"></script>
+<script src="assets/live.js?v=20261113"></script>
 </body>
 </html>

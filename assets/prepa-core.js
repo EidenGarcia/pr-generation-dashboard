@@ -345,6 +345,16 @@ function buildForecast({ graphRows, history, nextHourMw, availableMw, demandNow,
 
 /* ---------------- Daily summary ---------------- */
 const FUEL_KEYS = [['lng', 'LNG'], ['bunker_c', 'Bunker C'], ['ulsd', 'Diesel (ULSD)'], ['coal', 'Coal'], ['solar', 'Solar'], ['wind', 'Wind'], ['hydro', 'Hydro'], ['landfill_gas', 'Landfill gas']];
+// System ramp: change in generation over the previous 60 minutes (MW per hour), from the 5-minute slots.
+function rampsOf(slots) {
+  const byT = new Map(slots.map((r) => [new Date(r.time).getTime(), r.generation_mw]));
+  let up = null, down = null;
+  for (const [t, g] of byT) { const g0 = byT.get(t - 3600000); if (g0 == null || g == null) continue; const r = g - g0;
+    if (!up || r > up.r) up = { r, t }; if (!down || r < down.r) down = { r, t }; }
+  const hm = (t) => isoAST(new Date(t)).slice(11, 16);
+  return { ramp_up_max_mw_h: up ? Math.round(up.r) : null, ramp_up_at: up ? hm(up.t) : null, ramp_down_max_mw_h: down ? Math.round(down.r) : null, ramp_down_at: down ? hm(down.t) : null,
+    demand_swing_mw: null };
+}
 function summarizeDay(day, checks, trace, events, fev, L, complete, now) {
   now = now || new Date();
   const t = (iso) => new Date(iso).getTime();
@@ -377,7 +387,7 @@ function summarizeDay(day, checks, trace, events, fev, L, complete, now) {
   const avg = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : null);
   const tw = (k) => (coverage ? cs.reduce((a, c, i) => a + (Number(c[k]) || 0) * w[i], 0) / coverage : null);
   return {
-    calc_version: 2, day, status: complete ? (coverage >= 20 ? 'Complete' : 'Ended, partial data') : 'In progress', updated_at: isoAST(now), coverage_h: r1(coverage), checks: cs.length, trace_readings: tr.length,
+    calc_version: 3, ...rampsOf(tr), day, status: complete ? (coverage >= 20 ? 'Complete' : 'Ended, partial data') : 'In progress', updated_at: isoAST(now), coverage_h: r1(coverage), checks: cs.length, trace_readings: tr.length,
     demand_max_mw: dmax ? dmax.total_mw : null, demand_max_at: dmax ? hhmm(dmax.at) : null, demand_min_mw: dmin ? dmin.total_mw : null, demand_min_at: dmin ? hhmm(dmin.at) : null,
     demand_avg_mw: tw('total_mw') == null ? null : Math.round(tw('total_mw')), prepa_peak_mw: cs.reduce((a, c) => Math.max(a, Number(c.peak_today_mw) || 0), 0) || null,
     gen_max_mw: gmax ? Math.round(gmax.generation_mw * 10) / 10 : null, gen_max_at: gmax ? hhmm(gmax.time) : null, gen_min_mw: gmin ? Math.round(gmin.generation_mw * 10) / 10 : null, gen_min_at: gmin ? hhmm(gmin.time) : null,
@@ -434,5 +444,5 @@ function processLevels(v) {
   return v.niveles.map((n) => ({ embalse: String(n.embalse).toLowerCase(), level_m: num(n.lectura), change_m: num(String(n.diferencia).replace('+', '')), at }))
     .filter((r) => r.level_m != null);
 }
-root.PREPA = { processLevels, summarizeDay, plantGroup, FUEL_KEYS, buildForecast, num, DAY, pad, isoAST, parseFeed, parseStamp, processSource, processGraph, freqLevel, detectExcursions, mergeExcursions, allowanceStatus, buildHistoryRow, archiveSnapshot, RANK, OFFLINE_MW };
+root.PREPA = { rampsOf, processLevels, summarizeDay, plantGroup, FUEL_KEYS, buildForecast, num, DAY, pad, isoAST, parseFeed, parseStamp, processSource, processGraph, freqLevel, detectExcursions, mergeExcursions, allowanceStatus, buildHistoryRow, archiveSnapshot, RANK, OFFLINE_MW };
 })(typeof globalThis !== 'undefined' ? globalThis : window);

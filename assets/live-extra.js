@@ -43,14 +43,30 @@
     return rows.filter((r) => end - r.t <= RANGE_H[range] * H);
   }
   // Even time grid from PREPA's continuous generation record; the plant and fuel split is interpolated between readings.
-  function uniformRows(range) {
-    const stepMs = range === '24h' ? 300000 : 900000;
+  // Puerto Rico calendar helpers (AST, UTC-4, no daylight saving)
+  const prDay = (d) => { const [m, dd, y] = pr({ year: 'numeric', month: '2-digit', day: '2-digit' })(d).split('/'); return y + '-' + m + '-' + dd; };
+  const midnight = (key) => new Date(key + 'T00:00:00-04:00');
+  function traceBins(stepMs) {
     const bins = new Map();
-    for (const r of [...G.rows('trace_recent'), ...G.rows('live_graph')]) { if (!r.time || num(r.generation_mw) == null) continue; const k = Math.floor(new Date(r.time) / stepMs) * stepMs; const o = bins.get(k) || { s: 0, n: 0 }; o.s += Number(r.generation_mw); o.n++; bins.set(k, o); }
+    for (const r of [...G.rows('trace_long'), ...G.rows('trace_recent'), ...G.rows('live_graph')]) { if (!r.time || num(r.generation_mw) == null) continue; const k = Math.floor(new Date(r.time) / stepMs) * stepMs; const o = bins.get(k) || { s: 0, n: 0 }; o.s += Number(r.generation_mw); o.n++; bins.set(k, o); }
+    return bins;
+  }
+  function latestDataTime() { let m = 0; for (const r of [...G.rows('trace_recent'), ...G.rows('live_graph')]) if (r.time) m = Math.max(m, +new Date(r.time)); return m ? new Date(m) : new Date(); }
+  // the window for the selected period: Today (since 12 AM), Last full day, a chosen date, 7 or 30 days
+  function otWindow() {
+    const now = latestDataTime(), today = prDay(now);
+    if (otRange === 'today') return { t0: midnight(today), t1: now, step: 300000, label: 'today since 12 AM', day: true };
+    if (otRange === 'yday') { const t1 = midnight(today); return { t0: new Date(+t1 - 864e5), t1, step: 300000, label: prDay(new Date(+t1 - 432e5)), day: true }; }
+    if (otRange === 'day' && otDate) { const t0 = midnight(otDate); return { t0, t1: new Date(Math.min(+t0 + 864e5, +now)), step: 300000, label: otDate, day: true }; }
+    if (otRange === '30d') return { t0: new Date(+now - 30 * 864e5), t1: now, step: 900000, label: 'last 30 days' };
+    return { t0: new Date(+now - 7 * 864e5), t1: now, step: 900000, label: 'last 7 days' };
+  }
+  function uniformRows() {
+    const Wn = otWindow(), bins = traceBins(Wn.step);
     const readings = readingRows('all').filter((r) => r.plant_mw && Object.keys(r.plant_mw).length);
-    if (bins.size < 2 || !readings.length) return { rows: readingRows(range), readings, uniform: false };
-    const times = [...bins.keys()].sort((a, b) => a - b), end = times[times.length - 1];
-    const sel = times.filter((t) => end - t <= RANGE_H[range] * H);
+    const inW = (t) => t >= +Wn.t0 && (Wn.day && otRange !== 'today' ? t < +Wn.t1 : t <= +Wn.t1); // a day ends just before the next 12 AM
+    if (bins.size < 2 || !readings.length) return { rows: readings.filter((r) => inW(+r.t)), readings: [], uniform: false, win: Wn, bins };
+    const sel = [...bins.keys()].filter(inW).sort((a, b) => a - b);
     const sh = readings.map((r) => {
       const ptot = d3.sum(Object.values(r.plant_mw)) || 1, p = {}; for (const [k, v] of Object.entries(r.plant_mw)) p[k] = Math.max(0, v) / ptot;
       const ftot = d3.sum(FUELS, ([k]) => Number(r['mw_' + k]) || 0) || 1, f = {}; for (const [k] of FUELS) f[k] = (Number(r['mw_' + k]) || 0) / ftot;
@@ -68,7 +84,35 @@
       for (const [k] of FUELS) row['mw_' + k] = (f[k] || 0) * g;
       return row;
     });
-    return { rows, readings: readings.filter((r) => end - r.t <= RANGE_H[range] * H), uniform: true };
+    // ramp: change in total generation over the previous 60 minutes (MW per hour)
+    for (const r of rows) { const o = bins.get(+r.t - 3600000); r._ramp = o ? r.total_mw - o.s / o.n : null; }
+    return { rows, readings: readings.filter((r) => inW(+r.t)), uniform: true, win: Wn, bins };
+  }
+  // overlay: ramp rate on a secondary axis and each day's highest and lowest demand
+  function rampOverlay(U) {
+    return ({ svg, x, y, W, Hh, top, mr }) => {
+      const rows = U.rows; if (!rows.length) return;
+      if (otShowRamp) {
+        const rv = rows.filter((r) => r._ramp != null), mx = Math.max(50, d3.max(rv, (r) => Math.abs(r._ramp)) || 50);
+        const y2 = d3.scaleLinear([-mx * 1.1, mx * 1.1], [Hh - 26, top + 6]).nice();
+        svg.append('line').attr('x1', x.range()[0]).attr('x2', W - mr).attr('y1', y2(0)).attr('y2', y2(0)).attr('stroke', 'var(--ink)').attr('stroke-opacity', 0.35).attr('stroke-dasharray', '3 4');
+        const seq = []; rv.forEach((r, i) => { if (i && r.t - rv[i - 1].t > 2 * H) seq.push({ t: r.t, _ramp: null }); seq.push(r); });
+        svg.append('path').datum(seq).attr('class', 'ramp-line').attr('d', d3.line().defined((r) => r._ramp != null).x((r) => x(r.t)).y((r) => y2(r._ramp)).curve(d3.curveMonotoneX));
+        svg.append('g').selectAll('text').data(y2.ticks(5)).join('text').attr('class', 'ramp-ax').attr('x', W - mr + 6).attr('y', y2).attr('dy', '0.35em').text((v) => (v > 0 ? '+' : v < 0 ? '−' : '') + G.f0(Math.abs(v)));
+        svg.append('text').attr('class', 'ramp-ax').attr('x', W - mr + 6).attr('y', top - 2).text('MW/h');
+      }
+      if (otShowPeaks) {
+        const days = d3.groups(rows, (r) => prDay(r.t)), single = days.length <= 2;
+        for (const [, list] of days) {
+          const hi = list.reduce((a, r) => (r.total_mw > a.total_mw ? r : a), list[0]), lo = list.reduce((a, r) => (r.total_mw < a.total_mw ? r : a), list[0]);
+          for (const [r, up] of [[hi, true], [lo, false]]) {
+            const cx = x(r.t), cy = y(r.total_mw);
+            svg.append('path').attr('class', up ? 'pk-max' : 'pk-min').attr('d', up ? `M${cx - 5},${cy - 12}L${cx + 5},${cy - 12}L${cx},${cy - 4}Z` : `M${cx - 5},${cy - 4}L${cx + 5},${cy - 4}L${cx},${cy - 12}Z`);
+            if (single) svg.append('text').attr('class', 'pk-lbl').attr('x', cx).attr('y', cy - 16).attr('text-anchor', cx > W - 140 ? 'end' : cx < 140 ? 'start' : 'middle').text((up ? 'Max ' : 'Low ') + G.f0(Math.round(r.total_mw)) + ' MW, ' + hFmt(r.t));
+          }
+        }
+      }
+    };
   }
   function dayRows(range) {
     const d = G.rows('daily_summary').map((r) => ({ ...r, t: new Date(r.day + 'T12:00:00-04:00') }));
@@ -80,7 +124,7 @@
   function stackChart(box, rows, series, opt) {
     box.replaceChildren(); box.classList.remove('dash-skeleton');
     const full = !!document.fullscreenElement && document.fullscreenElement.contains(box);
-    const W = box.clientWidth || 700, Hh = full ? Math.max(360, Math.round(window.innerHeight * 0.62)) : opt.height || 340, top = opt.strip ? 26 : 10;
+    const W = box.clientWidth || 700, Hh = full ? Math.max(360, Math.round(window.innerHeight * 0.62)) : opt.height || 340, top = opt.strip ? 26 : 10, mr = opt.mr || 8;
     if (opt.domain) rows = rows.filter((r) => r.t >= opt.domain[0] && r.t <= opt.domain[1]);
     const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
     if (!rows.length || !series.length) { svg.append('text').attr('x', W / 2).attr('y', Hh / 2).attr('text-anchor', 'middle').attr('class', 'empty').text(opt.empty || 'No readings in this period yet.'); return; }
@@ -95,8 +139,8 @@
     const ml = G.measure(svg, y.ticks(5).map(G.f0)) + 14;
     const t0 = rows[0].t, t1 = rows[rows.length - 1].t;
     const pad = rows.length === 1 ? (opt.daily ? 86400000 : H) : opt.daily ? 43200000 : 0;
-    const x = d3.scaleTime(opt.domain || [new Date(+t0 - pad), new Date(+t1 + pad)], [ml, W - 8]);
-    svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - 8).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+    const x = d3.scaleTime(opt.domain || [new Date(+t0 - pad), new Date(+t1 + pad)], [ml, W - mr]);
+    svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
     svg.append('g').selectAll('text').data(y.ticks(5)).join('text').attr('x', ml - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').text(G.f0);
     svg.append('text').attr('x', ml - 6).attr('y', top + 2).attr('text-anchor', 'end').text(opt.unit);
     const span = x.domain()[1] - x.domain()[0];
@@ -116,12 +160,13 @@
         svg.append('rect').attr('x', x0).attr('y', 4).attr('width', Math.max(1, x1 - x0)).attr('height', 12).attr('fill', best.color); });
       svg.append('text').attr('x', ml - 6).attr('y', 14).attr('text-anchor', 'end').text('Majority');
     }
+    if (opt.extra) opt.extra({ svg, x, y, W, Hh, top, ml, mr });
     // ticks under the axis where actual unit readings were taken
     if (opt.ticks && opt.ticks.length) svg.append('g').selectAll('line').data(opt.ticks.filter((t) => t >= x.domain()[0] && t <= x.domain()[1])).join('line')
       .attr('x1', x).attr('x2', x).attr('y1', Hh - 26).attr('y2', Hh - 20).attr('stroke', 'var(--ink)').attr('stroke-width', 1.4);
     const tip = G.tipFor(box.closest('.gx-card'));
     const rule = svg.append('line').attr('y1', top).attr('y2', Hh - 26).attr('stroke', 'var(--cds-chart-reference)').attr('opacity', 0);
-    const brush = d3.brushX().extent([[ml, 0], [W - 8, Hh - 26]]).on('end', (ev) => {
+    const brush = d3.brushX().extent([[ml, 0], [W - mr, Hh - 26]]).on('end', (ev) => {
       if (!ev.selection || !opt.onZoom) return; const [a, b] = ev.selection; if (b - a < 8) { bg.call(brush.move, null); return; } opt.onZoom([x.invert(a), x.invert(b)]); });
     const bg = svg.append('g').attr('class', 'brush').call(brush);
     svg.on('dblclick', () => opt.onZoom && opt.onZoom(null));
@@ -129,19 +174,19 @@
       .on('mousemove.tip', (ev) => { const t = x.invert(d3.pointer(ev)[0]); const r = rows[d3.bisector((q) => q.t).center(rows, t)]; const tot = d3.sum(series, (s) => val(r, s)) || 1;
         rule.attr('x1', x(r.t)).attr('x2', x(r.t)).attr('opacity', 1);
         tip.show(ev, opt.daily ? pr({ weekday: 'short', month: 'short', day: 'numeric' })(r.t) : tFmt(r.t),
-          [...series.filter((s) => val(r, s) > 0).sort((a, b) => val(r, b) - val(r, a)).slice(0, 12).map((s) => [s.color, s.label, G.f1(val(r, s)) + ' ' + opt.unit + ', ' + G.pct((val(r, s) / tot) * 100)]), [null, 'Total', G.f1(tot) + ' ' + opt.unit],
+          [...series.filter((s) => val(r, s) > 0).sort((a, b) => val(r, b) - val(r, a)).slice(0, 12).map((s) => [s.color, s.label, G.f1(val(r, s)) + ' ' + opt.unit + ', ' + G.pct((val(r, s) / tot) * 100)]), [null, 'Total', G.f1(tot) + ' ' + opt.unit], ...(opt.tipExtra ? opt.tipExtra(r) : []),
             ...(r._near != null ? [[null, r._near <= 20 * 60000 ? 'Split from a reading' : 'Split estimated', r._near <= 20 * 60000 ? 'within 20 min' : 'nearest reading ' + Math.round(r._near / 60000) + ' min away']] : [])]); })
       .on('mouseleave.tip', () => { rule.attr('opacity', 0); tip.hide(); });
   }
   const weightsOf = (rows) => { const g = rows.slice(1).map((r, i) => (r.t - rows[i].t) / H).sort((a, b) => a - b), typ = g.length ? g[Math.floor(g.length / 2)] : 0.25; return rows.map((r, i) => Math.min(i < rows.length - 1 ? (rows[i + 1].t - r.t) / H : typ, 1)); };
-  let otRange = '24h', otView = 'plant', otZoom = null;
+  let otRange = 'today', otView = 'plant', otZoom = null, otDate = '', otShowRamp = true, otShowPeaks = true;
   function setOtZoom(z) { otZoom = z; overTime(); }
   const plantHidden = new Set();
   function fuelChart() {
     const box = document.getElementById('fuel-chart'), leg = document.getElementById('fuel-legend'), note = document.getElementById('fuel-note');
-    const daily = otRange === '30d' || otRange === 'all';
-    const U = daily ? null : uniformRows(otRange);
-    const rows = daily ? dayRows(otRange) : U.rows;
+    const daily = otRange === 'all';
+    const U = daily ? null : uniformRows();
+    const rows = daily ? dayRows('all') : U.rows;
     const keys = FUELS.filter(([k]) => rows.some((r) => (daily ? (r.energy_by_fuel_mwh || {})[k] : Number(r['mw_' + k])) > 0));
     const series = keys.map(([k, n]) => ({ key: k, label: n, color: G.color(n), get: daily ? (r) => ((r.energy_by_fuel_mwh || {})[k] || 0) / 1000 : (r) => r['mw_' + k] }));
     const w = daily ? rows.map(() => 1) : weightsOf(rows);
@@ -149,19 +194,19 @@
     const tot = d3.sum(Object.values(energy)) || 1, maj = series.reduce((a, s) => (!a || energy[s.key] > energy[a.key] ? s : a), null);
     leg.replaceChildren();
     for (const s of series) { const sp = el('span', maj && s.key === maj.key ? 'maj' : ''); const sw = el('span', 'gx-sw'); sw.style.background = s.color; sp.append(sw, s.label + ' ' + G.pct((energy[s.key] / tot) * 100)); if (maj && s.key === maj.key) sp.append(el('b', null, ' majority')); leg.append(sp); }
-    stackChart(box, rows, series, { domain: otZoom, onZoom: setOtZoom, ticks: U ? U.readings.map((r) => r.t) : null, unit: daily ? 'GWh' : 'MW', daily, strip: true, height: 320, empty: daily ? 'Daily totals appear after the first day of readings.' : 'No readings in this period yet.' });
+    stackChart(box, rows, series, { domain: otZoom, onZoom: setOtZoom, mr: U && otShowRamp ? 46 : 8, extra: U ? rampOverlay(U) : null, tipExtra: (r) => (r._ramp != null && otShowRamp ? [[null, 'Ramp (last 60 min)', (r._ramp > 0 ? '+' : '−') + G.f0(Math.abs(Math.round(r._ramp))) + ' MW/h']] : []), ticks: U ? U.readings.map((r) => r.t) : null, unit: daily ? 'GWh' : 'MW', daily, strip: true, height: 320, empty: daily ? 'Daily totals appear after the first day of readings.' : 'No readings in this period yet.' });
   }
   function plantChart() {
     const box = document.getElementById('plant-chart'), leg = document.getElementById('plant-legend'), now = document.getElementById('plant-now');
-    const daily = otRange === '30d' || otRange === 'all';
-    const U = daily ? null : uniformRows(otRange);
-    const rows = daily ? dayRows(otRange) : U.rows;
+    const daily = otRange === 'all';
+    const U = daily ? null : uniformRows();
+    const rows = daily ? dayRows('all') : U.rows;
     const src = (r) => (daily ? r.plant_energy_mwh : r.plant_mw) || {};
     const totals = {}; rows.forEach((r) => { for (const [p, v] of Object.entries(src(r))) totals[p] = (totals[p] || 0) + (Number(v) || 0); });
     const plants = Object.keys(totals).filter((p) => totals[p] > 0).sort((a, b) => totals[b] - totals[a]);
     buildPlantColors(plants);
     const series = plants.filter((p) => !plantHidden.has(p)).map((p) => ({ key: p, label: p, color: plantColor(p), get: daily ? (r) => (src(r)[p] || 0) / 1000 : (r) => src(r)[p] || 0 }));
-    stackChart(box, rows, series, { domain: otZoom, onZoom: setOtZoom, ticks: U ? U.readings.map((r) => r.t) : null, unit: daily ? 'GWh' : 'MW', daily, height: 360, empty: daily ? 'Daily totals appear after the first day of readings.' : 'No readings in this period yet.' });
+    stackChart(box, rows, series, { domain: otZoom, onZoom: setOtZoom, mr: U && otShowRamp ? 46 : 8, extra: U ? rampOverlay(U) : null, tipExtra: (r) => (r._ramp != null && otShowRamp ? [[null, 'Ramp (last 60 min)', (r._ramp > 0 ? '+' : '−') + G.f0(Math.abs(Math.round(r._ramp))) + ' MW/h']] : []), ticks: U ? U.readings.map((r) => r.t) : null, unit: daily ? 'GWh' : 'MW', daily, height: 360, empty: daily ? 'Daily totals appear after the first day of readings.' : 'No readings in this period yet.' });
     leg.replaceChildren();
     const head = el('div', 'pl-head'); head.append(el('span', null, 'Plant')); const allB = el('button', 'linkbtn', plantHidden.size ? 'Show all' : 'Hide all'); allB.type = 'button';
     allB.addEventListener('click', () => { if (plantHidden.size) plantHidden.clear(); else plants.forEach((p) => plantHidden.add(p)); plantChart(); }); head.append(allB); leg.append(head);
@@ -185,14 +230,30 @@
   function overTime() {
     document.querySelectorAll('#ot-range button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === otRange)));
     document.querySelectorAll('#ot-view button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === otView)));
+    const di = document.getElementById('ot-date');
+    if (di) { const lt = G.rows('trace_long'), first = lt.length ? lt[0].time.slice(0, 10) : (G.rows('trace_recent')[0] || {}).time?.slice(0, 10); if (first) di.min = first; di.max = prDay(latestDataTime()); di.classList.toggle('on', otRange === 'day'); if (otRange === 'day' && otDate) di.value = otDate; }
     document.getElementById('ot-reset').hidden = !otZoom;
     document.getElementById('ot-plant').hidden = otView !== 'plant'; document.getElementById('ot-fuel').hidden = otView !== 'fuel';
     if (otView === 'plant') plantChart(); else fuelChart();
-    const rows = otRange === '30d' || otRange === 'all' ? dayRows(otRange) : readingRows(otRange);
-    const U = rows.length && otRange !== '30d' && otRange !== 'all' ? uniformRows(otRange) : null;
-    document.getElementById('fuel-note').textContent = !rows.length ? 'This chart fills in as readings are saved.' : U && U.uniform ? 'Total generation every ' + (otRange === '24h' ? '5' : '15') + ' minutes from PREPA’s record; the split comes from ' + U.readings.length + ' readings of every unit in this period (ticks under the chart) and is estimated between them.' : '';
+    const note = document.getElementById('fuel-note'), sum = document.getElementById('ot-sum');
+    if (otRange === 'all') { note.textContent = 'Energy produced each day (GWh), for every day since monitoring began.'; if (sum) sum.textContent = ''; return; }
+    const U = uniformRows(), rows = U.rows;
+    note.textContent = !rows.length ? 'No readings for this period.' : 'Total generation every ' + (U.win.step === 300000 ? '5' : '15') + ' minutes from PREPA’s record; the split comes from ' + U.readings.length + ' readings of every unit (ticks under the chart) and is estimated between them. Right axis: ramp, the change in generation over the previous 60 minutes.';
+    if (!sum) return;
+    if (!rows.length) { sum.textContent = ''; return; }
+    const hi = rows.reduce((a, r) => (r.total_mw > a.total_mw ? r : a), rows[0]), lo = rows.reduce((a, r) => (r.total_mw < a.total_mw ? r : a), rows[0]);
+    const rv = rows.filter((r) => r._ramp != null), up = rv.reduce((a, r) => (!a || r._ramp > a._ramp ? r : a), null), dn = rv.reduce((a, r) => (!a || r._ramp < a._ramp ? r : a), null);
+    const when = (r) => (U.win.day ? hFmt(r.t) : tFmt(r.t));
+    sum.replaceChildren();
+    for (const [lbl, val, cls] of [['Max demand', G.f0(Math.round(hi.total_mw)) + ' MW, ' + when(hi), 'mx'], ['Lowest demand', G.f0(Math.round(lo.total_mw)) + ' MW, ' + when(lo), 'mn'], ['Swing', G.f0(Math.round(hi.total_mw - lo.total_mw)) + ' MW', ''],
+      ...(up ? [['Steepest rise', '+' + G.f0(Math.round(up._ramp)) + ' MW/h, ' + when(up), 'up']] : []), ...(dn ? [['Steepest drop', '−' + G.f0(Math.abs(Math.round(dn._ramp))) + ' MW/h, ' + when(dn), 'dn']] : [])]) {
+      const s = el('span', 'ots ' + cls); s.append(el('b', null, lbl), ' ' + val); sum.append(s);
+    }
   }
   document.getElementById('ot-range').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; otRange = b.dataset.v; otZoom = null; overTime(); });
+  const otDI = document.getElementById('ot-date');
+  if (otDI) otDI.addEventListener('change', () => { if (!otDI.value) return; otDate = otDI.value; otRange = 'day'; otZoom = null; overTime(); });
+  for (const [id, set] of [['ot-ramp', (v) => { otShowRamp = v; }], ['ot-peaks', (v) => { otShowPeaks = v; }]]) { const c = document.getElementById(id); if (c) c.addEventListener('change', () => { set(c.checked); overTime(); }); }
   document.getElementById('ot-reset').addEventListener('click', () => setOtZoom(null));
   document.getElementById('ot-view').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; otView = b.dataset.v; overTime(); });
 

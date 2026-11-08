@@ -461,3 +461,22 @@ a { color: var(--accent); }
 /* Footer */
 .footer { border-top-color: var(--line); color: var(--muted); }
 .topbar .brand { position: relative; z-index: 1; }
+
+/* Generation over time: ramp axis, daily max/min, period picker, summary */
+:root { --rp-line: #7a2e9e; --rp-up: #d92d20; --rp-down: #1570ef; }
+@media (prefers-color-scheme: dark) { :root { --rp-line: #d6a4f5; --rp-up: #f97066; --rp-down: #6aa6ff; } }
+.ramp-line { fill: none; stroke: var(--rp-line); stroke-width: 1.6; stroke-opacity: .9; }
+.ramp-ax { fill: var(--rp-line); font-size: 11px; }
+.pk-max { fill: var(--alert); stroke: var(--panel); stroke-width: 1; }
+.pk-min { fill: var(--c1); stroke: var(--panel); stroke-width: 1; }
+.pk-lbl { font-size: 11px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--panel); stroke-width: 3px; }
+.date-pick { display: inline-flex; align-items: center; gap: 6px; font-size: var(--cds-font-size-caption); color: var(--muted); }
+.date-pick input { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; }
+.date-pick input.on { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-100); color: var(--accent); font-weight: 600; }
+.ot-sum { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
+.ots { font-size: 12.5px; padding: 4px 10px; border-radius: 999px; background: var(--table-head); border: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.ots b { font-weight: 600; color: var(--muted); margin-right: 2px; }
+.ots.mx { border-color: color-mix(in srgb, var(--alert) 40%, var(--line)); } .ots.mn { border-color: color-mix(in srgb, var(--c1) 40%, var(--line)); }
+.ots.up b { color: var(--rp-up); } .ots.dn b { color: var(--rp-down); }
+.ot-opts { margin: 4px 0 0; }
+.ramp-kpis { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); margin-bottom: var(--cds-gap-md); }
