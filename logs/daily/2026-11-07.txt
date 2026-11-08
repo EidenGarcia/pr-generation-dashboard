@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, November 7, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-07 22:00 AST)
-Coverage ........ 22.0 h of feed checks (93 checks), 264 five-minute readings
+Status .......... In progress (updated 2026-11-07 22:15 AST)
+Coverage ........ 22.2 h of feed checks (94 checks), 267 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,448 MW at 18:44
   Minimum ....... 1,672 MW at 10:28
-  Average ....... 2,077 MW
+  Average ....... 2,080 MW
   PREPA peak .... 2,456 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,449.3 MW at 18:44
-  Minimum ....... 1,670.1 MW at 10:39
-  Average ....... 2,075 MW
-  Energy ........ 45,657 MWh
+  Maximum ....... 2,449.7 MW at 18:47
+  Minimum ....... 1,669.8 MW at 10:47
+  Average ....... 2,079 MW
+  Energy ........ 46,248 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.70 Hz
-  Average ....... 60.002 Hz
+  Average ....... 59.992 Hz
   In Normal band  99.6 %   Excursions: 3
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   25,473 MWh   55.1 %
-  Bunker C .......    9,597 MWh   20.8 %
-  Diesel (ULSD) ..    1,710 MWh   3.7 %
-  Coal ...........    8,707 MWh   18.8 %
+  LNG ............   25,766 MWh   55.1 %
+  Bunker C .......    9,712 MWh   20.8 %
+  Diesel (ULSD) ..    1,754 MWh   3.7 %
+  Coal ...........    8,801 MWh   18.8 %
   Solar ..........      526 MWh   1.1 %
   Wind ...........      131 MWh   0.3 %
   Hydro ..........       69 MWh   0.1 %
-  Landfill gas ...       35 MWh   0.1 %
+  Landfill gas ...       36 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $7,164,041 over 22.0 h  (full-day estimate $7,810,486)
+  Total cost of the day ... $7,248,822 over 22.2 h  (full-day estimate $7,824,229)
   Average cost ............ $0.1549 per kWh
 
 OUTAGES (units that stopped or restarted)
