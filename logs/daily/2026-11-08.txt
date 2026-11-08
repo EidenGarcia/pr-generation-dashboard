@@ -1,37 +1,37 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, November 8, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-08 01:49 AST)
-Coverage ........ 1.8 h of feed checks (8 checks), 22 five-minute readings
+Status .......... In progress (updated 2026-11-08 02:00 AST)
+Coverage ........ 2.0 h of feed checks (9 checks), 24 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,220 MW at 00:12
-  Minimum ....... 2,095 MW at 01:46
-  Average ....... 2,153 MW
+  Minimum ....... 2,077 MW at 01:58
+  Average ....... 2,145 MW
   PREPA peak .... 2,237 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,234.3 MW at 00:01
-  Minimum ....... 2,095.3 MW at 01:46
-  Average ....... 2,158 MW
-  Energy ........ 3,956 MWh
+  Maximum ....... 2,231.2 MW at 00:03
+  Minimum ....... 2,076.8 MW at 01:58
+  Average ....... 2,149 MW
+  Energy ........ 4,297 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 60.005 Hz
+  Average ....... 60.000 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    2,083 MWh   50.4 %
-  Bunker C .......      913 MWh   22.1 %
-  Diesel (ULSD) ..      362 MWh   8.8 %
-  Coal ...........      774 MWh   18.7 %
+  LNG ............    2,299 MWh   50.4 %
+  Bunker C .......    1,009 MWh   22.1 %
+  Diesel (ULSD) ..      397 MWh   8.7 %
+  Coal ...........      858 MWh   18.8 %
   Landfill gas ...        3 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $652,084 over 1.8 h  (full-day estimate $8,540,257)
-  Average cost ............ $0.1577 per kWh
+  Total cost of the day ... $718,677 over 2.0 h  (full-day estimate $8,494,346)
+  Average cost ............ $0.1574 per kWh
 
 OUTAGES (units that stopped or restarted)
   Went offline: 0   Came back: 0
