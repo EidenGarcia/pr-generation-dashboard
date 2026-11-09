@@ -43,3 +43,4 @@
 2026-11-09 16:14 AST  ONLINE    Dos Bocas (hydro) / Hidro 1              0.0 MW ->     5.1 MW  (PREPA (hydro), Hydro; previous check 15:58)
 2026-11-09 16:28 AST  OFFLINE   Solar / Oriana                           1.4 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 16:14)
 2026-11-09 16:28 AST  OFFLINE   Solar / Fonroche                         2.0 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 16:14)
+2026-11-09 16:44 AST  ONLINE    Solar / Fonroche                         0.7 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 16:28)
