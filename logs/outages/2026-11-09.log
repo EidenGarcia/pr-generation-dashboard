@@ -15,3 +15,5 @@
 2026-11-09 07:58 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:42)
 2026-11-09 09:12 AST  OFFLINE   GT stations (peakers) / FEMA GT SJ       9.4 MW ->     0.0 MW  (Genera PR, LNG; previous check 08:58)
 2026-11-09 09:26 AST  OFFLINE   Mayagüez / Gas 3                         1.7 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 09:12)
+2026-11-09 09:58 AST  ONLINE    Wind / Pattern                           0.4 MW ->     1.5 MW  (Independent (PPOA), Wind; previous check 09:42)
+2026-11-09 09:58 AST  ONLINE    Wind / Punta Lima                        0.8 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 09:42)
