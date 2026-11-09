@@ -36,3 +36,6 @@
 2026-11-09 14:58 AST  OFFLINE   Wind / Punta Lima                        1.2 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 14:42)
 2026-11-09 14:58 AST  ONLINE    Palo Seco GT/CT / CT Block 1             0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 14:42)
 2026-11-09 14:58 AST  ONLINE    Palo Seco GT/CT / GT1                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 14:42)
+2026-11-09 15:44 AST  ONLINE    Dos Bocas (hydro) / Hidro 2              0.0 MW ->     4.8 MW  (PREPA (hydro), Hydro; previous check 15:28)
+2026-11-09 15:44 AST  ONLINE    Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 15:28)
+2026-11-09 15:44 AST  OFFLINE   Landfill / Fajardo                       1.6 MW ->     0.0 MW  (Independent (PPOA), Landfill gas; previous check 15:28)
