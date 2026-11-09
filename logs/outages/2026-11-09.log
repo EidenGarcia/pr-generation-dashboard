@@ -48,3 +48,5 @@
 2026-11-09 16:58 AST  OFFLINE   Wind / Punta Lima                        1.0 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 16:44)
 2026-11-09 16:58 AST  ONLINE    Solar / Oriana                           0.7 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 16:44)
 2026-11-09 16:58 AST  OFFLINE   Solar / Fonroche                         1.1 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 16:44)
+2026-11-09 17:14 AST  ONLINE    Yauco (hydro) / Hidro 3                  0.0 MW ->     2.0 MW  (PREPA (hydro), Hydro; previous check 16:58)
+2026-11-09 17:14 AST  OFFLINE   Solar / Oriana                           2.1 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 16:58)
