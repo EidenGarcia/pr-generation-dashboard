@@ -63,3 +63,6 @@
 2026-11-08 18:12 AST  ONLINE    San Juan CC / CTG 5                      0.5 MW ->    12.9 MW  (Genera PR, LNG; previous check 18:00)
 2026-11-08 18:43 AST  ONLINE    Wind / Pattern                           0.2 MW ->     2.9 MW  (Independent (PPOA), Wind; previous check 18:28)
 2026-11-08 19:12 AST  OFFLINE   Wind / Pattern                           1.5 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 18:58)
+2026-11-08 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 1              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
+2026-11-08 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
+2026-11-08 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
