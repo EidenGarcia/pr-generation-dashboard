@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Monday, November 9, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-09 12:45 AST)
-Coverage ........ 12.7 h of feed checks (52 checks), 153 five-minute readings
+Status .......... In progress (updated 2026-11-09 13:00 AST)
+Coverage ........ 13.0 h of feed checks (53 checks), 156 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,228 MW at 00:12
@@ -10,38 +10,38 @@ DEMAND (PREPA total generation at each check)
   PREPA peak .... 2,320 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,250.3 MW at 00:02
-  Minimum ....... 1,680.9 MW at 10:17
+  Maximum ....... 2,248.3 MW at 00:03
+  Minimum ....... 1,677.9 MW at 10:18
   Average ....... 2,063 MW
-  Energy ........ 26,305 MWh
+  Energy ........ 26,822 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
-  Minimum ....... 59.80 Hz
-  Average ....... 60.010 Hz
+  Minimum ....... 59.90 Hz
+  Average ....... 60.000 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   15,333 MWh   57.2 %
-  Bunker C .......    5,499 MWh   20.5 %
+  LNG ............   15,656 MWh   57.2 %
+  Bunker C .......    5,604 MWh   20.5 %
   Diesel (ULSD) ..      508 MWh   1.9 %
-  Coal ...........    5,018 MWh   18.7 %
-  Solar ..........      397 MWh   1.5 %
-  Wind ...........       48 MWh   0.2 %
-  Landfill gas ...       20 MWh   0.1 %
+  Coal ...........    5,111 MWh   18.7 %
+  Solar ..........      422 MWh   1.5 %
+  Wind ...........       55 MWh   0.2 %
+  Landfill gas ...       21 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $4,075,301 over 12.7 h  (full-day estimate $7,673,662)
+  Total cost of the day ... $4,157,846 over 13.0 h  (full-day estimate $7,669,141)
   Average cost ............ $0.1519 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
-  Max ramp up ... +294 MW/h at 11:32
-  Max ramp down . -325 MW/h at 10:17
+  Max ramp up ... +295 MW/h at 11:18
+  Max ramp down . -326 MW/h at 10:18
   Demand swing .. 536 MW (max minus min)
 
 OUTAGES (units that stopped or restarted)
-  Went offline: 12   Came back: 10
+  Went offline: 12   Came back: 11
   00:12  OFFLINE  Wind / Pattern  1.5 -> 0.0 MW
   06:58  OFFLINE  GT stations (peakers) / Daguao  1.4 -> 0.8 MW
   07:14  ONLINE   Solar / Ilumina  0.6 -> 1.8 MW
@@ -64,5 +64,6 @@ OUTAGES (units that stopped or restarted)
   10:58  ONLINE   San Juan CC / CTG 6  0.0 -> 119.0 MW
   11:14  ONLINE   San Juan CC / CTG 5  0.0 -> 116.4 MW
   12:42  OFFLINE  Solar / San Fermin  2.3 -> 0.7 MW
+  12:58  ONLINE   Solar / San Fermin  0.7 -> 1.3 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
