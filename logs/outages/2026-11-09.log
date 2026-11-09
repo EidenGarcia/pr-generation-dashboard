@@ -10,3 +10,6 @@
 2026-11-09 07:28 AST  ONLINE    Solar / Coto Laurel                      0.5 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:14)
 2026-11-09 07:42 AST  OFFLINE   GT stations (peakers) / Palo Seco       18.1 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:28)
 2026-11-09 07:42 AST  OFFLINE   Palo Seco GT/CT / GT2                   18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:28)
+2026-11-09 07:58 AST  OFFLINE   Mayagüez / Gas 4                         1.6 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:42)
+2026-11-09 07:58 AST  ONLINE    Solar / San Fermin                       0.9 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:42)
+2026-11-09 07:58 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            18.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:42)
