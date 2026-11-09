@@ -19,3 +19,4 @@
 2026-11-09 09:58 AST  ONLINE    Wind / Punta Lima                        0.8 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 09:42)
 2026-11-09 10:44 AST  OFFLINE   San Juan CC / CTG 5                    116.5 MW ->     0.0 MW  (Genera PR, LNG; previous check 10:28)
 2026-11-09 10:44 AST  OFFLINE   San Juan CC / CTG 6                    117.0 MW ->     0.0 MW  (Genera PR, LNG; previous check 10:28)
+2026-11-09 10:58 AST  ONLINE    San Juan CC / CTG 6                      0.0 MW ->   119.0 MW  (Genera PR, LNG; previous check 10:44)
