@@ -1,6 +1,6 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Monday, November 9, 2026 (Puerto Rico time, UTC-4)
-Status .......... Complete (updated 2026-11-10 18:45 AST)
+Status .......... Complete (updated 2026-11-10 19:00 AST)
 Coverage ........ 23.8 h of feed checks (98 checks), 288 five-minute readings
 
 DEMAND (PREPA total generation at each check)
@@ -10,15 +10,15 @@ DEMAND (PREPA total generation at each check)
   PREPA peak .... 2,685 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,684.5 MW at 19:19
+  Maximum ....... 2,681.6 MW at 19:18
   Minimum ....... 1,679.8 MW at 10:17
   Average ....... 2,262 MW
-  Energy ........ 54,284 MWh
+  Energy ........ 54,290 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.20 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.998 Hz
+  Average ....... 59.999 Hz
   In Normal band  100.0 %   Excursions: 1
 
 FUEL USE (share of energy, time-weighted from unit outputs)
@@ -41,70 +41,70 @@ RAMPS (change in generation over 60 minutes, 5-minute readings)
   Max ramp down . -287 MW/h at 10:28
   Demand swing .. 989 MW (max minus min)
 
-OUTAGES (units that stopped or restarted)
-  Went offline: 31   Came back: 32
-  00:12  OFFLINE  Wind / Pattern  1.5 -> 0.0 MW
-  06:58  OFFLINE  GT stations (peakers) / Daguao  1.4 -> 0.8 MW
-  07:14  ONLINE   Solar / Ilumina  0.6 -> 1.8 MW
-  07:14  ONLINE   Solar / Oriana  0.6 -> 2.7 MW
-  07:14  ONLINE   Solar / Fonroche  0.7 -> 2.6 MW
-  07:28  OFFLINE  Mayagüez / Gas 2  1.7 -> 0.0 MW
-  07:28  ONLINE   Solar / Horizon  0.7 -> 1.9 MW
-  07:28  ONLINE   Solar / Coto Laurel  0.5 -> 1.2 MW
-  07:42  OFFLINE  GT stations (peakers) / Palo Seco  18.1 -> 0.0 MW
-  07:42  OFFLINE  Palo Seco GT/CT / GT2  18.0 -> 0.0 MW
-  07:58  OFFLINE  Mayagüez / Gas 4  1.6 -> 0.0 MW
-  07:58  ONLINE   Solar / San Fermin  0.9 -> 1.1 MW
-  07:58  OFFLINE  Palo Seco GT/CT / CT Block 1  18.0 -> 0.0 MW
-  09:12  OFFLINE  GT stations (peakers) / FEMA GT SJ  9.4 -> 0.0 MW
-  09:26  OFFLINE  Mayagüez / Gas 3  1.7 -> 0.1 MW
-  09:58  ONLINE   Wind / Pattern  0.4 -> 1.5 MW
-  09:58  ONLINE   Wind / Punta Lima  0.8 -> 1.2 MW
-  10:44  OFFLINE  San Juan CC / CTG 5  116.5 -> 0.0 MW
-  10:44  OFFLINE  San Juan CC / CTG 6  117.0 -> 0.0 MW
-  10:58  ONLINE   San Juan CC / CTG 6  0.0 -> 119.0 MW
-  11:14  ONLINE   San Juan CC / CTG 5  0.0 -> 116.4 MW
-  12:42  OFFLINE  Solar / San Fermin  2.3 -> 0.7 MW
-  12:58  ONLINE   Solar / San Fermin  0.7 -> 1.3 MW
-  13:42  ONLINE   Mayagüez / Gas 4  0.0 -> 20.3 MW
-  13:58  ONLINE   GT stations (peakers) / FEMA GT SJ  0.0 -> 21.4 MW
-  13:58  ONLINE   Mayagüez / Gas 2  0.0 -> 21.2 MW
-  13:58  ONLINE   Mayagüez / Gas 3  0.1 -> 19.2 MW
-  13:58  OFFLINE  Wind / Punta Lima  1.3 -> 0.9 MW
-  14:28  ONLINE   GT stations (peakers) / Jobos  0.0 -> 17.6 MW
-  14:28  ONLINE   GT stations (peakers) / Daguao  0.8 -> 14.0 MW
-  14:28  ONLINE   Wind / Punta Lima  0.9 -> 1.4 MW
-  14:42  OFFLINE  Solar / San Fermin  1.3 -> 0.3 MW
-  14:58  ONLINE   GT stations (peakers) / Palo Seco  0.1 -> 18.1 MW
-  14:58  OFFLINE  Wind / Punta Lima  1.2 -> 0.5 MW
-  14:58  ONLINE   Palo Seco GT/CT / CT Block 1  0.0 -> 18.0 MW
-  14:58  ONLINE   Palo Seco GT/CT / GT1  0.0 -> 18.0 MW
-  15:44  ONLINE   Dos Bocas (hydro) / Hidro 2  0.0 -> 4.8 MW
-  15:44  ONLINE   Dos Bocas (hydro) / Hidro 3  0.0 -> 5.3 MW
-  15:44  OFFLINE  Landfill / Fajardo  1.6 -> 0.0 MW
-  15:58  ONLINE   Wind / Punta Lima  0.1 -> 2.0 MW
-  16:14  ONLINE   Dos Bocas (hydro) / Hidro 1  0.0 -> 5.1 MW
-  16:28  OFFLINE  Solar / Oriana  1.4 -> 0.3 MW
-  16:28  OFFLINE  Solar / Fonroche  2.0 -> 0.7 MW
-  16:44  ONLINE   Solar / Fonroche  0.7 -> 1.1 MW
-  16:58  ONLINE   Cambalache / Gas 3  0.0 -> 20.5 MW
-  16:58  OFFLINE  Wind / Punta Lima  1.0 -> 0.1 MW
-  16:58  ONLINE   Solar / Oriana  0.7 -> 2.1 MW
-  16:58  OFFLINE  Solar / Fonroche  1.1 -> 0.5 MW
-  17:14  ONLINE   Yauco (hydro) / Hidro 3  0.0 -> 2.0 MW
-  17:14  OFFLINE  Solar / Oriana  2.1 -> 1.0 MW
-  17:28  OFFLINE  Solar / Horizon  2.3 -> 0.8 MW
-  17:28  OFFLINE  Solar / Coto Laurel  1.2 -> 0.7 MW
-  17:44  OFFLINE  Solar / Ilumina  1.1 -> -0.1 MW
-  18:12  OFFLINE  Wind / Pattern  1.9 -> 0.3 MW
-  18:44  ONLINE   Garzas (hydro) / Hidro 1  0.0 -> 3.0 MW
-  20:12  ONLINE   Palo Seco GT/CT / GT2  0.0 -> 18.0 MW
-  21:12  OFFLINE  Dos Bocas (hydro) / Hidro 1  5.0 -> 0.0 MW
-  21:12  OFFLINE  Dos Bocas (hydro) / Hidro 2  4.8 -> 0.0 MW
-  21:12  OFFLINE  Dos Bocas (hydro) / Hidro 3  5.2 -> 0.0 MW
-  21:12  OFFLINE  Yauco (hydro) / Hidro 3  2.1 -> 0.0 MW
-  23:28  OFFLINE  Cambalache / Gas 3  23.1 -> 0.1 MW
-  23:44  OFFLINE  GT stations (peakers) / Jobos  18.9 -> 0.0 MW
-  23:44  ONLINE   Landfill / Fajardo  0.0 -> 1.2 MW
+UNIT EVENTS (units that went off or came on)
+  Went off: 31   Came on: 32
+  00:12  OFF  Wind / Pattern  1.5 -> 0.0 MW
+  06:58  OFF  GT stations (peakers) / Daguao  1.4 -> 0.8 MW
+  07:14  ON   Solar / Ilumina  0.6 -> 1.8 MW
+  07:14  ON   Solar / Oriana  0.6 -> 2.7 MW
+  07:14  ON   Solar / Fonroche  0.7 -> 2.6 MW
+  07:28  OFF  Mayagüez / Gas 2  1.7 -> 0.0 MW
+  07:28  ON   Solar / Horizon  0.7 -> 1.9 MW
+  07:28  ON   Solar / Coto Laurel  0.5 -> 1.2 MW
+  07:42  OFF  GT stations (peakers) / Palo Seco  18.1 -> 0.0 MW
+  07:42  OFF  Palo Seco GT/CT / GT2  18.0 -> 0.0 MW
+  07:58  OFF  Mayagüez / Gas 4  1.6 -> 0.0 MW
+  07:58  ON   Solar / San Fermin  0.9 -> 1.1 MW
+  07:58  OFF  Palo Seco GT/CT / CT Block 1  18.0 -> 0.0 MW
+  09:12  OFF  GT stations (peakers) / FEMA GT SJ  9.4 -> 0.0 MW
+  09:26  OFF  Mayagüez / Gas 3  1.7 -> 0.1 MW
+  09:58  ON   Wind / Pattern  0.4 -> 1.5 MW
+  09:58  ON   Wind / Punta Lima  0.8 -> 1.2 MW
+  10:44  OFF  San Juan CC / CTG 5  116.5 -> 0.0 MW
+  10:44  OFF  San Juan CC / CTG 6  117.0 -> 0.0 MW
+  10:58  ON   San Juan CC / CTG 6  0.0 -> 119.0 MW
+  11:14  ON   San Juan CC / CTG 5  0.0 -> 116.4 MW
+  12:42  OFF  Solar / San Fermin  2.3 -> 0.7 MW
+  12:58  ON   Solar / San Fermin  0.7 -> 1.3 MW
+  13:42  ON   Mayagüez / Gas 4  0.0 -> 20.3 MW
+  13:58  ON   GT stations (peakers) / FEMA GT SJ  0.0 -> 21.4 MW
+  13:58  ON   Mayagüez / Gas 2  0.0 -> 21.2 MW
+  13:58  ON   Mayagüez / Gas 3  0.1 -> 19.2 MW
+  13:58  OFF  Wind / Punta Lima  1.3 -> 0.9 MW
+  14:28  ON   GT stations (peakers) / Jobos  0.0 -> 17.6 MW
+  14:28  ON   GT stations (peakers) / Daguao  0.8 -> 14.0 MW
+  14:28  ON   Wind / Punta Lima  0.9 -> 1.4 MW
+  14:42  OFF  Solar / San Fermin  1.3 -> 0.3 MW
+  14:58  ON   GT stations (peakers) / Palo Seco  0.1 -> 18.1 MW
+  14:58  OFF  Wind / Punta Lima  1.2 -> 0.5 MW
+  14:58  ON   Palo Seco GT/CT / CT Block 1  0.0 -> 18.0 MW
+  14:58  ON   Palo Seco GT/CT / GT1  0.0 -> 18.0 MW
+  15:44  ON   Dos Bocas (hydro) / Hidro 2  0.0 -> 4.8 MW
+  15:44  ON   Dos Bocas (hydro) / Hidro 3  0.0 -> 5.3 MW
+  15:44  OFF  Landfill / Fajardo  1.6 -> 0.0 MW
+  15:58  ON   Wind / Punta Lima  0.1 -> 2.0 MW
+  16:14  ON   Dos Bocas (hydro) / Hidro 1  0.0 -> 5.1 MW
+  16:28  OFF  Solar / Oriana  1.4 -> 0.3 MW
+  16:28  OFF  Solar / Fonroche  2.0 -> 0.7 MW
+  16:44  ON   Solar / Fonroche  0.7 -> 1.1 MW
+  16:58  ON   Cambalache / Gas 3  0.0 -> 20.5 MW
+  16:58  OFF  Wind / Punta Lima  1.0 -> 0.1 MW
+  16:58  ON   Solar / Oriana  0.7 -> 2.1 MW
+  16:58  OFF  Solar / Fonroche  1.1 -> 0.5 MW
+  17:14  ON   Yauco (hydro) / Hidro 3  0.0 -> 2.0 MW
+  17:14  OFF  Solar / Oriana  2.1 -> 1.0 MW
+  17:28  OFF  Solar / Horizon  2.3 -> 0.8 MW
+  17:28  OFF  Solar / Coto Laurel  1.2 -> 0.7 MW
+  17:44  OFF  Solar / Ilumina  1.1 -> -0.1 MW
+  18:12  OFF  Wind / Pattern  1.9 -> 0.3 MW
+  18:44  ON   Garzas (hydro) / Hidro 1  0.0 -> 3.0 MW
+  20:12  ON   Palo Seco GT/CT / GT2  0.0 -> 18.0 MW
+  21:12  OFF  Dos Bocas (hydro) / Hidro 1  5.0 -> 0.0 MW
+  21:12  OFF  Dos Bocas (hydro) / Hidro 2  4.8 -> 0.0 MW
+  21:12  OFF  Dos Bocas (hydro) / Hidro 3  5.2 -> 0.0 MW
+  21:12  OFF  Yauco (hydro) / Hidro 3  2.1 -> 0.0 MW
+  23:28  OFF  Cambalache / Gas 3  23.1 -> 0.1 MW
+  23:44  OFF  GT stations (peakers) / Jobos  18.9 -> 0.0 MW
+  23:44  ON   Landfill / Fajardo  0.0 -> 1.2 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
