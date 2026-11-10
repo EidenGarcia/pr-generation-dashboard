@@ -1,3 +1,4 @@
 # Unit outage log, 2026-11-10 (Puerto Rico time, UTC-4)
 # A unit counts as offline below 1 MW. Times are when the change was first seen; it happened after the previous check.
 2026-11-10 00:44 AST  OFFLINE   Palo Seco Steam / Unit 4                66.4 MW ->     0.0 MW  (Genera PR, Bunker C; previous check 00:28)
+2026-11-10 01:58 AST  ONLINE    Wind / Pattern                           0.0 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 01:44)
