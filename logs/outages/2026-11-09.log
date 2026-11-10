@@ -61,3 +61,5 @@
 2026-11-09 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
 2026-11-09 21:12 AST  OFFLINE   Yauco (hydro) / Hidro 3                  2.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
 2026-11-09 23:28 AST  OFFLINE   Cambalache / Gas 3                      23.1 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 23:12)
+2026-11-09 23:44 AST  OFFLINE   GT stations (peakers) / Jobos           18.9 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 23:28)
+2026-11-09 23:44 AST  ONLINE    Landfill / Fajardo                       0.0 MW ->     1.2 MW  (Independent (PPOA), Landfill gas; previous check 23:28)
