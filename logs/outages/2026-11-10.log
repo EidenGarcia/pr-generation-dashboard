@@ -19,3 +19,4 @@
 2026-11-10 08:58 AST  ONLINE    Wind / Pattern                           0.5 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 08:44)
 2026-11-10 09:58 AST  OFFLINE   GT stations (peakers) / Palo Seco       16.1 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 09:43)
 2026-11-10 09:58 AST  OFFLINE   Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:43)
+2026-11-10 10:12 AST  OFFLINE   Palo Seco GT/CT / CT Block 1            16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
