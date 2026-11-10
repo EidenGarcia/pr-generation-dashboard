@@ -56,3 +56,7 @@
 2026-11-09 18:12 AST  OFFLINE   Wind / Pattern                           1.9 MW ->     0.3 MW  (Independent (PPOA), Wind; previous check 17:59)
 2026-11-09 18:44 AST  ONLINE    Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 18:28)
 2026-11-09 20:12 AST  ONLINE    Palo Seco GT/CT / GT2                    0.0 MW ->    18.0 MW  (Genera PR, ULSD (diesel); previous check 19:58)
+2026-11-09 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 1              5.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
+2026-11-09 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 2              4.8 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
+2026-11-09 21:12 AST  OFFLINE   Dos Bocas (hydro) / Hidro 3              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
+2026-11-09 21:12 AST  OFFLINE   Yauco (hydro) / Hidro 3                  2.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
