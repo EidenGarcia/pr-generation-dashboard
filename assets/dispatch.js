@@ -207,7 +207,8 @@
   }
 
   /* ---------- Cost through the day (average by hour of day) ---------- */
-  let cdPeriod = '7d', pdPeriod = '7d', pdPlant = '';
+  let cdPeriod = '7d', pdPeriod = '7d', pdPlant = '', cdMode = 'time', pdMode = 'time';
+  const wholeGen = (r) => d3.sum(FK, ([k]) => Number(r['mw_' + k]) || 0); // whole generation: every generating unit
   const FK = [['lng', 'LNG', 'Natural gas'], ['bunker_c', 'Bunker C', 'Bunker C'], ['ulsd', 'ULSD', 'Diesel'], ['coal', 'Coal', 'Coal'], ['solar', 'Solar', 'Solar'], ['wind', 'Wind', 'Wind'], ['hydro', 'Hydro', 'Hydro'], ['landfill_gas', 'Landfill gas', 'Landfill gas']];
   const prHour = (d) => Number(pr({ hour: 'numeric', hourCycle: 'h23' })(d)) % 24;
   const hLabel = (h) => (h === 0 ? '12 AM' : h < 12 ? h + ' AM' : h === 12 ? '12 PM' : h - 12 + ' PM');
@@ -250,12 +251,61 @@
     if (y2) svg.append('g').selectAll('text').data(y2.ticks(4)).join('text').attr('x', W - mr + 6).attr('y', y2).attr('dy', '0.35em').attr('class', 'lbl-strong').text((v) => '$' + v.toFixed(3));
     return { x, ml, mr };
   }
+  function timeStack(box, rows, keys, valOf, colOf, labelOf, line, lineFmt, lineLabel) {
+    box.replaceChildren(); box.classList.remove('dash-skeleton');
+    const W = box.clientWidth || 640, Hh = 300;
+    const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
+    const seq = []; rows.forEach((r, i) => { if (i && r.t - rows[i - 1].t > 2.5 * H) seq.push({ t: new Date(+rows[i - 1].t + H), _gap: true }); seq.push(r); });
+    const v = (r, k) => (r._gap ? 0 : Math.max(0, valOf(r, k) || 0));
+    const stack = d3.stack().keys(keys).value((r, k) => v(r, k))(seq);
+    const y = d3.scaleLinear([0, (d3.max(rows, (r) => d3.sum(keys, (k) => v(r, k))) || 1) * 1.08], [Hh - 26, 12]).nice();
+    const lv = line ? rows.map((r) => ({ t: r.t, v: line(r) })).filter((p) => p.v != null) : [];
+    const y2 = lv.length ? d3.scaleLinear([0, (d3.max(lv, (p) => p.v) || 1) * 1.25], [Hh - 26, 12]).nice() : null;
+    const ml = G.measure(svg, y.ticks(5).map(G.moneyC)) + 14, mr = y2 ? G.measure(svg, y2.ticks(4).map(lineFmt)) + 14 : 10;
+    const x = d3.scaleTime([rows[0].t, rows[rows.length - 1].t], [ml, W - mr]);
+    svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(y.ticks(5)).join('text').attr('x', ml - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').text(G.moneyC);
+    const dF = pr({ month: 'short', day: 'numeric' });
+    const spanD = (rows[rows.length - 1].t - rows[0].t) / 864e5;
+    if (spanD > 2) { // one label per day (Puerto Rico midnight)
+      const dayTicks = []; for (let t = Math.ceil((+rows[0].t - 4 * H) / 864e5) * 864e5 + 4 * H; t <= +rows[rows.length - 1].t; t += 864e5) dayTicks.push(new Date(t));
+      const every = Math.ceil(dayTicks.length / Math.max(3, Math.floor((W - ml - mr) / 70)));
+      svg.append('g').selectAll('line').data(dayTicks).join('line').attr('x1', x).attr('x2', x).attr('y1', 12).attr('y2', Hh - 26).attr('stroke', 'var(--cds-chart-grid)');
+      svg.append('g').selectAll('text').data(dayTicks.filter((t, i) => i % every === 0)).join('text').attr('x', x).attr('y', Hh - 6).attr('text-anchor', 'middle').text((t) => dF(new Date(+t + 12 * H)));
+    } else svg.append('g').selectAll('text').data(x.ticks(Math.max(3, Math.floor((W - ml - mr) / 80)))).join('text').attr('x', x).attr('y', Hh - 6).attr('text-anchor', 'middle').text((t) => (prHour(t) === 0 ? dF(t) : hLabel(prHour(t))));
+    svg.append('g').selectAll('path').data(stack).join('path').attr('fill', (s) => colOf(s.key)).attr('opacity', 0.92)
+      .attr('d', d3.area().defined((p) => !p.data._gap).x((p) => x(p.data.t)).y0((p) => y(p[0])).y1((p) => y(p[1])).curve(d3.curveStepAfter));
+    if (y2) {
+      svg.append('g').selectAll('text').data(y2.ticks(4)).join('text').attr('x', W - mr + 6).attr('y', y2).attr('dy', '0.35em').attr('class', 'lbl-strong').text(lineFmt);
+      const ls = []; lv.forEach((p, i) => { if (i && p.t - lv[i - 1].t > 2.5 * H) ls.push({ t: p.t, v: null }); ls.push(p); });
+      svg.append('path').datum(ls).attr('fill', 'none').attr('stroke', 'var(--ink)').attr('stroke-width', 1.8).attr('d', d3.line().defined((p) => p.v != null).x((p) => x(p.t)).y((p) => y2(p.v)).curve(d3.curveMonotoneX));
+    }
+    const tip = G.tipFor(box.closest('.gx-card')), rule = svg.append('line').attr('y1', 12).attr('y2', Hh - 26).attr('stroke', 'var(--cds-chart-reference)').attr('opacity', 0);
+    svg.append('rect').attr('x', ml).attr('y', 0).attr('width', W - mr - ml).attr('height', Hh - 26).attr('fill', 'transparent')
+      .on('mousemove', (ev) => { const t = x.invert(d3.pointer(ev)[0]); const r = rows[d3.bisector((q) => q.t).center(rows, t)]; rule.attr('x1', x(r.t)).attr('x2', x(r.t)).attr('opacity', 1);
+        const tot = d3.sum(keys, (k) => v(r, k)) || 1;
+        tip.show(ev, tFmt(r.t), [...keys.filter((k) => v(r, k) >= 1).sort((a, b) => v(r, b) - v(r, a)).map((k) => [colOf(k), labelOf(k), G.money(Math.round(v(r, k))) + '/h, ' + G.pct((v(r, k) / tot) * 100)]), [null, 'Total', G.money(Math.round(tot)) + '/h'], ...(line && line(r) != null ? [['var(--ink)', lineLabel, lineFmt(line(r))]] : [])]); })
+      .on('mouseleave', () => { rule.attr('opacity', 0); tip.hide(); });
+  }
   function costDay() {
     const box = card('costday-chart'); if (!box) return;
     seg('cd-period', cdPeriod);
+    seg('cd-mode', cdPeriod === 'today' ? 'typ' : cdMode); const cm = card('cd-mode'); if (cm) cm.hidden = cdPeriod === 'today';
     const P = periodRows(cdPeriod);
     if (!P.rows.length) { G.failOrSkeleton(box, ['history']); return; }
-    const prof = profile(P.rows, (r) => { const o = { total: r.dispatch_cost_usd_h || 0, mw: r.total_mw || 0 }; for (const [k] of FK) if ((r['mw_' + k] || 0) >= 1) o[k] = r['cost_' + k] || 0; return o; });
+    if (cdMode === 'time' && cdPeriod !== 'today') { // the real hour-by-hour history of the period
+      const costOf = (r, k) => ((r['mw_' + k] || 0) >= 1 ? r['cost_' + k] || 0 : 0), rows = P.rows;
+      const fuels = FK.filter(([k]) => rows.some((r) => costOf(r, k) >= 1)), tot = d3.sum(rows, (r) => d3.sum(fuels, ([k]) => costOf(r, k))) || 1;
+      legend(card('costday-legend'), fuels.filter(([k]) => d3.sum(rows, (r) => costOf(r, k)) / tot >= 0.001).map(([k, f, n]) => [n + ' ' + G.pct((d3.sum(rows, (r) => costOf(r, k)) / tot) * 100), G.color(f)]));
+      const kwh = (r) => { const g = wholeGen(r); return g >= 1 ? (r.dispatch_cost_usd_h || 0) / (g * 1000) : null; };
+      timeStack(box, rows, fuels.map(([k]) => k), costOf, (k) => G.color(FK.find((f) => f[0] === k)[1]), (k) => FK.find((f) => f[0] === k)[2], kwh, (v) => '$' + v.toFixed(3), 'Cost per kWh');
+      const hi = rows.reduce((a, r) => ((r.dispatch_cost_usd_h || 0) > (a.dispatch_cost_usd_h || 0) ? r : a), rows[0]), lo = rows.reduce((a, r) => ((r.dispatch_cost_usd_h || 0) < (a.dispatch_cost_usd_h || 0) ? r : a), rows[0]);
+      const topF = fuels.map(([k, f, n]) => [n, d3.sum(rows, (r) => costOf(r, k)) / tot]).sort((a, b) => b[1] - a[1])[0];
+      card('costday-sum').textContent = 'Highest: ' + G.moneyC(hi.dispatch_cost_usd_h) + '/h on ' + tFmt(hi.t) + ' ($' + (kwh(hi) || 0).toFixed(3) + '/kWh). Lowest: ' + G.moneyC(lo.dispatch_cost_usd_h) + '/h on ' + tFmt(lo.t) + '. ' + (topF ? topF[0] + ' accounts for ' + G.pct(topF[1] * 100) + ' of the cost.' : '');
+      card('costday-note').textContent = 'Area: dispatch cost per hour by fuel, for every hour of the ' + P.days + ' days with readings (left scale). Line: cost per kWh of the whole generation (right scale). Switch to Typical day for the average by hour of day.';
+      return;
+    }
+    const prof = profile(P.rows, (r) => { const o = { total: r.dispatch_cost_usd_h || 0, mw: wholeGen(r) || r.total_mw || 0 }; for (const [k] of FK) if ((r['mw_' + k] || 0) >= 1) o[k] = r['cost_' + k] || 0; return o; });
     const fuels = FK.filter(([k]) => prof.some((p) => (p.v[k] || 0) >= 1));
     const tot = d3.sum(prof, (p) => p.v.total || 0) || 1;
     legend(card('costday-legend'), fuels.filter(([k]) => d3.sum(prof, (p) => p.v[k] || 0) / tot >= 0.001).map(([k, f, n]) => [n + ' ' + G.pct((d3.sum(prof, (p) => p.v[k] || 0) / tot) * 100), G.color(f)]));
@@ -302,6 +352,26 @@
     if (pdPlant && !plants.includes(pdPlant)) pdPlant = '';
     sel.replaceChildren(...[['', 'All plants'], ...plants.map((p) => [p, p])].map(([v, t]) => { const o = el('option', null, t); o.value = v; if (v === pdPlant) o.selected = true; return o; }));
     const colors = plantColors(plants);
+    seg('pd-mode', pdPeriod === 'today' ? 'typ' : pdMode); const pm = card('pd-mode'); if (pm) pm.hidden = pdPeriod === 'today';
+    if (pdMode === 'time' && pdPeriod !== 'today') { // the real hour-by-hour history of the period
+      const rows = P.rows;
+      if (!pdPlant) {
+        const top = plants.slice(0, 9), rest = plants.slice(9), keys = [...top, ...(rest.length ? ['__other'] : [])];
+        const col = (k) => (k === '__other' ? 'var(--cds-chart-muted)' : colors[k]), lab = (k) => (k === '__other' ? 'Other plants' : k);
+        legend(card('plantday-legend'), keys.map((k) => [lab(k), col(k)]));
+        timeStack(box, rows, keys, (r, k) => (k === '__other' ? d3.sum(rest, (p) => costOf(r, p)) : costOf(r, k)), col, lab, null);
+        const share = plants.length ? totals[plants[0]] / (d3.sum(plants, (p) => totals[p]) || 1) : 0;
+        card('plantday-sum').textContent = plants.length ? plants[0] + ' carries the largest share of the cost (' + G.pct(share * 100) + ').' : '';
+      } else {
+        const p0 = pdPlant, price = (r) => { const mw = (r.plant_mw || {})[p0] || 0; return mw >= 1 && window.COSTS.normalPlantMW(p0, mw) ? costOf(r, p0) / mw : null; };
+        legend(card('plantday-legend'), [[p0 + ', $/hour', colors[p0]], ['Cost per MWh', 'var(--ink)']]);
+        timeStack(box, rows, [p0], (r) => costOf(r, p0), () => colors[p0], () => p0, price, (v) => '$' + G.f0(Math.round(v)), 'Cost per MWh');
+        const run = rows.filter((r) => ((r.plant_mw || {})[p0] || 0) >= 1), pv = rows.map(price).filter((v) => v != null);
+        card('plantday-sum').textContent = run.length ? p0 + ' ran in ' + run.length + ' of ' + rows.length + ' hours' + (pv.length ? ', averaging $' + up2(d3.mean(pv)) + '/MWh at normal load.' : '.') : p0 + ' did not run in this period.';
+      }
+      card('plantday-note').textContent = 'Cost per hour for every hour of the ' + P.days + ' days with readings. Readings below 1 MW are left out. Switch to Typical day for the average by hour of day.';
+      return;
+    }
     box.replaceChildren(); box.classList.remove('dash-skeleton');
     const W = box.clientWidth || 640, Hh = 300, tip = G.tipFor(box.closest('.gx-card'));
     const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
@@ -348,6 +418,8 @@
   }
   document.addEventListener('click', (e) => {
     const a = e.target.closest('#cd-period button'); if (a) { cdPeriod = a.dataset.v; try { costDay(); } catch (err) { console.error(err); } }
+    const a2 = e.target.closest('#cd-mode button'); if (a2) { cdMode = a2.dataset.v; try { costDay(); } catch (err) { console.error(err); } }
+    const b2 = e.target.closest('#pd-mode button'); if (b2) { pdMode = b2.dataset.v; try { plantDay(); } catch (err) { console.error(err); } }
     const b = e.target.closest('#pd-period button'); if (b) { pdPeriod = b.dataset.v; try { plantDay(); } catch (err) { console.error(err); } }
   });
   document.addEventListener('change', (e) => { if (e.target.id === 'pd-plant') { pdPlant = e.target.value; try { plantDay(); } catch (err) { console.error(err); } } });

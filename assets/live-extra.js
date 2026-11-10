@@ -61,54 +61,62 @@
     if (otRange === '30d') return { t0: new Date(+now - 30 * 864e5), t1: now, step: 900000, label: 'last 30 days' };
     return { t0: new Date(+now - 7 * 864e5), t1: now, step: 900000, label: 'last 7 days' };
   }
+  // Whole generation on an even time grid: each plant's (and fuel's) MW interpolated between the readings of every unit.
+  // PREPA's demand trace is attached to each row for the comparison line.
   function uniformRows() {
     const Wn = otWindow(), bins = traceBins(Wn.step);
     const readings = readingRows('all').filter((r) => r.plant_mw && Object.keys(r.plant_mw).length);
     const inW = (t) => t >= +Wn.t0 && (Wn.day && otRange !== 'today' ? t < +Wn.t1 : t <= +Wn.t1); // a day ends just before the next 12 AM
-    if (bins.size < 2 || !readings.length) return { rows: readings.filter((r) => inW(+r.t)), readings: [], uniform: false, win: Wn, bins };
-    const sel = [...bins.keys()].filter(inW).sort((a, b) => a - b);
-    const sh = readings.map((r) => {
-      const ptot = d3.sum(Object.values(r.plant_mw)) || 1, p = {}; for (const [k, v] of Object.entries(r.plant_mw)) p[k] = Math.max(0, v) / ptot;
-      const ftot = d3.sum(FUELS, ([k]) => Number(r['mw_' + k]) || 0) || 1, f = {}; for (const [k] of FUELS) f[k] = (Number(r['mw_' + k]) || 0) / ftot;
-      return { t: +r.t, p, f };
-    });
+    if (!readings.length) return { rows: [], readings: [], uniform: false, win: Wn, bins };
+    const rd = readings.map((r) => { const f = {}; for (const [k] of FUELS) f[k] = Number(r['mw_' + k]) || 0; const p = {}; for (const [k, v] of Object.entries(r.plant_mw)) p[k] = Math.max(0, Number(v) || 0); return { t: +r.t, p, f }; });
+    const g0 = Math.max(+Wn.t0, rd[0].t - 30 * 60000), g1 = Math.min(+Wn.t1, rd[rd.length - 1].t + 30 * 60000);
     const mix = (a, b, w) => { const o = {}; for (const k of new Set([...Object.keys(a), ...Object.keys(b)])) o[k] = (a[k] || 0) * (1 - w) + (b[k] || 0) * w; return o; };
-    const rows = sel.map((t) => {
-      let lo = 0, hi = sh.length - 1, i = -1; while (lo <= hi) { const m = (lo + hi) >> 1; if (sh[m].t <= t) { i = m; lo = m + 1; } else hi = m - 1; }
-      const a = sh[Math.max(0, i)], b = sh[Math.min(sh.length - 1, i + 1)];
-      const w = i < 0 ? 0 : b.t === a.t ? 0 : Math.max(0, Math.min(1, (t - a.t) / (b.t - a.t)));
-      const p = i < 0 ? sh[0].p : mix(a.p, b.p, w), f = i < 0 ? sh[0].f : mix(a.f, b.f, w);
-      const o = bins.get(t), g = o.s / o.n;
-      const row = { t: new Date(t), total_mw: g, plant_mw: {}, _near: Math.min(Math.abs(t - a.t), Math.abs(t - b.t)) };
-      for (const [k, v] of Object.entries(p)) row.plant_mw[k] = v * g;
-      for (const [k] of FUELS) row['mw_' + k] = (f[k] || 0) * g;
-      return row;
-    });
-    // ramp: change in total generation over the previous 60 minutes (MW per hour)
-    for (const r of rows) { const o = bins.get(+r.t - 3600000); r._ramp = o ? r.total_mw - o.s / o.n : null; }
+    const rows = [];
+    for (let t = Math.ceil(g0 / Wn.step) * Wn.step; t <= g1; t += Wn.step) {
+      if (!inW(t)) continue;
+      let lo = 0, hi = rd.length - 1, i = -1; while (lo <= hi) { const m = (lo + hi) >> 1; if (rd[m].t <= t) { i = m; lo = m + 1; } else hi = m - 1; }
+      const a = rd[Math.max(0, i)], b = rd[Math.min(rd.length - 1, i + 1)];
+      const near = Math.min(Math.abs(t - a.t), Math.abs(t - b.t));
+      if (b.t - a.t > 3 * H && near > 30 * 60000) continue; // no readings around this time: leave a gap
+      const w = i < 0 || b.t === a.t ? 0 : Math.max(0, Math.min(1, (t - a.t) / (b.t - a.t)));
+      const p = i < 0 ? a.p : mix(a.p, b.p, w), f = i < 0 ? a.f : mix(a.f, b.f, w);
+      const o = bins.get(t);
+      const row = { t: new Date(t), plant_mw: p, total_mw: d3.sum(Object.values(p)), demand: o ? o.s / o.n : null, _near: near };
+      for (const [k] of FUELS) row['mw_' + k] = f[k] || 0;
+      rows.push(row);
+    }
     return { rows, readings: readings.filter((r) => inW(+r.t)), uniform: true, win: Wn, bins };
   }
-  // overlay: ramp rate on a secondary axis and each day's highest and lowest demand
-  function rampOverlay(U) {
-    return ({ svg, x, y, W, Hh, top, mr }) => {
-      const rows = U.rows; if (!rows.length) return;
+  // overlay (clipped to the plot): demand line, ramp of the plants shown on a secondary axis, each day's highest and lowest demand
+  function rampOverlay() {
+    return ({ svg, x, y, W, Hh, top, ml, mr, rows, visTotal, clip }) => {
+      if (!rows.length) return;
+      const g = svg.append('g').attr('clip-path', clip);
+      const dem = rows.filter((r) => r.demand != null);
+      if (otShowDemand && dem.length) {
+        const seq = []; dem.forEach((r, i) => { if (i && r.t - dem[i - 1].t > 2 * H) seq.push({ t: r.t, demand: null }); seq.push(r); });
+        g.append('path').datum(seq).attr('class', 'demand-line').attr('d', d3.line().defined((r) => r.demand != null).x((r) => x(r.t)).y((r) => y(r.demand)).curve(d3.curveMonotoneX));
+      }
       if (otShowRamp) {
-        const rv = rows.filter((r) => r._ramp != null), mx = Math.max(50, d3.max(rv, (r) => Math.abs(r._ramp)) || 50);
+        const rv = rows.map((r) => { const v0 = visTotal.get(+r.t - 3600000), v = visTotal.get(+r.t); return { t: r.t, ramp: v0 == null || v == null ? null : v - v0 }; }).filter((r) => r.ramp != null);
+        const mx = Math.max(20, d3.max(rv, (r) => Math.abs(r.ramp)) || 20);
         const y2 = d3.scaleLinear([-mx * 1.1, mx * 1.1], [Hh - 26, top + 6]).nice();
-        svg.append('line').attr('x1', x.range()[0]).attr('x2', W - mr).attr('y1', y2(0)).attr('y2', y2(0)).attr('stroke', 'var(--ink)').attr('stroke-opacity', 0.35).attr('stroke-dasharray', '3 4');
-        const seq = []; rv.forEach((r, i) => { if (i && r.t - rv[i - 1].t > 2 * H) seq.push({ t: r.t, _ramp: null }); seq.push(r); });
-        svg.append('path').datum(seq).attr('class', 'ramp-line').attr('d', d3.line().defined((r) => r._ramp != null).x((r) => x(r.t)).y((r) => y2(r._ramp)).curve(d3.curveMonotoneX));
+        g.append('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y2(0)).attr('y2', y2(0)).attr('stroke', 'var(--rp-line)').attr('stroke-opacity', 0.4).attr('stroke-dasharray', '3 4');
+        const seq = []; rv.forEach((r, i) => { if (i && r.t - rv[i - 1].t > 2 * H) seq.push({ t: r.t, ramp: null }); seq.push(r); });
+        g.append('path').datum(seq).attr('class', 'ramp-line').attr('d', d3.line().defined((r) => r.ramp != null).x((r) => x(r.t)).y((r) => y2(r.ramp)).curve(d3.curveMonotoneX));
         svg.append('g').selectAll('text').data(y2.ticks(5)).join('text').attr('class', 'ramp-ax').attr('x', W - mr + 6).attr('y', y2).attr('dy', '0.35em').text((v) => (v > 0 ? '+' : v < 0 ? '−' : '') + G.f0(Math.abs(v)));
         svg.append('text').attr('class', 'ramp-ax').attr('x', W - mr + 6).attr('y', top - 2).text('MW/h');
       }
       if (otShowPeaks) {
-        const days = d3.groups(rows, (r) => prDay(r.t)), single = days.length <= 2;
+        const src = dem.length ? dem.map((r) => ({ t: r.t, v: r.demand })) : rows.map((r) => ({ t: r.t, v: visTotal.get(+r.t) || 0 }));
+        const days = d3.groups(src, (r) => prDay(r.t)), single = days.length <= 2;
         for (const [, list] of days) {
-          const hi = list.reduce((a, r) => (r.total_mw > a.total_mw ? r : a), list[0]), lo = list.reduce((a, r) => (r.total_mw < a.total_mw ? r : a), list[0]);
+          if (list.length < 6) continue;
+          const hi = list.reduce((a, r) => (r.v > a.v ? r : a), list[0]), lo = list.reduce((a, r) => (r.v < a.v ? r : a), list[0]);
           for (const [r, up] of [[hi, true], [lo, false]]) {
-            const cx = x(r.t), cy = y(r.total_mw);
-            svg.append('path').attr('class', up ? 'pk-max' : 'pk-min').attr('d', up ? `M${cx - 5},${cy - 12}L${cx + 5},${cy - 12}L${cx},${cy - 4}Z` : `M${cx - 5},${cy - 4}L${cx + 5},${cy - 4}L${cx},${cy - 12}Z`);
-            if (single) svg.append('text').attr('class', 'pk-lbl').attr('x', cx).attr('y', cy - 16).attr('text-anchor', cx > W - 140 ? 'end' : cx < 140 ? 'start' : 'middle').text((up ? 'Max ' : 'Low ') + G.f0(Math.round(r.total_mw)) + ' MW, ' + hFmt(r.t));
+            const cx = x(r.t), cy = y(r.v);
+            g.append('path').attr('class', up ? 'pk-max' : 'pk-min').attr('d', up ? `M${cx - 5},${cy - 12}L${cx + 5},${cy - 12}L${cx},${cy - 4}Z` : `M${cx - 5},${cy + 12}L${cx + 5},${cy + 12}L${cx},${cy + 4}Z`);
+            if (single) g.append('text').attr('class', 'pk-lbl').attr('x', cx).attr('y', up ? cy - 16 : cy + 24).attr('text-anchor', cx > W - 150 ? 'end' : cx < ml + 90 ? 'start' : 'middle').text((up ? 'Max demand ' : 'Lowest demand ') + G.f0(Math.round(r.v)) + ' MW, ' + hFmt(r.t));
           }
         }
       }
@@ -134,7 +142,8 @@
     const seq = []; rows.forEach((r, i) => { if (i && r.t - rows[i - 1].t > maxGap) seq.push({ t: new Date(+rows[i - 1].t + typ), _gap: true }); seq.push(r); });
     const val = (r, s) => (r._gap ? 0 : Math.max(0, Number(s.get(r)) || 0));
     const stacked = d3.stack().keys(series.map((s) => s.key)).value((r, k) => val(r, series.find((s) => s.key === k)))(seq);
-    const maxY = d3.max(seq, (r) => d3.sum(series, (s) => val(r, s))) || 1;
+    const maxY = Math.max(d3.max(seq, (r) => d3.sum(series, (s) => val(r, s))) || 1, opt.extraMax ? opt.extraMax(rows) || 0 : 0);
+    const visTotal = new Map(rows.map((r) => [+r.t, d3.sum(series, (s) => val(r, s))]));
     const y = d3.scaleLinear([0, maxY * 1.05], [Hh - 26, top + 6]).nice();
     const ml = G.measure(svg, y.ticks(5).map(G.f0)) + 14;
     const t0 = rows[0].t, t1 = rows[rows.length - 1].t;
@@ -160,7 +169,9 @@
         svg.append('rect').attr('x', x0).attr('y', 4).attr('width', Math.max(1, x1 - x0)).attr('height', 12).attr('fill', best.color); });
       svg.append('text').attr('x', ml - 6).attr('y', 14).attr('text-anchor', 'end').text('Majority');
     }
-    if (opt.extra) opt.extra({ svg, x, y, W, Hh, top, ml, mr });
+    const cid = 'clip-' + (box.id || 'c');
+    svg.append('clipPath').attr('id', cid).append('rect').attr('x', ml).attr('y', 0).attr('width', Math.max(0, W - mr - ml)).attr('height', Hh - 26);
+    if (opt.extra) opt.extra({ svg, x, y, W, Hh, top, ml, mr, rows, visTotal, clip: 'url(#' + cid + ')' });
     // ticks under the axis where actual unit readings were taken
     if (opt.ticks && opt.ticks.length) svg.append('g').selectAll('line').data(opt.ticks.filter((t) => t >= x.domain()[0] && t <= x.domain()[1])).join('line')
       .attr('x1', x).attr('x2', x).attr('y1', Hh - 26).attr('y2', Hh - 20).attr('stroke', 'var(--ink)').attr('stroke-width', 1.4);
@@ -174,12 +185,14 @@
       .on('mousemove.tip', (ev) => { const t = x.invert(d3.pointer(ev)[0]); const r = rows[d3.bisector((q) => q.t).center(rows, t)]; const tot = d3.sum(series, (s) => val(r, s)) || 1;
         rule.attr('x1', x(r.t)).attr('x2', x(r.t)).attr('opacity', 1);
         tip.show(ev, opt.daily ? pr({ weekday: 'short', month: 'short', day: 'numeric' })(r.t) : tFmt(r.t),
-          [...series.filter((s) => val(r, s) > 0).sort((a, b) => val(r, b) - val(r, a)).slice(0, 12).map((s) => [s.color, s.label, G.f1(val(r, s)) + ' ' + opt.unit + ', ' + G.pct((val(r, s) / tot) * 100)]), [null, 'Total', G.f1(tot) + ' ' + opt.unit], ...(opt.tipExtra ? opt.tipExtra(r) : []),
+          [...series.filter((s) => val(r, s) > 0).sort((a, b) => val(r, b) - val(r, a)).slice(0, 12).map((s) => [s.color, s.label, G.f1(val(r, s)) + ' ' + opt.unit + ', ' + G.pct((val(r, s) / tot) * 100)]), [null, 'Total', G.f1(tot) + ' ' + opt.unit], ...(opt.tipExtra ? opt.tipExtra(r, visTotal) : []),
             ...(r._near != null ? [[null, r._near <= 20 * 60000 ? 'Split from a reading' : 'Split estimated', r._near <= 20 * 60000 ? 'within 20 min' : 'nearest reading ' + Math.round(r._near / 60000) + ' min away']] : [])]); })
       .on('mouseleave.tip', () => { rule.attr('opacity', 0); tip.hide(); });
   }
   const weightsOf = (rows) => { const g = rows.slice(1).map((r, i) => (r.t - rows[i].t) / H).sort((a, b) => a - b), typ = g.length ? g[Math.floor(g.length / 2)] : 0.25; return rows.map((r, i) => Math.min(i < rows.length - 1 ? (rows[i + 1].t - r.t) / H : typ, 1)); };
-  let otRange = 'today', otView = 'plant', otZoom = null, otDate = '', otShowRamp = true, otShowPeaks = true;
+  let otRange = 'today', otView = 'plant', otZoom = null, otDate = '', otShowRamp = true, otShowPeaks = true, otShowDemand = true;
+  const otTip = (r, visTotal) => { const out = []; if (r.demand != null) out.push(['var(--ink)', 'Demand (PREPA)', G.f0(Math.round(r.demand)) + ' MW']);
+    const v = visTotal.get(+r.t), v0 = visTotal.get(+r.t - 3600000); if (otShowRamp && v != null && v0 != null) out.push(['var(--rp-line)', 'Ramp of what is shown (60 min)', (v - v0 >= 0 ? '+' : '−') + G.f0(Math.abs(Math.round(v - v0))) + ' MW/h']); return out; };
   function setOtZoom(z) { otZoom = z; overTime(); }
   const plantHidden = new Set();
   function fuelChart() {
@@ -194,7 +207,7 @@
     const tot = d3.sum(Object.values(energy)) || 1, maj = series.reduce((a, s) => (!a || energy[s.key] > energy[a.key] ? s : a), null);
     leg.replaceChildren();
     for (const s of series) { const sp = el('span', maj && s.key === maj.key ? 'maj' : ''); const sw = el('span', 'gx-sw'); sw.style.background = s.color; sp.append(sw, s.label + ' ' + G.pct((energy[s.key] / tot) * 100)); if (maj && s.key === maj.key) sp.append(el('b', null, ' majority')); leg.append(sp); }
-    stackChart(box, rows, series, { domain: otZoom, onZoom: setOtZoom, mr: U && otShowRamp ? 46 : 8, extra: U ? rampOverlay(U) : null, tipExtra: (r) => (r._ramp != null && otShowRamp ? [[null, 'Ramp (last 60 min)', (r._ramp > 0 ? '+' : '−') + G.f0(Math.abs(Math.round(r._ramp))) + ' MW/h']] : []), ticks: U ? U.readings.map((r) => r.t) : null, unit: daily ? 'GWh' : 'MW', daily, strip: true, height: 320, empty: daily ? 'Daily totals appear after the first day of readings.' : 'No readings in this period yet.' });
+    stackChart(box, rows, series, { domain: otZoom, onZoom: setOtZoom, mr: U && otShowRamp ? 46 : 8, extra: U ? rampOverlay() : null, extraMax: U && otShowDemand ? (rw) => d3.max(rw, (r) => r.demand || 0) * 1.02 : null, tipExtra: U ? otTip : null, ticks: U ? U.readings.map((r) => r.t) : null, unit: daily ? 'GWh' : 'MW', daily, strip: true, height: 320, empty: daily ? 'Daily totals appear after the first day of readings.' : 'No readings in this period yet.' });
   }
   function plantChart() {
     const box = document.getElementById('plant-chart'), leg = document.getElementById('plant-legend'), now = document.getElementById('plant-now');
@@ -206,14 +219,14 @@
     const plants = Object.keys(totals).filter((p) => totals[p] > 0).sort((a, b) => totals[b] - totals[a]);
     buildPlantColors(plants);
     const series = plants.filter((p) => !plantHidden.has(p)).map((p) => ({ key: p, label: p, color: plantColor(p), get: daily ? (r) => (src(r)[p] || 0) / 1000 : (r) => src(r)[p] || 0 }));
-    stackChart(box, rows, series, { domain: otZoom, onZoom: setOtZoom, mr: U && otShowRamp ? 46 : 8, extra: U ? rampOverlay(U) : null, tipExtra: (r) => (r._ramp != null && otShowRamp ? [[null, 'Ramp (last 60 min)', (r._ramp > 0 ? '+' : '−') + G.f0(Math.abs(Math.round(r._ramp))) + ' MW/h']] : []), ticks: U ? U.readings.map((r) => r.t) : null, unit: daily ? 'GWh' : 'MW', daily, height: 360, empty: daily ? 'Daily totals appear after the first day of readings.' : 'No readings in this period yet.' });
+    stackChart(box, rows, series, { domain: otZoom, onZoom: setOtZoom, mr: U && otShowRamp ? 46 : 8, extra: U ? rampOverlay() : null, extraMax: U && otShowDemand ? (rw) => d3.max(rw, (r) => r.demand || 0) * 1.02 : null, tipExtra: U ? otTip : null, ticks: U ? U.readings.map((r) => r.t) : null, unit: daily ? 'GWh' : 'MW', daily, height: 360, empty: daily ? 'Daily totals appear after the first day of readings.' : 'No readings in this period yet.' });
     leg.replaceChildren();
     const head = el('div', 'pl-head'); head.append(el('span', null, 'Plant')); const allB = el('button', 'linkbtn', plantHidden.size ? 'Show all' : 'Hide all'); allB.type = 'button';
-    allB.addEventListener('click', () => { if (plantHidden.size) plantHidden.clear(); else plants.forEach((p) => plantHidden.add(p)); plantChart(); }); head.append(allB); leg.append(head);
+    allB.addEventListener('click', () => { if (plantHidden.size) plantHidden.clear(); else plants.forEach((p) => plantHidden.add(p)); overTime(); }); head.append(allB); leg.append(head);
     for (const p of plants) {
       const b = el('button', 'pl-item' + (plantHidden.has(p) ? ' off' : '')); b.type = 'button'; b.setAttribute('aria-pressed', String(!plantHidden.has(p)));
       const sw = el('span', 'gx-sw'); sw.style.background = plantColor(p); b.append(sw, el('span', 'pl-n', p));
-      b.addEventListener('click', () => { if (plantHidden.has(p)) plantHidden.delete(p); else plantHidden.add(p); plantChart(); }); leg.append(b);
+      b.addEventListener('click', () => { if (plantHidden.has(p)) plantHidden.delete(p); else plantHidden.add(p); overTime(); }); leg.append(b);
     }
     if (!now) return;
     now.replaceChildren();
@@ -237,23 +250,28 @@
     if (otView === 'plant') plantChart(); else fuelChart();
     const note = document.getElementById('fuel-note'), sum = document.getElementById('ot-sum');
     if (otRange === 'all') { note.textContent = 'Energy produced each day (GWh), for every day since monitoring began.'; if (sum) sum.textContent = ''; return; }
-    const U = uniformRows(), rows = U.rows;
-    note.textContent = !rows.length ? 'No readings for this period.' : 'Total generation every ' + (U.win.step === 300000 ? '5' : '15') + ' minutes from PREPA’s record; the split comes from ' + U.readings.length + ' readings of every unit (ticks under the chart) and is estimated between them. Right axis: ramp, the change in generation over the previous 60 minutes.';
+    const U = uniformRows(), all = U.rows, rows = otZoom ? all.filter((r) => r.t >= otZoom[0] && r.t <= otZoom[1]) : all;
+    note.textContent = !all.length ? 'No readings for this period.' : 'Stacked areas: whole generation, the sum of every unit’s output, from ' + U.readings.length + ' readings (ticks under the chart) and interpolated between them. Dashed line: demand, PREPA’s own generation figure. Right axis: ramp of the plants shown, the change over the previous 60 minutes.';
     if (!sum) return;
     if (!rows.length) { sum.textContent = ''; return; }
-    const hi = rows.reduce((a, r) => (r.total_mw > a.total_mw ? r : a), rows[0]), lo = rows.reduce((a, r) => (r.total_mw < a.total_mw ? r : a), rows[0]);
-    const rv = rows.filter((r) => r._ramp != null), up = rv.reduce((a, r) => (!a || r._ramp > a._ramp ? r : a), null), dn = rv.reduce((a, r) => (!a || r._ramp < a._ramp ? r : a), null);
-    const when = (r) => (U.win.day ? hFmt(r.t) : tFmt(r.t));
+    const shown = (r) => (otView === 'plant' ? d3.sum(Object.entries(r.plant_mw), ([p, v]) => (plantHidden.has(p) ? 0 : v)) : d3.sum(FUELS, ([k]) => r['mw_' + k] || 0));
+    const vt = new Map(all.map((r) => [+r.t, shown(r)]));
+    const dem = rows.filter((r) => r.demand != null), when = (r) => (U.win.day ? hFmt(r.t) : tFmt(r.t));
+    const chips = [];
+    const gHi = rows.reduce((a, r) => (shown(r) > shown(a) ? r : a), rows[0]);
+    chips.push([plantHidden.size && otView === 'plant' ? 'Peak of plants shown' : 'Peak generation', G.f0(Math.round(shown(gHi))) + ' MW, ' + when(gHi), '']);
+    if (dem.length) { const hi = dem.reduce((a, r) => (r.demand > a.demand ? r : a), dem[0]), lo = dem.reduce((a, r) => (r.demand < a.demand ? r : a), dem[0]);
+      chips.push(['Max demand', G.f0(Math.round(hi.demand)) + ' MW, ' + when(hi), 'mx'], ['Lowest demand', G.f0(Math.round(lo.demand)) + ' MW, ' + when(lo), 'mn'], ['Swing', G.f0(Math.round(hi.demand - lo.demand)) + ' MW', '']); }
+    const rv = rows.map((r) => { const v0 = vt.get(+r.t - 3600000); return v0 == null ? null : { t: r.t, ramp: vt.get(+r.t) - v0 }; }).filter(Boolean);
+    if (rv.length) { const up = rv.reduce((a, r) => (r.ramp > a.ramp ? r : a), rv[0]), dn = rv.reduce((a, r) => (r.ramp < a.ramp ? r : a), rv[0]);
+      chips.push(['Steepest rise', '+' + G.f0(Math.round(up.ramp)) + ' MW/h, ' + when(up), 'up'], ['Steepest drop', '−' + G.f0(Math.abs(Math.round(dn.ramp))) + ' MW/h, ' + when(dn), 'dn']); }
     sum.replaceChildren();
-    for (const [lbl, val, cls] of [['Max demand', G.f0(Math.round(hi.total_mw)) + ' MW, ' + when(hi), 'mx'], ['Lowest demand', G.f0(Math.round(lo.total_mw)) + ' MW, ' + when(lo), 'mn'], ['Swing', G.f0(Math.round(hi.total_mw - lo.total_mw)) + ' MW', ''],
-      ...(up ? [['Steepest rise', '+' + G.f0(Math.round(up._ramp)) + ' MW/h, ' + when(up), 'up']] : []), ...(dn ? [['Steepest drop', '−' + G.f0(Math.abs(Math.round(dn._ramp))) + ' MW/h, ' + when(dn), 'dn']] : [])]) {
-      const s = el('span', 'ots ' + cls); s.append(el('b', null, lbl), ' ' + val); sum.append(s);
-    }
+    for (const [lbl, val, cls] of chips) { const s = el('span', 'ots ' + cls); s.append(el('b', null, lbl), ' ' + val); sum.append(s); }
   }
   document.getElementById('ot-range').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; otRange = b.dataset.v; otZoom = null; overTime(); });
   const otDI = document.getElementById('ot-date');
   if (otDI) otDI.addEventListener('change', () => { if (!otDI.value) return; otDate = otDI.value; otRange = 'day'; otZoom = null; overTime(); });
-  for (const [id, set] of [['ot-ramp', (v) => { otShowRamp = v; }], ['ot-peaks', (v) => { otShowPeaks = v; }]]) { const c = document.getElementById(id); if (c) c.addEventListener('change', () => { set(c.checked); overTime(); }); }
+  for (const [id, set] of [['ot-ramp', (v) => { otShowRamp = v; }], ['ot-peaks', (v) => { otShowPeaks = v; }], ['ot-demand', (v) => { otShowDemand = v; }]]) { const c = document.getElementById(id); if (c) c.addEventListener('change', () => { set(c.checked); overTime(); }); }
   document.getElementById('ot-reset').addEventListener('click', () => setOtZoom(null));
   document.getElementById('ot-view').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; otView = b.dataset.v; overTime(); });
 
@@ -287,9 +305,9 @@
     const from = new Date(+anchor - evRange * H), q = evQ.trim().toLowerCase();
     const sel = rows.filter((r) => ((r.out && r.out >= from) || (r.back && r.back >= from) || !r.back) && (evType === 'all' || (evType === 'out' ? !r.back : !!r.back)) && (!q || (r.plant + ' ' + r.unit).toLowerCase().includes(q)));
     const trips = sel.filter((r) => r.out && r.out >= from).length, rets = sel.filter((r) => r.back && r.back >= from).length, still = sel.filter((r) => !r.back).length;
-    document.getElementById('ev-sum').textContent = sel.length ? trips + ' unit(s) went out and ' + rets + ' came back in this period; ' + still + ' still out.' : '';
+    document.getElementById('ev-sum').textContent = sel.length ? trips + ' unit(s) went off and ' + rets + ' came on in this period; ' + still + ' still off.' : '';
     document.getElementById('events-empty').hidden = !(G.ok('unit_events') && !sel.length);
-    G.table(document.getElementById('outlog-table'), sel.map((r) => ({ ...r, unit_name: r.plant + ', ' + r.unit, out_v: r.out ? +r.out : 0, back_v: r.back ? +r.back : 0, dur_v: (r.back || anchor) - (r.out || r.back || anchor), state: r.back ? 'Back in service' : 'Still out' })), [
+    G.table(document.getElementById('outlog-table'), sel.map((r) => ({ ...r, unit_name: r.plant + ', ' + r.unit, out_v: r.out ? +r.out : 0, back_v: r.back ? +r.back : 0, dur_v: (r.back || anchor) - (r.out || r.back || anchor), state: r.back ? 'Back on' : 'Still off' })), [
       { k: 'unit_name', render: (td, r) => { td.append(el('span', 'pt-name', r.unit), el('span', 'pt-sub', r.plant)); } },
       { k: 'out_v', fmt: (v, r) => (r.out ? tFmt(r.out) : 'before this period') },
       { k: 'back_v', fmt: (v, r) => (r.back ? tFmt(r.back) : '—') },
@@ -412,35 +430,35 @@
     let rows, cols;
     if (ptMode === 'plants') {
       rows = sites.filter((x) => (ptStatus === 'all' || (ptStatus === 'on' ? x.on > 0 : x.on === 0)) && (!q || (x.pos[2] + ' ' + x.fuel + ' ' + x.operator + ' ' + (x.muni || '')).toLowerCase().includes(q)))
-        .map((x) => ({ key: x.site, plant: label(x), muni: x.muni || '', operator: x.operator, fuel: x.fuel, state: x.state, units_on: x.on, units: x.us.length, mw: x.mw, cost: x.cost, cents: x.cents, basis: x.priceBasis, lowUnits: x.lowUnits, _x: x }));
+        .map((x) => ({ key: x.site, plant: label(x), muni: x.muni || '', operator: x.operator, fuel: x.fuel, state: x.state, units_on: x.on, units: x.us.length, mw: x.mw, mvar: d3.sum(x.us, (u) => Number(u.mvar) || 0), pf: pfOf(x.mw, d3.sum(x.us, (u) => Number(u.mvar) || 0)), cost: x.cost, cents: x.cents, basis: x.priceBasis, lowUnits: x.lowUnits, _x: x }));
       const totMW = d3.sum(rows, (r) => r.mw) || 1;
       rows.forEach((r) => { r.share = (r.mw / totMW) * 100; });
       cols = [
         ['Plant', { k: 'plant', render: (td, r) => { td.append(el('span', 'pt-name', r.plant)); if (r.muni) td.append(el('span', 'pt-sub', r.muni)); } }],
         ['Operator', { k: 'operator' }], ['Fuel', { k: 'fuel' }],
         ['Status', { k: 'state', render: (td, r) => { const m = { ok: ['ok', 'All on'], partial: ['warn', 'Partly on'], out: ['bad', 'All off'], idle: ['', 'No output'] }[r.state]; const sp = el('span', 'gx-pill'); const d = el('i', 'gx-dot ' + m[0]); if (!m[0]) d.style.background = 'var(--steel)'; sp.append(d, m[1]); td.append(sp); } }],
-        ['Units on', { k: 'units_on', num: true, fmt: (v, r) => v + ' / ' + r.units }], ['MW', { k: 'mw', num: true, fmt: (v) => G.f1(v) }], ['Share', { k: 'share', num: true, fmt: (v) => G.pct(v) }],
+        ['Units on', { k: 'units_on', num: true, fmt: (v, r) => v + ' / ' + r.units }], ['MW', { k: 'mw', num: true, fmt: (v) => G.f1(v) }], ['MVAr', { k: 'mvar', num: true, fmt: (v) => (v == null ? '—' : G.f1(v)) }], ['Power factor', { k: 'pf', num: true, fmt: (v) => (v == null ? '—' : v.toFixed(3)) }], ['Share', { k: 'share', num: true, fmt: (v) => G.pct(v) }],
         ['$/hour', { k: 'cost', num: true, fmt: (v) => (v ? G.money(Math.round(v)) : '—') }], ['¢/kWh', { k: 'cents', num: true, render: (td, r) => { if (r._total) return; td.textContent = r.cents ? (r.basis === 'typical' ? '≈ ' : '') + G.f2(r.cents) : '—';
           if (r.basis === 'typical') td.title = 'All running units are at low output, so this is the plant’s typical cost at normal load over the last 7 days.';
           if (r.lowUnits) { const t = el('span', 'low-tag', r.lowUnits + ' low'); t.title = r.lowUnits + ' unit(s) producing under ' + Math.round(window.COSTS.minPct() * 100) + '% of rated capacity; their reported cost per kWh is left out of the plant price.'; td.append(' ', t); } } }],
       ];
     } else {
       rows = sites.flatMap((x) => x.us.map((u) => ({ x, u }))).filter(({ u }) => (ptStatus === 'all' || (ptStatus === 'on' ? u.status === 'Generating' : u.status !== 'Generating')) && (!q || (u.unit + ' ' + u.plant + ' ' + u.fuel).toLowerCase().includes(q)))
-        .map(({ x, u }) => { const rated = (x.cap[u.unit_id] || {}).rated_mw ?? null; return { key: u.unit_id, unit: u.unit, plant: u.plant, fuel: G.norm(u.fuel), status: u.status, mw: Math.max(0, Number(u.mw)), rated, load: rated ? (Math.max(0, Number(u.mw)) / rated) * 100 : null, cents: Number(u.cost_cents_kwh) || null, cost: Number(u.cost_usd_per_hour) || 0, low: window.COSTS.lowLoad(u) }; });
+        .map(({ x, u }) => { const rated = (x.cap[u.unit_id] || {}).rated_mw ?? null; return { key: u.unit_id, unit: u.unit, plant: u.plant, fuel: G.norm(u.fuel), status: u.status, mw: Math.max(0, Number(u.mw)), mvar: Number(u.mvar) || 0, pf: u.status === 'Generating' ? pfOf(u.mw, u.mvar) : null, rated, load: rated ? (Math.max(0, Number(u.mw)) / rated) * 100 : null, cents: Number(u.cost_cents_kwh) || null, cost: Number(u.cost_usd_per_hour) || 0, low: window.COSTS.lowLoad(u) }; });
       cols = [
         ['Unit', { k: 'unit', render: (td, r) => { td.append(el('span', 'pt-name', r.unit)); td.append(el('span', 'pt-sub', r.plant)); } }],
         ['Fuel', { k: 'fuel' }],
         ['Status', { k: 'status', render: (td, r) => { const on = r.status === 'Generating'; const sp = el('span', 'gx-pill ' + (on ? 'gx-t-ok' : 'gx-t-bad')); sp.append(el('i', 'gx-dot ' + (on ? 'ok' : 'bad')), on ? 'ON' : 'OFF'); td.append(sp); } }],
-        ['MW', { k: 'mw', num: true, fmt: (v) => G.f1(v) }], ['Rated MW', { k: 'rated', num: true, fmt: (v) => (v == null ? '—' : G.f0(v)) }], ['Load', { k: 'load', num: true, fmt: (v) => (v == null ? '—' : G.pct(v)) }],
+        ['MW', { k: 'mw', num: true, fmt: (v) => G.f1(v) }], ['MVAr', { k: 'mvar', num: true, fmt: (v) => G.f1(v) }], ['Power factor', { k: 'pf', num: true, fmt: (v) => (v == null ? '—' : v.toFixed(3)) }], ['Rated MW', { k: 'rated', num: true, fmt: (v) => (v == null ? '—' : G.f0(v)) }], ['Load', { k: 'load', num: true, fmt: (v) => (v == null ? '—' : G.pct(v)) }],
         ['¢/kWh', { k: 'cents', num: true, render: (td, r) => { td.textContent = r._total ? '' : r.cents ? G.f2(r.cents) : '—'; if (r.low && !r._total) { const t = el('span', 'low-tag', 'low output'); t.title = 'Producing under ' + Math.round(window.COSTS.minPct() * 100) + '% of rated capacity (idling or warming up). PREPA’s cost per kWh at this level is not representative and is not used for the plant’s price.'; td.append(' ', t); } } }], ['$/hour', { k: 'cost', num: true, fmt: (v) => (v ? G.money(Math.round(v)) : '—') }],
       ];
     }
     // header for the current mode (sorting resets when the columns change)
     const sig = ptMode + cols.length;
     if (tb.dataset.sig !== sig) { tb.dataset.sig = sig; tb._sort = { key: 'mw', dir: 'desc' }; const tr = el('tr'); for (const [t, c] of cols) { const th = el('th', c.num ? 'num' : '', t); th.dataset.field = c.k; tr.append(th); } tb.tHead.replaceChildren(tr); }
-    const tot = { key: '__total', plant: 'Total', unit: 'Total', mw: d3.sum(rows, (r) => r.mw), cost: d3.sum(rows, (r) => r.cost), share: rows.length ? 100 : null, units_on: d3.sum(rows, (r) => r.units_on || 0), units: d3.sum(rows, (r) => r.units || 0), _total: true };
+    const tot = { key: '__total', plant: 'Total', unit: 'Total', mvar: d3.sum(rows, (r) => r.mvar || 0), pf: pfOf(d3.sum(rows, (r) => r.mw), d3.sum(rows, (r) => r.mvar || 0)), mw: d3.sum(rows, (r) => r.mw), cost: d3.sum(rows, (r) => r.cost), share: rows.length ? 100 : null, units_on: d3.sum(rows, (r) => r.units_on || 0), units: d3.sum(rows, (r) => r.units || 0), _total: true };
     tot.cents = null;
-    G.table(tb, rows.length ? [...rows, tot] : [], cols.map(([, c]) => ({ ...c, render: c.render ? (td, r) => (r._total ? (td.textContent = c.k === 'plant' || c.k === 'unit' ? 'Total (' + rows.length + ')' : '') : c.render(td, r)) : undefined, fmt: c.fmt ? (v, r) => (r._total && !['mw', 'cost', 'share', 'units_on'].includes(c.k) ? '' : c.fmt(v, r)) : (v, r) => (r._total ? '' : v == null ? '—' : String(v)) })),
+    G.table(tb, rows.length ? [...rows, tot] : [], cols.map(([, c]) => ({ ...c, render: c.render ? (td, r) => (r._total ? (td.textContent = c.k === 'plant' || c.k === 'unit' ? 'Total (' + rows.length + ')' : '') : c.render(td, r)) : undefined, fmt: c.fmt ? (v, r) => (r._total && !['mw', 'mvar', 'pf', 'cost', 'share', 'units_on'].includes(c.k) ? '' : c.fmt(v, r)) : (v, r) => (r._total ? '' : v == null ? '—' : String(v)) })),
       { key: 'key', pinLast: (r) => r._total, rowStyle: (tr, r) => { if (r._total) tr.className = 'pt-total'; else if (ptMode === 'plants') { tr.classList.add('pt-click'); tr.addEventListener('click', () => selectPlant(r.key)); } }, redraw: plantTable });
     document.getElementById('pt-empty').hidden = rows.length > 0;
     // small totals under the map
@@ -502,8 +520,11 @@
     return wrap;
   }
 
+  let gaugeMode = 'mw';
+  const pfOf = (mw, mvar) => window.PREPA.powerFactor(Math.max(0, Number(mw) || 0), Number(mvar) || 0);
   function gauges() {
     const box = document.getElementById('gauges');
+    document.querySelectorAll('#gauge-mode button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === gaugeMode)));
     document.querySelectorAll('#board-filter button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === gaugeOp)));
     if (!G.ok('live_units')) { G.failOrSkeleton(box, ['live_units']); return; }
     box.replaceChildren(); box.classList.remove('dash-skeleton');
@@ -516,7 +537,8 @@
       const ratedUnits = pl.us.map((u) => (cap.units[u.unit_id] || {}).rated_mw).filter((v) => v != null);
       const plantRated = (cap.plants[pl.p] || {}).rated_mw ?? (ratedUnits.length === pl.us.length ? d3.sum(ratedUnits) : null);
       const card = el('div', 'gplant' + (pl.on === 0 ? ' out' : pl.on < pl.us.length ? ' partial' : ''));
-      const hd = el('div', 'gplant-h'); hd.append(el('div', 'gplant-n', pl.p), el('div', 'gplant-m', G.f0(Math.round(pl.mw)) + (plantRated ? ' of ' + G.f0(plantRated) : '') + ' MW, ' + pl.on + '/' + pl.us.length + ' on'));
+      const plQ = d3.sum(pl.us, (u) => Number(u.mvar) || 0), plPF = pfOf(pl.mw, plQ), qMax = d3.nice(0, Math.max(10, d3.max(pl.us, (u) => Math.abs(Number(u.mvar) || 0)) || 10), 2)[1];
+      const hd = el('div', 'gplant-h'); hd.append(el('div', 'gplant-n', pl.p), el('div', 'gplant-m', gaugeMode === 'mvar' ? G.f0(Math.round(plQ)) + ' MVAr, power factor ' + (plPF == null ? '—' : plPF.toFixed(3)) : G.f0(Math.round(pl.mw)) + (plantRated ? ' of ' + G.f0(plantRated) : '') + ' MW, ' + pl.on + '/' + pl.us.length + ' on'));
       card.append(hd);
       if (plantRated) { const bar = el('div', 'gplant-bar'); const f = el('span'); f.style.width = Math.min(100, (pl.mw / plantRated) * 100) + '%'; f.style.background = G.color(pl.us[0].fuel); bar.append(f); card.append(bar); }
       card.append(el('div', 'plant-f', pl.us[0].fuel + ', ' + pl.us[0].operator));
@@ -526,6 +548,22 @@
         const max = c.rated_mw ?? (Math.max(rg ? rg.max_on_mw : 0, mwv) || 1);
         const tile = el('div', 'gunit' + (on ? '' : ' off'));
         tile.title = u.unit + ': ' + G.f2(Number(u.mw)) + ' MW' + (c.rated_mw ? ', rated ' + c.rated_mw + ' MW (' + c.source + ')' : ', no published rating') + (rg ? '. Seen running between ' + G.f1(rg.min_on_mw) + ' and ' + G.f1(rg.max_on_mw) + ' MW' : '') + (Number(u.cost_cents_kwh) > 0 ? '. Cost ' + G.f2(Number(u.cost_cents_kwh)) + ' ¢/kWh' + (window.COSTS.lowLoad(u) ? ' (low output: not representative)' : '') : '');
+        const q = Number(u.mvar) || 0, upf = on ? pfOf(mwv, q) : null;
+        tile.title += '. Reactive power ' + G.f1(q) + ' MVAr' + (upf != null ? ', power factor ' + upf.toFixed(3) + (q >= 0 ? ' lagging' : ' leading') : '');
+        if (gaugeMode === 'mvar') { // gauge from −qMax (absorbing) to +qMax (supplying), zero at the top
+          const S = 96, R = 38, cx = S / 2, cy = 46, svg = d3.select(tile).append('svg').attr('viewBox', `0 0 ${S} 58`).attr('width', '100%').attr('height', 58);
+          const sc = d3.scaleLinear([-qMax, qMax], [-Math.PI / 2, Math.PI / 2]).clamp(true), arc = d3.arc().innerRadius(R - 8).outerRadius(R);
+          const g = svg.append('g').attr('transform', `translate(${cx},${cy})`);
+          g.append('path').attr('d', arc({ startAngle: -Math.PI / 2, endAngle: Math.PI / 2 })).attr('fill', 'var(--cds-chart-grid)');
+          if (Math.abs(q) >= 0.05) g.append('path').attr('d', arc({ startAngle: Math.min(0, sc(q)), endAngle: Math.max(0, sc(q)) })).attr('fill', q >= 0 ? 'var(--rv-watch)' : 'var(--rv-over)');
+          g.append('line').attr('x1', 0).attr('x2', 0).attr('y1', -R - 2).attr('y2', -R + 10).attr('stroke', 'var(--muted)').attr('stroke-width', 1);
+          g.append('text').attr('class', 'gv').attr('text-anchor', 'middle').attr('y', -4).text(G.f1(q));
+          g.append('text').attr('class', 'gm').attr('text-anchor', 'middle').attr('y', 9).text('MVAr');
+          g.append('text').attr('class', 'gm').attr('x', -R + 4).attr('y', 11).attr('text-anchor', 'middle').text('−' + G.f0(qMax));
+          g.append('text').attr('class', 'gm').attr('x', R - 4).attr('y', 11).attr('text-anchor', 'middle').text('+' + G.f0(qMax));
+          const ft = el('div', 'gunit-f'); ft.append(el('span', 'gunit-n', u.unit), el('span', 'gstat ' + (upf == null ? 'off' : upf >= 0.9 ? 'on' : 'pf-low'), upf == null ? (on ? 'PF —' : 'OFF') : 'PF ' + upf.toFixed(2)));
+          tile.append(ft); grid.append(tile); continue;
+        }
         const S = 96, R = 38, cx = S / 2, cy = 46;
         const svg = d3.select(tile).append('svg').attr('viewBox', `0 0 ${S} 58`).attr('width', '100%').attr('height', 58);
         const sc = d3.scaleLinear([0, max], [-Math.PI / 2, Math.PI / 2]).clamp(true);
@@ -547,6 +585,7 @@
     }
   }
   document.getElementById('board-filter').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; gaugeOp = b.dataset.v; gauges(); });
+  const gmEl = document.getElementById('gauge-mode'); if (gmEl) gmEl.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; gaugeMode = b.dataset.v; gauges(); });
 
   /* ---------- Daily summary ---------- */
   function daily() {
@@ -564,7 +603,7 @@
       kpi('Total cost of the day', G.moneyC(s.total_cost_usd), s.coverage_h >= 23.5 ? 'full day' : G.f1(s.coverage_h) + ' h covered; full-day pace ' + G.moneyC(s.cost_full_day_estimate_usd));
       kpi('Average cost', s.avg_cost_usd_per_kwh == null ? '—' : '$' + s.avg_cost_usd_per_kwh.toFixed(3) + '/kWh', 'all generation');
       kpi('Frequency max / min', s.freq_max_hz == null ? '—' : s.freq_max_hz.toFixed(2) + ' / ' + s.freq_min_hz.toFixed(2), 'Hz; average ' + (s.freq_avg_hz == null ? '—' : s.freq_avg_hz.toFixed(3)));
-      kpi('Outages', G.f0(s.units_went_offline), 'units went offline; ' + s.units_came_back + ' came back');
+      kpi('Unit events', G.f0(s.units_went_offline + s.units_came_back), s.units_went_offline + ' went off; ' + s.units_came_back + ' came on');
     }
     G.table(document.getElementById('day-table'), days.slice().reverse(), [
       { k: 'day', fmt: (v, r) => pr({ weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })(new Date(v + 'T12:00:00-04:00')) + (r.status === 'In progress' ? ' (so far)' : '') },
@@ -575,7 +614,7 @@
       { k: 'avg_cost_usd_per_kwh', num: true, fmt: (v) => (v == null ? '—' : '$' + v.toFixed(3)) },
       { k: 'freq_max_hz', num: true, fmt: (v) => (v == null ? '—' : v.toFixed(2)) }, { k: 'freq_min_hz', num: true, fmt: (v) => (v == null ? '—' : v.toFixed(2)) }, { k: 'freq_avg_hz', num: true, fmt: (v) => (v == null ? '—' : v.toFixed(3)) },
       { k: 'units_went_offline', num: true },
-      { k: 'day', render: (td, r) => { const a = el('a', null, r.day + '.txt'); a.href = 'logs/daily/' + r.day + '.txt'; td.append(a); if (r.units_went_offline || r.units_came_back) { td.append(' · '); const b = el('a', null, 'outages'); b.href = 'logs/outages/' + r.day + '.log'; td.append(b); } } },
+      { k: 'day', render: (td, r) => { const a = el('a', null, r.day + '.txt'); a.href = 'logs/daily/' + r.day + '.txt'; td.append(a); if (r.units_went_offline || r.units_came_back) { td.append(' · '); const b = el('a', null, 'unit events'); b.href = 'logs/unit-events/' + r.day + '.log'; td.append(b); } } },
     ], { key: 'day', redraw: () => dash.rerun() });
   }
 

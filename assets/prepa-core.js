@@ -430,8 +430,17 @@ function buildHistoryRow(src, graph, now) {
     row.plant_mw[g] = Math.round(((row.plant_mw[g] || 0) + Math.max(0, u.mw)) * 10) / 10;
     if (u.status === 'Generating') row.plant_cost[g] = Math.round((row.plant_cost[g] || 0) + u.cost_usd_per_hour);
   }
+  // whole generation = the sum of every unit's output (PREPA's "Total de Generación", total_mw, is the demand served)
+  row.gen_mw = Math.round(sum(src.units, (u) => Math.max(0, u.mw)) * 10) / 10;
+  // reactive power per plant (MVAr; positive = supplying, negative = absorbing) and the system power factor
+  row.plant_mvar = {};
+  for (const u of src.units) { const g = plantGroup(u.plant); row.plant_mvar[g] = Math.round(((row.plant_mvar[g] || 0) + (Number(u.mvar) || 0)) * 10) / 10; }
+  row.mvar_total = Math.round(sum(src.units, (u) => Number(u.mvar) || 0) * 10) / 10;
+  row.power_factor = powerFactor(row.gen_mw, row.mvar_total);
   return row;
 }
+// power factor = MW / sqrt(MW² + MVAr²), 0 to 1
+function powerFactor(mw, mvar) { const s = Math.hypot(Number(mw) || 0, Number(mvar) || 0); return s > 0 && mw > 0 ? Math.round((mw / s) * 1000) / 1000 : null; }
 function plantGroup(plant) { return /\(hydro\)$/.test(plant) ? 'Hydro' : plant === 'Landfill' ? 'Landfill gas' : plant; }
 /* ---------------- Compact unit snapshot for the hourly archive ---------------- */
 function archiveSnapshot(src) {
@@ -444,5 +453,5 @@ function processLevels(v) {
   return v.niveles.map((n) => ({ embalse: String(n.embalse).toLowerCase(), level_m: num(n.lectura), change_m: num(String(n.diferencia).replace('+', '')), at }))
     .filter((r) => r.level_m != null);
 }
-root.PREPA = { rampsOf, processLevels, summarizeDay, plantGroup, FUEL_KEYS, buildForecast, num, DAY, pad, isoAST, parseFeed, parseStamp, processSource, processGraph, freqLevel, detectExcursions, mergeExcursions, allowanceStatus, buildHistoryRow, archiveSnapshot, RANK, OFFLINE_MW };
+root.PREPA = { powerFactor, rampsOf, processLevels, summarizeDay, plantGroup, FUEL_KEYS, buildForecast, num, DAY, pad, isoAST, parseFeed, parseStamp, processSource, processGraph, freqLevel, detectExcursions, mergeExcursions, allowanceStatus, buildHistoryRow, archiveSnapshot, RANK, OFFLINE_MW };
 })(typeof globalThis !== 'undefined' ? globalThis : window);

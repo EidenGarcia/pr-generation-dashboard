@@ -22,7 +22,7 @@
   const dur = (s) => (s == null ? '—' : s < 90 ? Math.round(s) + ' s' : s < 5400 ? Math.round(s / 60) + ' min' : (s / 3600).toFixed(1) + ' h');
   let heroZoom = null, heroDomain = null;
   const isFull = (el) => !!document.fullscreenElement && document.fullscreenElement.contains(el);
-  const vis = { gen: true, freq: true, cap: true, demand: true, nexthr: false, outages: true, fload: true, fcap: true, peak: true };
+  const vis = { gen: true, freq: true, cap: true, demand: false, nexthr: false, outages: true, fload: true, fcap: true, peak: true };
 
   /* ---------- Portal health status (shared by pill and panel) ---------- */
   function portalState() {
@@ -94,7 +94,7 @@
     if (recent.length) { freqBad = true; const p = line(recent.length + ' frequency excursion(s) at Alert level or worse in the last 24 hours: ');
       for (const e of recent.slice(-4)) p.append(el('span', 'chip bad', tFmt(new Date(e.start)) + ', ' + e.extreme_hz.toFixed(2) + ' Hz, ' + e.worst_level + (e.allowance_status === 'Exceeded' ? ', time limit exceeded' : ''))); }
     box.classList.toggle('calm', s.baseload_down === 0 && s.went_offline_latest === 0 && !freqBad);
-    if (s.events_logged > 0) line((s.went_offline_latest ? s.went_offline_latest + ' unit(s) went offline' : 'No unit went offline') + (s.back_online_latest ? ' and ' + s.back_online_latest + ' came back' : '') + ' at the latest check (' + tFmt(new Date(s.latest_change)) + ').');
+    if (s.events_logged > 0) line((s.went_offline_latest ? s.went_offline_latest + ' unit(s) went off' : 'No unit went off') + (s.back_online_latest ? ' and ' + s.back_online_latest + ' came back' : '') + ' at the latest check (' + tFmt(new Date(s.latest_change)) + ').');
     else line('Monitoring has started; units that stop or restart will be listed here after the next hourly check.');
     const base = al.filter((a) => a.rank === 1);
     const p = line(base.length ? base.length + ' baseload unit(s) down that ran last month: ' : 'No baseload unit that ran last month is down. ');
@@ -104,10 +104,9 @@
 
   /* ---------- Hero chart ---------- */
   const SER = [
-    ['gen', 'Actual generation', 'var(--h-gen)', 'solid'],
-    ['demand', 'Actual demand', 'var(--h-dem)', 'solid'],
+    ['gen', 'Demand', 'var(--h-gen)', 'solid'],
     ['nexthr', 'PREPA next-hour forecast', 'var(--h-dem)', 'dot'],
-    ['outages', 'Unit trips and returns', 'var(--h-peak)', 'dot'],
+    ['outages', 'Units going off and on', 'var(--h-peak)', 'dot'],
     ['cap', 'Actual capacity', 'var(--h-cap)', 'solid'],
     ['fload', 'Load forecast', 'var(--h-gen)', 'dash'],
     ['fcap', 'Capacity forecast', 'var(--h-cap)', 'dash'],
@@ -248,7 +247,7 @@
     bg.select('.overlay').on('mousemove.tip', (ev) => {
       const t = x.invert(d3.pointer(ev)[0]); rule.attr('x1', x(t)).attr('x2', x(t)).attr('opacity', 1);
       const a = near(gw, t, 8 * 60000), b = near(hw, t, 40 * 60000), c = near(fw, t, 40 * 60000), lines = [];
-      if (a && a.g != null && vis.gen) lines.push(['var(--h-gen)', 'Generation', G.f0(a.g) + ' MW']);
+      if (a && a.g != null && vis.gen) lines.push(['var(--h-gen)', 'Demand', G.f0(a.g) + ' MW']);
       if (b && b.d != null && vis.demand) lines.push(['var(--h-dem)', 'Actual demand', G.f0(b.d) + ' MW']);
       if (b && b.cap != null && vis.cap) lines.push(['var(--h-cap)', 'Available capacity', G.f0(b.cap) + ' MW']);
       const bn = near(hw.map((d) => ({ ...d, t: new Date(+d.t + H) })), t, 40 * 60000);
@@ -332,6 +331,9 @@
       d.append(l, v); if (sub) d.append(el('div', 'ro-s', sub)); r.append(d);
     };
     item('Demand now', G.f0(k.total_generation_mw), 'MW', 'Next hour (PREPA): ' + G.f0(k.next_hour_mw) + ' MW');
+    // whole generation (sum of every unit) and the system power factor from MW and MVAr
+    const us = G.rows('live_units'), P = d3.sum(us, (u) => Math.max(0, Number(u.mw) || 0)), Q = d3.sum(us, (u) => Number(u.mvar) || 0), pf = window.PREPA.powerFactor(P, Q);
+    if (us.length) item('Power factor', pf == null ? '—' : pf.toFixed(3), '', G.f0(Math.round(P)) + ' MW generated, ' + G.f0(Math.round(Q)) + ' MVAr ' + (Q >= 0 ? '(lagging)' : '(leading)'), pf == null ? '' : pf >= 0.9 ? 'ok' : pf >= 0.85 ? 'warn' : 'bad');
     const fl = level(f);
     item('Frequency', f == null ? '—' : f.toFixed(2), f == null ? '' : 'Hz', f == null ? 'Waiting for dataGraph.js' : (fl || '') + (fl ? ' level, ' : '') + (f >= 60 ? '+' : '−') + Math.abs(f - 60).toFixed(2) + ' Hz from 60', f == null ? '' : fl === 'Normal' ? 'ok' : fl === 'Watch' ? 'warn' : 'bad');
     item('Available capacity', G.f0(k.available_capacity_mw), 'MW', 'Margin over demand: ' + G.f0(k.available_capacity_mw - k.total_generation_mw) + ' MW');
@@ -480,7 +482,7 @@
     const rule = svg.append('line').attr('y1', 10).attr('y2', Hh - 26).attr('stroke', 'var(--cds-chart-reference)').attr('opacity', 0);
     svg.append('rect').attr('x', ml).attr('y', 0).attr('width', W - ml - mr).attr('height', Hh - 26).attr('fill', 'transparent')
       .on('mousemove', (ev) => { const t = x.invert(d3.pointer(ev)[0]); const d = h[d3.bisector((r) => r.t).center(h, t)]; rule.attr('x1', x(d.t)).attr('x2', x(d.t)).attr('opacity', 1);
-        tip.show(ev, tFmt(d.t), [['var(--alert)', 'Genera units out of service', d.off + ' of ' + d.tot], ['var(--teal)', 'Spinning reserve', d.sp == null ? '—' : G.f0(d.sp) + ' MW']]); })
+        tip.show(ev, tFmt(d.t), [['var(--alert)', 'Genera units off', d.off + ' of ' + d.tot], ['var(--teal)', 'Spinning reserve', d.sp == null ? '—' : G.f0(d.sp) + ' MW']]); })
       .on('mouseleave', () => { rule.attr('opacity', 0); tip.hide(); });
   }
 
@@ -554,7 +556,7 @@
     const costH = d3.sum(units, (u) => Number(u.cost_usd_per_hour) || 0);
     const mwAll = d3.sum(units, (u) => Number(u.mw) || 0), mwCost = d3.sum(units.filter((u) => Number(u.cost_cents_kwh) > 0), (u) => Number(u.mw));
     kpi('Total cost now', units.length ? G.money(costH) : '—', 'per hour, all units with a cost');
-    kpi('Cost per kWh now', mwAll ? '$' + (costH / (mwAll * 1000)).toFixed(3) : '—', 'all generation; $' + (mwCost ? (costH / (mwCost * 1000)).toFixed(3) : '—') + ' for costed units');
+    kpi('Cost per kWh now', mwAll ? '$' + (costH / (mwAll * 1000)).toFixed(3) : '—', 'whole generation (all units); $' + (mwCost ? (costH / (mwCost * 1000)).toFixed(3) : '—') + ' for costed units');
     const h = G.rows('history').map((r) => ({ ...r, t: new Date(r.at) })).filter((r) => num(r.dispatch_cost_usd_h) != null).sort((a, b) => a.t - b.t);
     if (h.length) {
       const end = h[h.length - 1].t, w24 = h.filter((r) => end - r.t <= 24 * H);

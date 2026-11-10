@@ -9,6 +9,8 @@ A static web page, hosted free on GitHub Pages. It reads PREPA’s feeds **direc
 
 **Ramp rates:** each run measures how fast generation rises and falls (change over 60 minutes, MW per hour) from the 5-minute record: daily steepest rise and drop (`data/daily_summary.json`, also in the daily text logs), and how fast each plant ramps while online (`data/plant_ramps.json`, from consecutive readings). `data/trace_long.json` keeps 35 days of 15-minute generation for the 30-day view.
 
+**Reactive power:** every reading records each plant’s MVAr, the whole generation (sum of all units, `gen_mw`; PREPA’s `total_mw` is demand) and the system power factor. Unit status changes are logged in `logs/unit-events/` (formerly `logs/outages/`, renamed automatically).
+
 **What it shows:** Generation, actual demand and frequency for the last 24 hours with PREPA’s next-hour forecast, actual capacity, today’s peak, markers when units go out or come back, and a 24-hour forecast of load and capacity; generation over time by plant or by fuel (24 h, 7 days, 30 days, all) with the majority fuel; “Plants right now”: a one-color map of Puerto Rico (US Census outline) with every plant on/off, its MW and $/h, beside a full table of plants or units that can be sorted by any column and filtered by search, operator and status, with each unit’s MW, rated MW, load, ¢/kWh and $/h; 24-hour outage log; frequency against IEEE limits; unit gauges (0 to rated capacity, ON/OFF, observed range); dispatch cost now and over 24 hours ($/h, $/kWh); energy mix; daily summary; outage alerts; portal health (uptime, response time, data freshness).
 
 ## Set it up (about 10 minutes)

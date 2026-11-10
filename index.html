@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Puerto Rico generation — live</title>
-<meta name="description" content="Live generation, frequency, forecast, outages and portal health for Puerto Rico’s power plants, updated hourly from PREPA’s operational feeds.">
+<meta name="description" content="Live generation, frequency, forecast, unit events and portal health for Puerto Rico’s power plants, updated hourly from PREPA’s operational feeds.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/theme.css?v=20261113">
-<link rel="stylesheet" href="assets/live.css?v=20261113">
+<link rel="stylesheet" href="assets/theme.css?v=20261114">
+<link rel="stylesheet" href="assets/live.css?v=20261114">
 </head>
 <body>
 <div class="wrap">
@@ -49,7 +49,7 @@
   <section class="hero" id="overview" aria-labelledby="hero-h">
     <div class="hero-main">
       <div class="hero-head">
-        <h2 id="hero-h">Generation and frequency, last 24 hours and next 24</h2>
+        <h2 id="hero-h">Demand and frequency, last 24 hours and next 24</h2>
         <div class="chart-tools"><button class="tool" type="button" id="hero-reset" hidden>Reset zoom</button><button class="tool" type="button" data-fs="hero-wrap" aria-label="Full screen">⤢ Full screen</button></div>
         <div class="hero-legend" id="hero-legend" role="group" aria-label="Show or hide lines"></div>
       </div>
@@ -63,7 +63,7 @@
   <!-- Reserves below the main graph -->
   <div class="gx-card reserve-card" id="reserve-card">
     <div class="card-head"><h3>Reserves</h3><span class="gx-note" style="margin:0">Same time span as the graph above; zooming one zooms both.</span></div>
-    <p class="gx-note">Capacity margin = available capacity minus generation (every 5 minutes). Spinning and operating reserve are PREPA’s figures at each reading. Dashed: projected margin from the forecast. The dotted line marks the largest unit online; a margin below it means losing that unit could not be covered.</p>
+    <p class="gx-note">Capacity margin = available capacity minus demand (every 5 minutes). Spinning and operating reserve are PREPA’s figures at each reading. Dashed: projected margin from the forecast. The dotted line marks the largest unit online; a margin below it means losing that unit could not be covered.</p>
     <div class="gx-legend" id="reserve-legend"></div>
     <div class="gx-chart" id="reserve-chart" style="min-height:220px"></div>
   </div>
@@ -82,7 +82,7 @@
       <div class="gx-seg" id="pt-status" role="group" aria-label="Status">
         <button data-v="all" aria-pressed="true">Any status</button><button data-v="on" aria-pressed="false">Generating</button><button data-v="off" aria-pressed="false">Offline</button>
       </div>
-      <label class="toggle"><input type="checkbox" id="tl-toggle" checked> Transmission lines</label>
+      <label class="chk"><input type="checkbox" id="tl-toggle" checked> Transmission lines</label>
       <div class="gx-seg" id="pt-mode" role="group" aria-label="Rows">
         <button data-v="plants" aria-pressed="true">Plants</button><button data-v="units" aria-pressed="false">Units</button>
       </div>
@@ -104,7 +104,7 @@
 
   <!-- Generation over time -->
   <h2 class="gx-sec" id="overtime">Generation over time</h2>
-  <p class="gx-secnote">How much each plant or fuel supplied. Pick today (from 12 AM), the last full day, any date, or the last 7 or 30 days. The total follows PREPA’s generation record; the split between plants and fuels comes from the nearest readings of every unit and is estimated in between. The right axis shows the ramp: how many MW per hour generation is rising or falling. Drag to zoom.</p>
+  <p class="gx-secnote">The whole generation: every plant’s output added up, by plant or by fuel. Pick today (from 12 AM), the last full day, any date, or the last 7 or 30 days. The dashed line is demand, PREPA’s own figure. The right axis shows the ramp of whatever plants are shown: hide plants in the legend to see one plant’s ramp. Drag to zoom.</p>
   <div class="gx-card fs-card" id="ot-card" style="margin-bottom:var(--cds-gap-lg)">
     <div class="card-head">
       <div class="gx-seg" id="ot-view" role="group" aria-label="Group by"><button data-v="plant" aria-pressed="true">By plant</button><button data-v="fuel" aria-pressed="false">By fuel</button></div>
@@ -121,8 +121,23 @@
       <div class="gx-chart" id="fuel-chart" style="min-height:320px"></div>
     </div>
     <div class="ot-sum" id="ot-sum"></div>
-    <div class="gx-controls ot-opts"><label class="toggle"><input type="checkbox" id="ot-ramp" checked> Ramp rate (right axis)</label><label class="toggle"><input type="checkbox" id="ot-peaks" checked> Daily max and lowest demand</label></div>
+    <div class="chk-row"><label class="chk"><input type="checkbox" id="ot-demand" checked> Demand line</label><label class="chk"><input type="checkbox" id="ot-ramp" checked> Ramp rate of plants shown (right axis)</label><label class="chk"><input type="checkbox" id="ot-peaks" checked> Daily max and lowest demand</label></div>
     <p class="gx-note" id="fuel-note"></p>
+  </div>
+
+  <!-- Reactive power and power factor -->
+  <div class="gx-card" id="rq-card" style="margin-bottom:var(--cds-gap-lg)">
+    <div class="card-head"><h3>Reactive power (MVAr) and power factor</h3>
+      <div class="gx-seg" id="rq-period" role="group" aria-label="Period"><button data-v="today" aria-pressed="true">Today</button><button data-v="yday" aria-pressed="false">Last full day</button><button data-v="7d" aria-pressed="false">7 days</button><button data-v="30d" aria-pressed="false">30 days</button></div></div>
+    <p class="gx-note an-what">How the reactive power each plant supplies changes through the day, and the power factor that results, for the whole system or for one plant.</p>
+    <div class="gx-controls">
+      <div class="gx-seg" id="rq-view" role="group" aria-label="Show"><button data-v="mvar" aria-pressed="true">MVAr</button><button data-v="pf" aria-pressed="false">Power factor</button></div>
+      <label class="sel-l" for="rq-plant">Plant</label><select id="rq-plant" aria-label="Plant"><option value="">All plants (system)</option></select>
+    </div>
+    <div class="ot-sum" id="rq-sum"></div>
+    <div class="gx-legend" id="rq-legend"></div>
+    <div class="gx-chart" id="rq-chart" style="min-height:300px"></div>
+    <p class="gx-note" id="rq-note"></p>
   </div>
 
   <!-- Ramp rates -->
@@ -141,6 +156,7 @@
       <p class="gx-note an-what">Each day’s lowest and highest demand. The taller the bar, the more generation had to be brought on and taken off during the day.</p>
       <div class="gx-legend" id="range-legend"></div>
       <div class="gx-chart" id="range-chart" style="min-height:260px"></div>
+      <p class="an-sum" id="range-trend"></p>
     </div>
   </div>
   <div class="gx-card" style="margin:var(--cds-gap-md) 0 var(--cds-gap-lg)">
@@ -153,12 +169,12 @@
   </div>
 
   <!-- Outages -->
-  <h2 class="gx-sec" id="outages">Unit availability and events</h2>
-  <p class="gx-secnote">Generating units that are out of service now, ranked by what each produced in the latest filed month, and every unit that tripped or returned to service in the last 24 hours.</p>
+  <h2 class="gx-sec" id="outages">Unit status and events</h2>
+  <p class="gx-secnote">Generating units that are off now, ranked by what each produced in the latest filed month, and a record of every unit going off and coming on.</p>
   <div class="gx-grid">
     <div class="gx-card" id="alerts-card">
-      <h3>Units out of service now</h3>
-      <p class="gx-note">A baseload unit (steam or San Juan combined cycle) that ran last month and is down now is the one to act on. Peakers start and stop every day.</p>
+      <h3>Units off now</h3>
+      <p class="gx-note">A baseload unit (steam or San Juan combined cycle) that ran last month and is off now is the one to act on. Peakers start and stop every day.</p>
       <div class="gx-tablewrap" style="max-height:26rem">
         <table class="gx-table" id="alerts-table">
           <thead><tr><th>Alert</th><th>Plant</th><th>Unit</th><th class="num">Net MWh last month</th><th class="num">MW now</th></tr></thead>
@@ -167,26 +183,26 @@
       </div>
     </div>
     <div class="gx-card" id="events-card">
-      <h3>Unit event history</h3>
-      <p class="gx-note">Every unit that went out of service and every unit that came back, with when it went out, when it returned, how long it was out and the megawatts involved. Times are when the change was first seen (readings every 15 minutes).</p>
+      <h3>Unit event log</h3>
+      <p class="gx-note">Every unit that went off and every unit that came on, with when it went off, when it came back on, how long it was off and the megawatts involved. These are unit status changes of any kind (cycling, dispatch, trips), not only failures. Times are when the change was first seen (readings every 15 minutes).</p>
       <div class="gx-controls">
         <div class="gx-seg" id="ev-range" role="group" aria-label="Period"><button data-v="24" aria-pressed="true">24 hours</button><button data-v="168" aria-pressed="false">7 days</button><button data-v="744" aria-pressed="false">31 days</button></div>
-        <div class="gx-seg" id="ev-type" role="group" aria-label="Show"><button data-v="all" aria-pressed="true">All</button><button data-v="out" aria-pressed="false">Still out</button><button data-v="back" aria-pressed="false">Returned</button></div>
+        <div class="gx-seg" id="ev-type" role="group" aria-label="Show"><button data-v="all" aria-pressed="true">All</button><button data-v="out" aria-pressed="false">Still off</button><button data-v="back" aria-pressed="false">Back on</button></div>
         <input type="search" id="ev-q" placeholder="Search unit or plant…" aria-label="Search units">
       </div>
       <p class="gx-note" id="ev-sum"></p>
       <p class="gx-note" id="events-empty" hidden>No unit events in this period.</p>
       <div class="gx-tablewrap" style="max-height:30rem">
         <table class="gx-table" id="outlog-table">
-          <thead><tr><th>Unit</th><th>Went out</th><th>Came back</th><th class="num">Duration</th><th class="num">MW</th><th>Status</th></tr></thead>
+          <thead><tr><th>Unit</th><th>Went off</th><th>Came on</th><th class="num">Time off</th><th class="num">MW</th><th>Status</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
-      <p class="gx-note" style="margin-top:8px">The full record is also written as text, one file per day, in <code>logs/outages/</code>.</p>
+      <p class="gx-note" style="margin-top:8px">The full record is also written as text, one file per day, in <code>logs/unit-events/</code>.</p>
     </div>
   </div>
   <div class="gx-card" id="offline-trend-card" style="margin-bottom:var(--cds-gap-md)">
-    <h3>Genera units out of service and spinning reserve, last 7 days</h3>
+    <h3>Genera units off and spinning reserve, last 7 days</h3>
     <p class="gx-note">From every reading. Red area: Genera units not generating (left scale). Green line: spinning reserve in MW (right scale). Gaps mean no reading at that time.</p>
     <div class="gx-chart" id="offline-trend" style="min-height:200px"></div>
   </div>
@@ -229,6 +245,7 @@
       <button data-v="PREPA (hydro)" aria-pressed="false">Hydro</button>
       <button data-v="all" aria-pressed="false">All</button>
     </div>
+    <div class="gx-seg" id="gauge-mode" role="group" aria-label="Quantity"><button data-v="mw" aria-pressed="true">MW</button><button data-v="mvar" aria-pressed="false">MVAr and power factor</button></div>
   </div>
   <div class="gauges" id="gauges"></div>
 
@@ -253,7 +270,8 @@
     <div class="gx-card an-card">
       <div class="card-head"><h3>Cost through the day</h3>
         <div class="gx-seg" id="cd-period" role="group" aria-label="Period"><button data-v="today" aria-pressed="false">Today</button><button data-v="7d" aria-pressed="true">Last 7 days</button><button data-v="30d" aria-pressed="false">Last 30 days</button></div></div>
-      <p class="gx-note an-what">How the cost of generation changes hour by hour, and how much of it each fuel accounts for. Use the last 7 or 30 days to see the typical daily pattern, or today to see how today compares.</p>
+      <p class="gx-note an-what">How the cost of generation changes hour by hour, and how much of it each fuel accounts for. The last 7 or 30 days show every hour of the period; Typical day averages them by hour of day.</p>
+      <div class="gx-controls"><div class="gx-seg" id="cd-mode" role="group" aria-label="View"><button data-v="time" aria-pressed="true">Over time</button><button data-v="typ" aria-pressed="false">Typical day</button></div></div>
       <div class="gx-legend" id="costday-legend"></div>
       <div class="gx-chart" id="costday-chart" style="min-height:300px"></div>
       <p class="an-sum" id="costday-sum"></p>
@@ -263,7 +281,7 @@
       <div class="card-head"><h3>Cost by plant through the day</h3>
         <div class="gx-seg" id="pd-period" role="group" aria-label="Period"><button data-v="today" aria-pressed="false">Today</button><button data-v="7d" aria-pressed="true">Last 7 days</button><button data-v="30d" aria-pressed="false">Last 30 days</button></div></div>
       <p class="gx-note an-what">Which plants make up the cost at each hour of the day. Pick one plant to see its hourly cost and its cost per MWh.</p>
-      <div class="gx-controls"><label class="sel-l" for="pd-plant">Plant</label><select id="pd-plant" aria-label="Plant"><option value="">All plants</option></select></div>
+      <div class="gx-controls"><div class="gx-seg" id="pd-mode" role="group" aria-label="View"><button data-v="time" aria-pressed="true">Over time</button><button data-v="typ" aria-pressed="false">Typical day</button></div><label class="sel-l" for="pd-plant">Plant</label><select id="pd-plant" aria-label="Plant"><option value="">All plants</option></select></div>
       <div class="gx-legend" id="plantday-legend"></div>
       <div class="gx-chart" id="plantday-chart" style="min-height:300px"></div>
       <p class="an-sum" id="plantday-sum"></p>
@@ -341,7 +359,7 @@
     <p class="gx-note">One row per day. <a href="logs/daily_summary.csv">Download all days (CSV)</a>.</p>
     <div class="gx-tablewrap" style="max-height:26rem">
       <table class="gx-table" id="day-table">
-        <thead><tr><th>Day</th><th class="num">Max demand</th><th class="num">Min demand</th><th class="num">Max gen.</th><th class="num">Min gen.</th><th>Majority fuel</th><th class="num">Total cost</th><th class="num">$/kWh</th><th class="num">Freq. max</th><th class="num">Freq. min</th><th class="num">Freq. avg</th><th class="num">Outages</th><th>Text log</th></tr></thead>
+        <thead><tr><th>Day</th><th class="num">Max demand</th><th class="num">Min demand</th><th class="num">Max gen.</th><th class="num">Min gen.</th><th>Majority fuel</th><th class="num">Total cost</th><th class="num">$/kWh</th><th class="num">Freq. max</th><th class="num">Freq. min</th><th class="num">Freq. avg</th><th class="num">Unit events (off / on)</th><th>Text log</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>
@@ -374,20 +392,20 @@
   </div>
 
   <footer class="footer">
-    <p>Live data is read directly from PREPA every 5 minutes while this page is open, and every 15 minutes by a GitHub Action that keeps the outage log, the daily summary text logs, frequency excursions and portal health. Sources: PREPA operational data — <a href="https://operationdata.prepa.pr.gov/dataSource.js" rel="noopener">dataSource.js</a> (plants, units, metrics) and <a href="https://operationdata.prepa.pr.gov/dataGraph.js" rel="noopener">dataGraph.js</a> (24-hour generation), checked hourly. Units below 1 MW count as offline; the feed does not say whether a unit is on outage, maintenance or reserve. Frequency levels: IEEE 1547-2018 continuous-operation range and default trip settings, generator continuous-operation limits used in WECC and AESO practice, and a ±0.2 Hz normal range set in data/frequency_limits.json. The forecast is this dashboard’s own estimate, not PREPA’s. Unit rankings use Genera’s quarterly filings in PREB docket NEPR-MI-2019-0007.</p>
+    <p>Live data is read directly from PREPA every 5 minutes while this page is open, and every 15 minutes by a GitHub Action that keeps the unit event log, the daily summary text logs, frequency excursions and portal health. Sources: PREPA operational data — <a href="https://operationdata.prepa.pr.gov/dataSource.js" rel="noopener">dataSource.js</a> (plants, units, metrics) and <a href="https://operationdata.prepa.pr.gov/dataGraph.js" rel="noopener">dataGraph.js</a> (24-hour generation), checked hourly. Units below 1 MW count as offline; the feed does not say whether a unit is on outage, maintenance or reserve. Frequency levels: IEEE 1547-2018 continuous-operation range and default trip settings, generator continuous-operation limits used in WECC and AESO practice, and a ±0.2 Hz normal range set in data/frequency_limits.json. The forecast is this dashboard’s own estimate, not PREPA’s. Unit rankings use Genera’s quarterly filings in PREB docket NEPR-MI-2019-0007.</p>
   </footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/core.js?v=20261113"></script>
-<script src="assets/prepa-core.js?v=20261113"></script>
-<script src="assets/calcs.js?v=20261113"></script>
-<script src="assets/history-db.js?v=20261113"></script>
-<script src="assets/live-feed.js?v=20261113"></script>
-<script src="assets/costs.js?v=20261113"></script>
-<script src="assets/live-extra.js?v=20261113"></script>
-<script src="assets/dispatch.js?v=20261113"></script>
-<script src="assets/ramps.js?v=20261113"></script>
-<script src="assets/live.js?v=20261113"></script>
+<script src="assets/core.js?v=20261114"></script>
+<script src="assets/prepa-core.js?v=20261114"></script>
+<script src="assets/calcs.js?v=20261114"></script>
+<script src="assets/history-db.js?v=20261114"></script>
+<script src="assets/live-feed.js?v=20261114"></script>
+<script src="assets/costs.js?v=20261114"></script>
+<script src="assets/live-extra.js?v=20261114"></script>
+<script src="assets/dispatch.js?v=20261114"></script>
+<script src="assets/ramps.js?v=20261114"></script>
+<script src="assets/live.js?v=20261114"></script>
 </body>
 </html>

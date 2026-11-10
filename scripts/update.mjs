@@ -110,9 +110,9 @@ function dailyText(s, events) {
   L.push('  Max ramp down . ' + (s.ramp_down_max_mw_h == null ? 'n/a' : n(s.ramp_down_max_mw_h, ' MW/h') + ' at ' + s.ramp_down_at));
   L.push('  Demand swing .. ' + (s.demand_max_mw != null && s.demand_min_mw != null ? n(s.demand_max_mw - s.demand_min_mw, ' MW') + ' (max minus min)' : 'n/a'));
   L.push('');
-  L.push('OUTAGES (units that stopped or restarted)');
-  L.push('  Went offline: ' + s.units_went_offline + '   Came back: ' + s.units_came_back);
-  for (const e of events) L.push('  ' + e.detected_at.slice(11, 16) + '  ' + (e.event === 'Went offline' ? 'OFFLINE' : 'ONLINE ') + '  ' + e.plant + ' / ' + e.unit + '  ' + Number(e.mw_before).toFixed(1) + ' -> ' + Number(e.mw_after).toFixed(1) + ' MW');
+  L.push('UNIT EVENTS (units that went off or came on)');
+  L.push('  Went off: ' + s.units_went_offline + '   Came on: ' + s.units_came_back);
+  for (const e of events) L.push('  ' + e.detected_at.slice(11, 16) + '  ' + (e.event === 'Went offline' ? 'OFF' : 'ON ') + '  ' + e.plant + ' / ' + e.unit + '  ' + Number(e.mw_before).toFixed(1) + ' -> ' + Number(e.mw_after).toFixed(1) + ' MW');
   L.push('');
   L.push('Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.');
   return L.join('\n') + '\n';
@@ -152,7 +152,7 @@ function mergeRecovered() {
     fs.rmSync(REC, { recursive: true, force: true });
   }
   if (fs.existsSync(RECLOG)) {
-    const recOut = path.join(RECLOG, 'outages'), OUT = path.resolve(DATA, '..', 'logs', 'outages'); fs.mkdirSync(OUT, { recursive: true });
+    const recOut = path.join(RECLOG, 'outages'), OUT = path.resolve(DATA, '..', 'logs', 'unit-events'); fs.mkdirSync(OUT, { recursive: true });
     if (fs.existsSync(recOut)) for (const f of fs.readdirSync(recOut).filter((x) => x.endsWith('.log'))) {
       const a = fs.readFileSync(path.join(recOut, f), 'utf8').split('\n'), b = fs.existsSync(path.join(OUT, f)) ? fs.readFileSync(path.join(OUT, f), 'utf8').split('\n') : [];
       const head = a.filter((l) => l.startsWith('#')), seen = new Set(), body = [];
@@ -277,7 +277,8 @@ writeJSON('feed_health.json', health.filter((x) => new Date(x.at).getTime() >= c
 
 /* ---------- Daily files, summaries and text logs ---------- */
 const DAYS = path.join(DATA, 'days'), LOGS = path.resolve(DATA, '..', 'logs');
-fs.mkdirSync(DAYS, { recursive: true }); fs.mkdirSync(path.join(LOGS, 'daily'), { recursive: true }); fs.mkdirSync(path.join(LOGS, 'outages'), { recursive: true });
+fs.mkdirSync(DAYS, { recursive: true }); fs.mkdirSync(path.join(LOGS, 'daily'), { recursive: true }); if (fs.existsSync(path.join(LOGS, 'outages')) && !fs.existsSync(path.join(LOGS, 'unit-events'))) fs.renameSync(path.join(LOGS, 'outages'), path.join(LOGS, 'unit-events'));
+fs.mkdirSync(path.join(LOGS, 'unit-events'), { recursive: true });
 const touched = new Set();
 const dayFile = (d) => path.join(DAYS, d + '.json');
 const readDay = (d) => { try { return JSON.parse(fs.readFileSync(dayFile(d), 'utf8')); } catch { return { day: d, checks: [], trace: [] }; } };
@@ -295,12 +296,12 @@ for (const [d, D] of dayCache) { if (D._map) { D.trace = [...D._map.values()].so
 // remove day files older than 35 days
 for (const f of fs.readdirSync(DAYS)) if (/^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f.slice(0, 10) < isoAST(new Date(NOW.getTime() - 35 * DAY)).slice(0, 10)) fs.unlinkSync(path.join(DAYS, f));
 
-// Outage text log: one line per change, one file per day.
+// Unit event text log: one line per unit going off or coming on, one file per day.
 const pad2 = (n) => String(n).padStart(2, '0');
 for (const e of newEvents) {
-  const line = `${e.detected_at.slice(0, 10)} ${e.detected_at.slice(11, 16)} AST  ${e.event === 'Went offline' ? 'OFFLINE ' : 'ONLINE  '}  ${(e.plant + ' / ' + e.unit).padEnd(36)} ${String(Number(e.mw_before).toFixed(1)).padStart(7)} MW -> ${String(Number(e.mw_after).toFixed(1)).padStart(7)} MW  (${e.operator}, ${e.fuel}; previous check ${e.previous_snapshot ? e.previous_snapshot.slice(11, 16) : '-'})\n`;
-  const f = path.join(LOGS, 'outages', e.detected_at.slice(0, 10) + '.log');
-  if (!fs.existsSync(f)) fs.writeFileSync(f, `# Unit outage log, ${e.detected_at.slice(0, 10)} (Puerto Rico time, UTC-4)\n# A unit counts as offline below ${OFFLINE_MW} MW. Times are when the change was first seen; it happened after the previous check.\n`);
+  const line = `${e.detected_at.slice(0, 10)} ${e.detected_at.slice(11, 16)} AST  ${e.event === 'Went offline' ? 'UNIT OFF' : 'UNIT ON '}  ${(e.plant + ' / ' + e.unit).padEnd(36)} ${String(Number(e.mw_before).toFixed(1)).padStart(7)} MW -> ${String(Number(e.mw_after).toFixed(1)).padStart(7)} MW  (${e.operator}, ${e.fuel}; previous check ${e.previous_snapshot ? e.previous_snapshot.slice(11, 16) : '-'})\n`;
+  const f = path.join(LOGS, 'unit-events', e.detected_at.slice(0, 10) + '.log');
+  if (!fs.existsSync(f)) fs.writeFileSync(f, `# Unit event log, ${e.detected_at.slice(0, 10)} (Puerto Rico time, UTC-4)\n# Units going off and coming on. A unit counts as off below ${OFFLINE_MW} MW. Times are when the change was first seen; it happened after the previous check.\n`);
   fs.appendFileSync(f, line);
 }
 
@@ -407,9 +408,10 @@ fs.writeFileSync(path.join(LOGS, 'daily_summary.csv'), CSV_COLS.join(',') + '\n'
     const D = dayCache.get(f.slice(0, 10)) || JSON.parse(fs.readFileSync(path.join(DAYS, f), 'utf8'));
     for (const c of D.checks || []) {
       if (START && c.at.slice(0, 10) < START) continue;
-      const k = c.at.slice(0, 13); const h = hours.get(k) || { n: 0, sums: {}, plant_mw: {}, plant_cost: {} };
+      const k = c.at.slice(0, 13); const h = hours.get(k) || { n: 0, sums: {}, plant_mw: {}, plant_cost: {}, plant_mvar: {}, nq: 0 };
       h.n++;
-      for (const [key, v] of Object.entries(c)) if (/^(total_mw|dispatch_cost_usd_h|cost_[a-z_]+|mw_[a-z_]+)$/.test(key) && Number.isFinite(Number(v))) h.sums[key] = (h.sums[key] || 0) + Number(v);
+      for (const [key, v] of Object.entries(c)) if (/^(total_mw|gen_mw|mvar_total|dispatch_cost_usd_h|cost_[a-z_]+|mw_[a-z_]+)$/.test(key) && Number.isFinite(Number(v))) h.sums[key] = (h.sums[key] || 0) + Number(v);
+      if (c.plant_mvar) { h.nq++; for (const [p, v] of Object.entries(c.plant_mvar)) h.plant_mvar[p] = (h.plant_mvar[p] || 0) + Number(v); }
       for (const [p, v] of Object.entries(c.plant_mw || {})) h.plant_mw[p] = (h.plant_mw[p] || 0) + Number(v);
       for (const [p, v] of Object.entries(c.plant_cost || {})) h.plant_cost[p] = (h.plant_cost[p] || 0) + Number(v);
       hours.set(k, h);
@@ -418,7 +420,8 @@ fs.writeFileSync(path.join(LOGS, 'daily_summary.csv'), CSV_COLS.join(',') + '\n'
   const r1 = (x) => Math.round(x * 10) / 10;
   const rows = [...hours.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1)).map(([k, h]) => {
     const row = { at: k + ':00:00-04:00', n: h.n };
-    for (const [key, v] of Object.entries(h.sums)) row[key] = r1(v / h.n);
+    for (const [key, v] of Object.entries(h.sums)) row[key] = r1(v / (key === 'gen_mw' || key === 'mvar_total' ? (h.nq || h.n) : h.n));
+    if (h.nq) row.plant_mvar = Object.fromEntries(Object.entries(h.plant_mvar).map(([p, v]) => [p, r1(v / h.nq)]));
     row.plant_mw = Object.fromEntries(Object.entries(h.plant_mw).map(([p, v]) => [p, r1(v / h.n)]));
     row.plant_cost = Object.fromEntries(Object.entries(h.plant_cost).map(([p, v]) => [p, Math.round(v / h.n)]));
     return row;
@@ -466,7 +469,7 @@ if (START) {
     const rows = readJSON(file, null); if (Array.isArray(rows)) { const kept = rows.filter((r) => !before(r[key])); if (kept.length !== rows.length) writeJSON(file, kept); }
   }
   const DAYS1 = path.join(DATA, 'days'), LOGS1 = path.resolve(DATA, '..', 'logs');
-  for (const [dir, re] of [[DAYS1, /^(\d{4}-\d{2}-\d{2})\.json$/], [path.join(LOGS1, 'daily'), /^(\d{4}-\d{2}-\d{2})\.txt$/], [path.join(LOGS1, 'outages'), /^(\d{4}-\d{2}-\d{2})\.log$/]]) {
+  for (const [dir, re] of [[DAYS1, /^(\d{4}-\d{2}-\d{2})\.json$/], [path.join(LOGS1, 'daily'), /^(\d{4}-\d{2}-\d{2})\.txt$/], [path.join(LOGS1, 'unit-events'), /^(\d{4}-\d{2}-\d{2})\.log$/]]) {
     if (!fs.existsSync(dir)) continue;
     for (const f of fs.readdirSync(dir)) { const m = re.exec(f); if (m && m[1] < START) fs.unlinkSync(path.join(dir, f)); }
   }
