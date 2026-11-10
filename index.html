@@ -8,8 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/theme.css?v=20261114">
-<link rel="stylesheet" href="assets/live.css?v=20261114">
+<link rel="stylesheet" href="assets/theme.css?v=20261115">
+<link rel="stylesheet" href="assets/live.css?v=20261115">
 </head>
 <body>
 <div class="wrap">
@@ -49,11 +49,12 @@
   <section class="hero" id="overview" aria-labelledby="hero-h">
     <div class="hero-main">
       <div class="hero-head">
-        <h2 id="hero-h">Demand and frequency, last 24 hours and next 24</h2>
+        <h2 id="hero-h">Demand, last 24 hours and next 24</h2>
         <div class="chart-tools"><button class="tool" type="button" id="hero-reset" hidden>Reset zoom</button><button class="tool" type="button" data-fs="hero-wrap" aria-label="Full screen">⤢ Full screen</button></div>
         <div class="hero-legend" id="hero-legend" role="group" aria-label="Show or hide lines"></div>
       </div>
       <div class="hero-chart" id="hero-chart"></div>
+      <div class="hero-axis"><span>Right axis</span><div class="gx-seg" id="hero-axis" role="group" aria-label="Right axis"><button data-v="freq" aria-pressed="true">Frequency (Hz)</button><button data-v="mvar" aria-pressed="false">MVAr</button><button data-v="pf" aria-pressed="false">Power factor</button></div></div>
       <p class="hero-note" id="hero-note"></p>
       <p class="hero-hint">Drag across the graph to zoom in; double-click to zoom out.</p>
     </div>
@@ -98,6 +99,7 @@
       <div class="pt-tablewrap">
         <table class="gx-table" id="pt-table"><thead><tr></tr></thead><tbody></tbody></table>
         <p class="gx-note" id="pt-empty" hidden>No plants or units match these filters.</p>
+        <p class="gx-note" id="fuel-method" style="margin:8px 4px"></p>
       </div>
     </div>
   </div>
@@ -133,6 +135,7 @@
     <div class="gx-controls">
       <div class="gx-seg" id="rq-view" role="group" aria-label="Show"><button data-v="mvar" aria-pressed="true">MVAr</button><button data-v="pf" aria-pressed="false">Power factor</button></div>
       <label class="sel-l" for="rq-plant">Plant</label><select id="rq-plant" aria-label="Plant"><option value="">All plants (system)</option></select>
+      <label class="chk"><input type="checkbox" id="rq-freq" checked> Frequency (right axis)</label>
     </div>
     <div class="ot-sum" id="rq-sum"></div>
     <div class="gx-legend" id="rq-legend"></div>
@@ -397,15 +400,15 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/core.js?v=20261114"></script>
-<script src="assets/prepa-core.js?v=20261114"></script>
-<script src="assets/calcs.js?v=20261114"></script>
-<script src="assets/history-db.js?v=20261114"></script>
-<script src="assets/live-feed.js?v=20261114"></script>
-<script src="assets/costs.js?v=20261114"></script>
-<script src="assets/live-extra.js?v=20261114"></script>
-<script src="assets/dispatch.js?v=20261114"></script>
-<script src="assets/ramps.js?v=20261114"></script>
-<script src="assets/live.js?v=20261114"></script>
+<script src="assets/core.js?v=20261115"></script>
+<script src="assets/prepa-core.js?v=20261115"></script>
+<script src="assets/calcs.js?v=20261115"></script>
+<script src="assets/history-db.js?v=20261115"></script>
+<script src="assets/live-feed.js?v=20261115"></script>
+<script src="assets/costs.js?v=20261115"></script>
+<script src="assets/live-extra.js?v=20261115"></script>
+<script src="assets/dispatch.js?v=20261115"></script>
+<script src="assets/ramps.js?v=20261115"></script>
+<script src="assets/live.js?v=20261115"></script>
 </body>
 </html>

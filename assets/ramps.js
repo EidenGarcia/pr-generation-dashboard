@@ -113,7 +113,7 @@
   }
 
   /* ---------- Reactive power (MVAr) and power factor over time ---------- */
-  let rqView = 'mvar', rqPeriod = 'today', rqPlant = '';
+  let rqView = 'mvar', rqPeriod = 'today', rqPlant = '', rqFreq = true;
   const H = 3600000, pr = (o) => { const f = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Puerto_Rico', ...o }); return (d) => f.format(d); };
   const tFmt = pr({ month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }), hFmt = pr({ hour: 'numeric' }), dFmt = pr({ month: 'short', day: 'numeric' });
   const prDay = (d) => { const [m, dd, y] = pr({ year: 'numeric', month: '2-digit', day: '2-digit' })(d).split('/'); return y + '-' + m + '-' + dd; };
@@ -137,7 +137,8 @@
     if (rqPlant && !plants.includes(rqPlant)) rqPlant = '';
     sel.replaceChildren(...[['', 'All plants (system)'], ...plants.map((p) => [p, p])].map(([v, t]) => { const o = el('option', null, t); o.value = v; if (v === rqPlant) o.selected = true; return o; }));
     box.replaceChildren(); box.classList.remove('dash-skeleton'); lg.replaceChildren(); sum.replaceChildren();
-    const W = box.clientWidth || 800, Hh = 300;
+    const W = box.clientWidth || 800, Hh = 300, MR = rqFreq ? 46 : 10;
+    const fc = card('rq-freq'); if (fc) fc.checked = rqFreq;
     const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('width', '100%').attr('height', Hh);
     if (rows.length < 2) { svg.append('text').attr('x', W / 2).attr('y', Hh / 2).attr('text-anchor', 'middle').attr('class', 'empty').text('MVAr history starts with the first readings after this update; it fills in every 15 minutes.'); }
     const qOf = (x) => (rqPlant ? x.q[rqPlant] ?? 0 : x.qt), pOf = (x) => (rqPlant ? x.p[rqPlant] ?? 0 : x.pt), pfOf = (x) => (pOf(x) >= 1 ? PF(pOf(x), qOf(x)) : null);
@@ -149,23 +150,34 @@
     const pfs = rows.map((x) => ({ t: x.t, v: pfOf(x) })).filter((x) => x.v != null);
     if (pfs.length) { const lo = pfs.reduce((a, x) => (x.v < a.v ? x : a), pfs[0]); chip('Average power factor', d3.mean(pfs, (x) => x.v).toFixed(3)); chip('Lowest', lo.v.toFixed(3) + ', ' + tFmt(lo.t), 'mn'); }
     if (rows.length < 2) return;
-    const ml0 = 46, x = d3.scaleTime([rows[0].t, rows[rows.length - 1].t], [ml0, W - 10]);
+    const ml0 = 46, x = d3.scaleTime([rows[0].t, rows[rows.length - 1].t], [ml0, W - MR]);
     const span = rows[rows.length - 1].t - rows[0].t, fx = span > 3 * 864e5 ? dFmt : (d) => (Number(pr({ hour: 'numeric', hourCycle: 'h23' })(d)) % 24 === 0 ? dFmt(d) : hFmt(d));
     const axes = (y, fmt, unit) => {
-      svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml0).attr('x2', W - 10).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+      svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml0).attr('x2', W - MR).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
       svg.append('g').selectAll('text').data(y.ticks(5)).join('text').attr('x', ml0 - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').text(fmt);
       svg.append('text').attr('x', ml0 - 6).attr('y', 8).attr('text-anchor', 'end').text(unit);
       svg.append('g').selectAll('text').data(x.ticks(Math.max(3, Math.floor((W - ml0) / 90)))).join('text').attr('x', x).attr('y', Hh - 6).attr('text-anchor', 'middle').text(fx);
     };
     const gapSeq = (list, key) => { const out = []; list.forEach((d, i) => { if (i && d.t - list[i - 1].t > 2.5 * H) out.push({ t: d.t, [key]: null }); out.push(d); }); return out; };
+    const fm = new Map(); for (const q of [...G.rows('trace_long'), ...G.rows('trace_recent'), ...G.rows('live_graph')]) { if (!q.time || q.frequency_hz == null) continue; const t = Math.floor(new Date(q.time) / 300000) * 300000; if (t >= +rows[0].t - 300000 && t <= +rows[rows.length - 1].t + 300000) fm.set(t, Number(q.frequency_hz)); }
+    const fq = [...fm.entries()].sort((p, q) => p[0] - q[0]).map(([t, v]) => ({ t: new Date(t), v }));
+    const fAt = (t) => { if (!fq.length) return null; const d = fq[d3.bisector((q) => q.t).center(fq, t)]; return d && Math.abs(d.t - t) <= 20 * 60000 ? d.v : null; };
+    const drawFreq = () => { if (!rqFreq || fq.length < 2) return;
+      const yf = d3.scaleLinear([Math.min(59.7, d3.min(fq, (d) => d.v) - 0.05), Math.max(60.3, d3.max(fq, (d) => d.v) + 0.05)], [Hh - 26, 14]);
+      svg.append('g').selectAll('text').data(yf.ticks(5)).join('text').attr('x', W - MR + 6).attr('y', yf).attr('dy', '0.35em').attr('fill', 'var(--amber)').text((v) => v.toFixed(1));
+      svg.append('text').attr('x', W - MR + 6).attr('y', 8).attr('fill', 'var(--amber)').text('Hz');
+      const sq = []; fq.forEach((d, i) => { if (i && d.t - fq[i - 1].t > 30 * 60000) sq.push({ t: d.t, v: null }); sq.push(d); });
+      svg.append('path').datum(sq).attr('fill', 'none').attr('stroke', 'var(--amber)').attr('stroke-width', 1.3).attr('stroke-opacity', 0.9).attr('pointer-events', 'none').attr('d', d3.line().defined((d) => d.v != null).x((d) => x(d.t)).y((d) => yf(d.v)).curve(d3.curveStepAfter));
+      const s = el('span'); const sw = el('span', 'gx-sw'); sw.style.background = 'var(--amber)'; sw.style.height = '3px'; s.append(sw, 'Frequency (right axis)'); lg.append(s); };
+    const fLine = (d) => (rqFreq && fAt(d.t) != null ? [['var(--amber)', 'Frequency', fAt(d.t).toFixed(2) + ' Hz']] : []);
     const tip = G.tipFor(box.closest('.gx-card')), rule = svg.append('line').attr('y1', 12).attr('y2', Hh - 26).attr('stroke', 'var(--cds-chart-reference)').attr('opacity', 0);
-    const hover = (lines) => svg.append('rect').attr('x', ml0).attr('y', 0).attr('width', W - 10 - ml0).attr('height', Hh - 26).attr('fill', 'transparent')
-      .on('mousemove', (ev) => { const t = x.invert(d3.pointer(ev)[0]); const d = rows[d3.bisector((q) => q.t).center(rows, t)]; rule.attr('x1', x(d.t)).attr('x2', x(d.t)).attr('opacity', 1); tip.show(ev, tFmt(d.t), lines(d)); })
+    const hover = (lines) => svg.append('rect').attr('x', ml0).attr('y', 0).attr('width', W - MR - ml0).attr('height', Hh - 26).attr('fill', 'transparent')
+      .on('mousemove', (ev) => { const t = x.invert(d3.pointer(ev)[0]); const d = rows[d3.bisector((q) => q.t).center(rows, t)]; rule.attr('x1', x(d.t)).attr('x2', x(d.t)).attr('opacity', 1); tip.show(ev, tFmt(d.t), [...lines(d), ...fLine(d)]); })
       .on('mouseleave', () => { rule.attr('opacity', 0); tip.hide(); });
     if (rqView === 'pf') {
       const y = d3.scaleLinear([Math.min(0.8, Math.floor((d3.min(pfs, (d) => d.v) || 0.8) * 20) / 20), 1], [Hh - 26, 14]);
       axes(y, (v) => v.toFixed(2), 'PF');
-      svg.append('line').attr('x1', ml0).attr('x2', W - 10).attr('y1', y(0.9)).attr('y2', y(0.9)).attr('stroke', 'var(--amber)').attr('stroke-dasharray', '4 4');
+      svg.append('line').attr('x1', ml0).attr('x2', W - MR).attr('y1', y(0.9)).attr('y2', y(0.9)).attr('stroke', 'var(--amber)').attr('stroke-dasharray', '4 4');
       svg.append('text').attr('x', W - 12).attr('y', y(0.9) - 4).attr('text-anchor', 'end').attr('fill', 'var(--amber)').text('0.90');
       svg.append('path').datum(gapSeq(pfs, 'v')).attr('fill', 'none').attr('stroke', 'var(--accent)').attr('stroke-width', 2).attr('d', d3.line().defined((d) => d.v != null).x((d) => x(d.t)).y((d) => y(d.v)).curve(d3.curveMonotoneX));
       const s = el('span'); const sw = el('span', 'gx-sw'); sw.style.background = 'var(--accent)'; s.append(sw, 'Power factor, ' + (rqPlant || 'whole system')); lg.append(s);
@@ -176,7 +188,7 @@
       axes(y, G.f0, 'MVAr');
       svg.append('path').datum(gapSeq(vals, 'v')).attr('fill', col).attr('opacity', 0.25).attr('d', d3.area().defined((d) => d.v != null).x((d) => x(d.t)).y0(y(0)).y1((d) => y(d.v)).curve(d3.curveMonotoneX));
       svg.append('path').datum(gapSeq(vals, 'v')).attr('fill', 'none').attr('stroke', col).attr('stroke-width', 2).attr('d', d3.line().defined((d) => d.v != null).x((d) => x(d.t)).y((d) => y(d.v)).curve(d3.curveMonotoneX));
-      svg.append('line').attr('x1', ml0).attr('x2', W - 10).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', 'var(--cds-chart-axis)');
+      svg.append('line').attr('x1', ml0).attr('x2', W - MR).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', 'var(--cds-chart-axis)');
       const s = el('span'); const sw = el('span', 'gx-sw'); sw.style.background = col; s.append(sw, rqPlant + ', MVAr'); lg.append(s);
       hover((d) => [[col, 'MVAr', G.f1(qOf(d))], [null, 'MW', G.f1(pOf(d))], [null, 'Power factor', pfOf(d) == null ? '—' : pfOf(d).toFixed(3)]]);
     } else {
@@ -196,13 +208,14 @@
       { const s = el('span'); const sw = el('span', 'gx-sw'); sw.style.background = 'var(--ink)'; sw.style.height = '3px'; s.append(sw, 'Net total'); lg.append(s); }
       hover((d) => [...ks.map((k) => [colOf(k), k === '__other' ? 'Other plants' : k, k === '__other' ? d3.sum(rest, (p) => Math.max(0, d.q[p] || 0)) : d.q[k] || 0]).filter((l) => Math.abs(l[2]) >= 0.5).sort((a, b) => b[2] - a[2]).map((l) => [l[0], l[1], G.f1(l[2]) + ' MVAr']), [null, 'Net total', G.f0(Math.round(d.qt)) + ' MVAr'], [null, 'System power factor', PF(d.pt, d.qt) == null ? '—' : PF(d.pt, d.qt).toFixed(3)]]);
     }
+    drawFreq();
     card('rq-note').textContent = 'MVAr is reactive power: positive when a plant supplies it to the grid, negative when it absorbs it. Power factor = MW ÷ √(MW² + MVAr²); closer to 1 means less of the generators’ capacity goes to reactive power. MVAr has been recorded at every reading since this update, so earlier days have no data.';
   }
   document.addEventListener('click', (e) => {
     const a = e.target.closest('#rq-view button'); if (a) { rqView = a.dataset.v; reactive(); }
     const b = e.target.closest('#rq-period button'); if (b) { rqPeriod = b.dataset.v; reactive(); }
   });
-  document.addEventListener('change', (e) => { if (e.target.id === 'rq-plant') { rqPlant = e.target.value; reactive(); } });
+  document.addEventListener('change', (e) => { if (e.target.id === 'rq-plant') { rqPlant = e.target.value; reactive(); } if (e.target.id === 'rq-freq') { rqFreq = e.target.checked; reactive(); } });
 
   dash.onData(() => { for (const f of [kpis, rampChart, rangeChart, plantTable, reactive]) { try { f(); } catch (e) { console.error('ramps', e); } } });
 })();

@@ -44,5 +44,33 @@ window.COSTS = (() => {
       const mw = gen.reduce((a, u) => a + Number(u.mw), 0); return { price: gen.reduce((a, u) => a + Number(u.cost_usd_per_hour), 0) / mw, basis: 'low' }; }
     return { price: null, basis: null };
   }
-  return { lowLoad, plantRated, normalPlantMW, typicalPrice, plantPrice, minPct };
+  /* Fuel check: does a unit's cost per kWh match the fuel it reports?
+     Expected cost of each fuel at this kind of unit = fuel price ($/MMBtu, from PREPA's fuel prices in the feed) × a typical
+     heat rate (MMBtu per MWh): steam 10.5, combined cycle 7.5, gas turbine 11.5. The estimated fuel is the candidate whose
+     expected cost is closest to the unit's reported cost (compared as a ratio). Steam units can burn LNG or Bunker C;
+     combined-cycle and gas turbines LNG or diesel. Low-output units are not classified. */
+  const HEAT_RATE = { steam: 10.5, cc: 7.5, gt: 11.5 }, TECH_LABEL = { steam: 'steam', cc: 'combined cycle', gt: 'gas turbine' };
+  const MMBTU_PER_BBL = { 'Bunker C': 6.287, ULSD: 5.825 };
+  const techOf = (plant) => (/CC/.test(plant) || plant === 'EcoEléctrica' ? 'cc' : /Steam/.test(plant) || plant === 'AES' ? 'steam' : 'gt');
+  function fuelPrices() { // $/MMBtu
+    const fp = D('live_fuel_price'), avg = (f) => { const v = fp.filter((r) => window.GX.norm(r.fuel) === f && Number(r.price) > 0).map((r) => Number(r.price)); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+    const bunker = avg('Bunker C'), diesel = avg('ULSD'), lng = avg('LNG');
+    return { 'Bunker C': (bunker || 110) / MMBTU_PER_BBL['Bunker C'], ULSD: (diesel || 185) / MMBTU_PER_BBL.ULSD, LNG: lng || 9, Coal: 4.5 };
+  }
+  function expectedCosts(tech, reported) { // ¢/kWh by candidate fuel
+    const p = fuelPrices(), hr = HEAT_RATE[tech], cand = reported === 'Coal' ? ['Coal', 'LNG', 'Bunker C'] : tech === 'steam' ? ['LNG', 'Bunker C'] : ['LNG', 'ULSD'];
+    return Object.fromEntries(cand.map((f) => [f, (p[f] * hr) / 10]));
+  }
+  function fuelCheck(u) {
+    const reported = window.GX.norm(u.fuel), cost = Number(u.cost_cents_kwh);
+    if (RENEW.has(reported)) return { reported, estimated: null, flag: false, why: 'renewable' };
+    if (u.status !== 'Generating' || !(cost > 0)) return { reported, estimated: null, flag: false, why: 'not generating or no cost reported' };
+    if (lowLoad(u)) return { reported, estimated: null, flag: false, why: 'low output: cost not representative' };
+    const tech = techOf(group(u.plant)), exp = expectedCosts(tech, reported);
+    const estimated = Object.keys(exp).reduce((a, f) => (Math.abs(Math.log(cost / exp[f])) < Math.abs(Math.log(cost / exp[a])) ? f : a));
+    return { reported, estimated, flag: estimated !== reported, tech, expected: exp, cost };
+  }
+  const FUEL_NAME = { LNG: 'Natural gas (LNG)', 'Bunker C': 'Bunker C', ULSD: 'Diesel', Coal: 'Coal' };
+  function fuelMatrix() { return Object.keys(HEAT_RATE).map((t) => ({ tech: TECH_LABEL[t], expected: expectedCosts(t, null) })); }
+  return { lowLoad, plantRated, normalPlantMW, typicalPrice, plantPrice, minPct, fuelCheck, fuelMatrix, fuelPrices, FUEL_NAME, TECH_LABEL };
 })();

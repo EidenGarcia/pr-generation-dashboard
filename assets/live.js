@@ -20,7 +20,7 @@
   const limits = () => G.rows('freq_limits')[0] || null;
   const level = (f) => { const L = limits(); if (!L || f == null) return null; for (const b of L.bands) if (b.low != null && b.high != null && f >= b.low && f <= b.high) return b.level; return 'Critical'; };
   const dur = (s) => (s == null ? '—' : s < 90 ? Math.round(s) + ' s' : s < 5400 ? Math.round(s / 60) + ' min' : (s / 3600).toFixed(1) + ' h');
-  let heroZoom = null, heroDomain = null;
+  let heroZoom = null, heroDomain = null, heroAxis = 'freq';
   const isFull = (el) => !!document.fullscreenElement && document.fullscreenElement.contains(el);
   const vis = { gen: true, freq: true, cap: true, demand: false, nexthr: false, outages: true, fload: true, fcap: true, peak: true };
 
@@ -111,7 +111,7 @@
     ['fload', 'Load forecast', 'var(--h-gen)', 'dash'],
     ['fcap', 'Capacity forecast', 'var(--h-cap)', 'dash'],
     ['peak', 'Peak today', 'var(--h-peak)', 'dash'],
-    ['freq', 'Frequency (Hz)', 'var(--h-freq)', 'solid'],
+    ['freq', 'Right axis', 'var(--h-freq)', 'solid'],
   ];
   function heroLegend() {
     const lg = document.getElementById('hero-legend');
@@ -148,7 +148,11 @@
     const W = Math.max(320, box.clientWidth || 800);
     const railH = (document.getElementById('rail') || {}).offsetHeight || 0;
     const fv = gw.filter((d) => d.f != null);
-    const showF = vis.freq && fv.length > 0, showE = vis.outages;
+    // right axis: frequency (5-minute trace), or system MVAr / power factor from each reading
+    document.querySelectorAll('#hero-axis button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === heroAxis)));
+    const alt = heroAxis === 'freq' ? [] : G.rows('history').map((r) => ({ t: new Date(r.at), v: heroAxis === 'mvar' ? num(r.mvar_total) : (num(r.power_factor) ?? (num(r.gen_mw) != null && num(r.mvar_total) != null ? window.PREPA.powerFactor(r.gen_mw, r.mvar_total) : null)) })).filter((d) => d.v != null && d.t >= x0 && d.t <= x1).sort((a, b) => a.t - b.t);
+    const showAlt = heroAxis !== 'freq' && vis.freq && alt.length > 0;
+    const showF = heroAxis === 'freq' && vis.freq && fv.length > 0, showE = vis.outages;
     const total = isFull(box) ? Math.max(520, Math.round(window.innerHeight * 0.7)) : Math.max(460, Math.min(720, railH ? railH - 150 : Math.round(W * 0.5)));
     const axisH = 22, gap = 8, laneH = showE ? 20 : 0;
     const mwTop = 16, mwBot = total - axisH - laneH - (showE ? gap : 0);
@@ -171,7 +175,9 @@
     const y2 = d3.scaleLinear([Math.min(57, Math.floor(d3.min(fv, (d) => d.f) ?? 57)), Math.max(63, Math.ceil(d3.max(fv, (d) => d.f) ?? 63))], [mwBot, mwTop]);
     const yt = y.ticks(Math.max(3, Math.round((mwBot - mwTop) / 60)));
     const y2t = d3.range(Math.ceil(y2.domain()[0]), Math.floor(y2.domain()[1]) + 1);
-    const ml = G.measure(svg, yt.map(G.f0)) + 14, mr = showF ? G.measure(svg, ['63 ']) + 16 : 10;
+    const y3 = showAlt ? (heroAxis === 'mvar' ? d3.scaleLinear([Math.min(0, d3.min(alt, (d) => d.v)), d3.max(alt, (d) => d.v) * 1.15], [mwBot, mwTop]).nice() : d3.scaleLinear([Math.min(0.8, Math.floor(d3.min(alt, (d) => d.v) * 20) / 20), 1], [mwBot, mwTop])) : null;
+    const altFmt = heroAxis === 'mvar' ? G.f0 : (v) => v.toFixed(2);
+    const ml = G.measure(svg, yt.map(G.f0)) + 14, mr = showF ? G.measure(svg, ['63 ']) + 16 : showAlt ? G.measure(svg, y3.ticks(5).map(altFmt)) + 18 : 10;
     const x = d3.scaleTime([x0, x1], [ml, W - mr]);
     const g = svg.append('g');
     // grid and axes
@@ -232,6 +238,13 @@
       g.append('path').datum(seq).attr('class', 's-freq').attr('d', d3.line().defined((d) => d.f != null).x((d) => x(d.t)).y((d) => y2(d.f)).curve(d3.curveStepAfter));
       g.selectAll('circle.fx').data(fv.filter((d) => level(d.f) && level(d.f) !== 'Normal')).join('circle').attr('cx', (d) => x(d.t)).attr('cy', (d) => y2(d.f)).attr('r', 2.6).attr('fill', (d) => HLV[level(d.f)]);
     }
+    if (showAlt) {
+      g.selectAll('text.y3').data(y3.ticks(5)).join('text').attr('class', 'ax ax-hz').attr('x', W - mr + 8).attr('y', y3).attr('dy', '0.35em').text(altFmt);
+      g.append('text').attr('class', 'ax ax-hz').attr('x', W - mr + 8).attr('y', mwTop - 6).text(heroAxis === 'mvar' ? 'MVAr' : 'PF');
+      if (heroAxis === 'pf' && y3.domain()[0] < 0.9) g.append('line').attr('class', 'lim').attr('x1', ml).attr('x2', W - mr).attr('y1', y3(0.9)).attr('y2', y3(0.9)).attr('stroke', 'var(--hl-watch)').attr('stroke-opacity', 0.5);
+      const sq = []; alt.forEach((d, i) => { if (i && d.t - alt[i - 1].t > 75 * 60000) sq.push({ t: d.t, v: null }); sq.push(d); });
+      g.append('path').datum(sq).attr('class', 's-freq').attr('d', d3.line().defined((d) => d.v != null).x((d) => x(d.t)).y((d) => y3(d.v)).curve(d3.curveMonotoneX));
+    }
     if (anchor >= x0 && anchor <= x1) {
       g.append('line').attr('class', 'nowline').attr('x1', x(anchor)).attr('x2', x(anchor)).attr('y1', mwTop).attr('y2', showE ? laneBot : mwBot);
       g.append('text').attr('class', 'lbl').attr('x', x(anchor) + 6).attr('y', mwTop + 12).text(fw.length ? 'Latest data · forecast →' : 'Latest data');
@@ -255,7 +268,9 @@
       if (c && vis.fload) lines.push(['var(--h-gen)', 'Load forecast', G.f0(c.l) + ' MW (' + G.f0(c.lo) + '–' + G.f0(c.hi) + ')']);
       if (c && c.cap != null && vis.fcap) lines.push(['var(--h-cap)', 'Capacity forecast', G.f0(c.cap) + ' MW']);
       if (c && c.cap != null && c.l != null) lines.push([null, 'Projected reserve', G.f0(c.cap - c.l) + ' MW']);
-      if (a && a.f != null && vis.freq) lines.push([HLV[level(a.f)] || 'var(--h-freq)', 'Frequency', a.f.toFixed(2) + ' Hz' + (level(a.f) ? ' (' + level(a.f) + ')' : '')]);
+      const an = showAlt ? near(alt, t, 20 * 60000) : null;
+      if (an) lines.push(['var(--h-freq)', heroAxis === 'mvar' ? 'Reactive power' : 'Power factor', heroAxis === 'mvar' ? G.f0(Math.round(an.v)) + ' MVAr' : an.v.toFixed(3)]);
+      if (a && a.f != null && vis.freq && heroAxis === 'freq') lines.push([HLV[level(a.f)] || 'var(--h-freq)', 'Frequency', a.f.toFixed(2) + ' Hz' + (level(a.f) ? ' (' + level(a.f) + ')' : '')]);
       tip.show(ev, tFmt(t), lines.length ? lines : [[null, 'No reading at this time', null]]);
     }).on('mouseleave.tip', () => { rule.attr('opacity', 0); tip.hide(); });
   }
@@ -641,6 +656,7 @@
 
   function render() { topbar(); shedBanner(); alertBanner(); rail(); hero(); reserveChart(); frequency(); outages(); offlineTrend(); mix(); costTotals(); health(); }
   document.getElementById('hero-reset').addEventListener('click', () => { heroZoom = null; render(); });
+  const hax = document.getElementById('hero-axis'); if (hax) hax.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; heroAxis = b.dataset.v; render(); });
   // full screen for the main graph (with reserves) and the over-time chart
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-fs]'); if (!b) return; const el2 = document.getElementById(b.dataset.fs);
     if (document.fullscreenElement) document.exitFullscreen(); else if (el2.requestFullscreen) el2.requestFullscreen().catch(() => {}); });
@@ -653,6 +669,6 @@
     status: 'data/status.json', hist_units: 'data/hist_units.json',
     freq_limits: 'data/frequency_limits.json', frequency_events: 'data/frequency_events.json',
     unit_capacity: 'data/unit_capacity.json', unit_ranges: 'data/unit_ranges.json', daily_summary: 'data/daily_summary.json',
-    plant_hourly: 'data/plant_hourly.json', pr_map: 'data/pr_municipios.json', trace_recent: 'data/trace_recent.json', settings: 'data/settings.json', reservoir_levels: 'data/reservoir_levels.json', cost_hourly: 'data/cost_hourly.json', trace_long: 'data/trace_long.json', plant_ramps: 'data/plant_ramps.json', reservoirs: 'data/reservoirs.json', transmission: 'data/transmission.json',
+    plant_hourly: 'data/plant_hourly.json', pr_map: 'data/pr_municipios.json', trace_recent: 'data/trace_recent.json', settings: 'data/settings.json', live_fuel_price: 'data/live_fuel_price.json', reservoir_levels: 'data/reservoir_levels.json', cost_hourly: 'data/cost_hourly.json', trace_long: 'data/trace_long.json', plant_ramps: 'data/plant_ramps.json', reservoirs: 'data/reservoirs.json', transmission: 'data/transmission.json',
   });
 })();
