@@ -44,3 +44,8 @@
 2026-11-10 16:42 AST  OFFLINE   Solar / San Fermin                       1.2 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 16:28)
 2026-11-10 16:58 AST  OFFLINE   Mayagüez / Gas 3                         6.4 MW ->     0.3 MW  (Genera PR, ULSD (diesel); previous check 16:42)
 2026-11-10 16:58 AST  ONLINE    Aguirre CC 2 / Gas 4                     0.0 MW ->    30.9 MW  (Genera PR, ULSD (diesel); previous check 16:42)
+2026-11-10 17:12 AST  ONLINE    Yauco (hydro) / Hidro 3                  0.0 MW ->     2.1 MW  (PREPA (hydro), Hydro; previous check 16:58)
+2026-11-10 17:12 AST  OFFLINE   Wind / Pattern                           2.1 MW ->     0.0 MW  (Independent (PPOA), Wind; previous check 16:58)
+2026-11-10 17:12 AST  OFFLINE   Solar / Ilumina                          1.9 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:58)
+2026-11-10 17:12 AST  OFFLINE   Solar / Horizon                          1.5 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 16:58)
+2026-11-10 17:12 AST  OFFLINE   Solar / Coto Laurel                      1.1 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:58)
