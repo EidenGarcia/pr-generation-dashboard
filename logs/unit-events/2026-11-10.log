@@ -55,3 +55,4 @@
 2026-11-10 17:58 AST  ONLINE    Wind / Pattern                           0.1 MW ->     1.8 MW  (Independent (PPOA), Wind; previous check 17:44)
 2026-11-10 19:12 AST  UNIT OFF  Wind / Pattern                           1.1 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 18:58)
 2026-11-10 19:28 AST  UNIT ON   Wind / Pattern                           0.7 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 19:12)
+2026-11-10 19:44 AST  UNIT OFF  Cambalache / Gas 3                      28.9 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 19:28)
