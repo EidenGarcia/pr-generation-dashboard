@@ -57,3 +57,6 @@
 2026-11-10 19:28 AST  UNIT ON   Wind / Pattern                           0.7 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 19:12)
 2026-11-10 19:44 AST  UNIT OFF  Cambalache / Gas 3                      28.9 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 19:28)
 2026-11-10 19:58 AST  UNIT OFF  Wind / Pattern                           1.7 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 19:44)
+2026-11-10 21:14 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 2              5.3 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:59)
+2026-11-10 21:14 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 3              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:59)
+2026-11-10 21:14 AST  UNIT OFF  Yauco (hydro) / Hidro 3                  2.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:59)
