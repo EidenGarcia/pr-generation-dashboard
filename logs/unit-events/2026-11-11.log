@@ -27,3 +27,6 @@
 2026-11-11 13:20 AST  UNIT OFF  Wind / Punta Lima                        1.2 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 13:14)
 2026-11-11 13:20 AST  UNIT OFF  Solar / San Fermin                       2.2 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 13:14)
 2026-11-11 13:42 AST  UNIT ON   Wind / Punta Lima                        0.8 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 13:28)
+2026-11-11 13:58 AST  UNIT ON   Solar / San Fermin                       0.8 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 13:42)
+2026-11-11 13:58 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.0 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 13:42)
+2026-11-11 13:58 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 13:42)
