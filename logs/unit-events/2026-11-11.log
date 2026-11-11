@@ -14,3 +14,6 @@
 2026-11-11 06:12 AST  UNIT OFF  Wind / Pattern                           2.2 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 05:58)
 2026-11-11 06:28 AST  UNIT ON   Wind / Pattern                           0.8 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 06:12)
 2026-11-11 06:58 AST  UNIT ON   Solar / Fonroche                         0.1 MW ->     1.3 MW  (Independent (PPOA), Solar; previous check 06:42)
+2026-11-11 07:12 AST  UNIT OFF  Wind / Pattern                           1.1 MW ->     0.6 MW  (Independent (PPOA), Wind; previous check 06:58)
+2026-11-11 07:12 AST  UNIT ON   Solar / Ilumina                          0.6 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 06:58)
+2026-11-11 07:12 AST  UNIT ON   Solar / Oriana                           0.3 MW ->     2.4 MW  (Independent (PPOA), Solar; previous check 06:58)
