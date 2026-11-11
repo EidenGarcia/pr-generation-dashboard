@@ -24,3 +24,5 @@
 2026-11-11 09:14 AST  UNIT OFF  GT stations (peakers) / Jobos           18.5 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 08:58)
 2026-11-11 10:14 AST  UNIT OFF  Palo Seco GT/CT / GT1                   15.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:58)
 2026-11-11 11:14 AST  UNIT ON   Wind / Punta Lima                        0.9 MW ->     2.5 MW  (Independent (PPOA), Wind; previous check 10:58)
+2026-11-11 13:20 AST  UNIT OFF  Wind / Punta Lima                        1.2 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 13:14)
+2026-11-11 13:20 AST  UNIT OFF  Solar / San Fermin                       2.2 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 13:14)
