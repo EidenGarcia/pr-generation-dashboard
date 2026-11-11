@@ -21,3 +21,4 @@
 2026-11-11 07:28 AST  UNIT ON   Solar / Coto Laurel                      0.6 MW ->     1.3 MW  (Independent (PPOA), Solar; previous check 07:12)
 2026-11-11 07:58 AST  UNIT ON   Solar / San Fermin                       0.9 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:42)
 2026-11-11 08:28 AST  UNIT ON   Wind / Pattern                           0.1 MW ->     2.7 MW  (Independent (PPOA), Wind; previous check 08:12)
+2026-11-11 09:14 AST  UNIT OFF  GT stations (peakers) / Jobos           18.5 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 08:58)
