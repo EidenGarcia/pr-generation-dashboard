@@ -31,3 +31,4 @@
 2026-11-11 13:58 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.0 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 13:42)
 2026-11-11 13:58 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 13:42)
 2026-11-11 14:14 AST  UNIT OFF  Solar / San Fermin                       1.2 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 13:58)
+2026-11-11 15:12 AST  UNIT ON   GT stations (peakers) / Jobos            0.1 MW ->    18.4 MW  (Genera PR, ULSD (diesel); previous check 14:58)
