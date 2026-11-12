@@ -1,19 +1,19 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Wednesday, November 11, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-11 22:15 AST)
-Coverage ........ 22.3 h of feed checks (90 checks), 267 five-minute readings
+Status .......... In progress (updated 2026-11-11 22:30 AST)
+Coverage ........ 22.5 h of feed checks (91 checks), 270 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,814 MW at 18:12
   Minimum ....... 1,883 MW at 12:28
-  Average ....... 2,286 MW
+  Average ....... 2,290 MW
   PREPA peak .... 2,816 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,816.4 MW at 18:04
   Minimum ....... 1,878.1 MW at 12:24
-  Average ....... 2,286 MW
-  Energy ........ 50,873 MWh
+  Average ....... 2,290 MW
+  Energy ........ 51,524 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
@@ -22,19 +22,19 @@ FREQUENCY (5-minute readings)
   In Normal band  98.9 %   Excursions: 3
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   31,037 MWh   59.8 %
-  Bunker C .......    6,689 MWh   12.9 %
-  Diesel (ULSD) ..    5,056 MWh   9.7 %
-  Coal ...........    8,065 MWh   15.5 %
+  LNG ............   31,444 MWh   59.8 %
+  Bunker C .......    6,764 MWh   12.9 %
+  Diesel (ULSD) ..    5,157 MWh   9.8 %
+  Coal ...........    8,156 MWh   15.5 %
   Solar ..........      612 MWh   1.2 %
   Wind ...........      302 MWh   0.6 %
   Hydro ..........       72 MWh   0.1 %
-  Landfill gas ...       35 MWh   0.1 %
+  Landfill gas ...       36 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $8,671,823 over 22.3 h  (full-day estimate $9,339,652)
-  Average cost ............ $0.1672 per kWh
+  Total cost of the day ... $8,791,270 over 22.5 h  (full-day estimate $9,363,252)
+  Average cost ............ $0.1673 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
   Max ramp up ... +291 MW/h at 15:29
