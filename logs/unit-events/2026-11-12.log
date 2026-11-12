@@ -21,3 +21,5 @@
 2026-11-12 07:44 AST  UNIT ON   Solar / San Fermin                       0.8 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-11-12 07:44 AST  UNIT ON   Solar / Ilumina                          0.4 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-11-12 07:44 AST  UNIT ON   Solar / Coto Laurel                      1.0 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-11-12 07:58 AST  UNIT OFF  Solar / Ilumina                          2.1 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 07:44)
+2026-11-12 07:58 AST  UNIT ON   Solar / Horizon                          0.3 MW ->     3.5 MW  (Independent (PPOA), Solar; previous check 07:44)
