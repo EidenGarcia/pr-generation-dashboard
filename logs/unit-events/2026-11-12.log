@@ -26,3 +26,4 @@
 2026-11-12 08:12 AST  UNIT ON   Solar / Ilumina                          0.6 MW ->     2.9 MW  (Independent (PPOA), Solar; previous check 07:58)
 2026-11-12 08:42 AST  UNIT ON   Dos Bocas (hydro) / Hidro 1              0.0 MW ->     5.2 MW  (PREPA (hydro), Hydro; previous check 08:28)
 2026-11-12 08:42 AST  UNIT OFF  Wind / Punta Lima                        1.0 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 08:28)
+2026-11-12 08:58 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 1              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 08:42)
