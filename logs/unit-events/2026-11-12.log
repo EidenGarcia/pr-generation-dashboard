@@ -12,3 +12,4 @@
 2026-11-12 04:43 AST  UNIT ON   Wind / Pattern                           0.0 MW ->     2.2 MW  (Independent (PPOA), Wind; previous check 04:28)
 2026-11-12 04:43 AST  UNIT ON   Wind / Punta Lima                        0.8 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 04:28)
 2026-11-12 04:58 AST  UNIT OFF  Wind / Punta Lima                        1.0 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 04:43)
+2026-11-12 05:28 AST  UNIT OFF  Yauco (hydro) / Hidro 3                  2.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 05:12)
