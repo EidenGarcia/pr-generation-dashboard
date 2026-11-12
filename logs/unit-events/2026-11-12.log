@@ -56,3 +56,4 @@
 2026-11-12 16:42 AST  UNIT ON   Cambalache / Gas 2                       0.0 MW ->    20.5 MW  (Genera PR, ULSD (diesel); previous check 16:28)
 2026-11-12 16:42 AST  UNIT ON   Solar / Horizon                          0.6 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 16:28)
 2026-11-12 16:42 AST  UNIT OFF  Solar / Fonroche                         1.2 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:28)
+2026-11-12 16:59 AST  UNIT OFF  Solar / Coto Laurel                      1.8 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 16:44)
