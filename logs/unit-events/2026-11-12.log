@@ -28,3 +28,4 @@
 2026-11-12 08:42 AST  UNIT OFF  Wind / Punta Lima                        1.0 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 08:28)
 2026-11-12 08:58 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 1              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 08:42)
 2026-11-12 09:42 AST  UNIT ON   Wind / Punta Lima                        0.7 MW ->     1.6 MW  (Independent (PPOA), Wind; previous check 09:28)
+2026-11-12 09:58 AST  UNIT OFF  GT stations (peakers) / Jobos           18.6 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 09:42)
