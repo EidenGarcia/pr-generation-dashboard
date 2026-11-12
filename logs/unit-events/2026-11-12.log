@@ -17,3 +17,7 @@
 2026-11-12 06:58 AST  UNIT ON   Solar / Fonroche                         0.1 MW ->     1.8 MW  (Independent (PPOA), Solar; previous check 06:44)
 2026-11-12 07:12 AST  UNIT OFF  Wind / Punta Lima                        1.1 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 06:58)
 2026-11-12 07:12 AST  UNIT ON   Solar / Oriana                           0.2 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 06:58)
+2026-11-12 07:44 AST  UNIT ON   Wind / Punta Lima                        0.8 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 07:28)
+2026-11-12 07:44 AST  UNIT ON   Solar / San Fermin                       0.8 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-11-12 07:44 AST  UNIT ON   Solar / Ilumina                          0.4 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-11-12 07:44 AST  UNIT ON   Solar / Coto Laurel                      1.0 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 07:28)
