@@ -8,8 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/theme.css?v=20261115">
-<link rel="stylesheet" href="assets/live.css?v=20261115">
+<link rel="stylesheet" href="assets/theme.css?v=20261116">
+<link rel="stylesheet" href="assets/live.css?v=20261116">
 </head>
 <body>
 <div class="wrap">
@@ -34,7 +34,7 @@
   </div>
 
   <nav class="jump" aria-label="Sections">
-    <a href="#overview">Overview</a><a href="#plants">Plants right now</a><a href="#overtime">Over time</a><a href="#ramps">Ramps</a><a href="#outages">Unit events</a><a href="#frequency">Frequency</a><a href="#units">Unit gauges</a><a href="#cost">Cost and dispatch</a><a href="#summary">Daily summary</a><a href="#portal">Portal health</a>
+    <a href="#price">Price per kWh</a><a href="#overview">Overview</a><a href="#plants">Plants right now</a><a href="#overtime">Over time</a><a href="#ramps">Ramps</a><a href="#outages">Unit events</a><a href="#frequency">Frequency</a><a href="#units">Unit gauges</a><a href="#cost">Cost and dispatch</a><a href="#summary">Daily summary</a><a href="#portal">Portal health</a>
   </nav>
 
   <div class="shed" id="shed-banner" role="alert" hidden></div>
@@ -45,6 +45,36 @@
   </div>
 
   <!-- Hero: generation, frequency, capacity and forecast -->
+  <!-- What a kWh costs the customer -->
+  <h2 class="gx-sec" id="price">What a kWh costs you</h2>
+  <p class="gx-secnote">Your bill has two kinds of charges. The cost of <b>generating</b> the power (fuel, and energy bought from private producers) changes by the hour with which plants are running; on the bill it is averaged and updated every three months as the FCA and PPCA charges. The rest (the base rate that pays for operating the system, subsidies and municipal contributions) is fixed until the Energy Bureau revises it. This section estimates the generation part from the live cost of the plants and adds the fixed part approved for the current quarter.</p>
+  <div class="gx-card" id="price-body" style="margin-bottom:var(--cds-gap-lg)">
+    <div class="card-head">
+      <div class="gx-seg" id="tf-period" role="group" aria-label="Period"><button data-v="now" aria-pressed="true">Right now</button><button data-v="today" aria-pressed="false">Today</button><button data-v="yday" aria-pressed="false">Last full day</button><button data-v="7d" aria-pressed="false">Last 7 days</button><button data-v="30d" aria-pressed="false">Last 30 days</button></div>
+      <div class="chk-row" style="margin:0"><label class="chk"><input type="checkbox" id="tf-fixed" checked> Include fixed charges (everything that is not generation)</label><label class="chk"><input type="checkbox" id="tf-sold"> Per kWh billed (adjust for losses)</label></div>
+    </div>
+    <div class="gx-kpis tf-kpis" id="tf-kpis"></div>
+    <div class="tf-grid">
+      <div class="tf-donut-wrap"><div id="tf-donut"></div><div class="tf-legend" id="tf-donut-legend"></div></div>
+      <div>
+        <h4 class="sub-h" style="margin-top:0">Estimated from the live cost vs. approved on the bill (¢ per kWh)</h4>
+        <div id="tf-bars"></div>
+        <h4 class="sub-h">How the cost per kWh changes through the period</h4>
+        <div class="gx-legend" id="tf-chart-legend"></div>
+        <div class="gx-chart" id="tf-chart" style="min-height:280px"></div>
+        <p class="an-sum" id="tf-chart-sum"></p>
+      </div>
+    </div>
+    <h4 class="sub-h">Breakdown</h4>
+    <div class="gx-tablewrap" style="max-height:none"><table class="gx-table" id="tf-table"><thead><tr><th>Component</th><th>Basis</th><th class="num">This estimate</th><th class="num">Approved on the bill</th><th class="num" id="tf-th-usd">At 800 kWh</th><th class="num">Share</th></tr></thead><tbody></tbody></table></div>
+    <h4 class="sub-h">Your bill</h4>
+    <div class="tf-calc"><label class="sel-l" for="tf-kwh">Monthly consumption (kWh)</label><input type="number" id="tf-kwh" min="50" max="5000" step="10" value="800"><input type="range" id="tf-kwh-range" min="100" max="2000" step="10" value="800" aria-label="Monthly consumption"></div>
+    <div class="tf-calc-out" id="tf-calc-out"></div>
+    <p class="gx-note" id="tf-note" style="margin-top:12px"></p>
+    <p class="gx-note" id="tf-eff"></p>
+    <details class="tf-docs"><summary>Documents: Energy Bureau resolutions, the base rate case and sources</summary><div id="tf-docs"></div></details>
+  </div>
+
   <div class="fs-wrap" id="hero-wrap">
   <section class="hero" id="overview" aria-labelledby="hero-h">
     <div class="hero-main">
@@ -400,15 +430,16 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/core.js?v=20261115"></script>
-<script src="assets/prepa-core.js?v=20261115"></script>
-<script src="assets/calcs.js?v=20261115"></script>
-<script src="assets/history-db.js?v=20261115"></script>
-<script src="assets/live-feed.js?v=20261115"></script>
-<script src="assets/costs.js?v=20261115"></script>
-<script src="assets/live-extra.js?v=20261115"></script>
-<script src="assets/dispatch.js?v=20261115"></script>
-<script src="assets/ramps.js?v=20261115"></script>
-<script src="assets/live.js?v=20261115"></script>
+<script src="assets/core.js?v=20261116"></script>
+<script src="assets/prepa-core.js?v=20261116"></script>
+<script src="assets/calcs.js?v=20261116"></script>
+<script src="assets/history-db.js?v=20261116"></script>
+<script src="assets/live-feed.js?v=20261116"></script>
+<script src="assets/costs.js?v=20261116"></script>
+<script src="assets/live-extra.js?v=20261116"></script>
+<script src="assets/dispatch.js?v=20261116"></script>
+<script src="assets/ramps.js?v=20261116"></script>
+<script src="assets/tariff.js?v=20261116"></script>
+<script src="assets/live.js?v=20261116"></script>
 </body>
 </html>

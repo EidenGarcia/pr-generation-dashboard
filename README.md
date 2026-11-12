@@ -11,6 +11,8 @@ A static web page, hosted free on GitHub Pages. It reads PREPA’s feeds **direc
 
 **Reactive power:** every reading records each plant’s MVAr, the whole generation (sum of all units, `gen_mw`; PREPA’s `total_mw` is demand) and the system power factor. Unit status changes are logged in `logs/unit-events/` (formerly `logs/outages/`, renamed automatically).
 
+**Customer price per kWh:** the section “What a kWh costs you” estimates FCA (fuel of Genera’s plants) and PPCA (energy bought from private producers) from the recorded dispatch cost ÷ energy generated, and adds the fixed components from `data/tariff.json` (base rate, subsidies, CELI, energy efficiency, and the approved FCA/PPCA for comparison). Edit `data/tariff.json` whenever the Energy Bureau approves new quarterly factors or a new base rate.
+
 **What it shows:** Generation, actual demand and frequency for the last 24 hours with PREPA’s next-hour forecast, actual capacity, today’s peak, markers when units go out or come back, and a 24-hour forecast of load and capacity; generation over time by plant or by fuel (24 h, 7 days, 30 days, all) with the majority fuel; “Plants right now”: a one-color map of Puerto Rico (US Census outline) with every plant on/off, its MW and $/h, beside a full table of plants or units that can be sorted by any column and filtered by search, operator and status, with each unit’s MW, rated MW, load, ¢/kWh and $/h; 24-hour outage log; frequency against IEEE limits; unit gauges (0 to rated capacity, ON/OFF, observed range); dispatch cost now and over 24 hours ($/h, $/kWh); energy mix; daily summary; outage alerts; portal health (uptime, response time, data freshness).
 
 ## Set it up (about 10 minutes)

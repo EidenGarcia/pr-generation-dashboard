@@ -669,6 +669,6 @@
     status: 'data/status.json', hist_units: 'data/hist_units.json',
     freq_limits: 'data/frequency_limits.json', frequency_events: 'data/frequency_events.json',
     unit_capacity: 'data/unit_capacity.json', unit_ranges: 'data/unit_ranges.json', daily_summary: 'data/daily_summary.json',
-    plant_hourly: 'data/plant_hourly.json', pr_map: 'data/pr_municipios.json', trace_recent: 'data/trace_recent.json', settings: 'data/settings.json', live_fuel_price: 'data/live_fuel_price.json', reservoir_levels: 'data/reservoir_levels.json', cost_hourly: 'data/cost_hourly.json', trace_long: 'data/trace_long.json', plant_ramps: 'data/plant_ramps.json', reservoirs: 'data/reservoirs.json', transmission: 'data/transmission.json',
+    plant_hourly: 'data/plant_hourly.json', pr_map: 'data/pr_municipios.json', trace_recent: 'data/trace_recent.json', settings: 'data/settings.json', tariff: 'data/tariff.json', live_fuel_price: 'data/live_fuel_price.json', reservoir_levels: 'data/reservoir_levels.json', cost_hourly: 'data/cost_hourly.json', trace_long: 'data/trace_long.json', plant_ramps: 'data/plant_ramps.json', reservoirs: 'data/reservoirs.json', transmission: 'data/transmission.json',
   });
 })();

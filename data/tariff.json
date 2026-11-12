@@ -1,0 +1,37 @@
+[{
+  "note": "Customer rate components. FCA and PPCA are ESTIMATED live by the dashboard from dispatch cost; everything else here is fixed until the Energy Bureau (NEPR/PREB) revises it. Update this file when a new quarterly resolution or base-rate order takes effect.",
+  "effective_from": "2026-10-01",
+  "effective_to": "2026-12-31",
+  "period_label": "October to December 2026",
+  "next_change": "January 1, 2027 (LUMA must file the proposed factors by December 14, 2026)",
+  "reference_customer": { "label": "Residential customer without subsidy", "kwh": 800, "bill_usd": 270.86, "avg_usd_kwh": 0.33858, "previous_bill_usd": 228.59, "previous_avg_usd_kwh": 0.28574 },
+  "approved": {
+    "fca_usd_kwh": 0.173576,
+    "ppca_usd_kwh": 0.045090,
+    "sales_kwh_quarter": 3947236226,
+    "quarter_days": 92,
+    "fca_total_usd": 685143947.20,
+    "fca_reconciliation_usd": 131650334.94,
+    "ppca_total_usd": 177979685.34
+  },
+  "fixed": {
+    "suba_hh_usd_kwh": 0.014338,
+    "celi_usd_kwh": 0.007386,
+    "suba_nhh_usd_kwh": 0.000865,
+    "ee_usd_kwh": 0.000853,
+    "base_total_usd_at_reference": 77.17,
+    "base_fixed_usd_month": 8.00,
+    "base_fixed_is_approximate": true,
+    "base_note": "The base rate at 800 kWh ($77.17) is the reference bill minus the riders. The split between the monthly fixed charge (about $8, as reported by the press for 2026) and the per-kWh charge is approximate; the exact values are in the tariff book approved in NEPR-AP-2023-0003."
+  },
+  "documents": [
+    { "group": "Quarterly fuel and purchased-power factors (FCA, PPCA)", "title": "Resolución y Orden, 30 de septiembre de 2026: factores de las cláusulas de ajuste trimestral, octubre–diciembre 2026 (NEPR-MI-2020-0001)", "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2026/09/20260930-MI20200001-Resolucion-y-Orden.pdf" },
+    { "group": "Quarterly fuel and purchased-power factors (FCA, PPCA)", "title": "Expediente NEPR-MI-2020-0001: todas las resoluciones, mociones de LUMA y reconciliaciones trimestrales", "url": "https://energia.pr.gov/en/dockets/?docket=nerp-mi-2020-0001" },
+    { "group": "Quarterly fuel and purchased-power factors (FCA, PPCA)", "title": "Metro: “Negociado de Energía aprueba aumento de $42 en la factura de luz de un cliente residencial” (30 sep 2026)", "url": "https://www.metro.pr/noticias/2026/09/30/negociado-de-energia-aprueba-aumento-de-42-en-la-factura-de-luz-de-un-cliente-residencial/" },
+    { "group": "Base rate (LUMA, Genera, PREPA budgets, pensions)", "title": "Expediente NEPR-AP-2023-0003: Revisión de Tarifa de la Autoridad (Orden Final sobre Tarifas del 15 de abril de 2026, libro de tarifas, presupuestos de operación y mantenimiento)", "url": "https://energia.pr.gov/numero_orden/nepr-ap-2023-0003/" },
+    { "group": "Base rate (LUMA, Genera, PREPA budgets, pensions)", "title": "Resolución y Orden: determinación de que la solicitud de revisión tarifaria de LUMA está completa (19 ago 2025)", "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2025/08/20250819-AP20230003-Resolution-and-Order-Completeness.pdf" },
+    { "group": "Base rate (LUMA, Genera, PREPA budgets, pensions)", "title": "LUMA: página sobre la revisión tarifaria", "url": "https://lumapr.com/revision-tarifa-2025/" },
+    { "group": "Generation maintenance and fuel", "title": "Acta del Negociado (3 jun 2025) que reseña los casos de mantenimiento y reparación de las unidades de generación (NEPR-MI-2021-0014) y el Plan de Optimización de Combustible de Genera (NEPR-MI-2023-0004)", "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2025/06/20250603-Acta-aprobada.pdf" },
+    { "group": "Live cost data", "title": "PREPA: datos operacionales en vivo (costo por unidad, MW), fuente del estimado de FCA y PPCA", "url": "https://operationdata.prepa.pr.gov/dataSource.js" }
+  ]
+}]
