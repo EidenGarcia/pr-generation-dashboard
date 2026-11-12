@@ -49,3 +49,4 @@
 2026-11-12 15:28 AST  UNIT ON   Solar / Horizon                          0.9 MW ->     3.2 MW  (Independent (PPOA), Solar; previous check 15:12)
 2026-11-12 15:44 AST  UNIT ON   Aguirre CC 1 / Gas 1                     0.1 MW ->    30.8 MW  (Genera PR, ULSD (diesel); previous check 15:28)
 2026-11-12 15:44 AST  UNIT ON   Aguirre CC 2 / Gas 4                     0.0 MW ->    30.8 MW  (Genera PR, ULSD (diesel); previous check 15:28)
+2026-11-12 15:58 AST  UNIT OFF  Solar / Ilumina                          2.3 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 15:44)
