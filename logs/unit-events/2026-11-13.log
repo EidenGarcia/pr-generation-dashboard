@@ -17,3 +17,7 @@
 2026-11-13 09:28 AST  UNIT OFF  Cambalache / Gas 3                       1.7 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:12)
 2026-11-13 11:28 AST  UNIT OFF  Palo Seco GT/CT / GT1                   15.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 11:12)
 2026-11-13 11:58 AST  UNIT ON   Dos Bocas (hydro) / Hidro 3              0.1 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 11:44)
+2026-11-13 13:28 AST  UNIT ON   GT stations (peakers) / Daguao           1.0 MW ->    13.9 MW  (Genera PR, ULSD (diesel); previous check 13:13)
+2026-11-13 13:28 AST  UNIT OFF  Palo Seco GT/CT / CT Block 1            16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 13:13)
+2026-11-13 13:28 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.0 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 13:13)
+2026-11-13 13:28 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 13:13)
