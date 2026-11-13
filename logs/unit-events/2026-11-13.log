@@ -1,0 +1,4 @@
+# Unit event log, 2026-11-13 (Puerto Rico time, UTC-4)
+# Units going off and coming on. A unit counts as off below 1 MW. Times are when the change was first seen; it happened after the previous check.
+2026-11-13 00:14 AST  UNIT OFF  Aguirre CC 2 / Gas 2                    30.4 MW ->     0.5 MW  (Genera PR, ULSD (diesel); previous check 23:58)
+2026-11-13 00:14 AST  UNIT ON   Palo Seco GT/CT / GT2                    0.0 MW ->    16.0 MW  (Genera PR, ULSD (diesel); previous check 23:58)
