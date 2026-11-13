@@ -29,3 +29,4 @@
 2026-11-13 15:42 AST  UNIT ON   GT stations (peakers) / Jobos            0.1 MW ->    16.0 MW  (Genera PR, ULSD (diesel); previous check 15:28)
 2026-11-13 15:58 AST  UNIT ON   Aguirre CC 2 / Gas 4                     0.0 MW ->    30.6 MW  (Genera PR, ULSD (diesel); previous check 15:42)
 2026-11-13 15:58 AST  UNIT OFF  Solar / Coto Laurel                      2.0 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 15:42)
+2026-11-13 16:14 AST  UNIT ON   Solar / Coto Laurel                      0.7 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 15:58)
