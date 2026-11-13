@@ -4,3 +4,7 @@
 2026-11-13 00:14 AST  UNIT ON   Palo Seco GT/CT / GT2                    0.0 MW ->    16.0 MW  (Genera PR, ULSD (diesel); previous check 23:58)
 2026-11-13 00:42 AST  UNIT OFF  Aguirre CC 1 / Gas 4                    27.4 MW ->     0.7 MW  (Genera PR, ULSD (diesel); previous check 00:29)
 2026-11-13 05:12 AST  UNIT OFF  Yauco (hydro) / Hidro 3                  2.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 04:59)
+2026-11-13 07:13 AST  UNIT OFF  GT stations (peakers) / Jobos            6.7 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 06:58)
+2026-11-13 07:13 AST  UNIT ON   Solar / Ilumina                          0.4 MW ->     1.4 MW  (Independent (PPOA), Solar; previous check 06:58)
+2026-11-13 07:13 AST  UNIT ON   Solar / Oriana                           0.0 MW ->     2.3 MW  (Independent (PPOA), Solar; previous check 06:58)
+2026-11-13 07:13 AST  UNIT ON   Solar / Fonroche                         0.9 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 06:58)
