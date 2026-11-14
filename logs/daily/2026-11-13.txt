@@ -1,39 +1,39 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, November 13, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-13 22:35 AST)
-Coverage ........ 22.5 h of feed checks (93 checks), 271 five-minute readings
+Status .......... In progress (updated 2026-11-13 22:45 AST)
+Coverage ........ 22.7 h of feed checks (94 checks), 273 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,818 MW at 18:14
   Minimum ....... 1,980 MW at 11:58
-  Average ....... 2,399 MW
+  Average ....... 2,401 MW
   PREPA peak .... 2,826 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,820.7 MW at 18:02
   Minimum ....... 1,976.6 MW at 12:12
-  Average ....... 2,398 MW
-  Energy ........ 54,144 MWh
+  Average ....... 2,400 MW
+  Energy ........ 54,598 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.40 Hz
   Minimum ....... 59.70 Hz
-  Average ....... 59.986 Hz
-  In Normal band  98.9 %   Excursions: 7
+  Average ....... 59.991 Hz
+  In Normal band  98.2 %   Excursions: 8
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   32,659 MWh   59.4 %
-  Bunker C .......    7,017 MWh   12.8 %
-  Diesel (ULSD) ..    5,448 MWh   9.9 %
-  Coal ...........    8,178 MWh   14.9 %
+  LNG ............   32,908 MWh   59.4 %
+  Bunker C .......    7,070 MWh   12.8 %
+  Diesel (ULSD) ..    5,528 MWh   10.0 %
+  Coal ...........    8,243 MWh   14.9 %
   Solar ..........      568 MWh   1.0 %
-  Wind ...........      941 MWh   1.7 %
-  Hydro ..........      133 MWh   0.2 %
+  Wind ...........      953 MWh   1.7 %
+  Hydro ..........      134 MWh   0.2 %
   Landfill gas ...       27 MWh   0.0 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $10,609,413 over 22.5 h  (full-day estimate $11,293,423)
+  Total cost of the day ... $10,696,493 over 22.7 h  (full-day estimate $11,304,503)
   Average cost ............ $0.1930 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
