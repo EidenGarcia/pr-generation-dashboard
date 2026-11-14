@@ -19,3 +19,5 @@
 2026-11-14 09:28 AST  UNIT ON   Solar / San Fermin                       0.4 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 09:12)
 2026-11-14 10:12 AST  UNIT OFF  Palo Seco GT/CT / GT1                   15.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:56)
 2026-11-14 10:42 AST  UNIT ON   Palo Seco Steam / Unit 4                 0.0 MW ->    14.9 MW  (Genera PR, Bunker C; previous check 10:28)
+2026-11-14 14:59 AST  UNIT OFF  GT stations (peakers) / FEMA GT SJ       8.7 MW ->     0.0 MW  (Genera PR, LNG; previous check 14:44)
+2026-11-14 14:59 AST  UNIT OFF  Mayagüez / Gas 3                         1.6 MW ->     0.9 MW  (Genera PR, ULSD (diesel); previous check 14:44)
