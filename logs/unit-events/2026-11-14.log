@@ -8,3 +8,5 @@
 2026-11-14 07:12 AST  UNIT ON   Solar / Oriana                           0.4 MW ->     1.9 MW  (Independent (PPOA), Solar; previous check 06:58)
 2026-11-14 07:12 AST  UNIT ON   Solar / Fonroche                         0.1 MW ->     2.6 MW  (Independent (PPOA), Solar; previous check 06:58)
 2026-11-14 07:28 AST  UNIT ON   Solar / Horizon                          0.2 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:12)
+2026-11-14 07:42 AST  UNIT OFF  Solar / Horizon                          1.2 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-11-14 07:42 AST  UNIT ON   Solar / Coto Laurel                      0.1 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 07:28)
