@@ -27,3 +27,5 @@
 2026-11-14 15:28 AST  UNIT ON   Cambalache / Gas 3                       0.0 MW ->    20.7 MW  (Genera PR, ULSD (diesel); previous check 15:14)
 2026-11-14 16:12 AST  UNIT OFF  GT stations (peakers) / Palo Seco       16.0 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 15:58)
 2026-11-14 16:12 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 15:58)
+2026-11-14 16:24 AST  UNIT ON   GT stations (peakers) / Palo Seco        0.1 MW ->    15.1 MW  (Genera PR, ULSD (diesel); previous check 16:12)
+2026-11-14 16:24 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.0 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 16:12)
