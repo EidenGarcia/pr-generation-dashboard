@@ -25,3 +25,5 @@
 2026-11-14 15:14 AST  UNIT ON   GT stations (peakers) / FEMA GT SJ       0.0 MW ->    21.2 MW  (Genera PR, LNG; previous check 14:59)
 2026-11-14 15:14 AST  UNIT ON   Mayagüez / Gas 3                         0.9 MW ->    38.1 MW  (Genera PR, ULSD (diesel); previous check 14:59)
 2026-11-14 15:28 AST  UNIT ON   Cambalache / Gas 3                       0.0 MW ->    20.7 MW  (Genera PR, ULSD (diesel); previous check 15:14)
+2026-11-14 16:12 AST  UNIT OFF  GT stations (peakers) / Palo Seco       16.0 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 15:58)
+2026-11-14 16:12 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 15:58)
