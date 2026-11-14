@@ -18,3 +18,4 @@
 2026-11-14 08:58 AST  UNIT ON   Solar / Coto Laurel                      0.9 MW ->     4.8 MW  (Independent (PPOA), Solar; previous check 08:43)
 2026-11-14 09:28 AST  UNIT ON   Solar / San Fermin                       0.4 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 09:12)
 2026-11-14 10:12 AST  UNIT OFF  Palo Seco GT/CT / GT1                   15.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:56)
+2026-11-14 10:42 AST  UNIT ON   Palo Seco Steam / Unit 4                 0.0 MW ->    14.9 MW  (Genera PR, Bunker C; previous check 10:28)
