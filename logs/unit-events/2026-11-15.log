@@ -32,3 +32,4 @@
 2026-11-15 15:58 AST  UNIT ON   Cambalache / Gas 3                       0.0 MW ->    20.8 MW  (Genera PR, ULSD (diesel); previous check 15:48)
 2026-11-15 15:58 AST  UNIT ON   Wind / Punta Lima                        0.5 MW ->     1.1 MW  (Independent (PPOA), Wind; previous check 15:48)
 2026-11-15 16:12 AST  UNIT OFF  Wind / Punta Lima                        1.1 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 15:58)
+2026-11-15 16:28 AST  UNIT ON   Wind / Punta Lima                        0.8 MW ->     2.8 MW  (Independent (PPOA), Wind; previous check 16:12)
