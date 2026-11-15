@@ -34,3 +34,5 @@
 2026-11-15 16:12 AST  UNIT OFF  Wind / Punta Lima                        1.1 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 15:58)
 2026-11-15 16:28 AST  UNIT ON   Wind / Punta Lima                        0.8 MW ->     2.8 MW  (Independent (PPOA), Wind; previous check 16:12)
 2026-11-15 16:42 AST  UNIT OFF  Solar / San Fermin                       1.2 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:28)
+2026-11-15 16:58 AST  UNIT ON   Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:42)
+2026-11-15 16:58 AST  UNIT OFF  Solar / Coto Laurel                      1.7 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:42)
