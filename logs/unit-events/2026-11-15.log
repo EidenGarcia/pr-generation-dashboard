@@ -21,3 +21,6 @@
 2026-11-15 13:42 AST  UNIT OFF  GT stations (peakers) / Palo Seco       16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 13:28)
 2026-11-15 13:42 AST  UNIT OFF  Palo Seco GT/CT / CT Block 1            16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 13:28)
 2026-11-15 13:42 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 13:28)
+2026-11-15 15:13 AST  UNIT ON   Mayagüez / Gas 2                         0.0 MW ->    18.4 MW  (Genera PR, ULSD (diesel); previous check 14:58)
+2026-11-15 15:13 AST  UNIT ON   Mayagüez / Gas 3                         0.1 MW ->    37.9 MW  (Genera PR, ULSD (diesel); previous check 14:58)
+2026-11-15 15:13 AST  UNIT ON   Mayagüez / Gas 4                         0.0 MW ->    22.4 MW  (Genera PR, ULSD (diesel); previous check 14:58)
