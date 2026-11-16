@@ -34,3 +34,5 @@
 2026-11-16 14:58 AST  UNIT ON   Mayagüez / Gas 2                         0.0 MW ->    19.4 MW  (Genera PR, ULSD (diesel); previous check 14:43)
 2026-11-16 14:58 AST  UNIT ON   Mayagüez / Gas 4                         0.0 MW ->    21.7 MW  (Genera PR, ULSD (diesel); previous check 14:43)
 2026-11-16 15:43 AST  UNIT OFF  Solar / Coto Laurel                      1.1 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 15:29)
+2026-11-16 15:58 AST  UNIT ON   Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 15:43)
+2026-11-16 15:58 AST  UNIT ON   Cambalache / Gas 3                       0.0 MW ->    20.6 MW  (Genera PR, ULSD (diesel); previous check 15:43)
