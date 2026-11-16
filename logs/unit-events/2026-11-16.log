@@ -3,3 +3,4 @@
 2026-11-16 00:12 AST  UNIT ON   GT stations (peakers) / Daguao           0.0 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 23:58)
 2026-11-16 02:58 AST  UNIT ON   Wind / Pattern                           0.2 MW ->     1.8 MW  (Independent (PPOA), Wind; previous check 02:42)
 2026-11-16 04:12 AST  UNIT OFF  Wind / Pattern                           1.8 MW ->     0.6 MW  (Independent (PPOA), Wind; previous check 03:59)
+2026-11-16 04:28 AST  UNIT ON   Wind / Pattern                           0.6 MW ->     1.6 MW  (Independent (PPOA), Wind; previous check 04:12)
