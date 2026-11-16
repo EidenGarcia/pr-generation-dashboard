@@ -53,3 +53,6 @@
 2026-11-15 20:14 AST  UNIT OFF  Aguirre CC 1 / Gas 4                    11.2 MW ->     0.8 MW  (Genera PR, ULSD (diesel); previous check 19:58)
 2026-11-15 21:12 AST  UNIT OFF  Aguirre CC 2 / Gas 2                     1.1 MW ->     0.8 MW  (Genera PR, ULSD (diesel); previous check 20:59)
 2026-11-15 21:28 AST  UNIT ON   Wind / Punta Lima                        0.2 MW ->     1.1 MW  (Independent (PPOA), Wind; previous check 21:12)
+2026-11-15 21:44 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 2              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-15 21:44 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 3              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-15 21:44 AST  UNIT OFF  Wind / Punta Lima                        1.1 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 21:28)
