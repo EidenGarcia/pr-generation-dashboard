@@ -42,3 +42,5 @@
 2026-11-16 16:42 AST  UNIT OFF  Solar / San Fermin                       1.5 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 16:28)
 2026-11-16 17:08 AST  UNIT ON   Yauco (hydro) / Hidro 3                  0.0 MW ->     2.1 MW  (PREPA (hydro), Hydro; previous check 16:59)
 2026-11-16 17:08 AST  UNIT OFF  Solar / Fonroche                         2.4 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 16:59)
+2026-11-16 17:12 AST  UNIT OFF  Solar / Ilumina                          1.2 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 17:08)
+2026-11-16 17:12 AST  UNIT OFF  Solar / Horizon                          1.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 17:08)
