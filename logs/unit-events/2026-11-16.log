@@ -23,3 +23,6 @@
 2026-11-16 08:58 AST  UNIT OFF  Mayagüez / Gas 4                         2.4 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:42)
 2026-11-16 09:14 AST  UNIT ON   Wind / Punta Lima                        0.7 MW ->     2.9 MW  (Independent (PPOA), Wind; previous check 08:58)
 2026-11-16 10:29 AST  UNIT ON   Wind / Pattern                           0.0 MW ->     2.1 MW  (Independent (PPOA), Wind; previous check 10:14)
+2026-11-16 14:29 AST  UNIT OFF  GT stations (peakers) / Palo Seco       16.1 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 14:13)
+2026-11-16 14:29 AST  UNIT OFF  Palo Seco GT/CT / CT Block 1            16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 14:13)
+2026-11-16 14:29 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 14:13)
