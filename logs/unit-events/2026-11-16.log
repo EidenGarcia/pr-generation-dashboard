@@ -46,3 +46,4 @@
 2026-11-16 17:12 AST  UNIT OFF  Solar / Horizon                          1.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 17:08)
 2026-11-16 17:28 AST  UNIT OFF  Solar / Oriana                           4.2 MW ->     0.2 MW  (Independent (PPOA), Solar; previous check 17:12)
 2026-11-16 19:28 AST  UNIT OFF  Wind / Punta Lima                        1.2 MW ->     0.6 MW  (Independent (PPOA), Wind; previous check 19:12)
+2026-11-16 19:44 AST  UNIT ON   Wind / Punta Lima                        0.6 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 19:28)
