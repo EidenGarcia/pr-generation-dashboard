@@ -2,3 +2,5 @@
 # Units going off and coming on. A unit counts as off below 1 MW. Times are when the change was first seen; it happened after the previous check.
 2026-11-17 00:12 AST  UNIT OFF  GT stations (peakers) / Jobos           18.8 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 23:58)
 2026-11-17 01:12 AST  UNIT OFF  Wind / Punta Lima                        2.0 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 00:58)
+2026-11-17 01:28 AST  UNIT ON   Wind / Punta Lima                        0.9 MW ->     3.0 MW  (Independent (PPOA), Wind; previous check 01:12)
+2026-11-17 01:28 AST  UNIT OFF  Palo Seco GT/CT / GT1                   15.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 01:12)
