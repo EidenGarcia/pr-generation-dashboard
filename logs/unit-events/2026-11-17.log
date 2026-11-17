@@ -30,3 +30,4 @@
 2026-11-17 15:13 AST  UNIT ON   Aguirre CC 1 / Gas 4                     0.0 MW ->    15.9 MW  (Genera PR, ULSD (diesel); previous check 14:59)
 2026-11-17 15:13 AST  UNIT ON   Aguirre CC 2 / Gas 2                     0.3 MW ->    12.8 MW  (Genera PR, ULSD (diesel); previous check 14:59)
 2026-11-17 15:43 AST  UNIT ON   Mayagüez / Gas 4                         0.0 MW ->    10.0 MW  (Genera PR, ULSD (diesel); previous check 15:28)
+2026-11-17 15:58 AST  UNIT OFF  Solar / San Fermin                       1.1 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 15:43)
