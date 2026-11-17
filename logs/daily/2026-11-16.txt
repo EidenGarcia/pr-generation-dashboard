@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Monday, November 16, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-16 23:51 AST)
-Coverage ........ 23.8 h of feed checks (98 checks), 287 five-minute readings
+Status .......... Complete (updated 2026-11-17 00:00 AST)
+Coverage ........ 23.8 h of feed checks (99 checks), 288 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,735 MW at 18:12
@@ -10,19 +10,19 @@ DEMAND (PREPA total generation at each check)
   PREPA peak .... 2,741 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,738.4 MW at 18:05
-  Minimum ....... 1,953.2 MW at 11:20
+  Maximum ....... 2,735.6 MW at 18:03
+  Minimum ....... 1,949.6 MW at 11:08
   Average ....... 2,334 MW
-  Energy ........ 55,821 MWh
+  Energy ........ 56,017 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.30 Hz
-  Minimum ....... 59.70 Hz
-  Average ....... 59.996 Hz
-  In Normal band  97.9 %   Excursions: 5
+  Minimum ....... 59.80 Hz
+  Average ....... 59.998 Hz
+  In Normal band  98.3 %   Excursions: 5
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   31,969 MWh   56.3 %
+  LNG ............   31,968 MWh   56.3 %
   Bunker C .......   10,599 MWh   18.7 %
   Diesel (ULSD) ..    3,821 MWh   6.7 %
   Coal ...........    9,336 MWh   16.4 %
@@ -33,12 +33,12 @@ FUEL USE (share of energy, time-weighted from unit outputs)
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $9,795,593 over 23.8 h
+  Total cost of the day ... $9,795,573 over 23.8 h
   Average cost ............ $0.1725 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
-  Max ramp up ... +254 MW/h at 15:45
-  Max ramp down . -145 MW/h at 23:25
+  Max ramp up ... +249 MW/h at 15:53
+  Max ramp down . -139 MW/h at 23:38
   Demand swing .. 787 MW (max minus min)
 
 UNIT EVENTS (units that went off or came on)
