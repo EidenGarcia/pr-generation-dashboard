@@ -56,3 +56,5 @@
 2026-11-16 21:44 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 3              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
 2026-11-16 22:12 AST  UNIT ON   Wind / Pattern                           0.1 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 21:58)
 2026-11-16 22:12 AST  UNIT ON   Wind / Punta Lima                        0.4 MW ->     1.3 MW  (Independent (PPOA), Wind; previous check 21:58)
+2026-11-16 22:28 AST  UNIT OFF  Wind / Pattern                           1.0 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 22:12)
+2026-11-16 22:28 AST  UNIT ON   Palo Seco GT/CT / GT2                    0.0 MW ->    16.0 MW  (Genera PR, ULSD (diesel); previous check 22:12)
