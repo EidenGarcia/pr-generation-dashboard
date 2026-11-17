@@ -1,7 +1,7 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, November 17, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-17 05:45 AST)
-Coverage ........ 5.8 h of feed checks (23 checks), 69 five-minute readings
+Status .......... In progress (updated 2026-11-17 06:00 AST)
+Coverage ........ 6.0 h of feed checks (24 checks), 72 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,380 MW at 00:12
@@ -13,40 +13,41 @@ GENERATION (5-minute readings, dataGraph.js)
   Maximum ....... 2,390.9 MW at 00:04
   Minimum ....... 2,089.0 MW at 03:44
   Average ....... 2,186 MW
-  Energy ........ 12,572 MWh
+  Energy ........ 13,117 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
   Minimum ....... 59.80 Hz
-  Average ....... 59.988 Hz
+  Average ....... 59.986 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    7,402 MWh   56.3 %
-  Bunker C .......    2,829 MWh   21.5 %
-  Diesel (ULSD) ..      518 MWh   3.9 %
-  Coal ...........    2,353 MWh   17.9 %
-  Wind ...........       30 MWh   0.2 %
+  LNG ............    7,717 MWh   56.3 %
+  Bunker C .......    2,948 MWh   21.5 %
+  Diesel (ULSD) ..      535 MWh   3.9 %
+  Coal ...........    2,452 MWh   17.9 %
+  Wind ...........       31 MWh   0.2 %
   Hydro ..........       15 MWh   0.1 %
   Landfill gas ...        7 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $2,365,367 over 5.8 h  (full-day estimate $9,790,541)
-  Average cost ............ $0.1798 per kWh
+  Total cost of the day ... $2,462,504 over 6.0 h  (full-day estimate $9,781,185)
+  Average cost ............ $0.1797 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
-  Max ramp up ... +59 MW/h at 05:44
+  Max ramp up ... +77 MW/h at 05:54
   Max ramp down . -113 MW/h at 01:04
   Demand swing .. 283 MW (max minus min)
 
 UNIT EVENTS (units that went off or came on)
-  Went off: 5   Came on: 1
+  Went off: 5   Came on: 2
   00:12  OFF  GT stations (peakers) / Jobos  18.8 -> 0.1 MW
   01:12  OFF  Wind / Punta Lima  2.0 -> 0.9 MW
   01:28  ON   Wind / Punta Lima  0.9 -> 3.0 MW
   01:28  OFF  Palo Seco GT/CT / GT1  15.0 -> 0.0 MW
   05:14  OFF  Garzas (hydro) / Hidro 1  3.0 -> 0.0 MW
   05:28  OFF  Wind / Pattern  3.7 -> 0.3 MW
+  05:59  ON   Wind / Pattern  0.3 -> 2.1 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
