@@ -34,3 +34,6 @@
 2026-11-17 16:12 AST  UNIT ON   Cambalache / Gas 3                       0.0 MW ->    20.7 MW  (Genera PR, ULSD (diesel); previous check 15:58)
 2026-11-17 16:12 AST  UNIT ON   Aguirre CC 1 / Gas 1                     0.1 MW ->    30.3 MW  (Genera PR, ULSD (diesel); previous check 15:58)
 2026-11-17 16:12 AST  UNIT ON   Aguirre CC 2 / Gas 4                     0.0 MW ->    31.0 MW  (Genera PR, ULSD (diesel); previous check 15:58)
+2026-11-17 16:28 AST  UNIT ON   Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 16:12)
+2026-11-17 16:28 AST  UNIT ON   GT stations (peakers) / Jobos            0.0 MW ->    17.7 MW  (Genera PR, ULSD (diesel); previous check 16:12)
+2026-11-17 16:28 AST  UNIT ON   Mayagüez / Gas 2                         0.0 MW ->    21.9 MW  (Genera PR, ULSD (diesel); previous check 16:12)
