@@ -17,3 +17,5 @@
 2026-11-18 07:34 AST  UNIT ON   Solar / Ilumina                          0.2 MW ->     2.6 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-11-18 07:42 AST  UNIT ON   Solar / Horizon                          0.2 MW ->     2.1 MW  (Independent (PPOA), Solar; previous check 07:34)
 2026-11-18 07:59 AST  UNIT ON   Solar / San Fermin                       1.0 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:42)
+2026-11-18 08:58 AST  UNIT OFF  GT stations (peakers) / Palo Seco       16.0 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 08:43)
+2026-11-18 08:58 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:43)
