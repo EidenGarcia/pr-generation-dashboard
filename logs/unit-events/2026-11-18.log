@@ -23,3 +23,6 @@
 2026-11-18 09:29 AST  UNIT OFF  Mayagüez / Gas 3                         1.5 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 09:12)
 2026-11-18 10:42 AST  UNIT OFF  Solar / Ilumina                          9.6 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 10:28)
 2026-11-18 11:58 AST  UNIT ON   Solar / Ilumina                          0.1 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 11:44)
+2026-11-18 15:34 AST  UNIT ON   GT stations (peakers) / Palo Seco        0.0 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 15:29)
+2026-11-18 15:34 AST  UNIT ON   Aguirre CC 1 / Gas 4                     0.0 MW ->    10.4 MW  (Genera PR, ULSD (diesel); previous check 15:29)
+2026-11-18 15:34 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.0 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 15:29)
