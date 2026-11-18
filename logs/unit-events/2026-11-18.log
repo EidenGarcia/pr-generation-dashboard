@@ -7,3 +7,5 @@
 2026-11-18 04:58 AST  UNIT OFF  Garzas (hydro) / Hidro 1                 3.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 04:42)
 2026-11-18 04:58 AST  UNIT OFF  Yauco (hydro) / Hidro 3                  2.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 04:42)
 2026-11-18 06:14 AST  UNIT OFF  GT stations (peakers) / Daguao          16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 05:59)
+2026-11-18 06:28 AST  UNIT OFF  Cambalache / Gas 3                       1.4 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 06:14)
+2026-11-18 06:28 AST  UNIT OFF  Wind / Pattern                           1.5 MW ->     0.4 MW  (Independent (PPOA), Wind; previous check 06:14)
