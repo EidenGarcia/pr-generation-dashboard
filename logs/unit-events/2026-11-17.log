@@ -54,3 +54,4 @@
 2026-11-17 21:44 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 3              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
 2026-11-17 21:58 AST  UNIT OFF  GT stations (peakers) / Jobos           18.8 MW ->     0.4 MW  (Genera PR, ULSD (diesel); previous check 21:44)
 2026-11-17 22:12 AST  UNIT ON   GT stations (peakers) / Daguao           0.0 MW ->    16.0 MW  (Genera PR, ULSD (diesel); previous check 21:58)
+2026-11-17 22:44 AST  UNIT OFF  Aguirre CC 2 / Gas 4                    30.0 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 22:29)
