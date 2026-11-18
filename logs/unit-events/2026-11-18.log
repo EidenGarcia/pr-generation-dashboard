@@ -46,3 +46,5 @@
 2026-11-18 16:58 AST  UNIT OFF  Solar / Ilumina                          1.6 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:44)
 2026-11-18 16:58 AST  UNIT OFF  Solar / Oriana                           1.7 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 16:44)
 2026-11-18 16:58 AST  UNIT OFF  Landfill / Fajardo                       1.2 MW ->     0.0 MW  (Independent (PPOA), Landfill gas; previous check 16:44)
+2026-11-18 17:12 AST  UNIT ON   Solar / Oriana                           0.1 MW ->     2.0 MW  (Independent (PPOA), Solar; previous check 16:58)
+2026-11-18 17:12 AST  UNIT OFF  Solar / Fonroche                         4.0 MW ->     0.2 MW  (Independent (PPOA), Solar; previous check 16:58)
