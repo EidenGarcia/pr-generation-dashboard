@@ -50,3 +50,5 @@
 2026-11-17 18:58 AST  UNIT ON   Palo Seco GT/CT / CT Block 1             0.0 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 18:44)
 2026-11-17 18:58 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.0 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 18:44)
 2026-11-17 20:58 AST  UNIT ON   Yauco (hydro) / Hidro 3                  0.0 MW ->     2.0 MW  (PREPA (hydro), Hydro; previous check 20:42)
+2026-11-17 21:44 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 2              5.3 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-17 21:44 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 3              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
