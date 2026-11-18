@@ -9,3 +9,6 @@
 2026-11-18 06:14 AST  UNIT OFF  GT stations (peakers) / Daguao          16.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 05:59)
 2026-11-18 06:28 AST  UNIT OFF  Cambalache / Gas 3                       1.4 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 06:14)
 2026-11-18 06:28 AST  UNIT OFF  Wind / Pattern                           1.5 MW ->     0.4 MW  (Independent (PPOA), Wind; previous check 06:14)
+2026-11-18 07:12 AST  UNIT ON   Wind / Pattern                           0.5 MW ->     1.4 MW  (Independent (PPOA), Wind; previous check 06:58)
+2026-11-18 07:12 AST  UNIT ON   Solar / Oriana                           0.3 MW ->     2.0 MW  (Independent (PPOA), Solar; previous check 06:58)
+2026-11-18 07:12 AST  UNIT ON   Solar / Fonroche                         0.7 MW ->     1.7 MW  (Independent (PPOA), Solar; previous check 06:58)
