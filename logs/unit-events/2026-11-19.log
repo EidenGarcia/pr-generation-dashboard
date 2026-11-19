@@ -65,3 +65,5 @@
 2026-11-19 17:14 AST  UNIT OFF  Solar / Coto Laurel                      1.1 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 16:58)
 2026-11-19 17:28 AST  UNIT OFF  Solar / Fonroche                         1.2 MW ->     0.4 MW  (Independent (PPOA), Solar; previous check 17:14)
 2026-11-19 17:42 AST  UNIT OFF  Solar / Oriana                           1.2 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 17:28)
+2026-11-19 17:58 AST  UNIT ON   Dos Bocas (hydro) / Hidro 2              0.0 MW ->     5.0 MW  (PREPA (hydro), Hydro; previous check 17:42)
+2026-11-19 17:58 AST  UNIT ON   Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 17:42)
