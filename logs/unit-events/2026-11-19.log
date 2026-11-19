@@ -17,3 +17,5 @@
 2026-11-19 05:28 AST  UNIT OFF  Yauco (hydro) / Hidro 3                  2.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 05:22)
 2026-11-19 05:59 AST  UNIT OFF  Cambalache / Gas 2                       1.2 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 05:42)
 2026-11-19 06:28 AST  UNIT OFF  Wind / Punta Lima                        1.4 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 06:13)
+2026-11-19 07:12 AST  UNIT ON   Solar / Oriana                           0.7 MW ->     1.9 MW  (Independent (PPOA), Solar; previous check 06:58)
+2026-11-19 07:12 AST  UNIT ON   Solar / Fonroche                         0.2 MW ->     2.6 MW  (Independent (PPOA), Solar; previous check 06:58)
