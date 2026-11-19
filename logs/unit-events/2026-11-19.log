@@ -52,3 +52,8 @@
 2026-11-19 16:14 AST  UNIT ON   Solar / San Fermin                       0.5 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 15:58)
 2026-11-19 16:29 AST  UNIT ON   Wind / Punta Lima                        0.7 MW ->     1.9 MW  (Independent (PPOA), Wind; previous check 16:14)
 2026-11-19 16:29 AST  UNIT OFF  Solar / San Fermin                       1.5 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:14)
+2026-11-19 16:42 AST  UNIT ON   GT stations (peakers) / Jobos            0.0 MW ->    17.9 MW  (Genera PR, ULSD (diesel); previous check 16:29)
+2026-11-19 16:42 AST  UNIT ON   GT stations (peakers) / Daguao           0.0 MW ->     8.9 MW  (Genera PR, ULSD (diesel); previous check 16:29)
+2026-11-19 16:42 AST  UNIT ON   Mayagüez / Gas 3                         0.1 MW ->    24.1 MW  (Genera PR, ULSD (diesel); previous check 16:29)
+2026-11-19 16:42 AST  UNIT OFF  Wind / Punta Lima                        1.9 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 16:29)
+2026-11-19 16:42 AST  UNIT OFF  Solar / Coto Laurel                      2.2 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 16:29)
