@@ -57,3 +57,6 @@
 2026-11-19 16:42 AST  UNIT ON   Mayagüez / Gas 3                         0.1 MW ->    24.1 MW  (Genera PR, ULSD (diesel); previous check 16:29)
 2026-11-19 16:42 AST  UNIT OFF  Wind / Punta Lima                        1.9 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 16:29)
 2026-11-19 16:42 AST  UNIT OFF  Solar / Coto Laurel                      2.2 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 16:29)
+2026-11-19 16:58 AST  UNIT ON   Mayagüez / Gas 4                         0.0 MW ->    21.7 MW  (Genera PR, ULSD (diesel); previous check 16:42)
+2026-11-19 16:58 AST  UNIT OFF  Solar / Horizon                          1.8 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 16:42)
+2026-11-19 16:58 AST  UNIT ON   Solar / Coto Laurel                      1.0 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 16:42)
