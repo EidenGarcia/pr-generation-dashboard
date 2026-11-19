@@ -46,3 +46,5 @@
 2026-11-19 15:12 AST  UNIT OFF  Wind / Punta Lima                        1.7 MW ->     0.0 MW  (Independent (PPOA), Wind; previous check 14:58)
 2026-11-19 15:44 AST  UNIT ON   Aguirre CC 1 / Gas 1                     0.1 MW ->     9.0 MW  (Genera PR, ULSD (diesel); previous check 15:28)
 2026-11-19 15:44 AST  UNIT OFF  Solar / San Fermin                       1.7 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 15:28)
+2026-11-19 15:58 AST  UNIT ON   Aguirre CC 2 / Gas 4                     0.0 MW ->    30.9 MW  (Genera PR, ULSD (diesel); previous check 15:44)
+2026-11-19 15:58 AST  UNIT ON   Wind / Punta Lima                        0.1 MW ->     1.5 MW  (Independent (PPOA), Wind; previous check 15:44)
