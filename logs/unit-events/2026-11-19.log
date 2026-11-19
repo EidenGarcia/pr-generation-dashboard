@@ -19,3 +19,6 @@
 2026-11-19 06:28 AST  UNIT OFF  Wind / Punta Lima                        1.4 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 06:13)
 2026-11-19 07:12 AST  UNIT ON   Solar / Oriana                           0.7 MW ->     1.9 MW  (Independent (PPOA), Solar; previous check 06:58)
 2026-11-19 07:12 AST  UNIT ON   Solar / Fonroche                         0.2 MW ->     2.6 MW  (Independent (PPOA), Solar; previous check 06:58)
+2026-11-19 07:28 AST  UNIT OFF  GT stations (peakers) / Daguao           1.0 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 07:12)
+2026-11-19 07:28 AST  UNIT ON   Solar / Ilumina                          0.6 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:12)
+2026-11-19 07:28 AST  UNIT ON   Solar / Horizon                          0.3 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:12)
