@@ -50,3 +50,5 @@
 2026-11-19 15:58 AST  UNIT ON   Wind / Punta Lima                        0.1 MW ->     1.5 MW  (Independent (PPOA), Wind; previous check 15:44)
 2026-11-19 16:14 AST  UNIT OFF  Wind / Punta Lima                        1.5 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 15:58)
 2026-11-19 16:14 AST  UNIT ON   Solar / San Fermin                       0.5 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 15:58)
+2026-11-19 16:29 AST  UNIT ON   Wind / Punta Lima                        0.7 MW ->     1.9 MW  (Independent (PPOA), Wind; previous check 16:14)
+2026-11-19 16:29 AST  UNIT OFF  Solar / San Fermin                       1.5 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:14)
