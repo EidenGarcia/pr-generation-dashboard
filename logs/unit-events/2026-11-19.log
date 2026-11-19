@@ -37,3 +37,4 @@
 2026-11-19 13:59 AST  UNIT ON   Wind / Punta Lima                        0.9 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 13:42)
 2026-11-19 14:14 AST  UNIT OFF  Mayagüez / Gas 3                         1.1 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 13:59)
 2026-11-19 14:14 AST  UNIT OFF  Wind / Punta Lima                        1.0 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 13:59)
+2026-11-19 14:28 AST  UNIT ON   Aguirre CC 1 / Gas 4                     0.0 MW ->     7.5 MW  (Genera PR, ULSD (diesel); previous check 14:26)
