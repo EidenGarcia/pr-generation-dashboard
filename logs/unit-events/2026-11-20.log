@@ -19,3 +19,4 @@
 2026-11-20 07:28 AST  UNIT ON   Solar / Oriana                           0.7 MW ->     2.8 MW  (Independent (PPOA), Solar; previous check 07:12)
 2026-11-20 07:44 AST  UNIT ON   Solar / Horizon                          0.7 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 07:28)
 2026-11-20 07:44 AST  UNIT ON   Solar / Coto Laurel                      0.8 MW ->     1.3 MW  (Independent (PPOA), Solar; previous check 07:28)
+2026-11-20 07:58 AST  UNIT OFF  Aguirre CC 2 / Gas 2                     1.4 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 07:44)
