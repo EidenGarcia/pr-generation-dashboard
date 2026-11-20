@@ -5,3 +5,4 @@
 2026-11-20 00:42 AST  UNIT OFF  Aguirre CC 2 / Gas 4                     4.2 MW ->     0.1 MW  (Genera PR, ULSD (diesel); previous check 00:28)
 2026-11-20 01:42 AST  UNIT OFF  Wind / Pattern                           2.0 MW ->     0.2 MW  (Independent (PPOA), Wind; previous check 01:28)
 2026-11-20 02:12 AST  UNIT ON   Wind / Pattern                           0.2 MW ->     1.6 MW  (Independent (PPOA), Wind; previous check 01:58)
+2026-11-20 02:28 AST  UNIT OFF  Wind / Pattern                           1.6 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 02:12)
