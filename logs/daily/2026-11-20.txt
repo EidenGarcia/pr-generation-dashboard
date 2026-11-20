@@ -1,43 +1,43 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Friday, November 20, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-20 01:00 AST)
-Coverage ........ 1.0 h of feed checks (4 checks), 12 five-minute readings
+Status .......... In progress (updated 2026-11-20 01:15 AST)
+Coverage ........ 1.3 h of feed checks (5 checks), 15 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,309 MW at 00:12
-  Minimum ....... 2,227 MW at 00:58
-  Average ....... 2,269 MW
+  Minimum ....... 2,205 MW at 01:13
+  Average ....... 2,256 MW
   PREPA peak .... 2,331 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,323.5 MW at 00:03
-  Minimum ....... 2,227.3 MW at 00:58
-  Average ....... 2,271 MW
-  Energy ........ 2,271 MWh
+  Maximum ....... 2,324.4 MW at 00:03
+  Minimum ....... 2,205.5 MW at 01:13
+  Average ....... 2,260 MW
+  Energy ........ 2,825 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.00 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.992 Hz
+  Average ....... 59.993 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    1,428 MWh   59.3 %
-  Bunker C .......      276 MWh   11.5 %
-  Diesel (ULSD) ..      267 MWh   11.1 %
-  Coal ...........      428 MWh   17.8 %
+  LNG ............    1,763 MWh   59.6 %
+  Bunker C .......      339 MWh   11.5 %
+  Diesel (ULSD) ..      316 MWh   10.7 %
+  Coal ...........      528 MWh   17.9 %
   Wind ...........        3 MWh   0.1 %
-  Hydro ..........        6 MWh   0.2 %
+  Hydro ..........        7 MWh   0.2 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $450,497 over 1.0 h  (full-day estimate $10,474,407)
-  Average cost ............ $0.1870 per kWh
+  Total cost of the day ... $548,968 over 1.3 h  (full-day estimate $10,353,825)
+  Average cost ............ $0.1857 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
-  Max ramp up ... n/a
-  Max ramp down . n/a
-  Demand swing .. 82 MW (max minus min)
+  Max ramp up ... +-101 MW/h at 01:13
+  Max ramp down . -105 MW/h at 01:03
+  Demand swing .. 104 MW (max minus min)
 
 UNIT EVENTS (units that went off or came on)
   Went off: 2   Came on: 1
