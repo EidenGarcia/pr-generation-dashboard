@@ -11,3 +11,4 @@
 2026-11-20 03:42 AST  UNIT ON   Wind / Punta Lima                        0.5 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 03:28)
 2026-11-20 03:42 AST  UNIT ON   Landfill / Fajardo                       0.0 MW ->     2.4 MW  (Independent (PPOA), Landfill gas; previous check 03:28)
 2026-11-20 03:58 AST  UNIT ON   Wind / Pattern                           0.8 MW ->     2.8 MW  (Independent (PPOA), Wind; previous check 03:42)
+2026-11-20 04:12 AST  UNIT OFF  Wind / Punta Lima                        1.0 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 04:00)
