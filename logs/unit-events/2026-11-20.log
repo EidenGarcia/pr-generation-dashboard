@@ -32,3 +32,4 @@
 2026-11-20 10:28 AST  UNIT ON   Wind / Punta Lima                        0.7 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 10:14)
 2026-11-20 10:43 AST  UNIT OFF  Wind / Punta Lima                        1.0 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 10:28)
 2026-11-20 10:58 AST  UNIT ON   Wind / Punta Lima                        0.8 MW ->     1.9 MW  (Independent (PPOA), Wind; previous check 10:43)
+2026-11-20 11:12 AST  UNIT OFF  Wind / Punta Lima                        1.9 MW ->     0.3 MW  (Independent (PPOA), Wind; previous check 10:58)
