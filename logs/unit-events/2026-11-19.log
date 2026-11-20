@@ -73,3 +73,4 @@
 2026-11-19 21:13 AST  UNIT ON   Yauco (hydro) / Hidro 3                  0.0 MW ->     2.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
 2026-11-19 21:44 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 2              4.9 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
 2026-11-19 21:44 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 3              5.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-19 22:28 AST  UNIT ON   Wind / Pattern                           0.1 MW ->     5.5 MW  (Independent (PPOA), Wind; previous check 22:12)
