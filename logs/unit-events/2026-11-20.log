@@ -12,3 +12,5 @@
 2026-11-20 03:42 AST  UNIT ON   Landfill / Fajardo                       0.0 MW ->     2.4 MW  (Independent (PPOA), Landfill gas; previous check 03:28)
 2026-11-20 03:58 AST  UNIT ON   Wind / Pattern                           0.8 MW ->     2.8 MW  (Independent (PPOA), Wind; previous check 03:42)
 2026-11-20 04:12 AST  UNIT OFF  Wind / Punta Lima                        1.0 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 04:00)
+2026-11-20 05:12 AST  UNIT OFF  Garzas (hydro) / Hidro 1                 3.6 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 04:58)
+2026-11-20 05:12 AST  UNIT OFF  Yauco (hydro) / Hidro 3                  2.0 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 04:58)
