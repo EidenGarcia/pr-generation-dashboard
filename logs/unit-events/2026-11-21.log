@@ -16,3 +16,6 @@
 2026-11-21 05:58 AST  UNIT OFF  Aguirre CC 1 / Gas 4                    30.4 MW ->     0.8 MW  (Genera PR, ULSD (diesel); previous check 05:44)
 2026-11-21 06:42 AST  UNIT ON   Wind / Pattern                           0.6 MW ->     1.4 MW  (Independent (PPOA), Wind; previous check 06:29)
 2026-11-21 06:42 AST  UNIT OFF  Palo Seco GT/CT / GT1                   14.8 MW ->     0.7 MW  (Genera PR, ULSD (diesel); previous check 06:29)
+2026-11-21 06:58 AST  UNIT OFF  GT stations (peakers) / Palo Seco       16.9 MW ->     0.5 MW  (Genera PR, ULSD (diesel); previous check 06:42)
+2026-11-21 06:58 AST  UNIT OFF  Palo Seco GT/CT / CT Block 1            28.6 MW ->     0.8 MW  (Genera PR, ULSD (diesel); previous check 06:42)
+2026-11-21 06:58 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.2 MW ->     0.4 MW  (Genera PR, ULSD (diesel); previous check 06:42)
