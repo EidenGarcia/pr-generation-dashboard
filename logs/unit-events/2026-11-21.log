@@ -26,3 +26,5 @@
 2026-11-21 07:44 AST  UNIT OFF  Wind / Pattern                           1.6 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 07:28)
 2026-11-21 07:58 AST  UNIT ON   Wind / Pattern                           0.7 MW ->     1.1 MW  (Independent (PPOA), Wind; previous check 07:44)
 2026-11-21 07:58 AST  UNIT ON   Solar / Coto Laurel                      0.3 MW ->     2.0 MW  (Independent (PPOA), Solar; previous check 07:44)
+2026-11-21 08:28 AST  UNIT ON   Wind / Punta Lima                        0.3 MW ->     1.7 MW  (Independent (PPOA), Wind; previous check 08:12)
+2026-11-21 08:28 AST  UNIT ON   Solar / San Fermin                       0.3 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 08:12)
