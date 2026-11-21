@@ -32,3 +32,4 @@
 2026-11-21 09:12 AST  UNIT OFF  Mayagüez / Gas 4                         1.9 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:58)
 2026-11-21 10:28 AST  UNIT OFF  Solar / Horizon                          9.6 MW ->     1.0 MW  (Independent (PPOA), Solar; previous check 10:12)
 2026-11-21 10:42 AST  UNIT ON   Solar / Horizon                          1.0 MW ->     9.5 MW  (Independent (PPOA), Solar; previous check 10:28)
+2026-11-21 11:42 AST  UNIT OFF  Solar / San Fermin                       1.9 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 11:28)
