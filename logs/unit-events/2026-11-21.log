@@ -24,3 +24,5 @@
 2026-11-21 07:28 AST  UNIT ON   Solar / Ilumina                          1.0 MW ->     2.0 MW  (Independent (PPOA), Solar; previous check 07:12)
 2026-11-21 07:28 AST  UNIT ON   Solar / Horizon                          0.7 MW ->     1.4 MW  (Independent (PPOA), Solar; previous check 07:12)
 2026-11-21 07:44 AST  UNIT OFF  Wind / Pattern                           1.6 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 07:28)
+2026-11-21 07:58 AST  UNIT ON   Wind / Pattern                           0.7 MW ->     1.1 MW  (Independent (PPOA), Wind; previous check 07:44)
+2026-11-21 07:58 AST  UNIT ON   Solar / Coto Laurel                      0.3 MW ->     2.0 MW  (Independent (PPOA), Solar; previous check 07:44)
