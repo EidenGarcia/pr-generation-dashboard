@@ -1,51 +1,52 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, November 21, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-21 01:45 AST)
-Coverage ........ 1.7 h of feed checks (7 checks), 21 five-minute readings
+Status .......... In progress (updated 2026-11-21 02:00 AST)
+Coverage ........ 2.0 h of feed checks (8 checks), 24 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,281 MW at 00:14
-  Minimum ....... 2,158 MW at 01:42
-  Average ....... 2,218 MW
+  Minimum ....... 2,140 MW at 01:59
+  Average ....... 2,207 MW
   PREPA peak .... 2,305 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,298.6 MW at 00:02
-  Minimum ....... 2,157.5 MW at 01:42
-  Average ....... 2,221 MW
-  Energy ........ 3,886 MWh
+  Maximum ....... 2,298.5 MW at 00:04
+  Minimum ....... 2,139.6 MW at 01:59
+  Average ....... 2,210 MW
+  Energy ........ 4,419 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.00 Hz
+  Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.995 Hz
+  Average ....... 60.004 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    2,380 MWh   62.5 %
-  Bunker C .......      415 MWh   10.9 %
-  Diesel (ULSD) ..      287 MWh   7.5 %
-  Coal ...........      714 MWh   18.8 %
+  LNG ............    2,765 MWh   62.7 %
+  Bunker C .......      482 MWh   10.9 %
+  Diesel (ULSD) ..      320 MWh   7.3 %
+  Coal ...........      830 MWh   18.8 %
   Wind ...........        1 MWh   0.0 %
-  Hydro ..........        5 MWh   0.1 %
-  Landfill gas ...        4 MWh   0.1 %
+  Hydro ..........        6 MWh   0.1 %
+  Landfill gas ...        5 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $677,050 over 1.7 h  (full-day estimate $9,544,322)
-  Average cost ............ $0.1779 per kWh
+  Total cost of the day ... $781,410 over 2.0 h  (full-day estimate $9,462,344)
+  Average cost ............ $0.1772 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
-  Max ramp up ... +-74 MW/h at 01:42
-  Max ramp down . -95 MW/h at 01:02
-  Demand swing .. 123 MW (max minus min)
+  Max ramp up ... +-70 MW/h at 01:59
+  Max ramp down . -97 MW/h at 01:04
+  Demand swing .. 141 MW (max minus min)
 
 UNIT EVENTS (units that went off or came on)
-  Went off: 4   Came on: 1
+  Went off: 4   Came on: 2
   00:28  OFF  Aguirre CC 1 / Gas 1  30.5 -> 0.2 MW
   00:28  OFF  Aguirre CC 2 / Gas 4  11.3 -> 0.5 MW
   00:44  ON   Wind / Pattern  0.7 -> 1.2 MW
   01:28  OFF  Wind / Pattern  1.5 -> 0.7 MW
   01:42  OFF  Aguirre CC 2 / Gas 2  30.0 -> 0.8 MW
+  01:59  ON   Wind / Pattern  0.1 -> 1.0 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
