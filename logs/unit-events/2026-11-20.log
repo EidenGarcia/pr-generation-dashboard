@@ -62,3 +62,4 @@
 2026-11-20 18:42 AST  UNIT OFF  Wind / Pattern                           1.9 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 18:28)
 2026-11-20 18:57 AST  UNIT ON   Wind / Pattern                           0.9 MW ->     2.1 MW  (Independent (PPOA), Wind; previous check 18:42)
 2026-11-20 19:58 AST  UNIT OFF  Wind / Pattern                           2.1 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 19:44)
+2026-11-20 21:12 AST  UNIT OFF  Yauco (hydro) / Hidro 3                  2.1 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 20:58)
