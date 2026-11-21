@@ -65,3 +65,6 @@
 2026-11-21 16:28 AST  UNIT OFF  Solar / Fonroche                         1.6 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 16:14)
 2026-11-21 16:58 AST  UNIT ON   Wind / Pattern                           0.2 MW ->    32.7 MW  (Independent (PPOA), Wind; previous check 16:42)
 2026-11-21 16:58 AST  UNIT OFF  Solar / Oriana                           1.1 MW ->     0.4 MW  (Independent (PPOA), Solar; previous check 16:42)
+2026-11-21 17:42 AST  UNIT ON   Mayagüez / Gas 2                         0.0 MW ->    21.9 MW  (Genera PR, ULSD (diesel); previous check 17:28)
+2026-11-21 17:42 AST  UNIT ON   Mayagüez / Gas 4                         0.0 MW ->    13.2 MW  (Genera PR, ULSD (diesel); previous check 17:28)
+2026-11-21 17:42 AST  UNIT OFF  Wind / Pattern                           1.9 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 17:28)
