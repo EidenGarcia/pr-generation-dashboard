@@ -43,3 +43,5 @@
 2026-11-21 13:58 AST  UNIT OFF  Solar / Oriana                           9.9 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 13:44)
 2026-11-21 13:58 AST  UNIT ON   Palo Seco GT/CT / CT Block 1             0.4 MW ->    15.0 MW  (Genera PR, ULSD (diesel); previous check 13:44)
 2026-11-21 13:58 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.4 MW ->    14.8 MW  (Genera PR, ULSD (diesel); previous check 13:44)
+2026-11-21 14:14 AST  UNIT ON   Aguirre CC 1 / Gas 1                     0.1 MW ->    10.3 MW  (Genera PR, ULSD (diesel); previous check 13:58)
+2026-11-21 14:14 AST  UNIT ON   Palo Seco GT/CT / GT2                    0.0 MW ->    16.2 MW  (Genera PR, ULSD (diesel); previous check 13:58)
