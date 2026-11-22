@@ -40,3 +40,6 @@
 2026-11-22 09:28 AST  UNIT ON   Wind / Pattern                           0.5 MW ->     3.0 MW  (Independent (PPOA), Wind; previous check 09:12)
 2026-11-22 09:28 AST  UNIT OFF  Solar / Ilumina                          4.3 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 09:12)
 2026-11-22 09:28 AST  UNIT ON   Solar / Fonroche                         0.5 MW ->     2.2 MW  (Independent (PPOA), Solar; previous check 09:12)
+2026-11-22 09:42 AST  UNIT OFF  Mayagüez / Gas 4                         1.9 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 09:28)
+2026-11-22 09:42 AST  UNIT OFF  Solar / San Fermin                       1.5 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 09:28)
+2026-11-22 09:42 AST  UNIT ON   Solar / Ilumina                          0.7 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 09:28)
