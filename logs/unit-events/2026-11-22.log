@@ -29,3 +29,7 @@
 2026-11-22 08:12 AST  UNIT ON   Solar / Coto Laurel                      0.4 MW ->     2.6 MW  (Independent (PPOA), Solar; previous check 07:59)
 2026-11-22 08:42 AST  UNIT OFF  Solar / San Fermin                       1.5 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 08:28)
 2026-11-22 08:42 AST  UNIT OFF  Solar / Fonroche                         2.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 08:28)
+2026-11-22 08:58 AST  UNIT OFF  Wind / Pattern                           1.9 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 08:42)
+2026-11-22 08:58 AST  UNIT ON   Solar / Ilumina                          0.9 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 08:42)
+2026-11-22 08:58 AST  UNIT ON   Solar / Horizon                          0.7 MW ->     4.7 MW  (Independent (PPOA), Solar; previous check 08:42)
+2026-11-22 08:58 AST  UNIT ON   Solar / Fonroche                         0.9 MW ->     5.8 MW  (Independent (PPOA), Solar; previous check 08:42)
