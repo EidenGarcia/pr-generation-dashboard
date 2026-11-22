@@ -78,3 +78,4 @@
 2026-11-22 18:12 AST  UNIT ON   Mayagüez / Gas 3                         0.1 MW ->    39.9 MW  (Genera PR, ULSD (diesel); previous check 17:58)
 2026-11-22 18:29 AST  UNIT ON   Mayagüez / Gas 4                         0.0 MW ->    23.4 MW  (Genera PR, ULSD (diesel); previous check 18:12)
 2026-11-22 18:29 AST  UNIT OFF  Wind / Pattern                           3.4 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 18:12)
+2026-11-22 18:42 AST  UNIT ON   Aguirre CC 2 / Gas 4                     0.0 MW ->     7.0 MW  (Genera PR, ULSD (diesel); previous check 18:29)
