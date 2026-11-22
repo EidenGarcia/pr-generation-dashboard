@@ -74,3 +74,5 @@
 2026-11-22 17:12 AST  UNIT ON   Dos Bocas (hydro) / Hidro 1              0.0 MW ->     5.1 MW  (PREPA (hydro), Hydro; previous check 16:58)
 2026-11-22 17:29 AST  UNIT OFF  Wind / Punta Lima                        4.3 MW ->     0.6 MW  (Independent (PPOA), Wind; previous check 17:12)
 2026-11-22 17:29 AST  UNIT OFF  Solar / Ilumina                          1.5 MW ->    -0.1 MW  (Independent (PPOA), Solar; previous check 17:12)
+2026-11-22 18:12 AST  UNIT ON   Mayagüez / Gas 2                         0.0 MW ->    19.8 MW  (Genera PR, ULSD (diesel); previous check 17:58)
+2026-11-22 18:12 AST  UNIT ON   Mayagüez / Gas 3                         0.1 MW ->    39.9 MW  (Genera PR, ULSD (diesel); previous check 17:58)
