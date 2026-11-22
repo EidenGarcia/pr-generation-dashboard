@@ -1,43 +1,43 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Sunday, November 22, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-22 01:30 AST)
-Coverage ........ 1.5 h of feed checks (7 checks), 18 five-minute readings
+Status .......... In progress (updated 2026-11-22 01:45 AST)
+Coverage ........ 1.7 h of feed checks (8 checks), 21 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,129 MW at 00:14
-  Minimum ....... 2,044 MW at 01:28
-  Average ....... 2,085 MW
+  Minimum ....... 2,026 MW at 01:44
+  Average ....... 2,077 MW
   PREPA peak .... 2,150 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,142.2 MW at 00:03
-  Minimum ....... 2,043.7 MW at 01:28
-  Average ....... 2,089 MW
-  Energy ........ 3,134 MWh
+  Maximum ....... 2,139.7 MW at 00:04
+  Minimum ....... 2,025.9 MW at 01:44
+  Average ....... 2,080 MW
+  Energy ........ 3,639 MWh
 
 FREQUENCY (5-minute readings)
-  Maximum ....... 60.00 Hz
+  Maximum ....... 60.10 Hz
   Minimum ....... 59.90 Hz
-  Average ....... 59.989 Hz
+  Average ....... 59.990 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............    1,951 MWh   64.0 %
-  Bunker C .......      351 MWh   11.5 %
-  Diesel (ULSD) ..      143 MWh   4.7 %
-  Coal ...........      595 MWh   19.5 %
-  Wind ...........        4 MWh   0.1 %
+  LNG ............    2,305 MWh   64.2 %
+  Bunker C .......      415 MWh   11.6 %
+  Diesel (ULSD) ..      155 MWh   4.3 %
+  Coal ...........      703 MWh   19.6 %
+  Wind ...........        6 MWh   0.2 %
   Landfill gas ...        4 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $524,876 over 1.5 h  (full-day estimate $8,626,459)
-  Average cost ............ $0.1722 per kWh
+  Total cost of the day ... $614,435 over 1.7 h  (full-day estimate $8,545,906)
+  Average cost ............ $0.1712 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
-  Max ramp up ... +-65 MW/h at 01:23
-  Max ramp down . -77 MW/h at 01:03
-  Demand swing .. 85 MW (max minus min)
+  Max ramp up ... +-64 MW/h at 01:34
+  Max ramp down . -73 MW/h at 01:04
+  Demand swing .. 103 MW (max minus min)
 
 UNIT EVENTS (units that went off or came on)
   Went off: 5   Came on: 2
