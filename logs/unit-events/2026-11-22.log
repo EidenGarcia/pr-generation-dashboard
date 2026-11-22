@@ -3,3 +3,5 @@
 2026-11-22 00:14 AST  UNIT ON   Wind / Pattern                           0.7 MW ->     2.2 MW  (Independent (PPOA), Wind; previous check 23:58)
 2026-11-22 00:14 AST  UNIT OFF  Wind / Punta Lima                        2.6 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 23:58)
 2026-11-22 00:28 AST  UNIT OFF  Wind / Pattern                           2.2 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 00:14)
+2026-11-22 00:44 AST  UNIT OFF  Aguirre CC 1 / Gas 4                    30.7 MW ->     0.5 MW  (Genera PR, ULSD (diesel); previous check 00:28)
+2026-11-22 00:44 AST  UNIT OFF  Aguirre CC 2 / Gas 2                    30.4 MW ->     0.6 MW  (Genera PR, ULSD (diesel); previous check 00:28)
