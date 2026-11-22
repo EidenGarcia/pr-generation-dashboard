@@ -74,3 +74,7 @@
 2026-11-21 20:28 AST  UNIT OFF  GT stations (peakers) / Daguao          14.4 MW ->     0.9 MW  (Genera PR, ULSD (diesel); previous check 20:12)
 2026-11-21 20:44 AST  UNIT OFF  Cambalache / Gas 3                      21.1 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 20:28)
 2026-11-21 20:44 AST  UNIT ON   Wind / Punta Lima                        0.7 MW ->     2.9 MW  (Independent (PPOA), Wind; previous check 20:28)
+2026-11-21 21:42 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 1              4.9 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-21 21:42 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 2              5.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-21 21:42 AST  UNIT OFF  Dos Bocas (hydro) / Hidro 3              1.7 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:28)
+2026-11-21 21:42 AST  UNIT OFF  Wind / Punta Lima                        4.9 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 21:28)
