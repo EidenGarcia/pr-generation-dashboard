@@ -10,3 +10,6 @@
 2026-11-22 03:59 AST  UNIT ON   Wind / Pattern                           0.0 MW ->     3.0 MW  (Independent (PPOA), Wind; previous check 03:44)
 2026-11-22 05:28 AST  UNIT OFF  Landfill / Fajardo                       2.4 MW ->     0.0 MW  (Independent (PPOA), Landfill gas; previous check 05:13)
 2026-11-22 05:42 AST  UNIT OFF  Wind / Pattern                           1.6 MW ->     0.0 MW  (Independent (PPOA), Wind; previous check 05:28)
+2026-11-22 05:58 AST  UNIT OFF  GT stations (peakers) / Palo Seco        1.4 MW ->     0.9 MW  (Genera PR, ULSD (diesel); previous check 05:42)
+2026-11-22 05:58 AST  UNIT ON   Wind / Pattern                           0.0 MW ->     1.1 MW  (Independent (PPOA), Wind; previous check 05:42)
+2026-11-22 05:58 AST  UNIT OFF  Wind / Punta Lima                        1.2 MW ->     0.2 MW  (Independent (PPOA), Wind; previous check 05:42)
