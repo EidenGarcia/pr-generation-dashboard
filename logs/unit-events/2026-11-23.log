@@ -57,3 +57,5 @@
 2026-11-23 14:59 AST  UNIT ON   Aguirre CC 2 / Gas 4                     0.0 MW ->    22.1 MW  (Genera PR, ULSD (diesel); previous check 14:42)
 2026-11-23 14:59 AST  UNIT OFF  Solar / Coto Laurel                      1.5 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 14:42)
 2026-11-23 14:59 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.4 MW ->    16.2 MW  (Genera PR, ULSD (diesel); previous check 14:42)
+2026-11-23 15:14 AST  UNIT ON   Solar / San Fermin                       0.9 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 14:59)
+2026-11-23 15:14 AST  UNIT ON   Solar / Coto Laurel                      0.8 MW ->     1.8 MW  (Independent (PPOA), Solar; previous check 14:59)
