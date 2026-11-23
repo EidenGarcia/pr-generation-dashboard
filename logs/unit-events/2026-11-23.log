@@ -48,3 +48,4 @@
 2026-11-23 13:42 AST  UNIT OFF  Solar / San Fermin                       2.2 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 13:29)
 2026-11-23 13:58 AST  UNIT ON   Aguirre CC 1 / Gas 4                     0.0 MW ->    29.9 MW  (Genera PR, ULSD (diesel); previous check 13:42)
 2026-11-23 14:12 AST  UNIT ON   Aguirre CC 2 / Gas 2                     0.1 MW ->    30.9 MW  (Genera PR, ULSD (diesel); previous check 13:58)
+2026-11-23 14:28 AST  UNIT ON   GT stations (peakers) / FEMA GT SJ       0.0 MW ->    21.4 MW  (Genera PR, LNG; previous check 14:12)
