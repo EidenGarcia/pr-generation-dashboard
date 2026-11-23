@@ -42,3 +42,4 @@
 2026-11-23 10:44 AST  UNIT OFF  Wind / Punta Lima                        1.5 MW ->     0.2 MW  (Independent (PPOA), Wind; previous check 10:28)
 2026-11-23 11:28 AST  UNIT OFF  Solar / Coto Laurel                      6.1 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 11:12)
 2026-11-23 11:44 AST  UNIT ON   Solar / Coto Laurel                      0.8 MW ->     1.9 MW  (Independent (PPOA), Solar; previous check 11:28)
+2026-11-23 11:58 AST  UNIT ON   Wind / Punta Lima                        0.8 MW ->     1.2 MW  (Independent (PPOA), Wind; previous check 11:44)
