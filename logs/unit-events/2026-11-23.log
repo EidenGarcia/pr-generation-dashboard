@@ -70,3 +70,4 @@
 2026-11-23 16:42 AST  UNIT OFF  Solar / Oriana                           2.5 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 16:28)
 2026-11-23 16:59 AST  UNIT OFF  Solar / Coto Laurel                      1.1 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 16:42)
 2026-11-23 16:59 AST  UNIT ON   Solar / Oriana                           0.8 MW ->     8.2 MW  (Independent (PPOA), Solar; previous check 16:42)
+2026-11-23 17:14 AST  UNIT ON   Yauco (hydro) / Hidro 3                  0.0 MW ->     2.1 MW  (PREPA (hydro), Hydro; previous check 16:59)
