@@ -86,3 +86,5 @@
 2026-11-22 22:14 AST  UNIT OFF  Palo Seco GT/CT / CT Block 1            31.8 MW ->     0.7 MW  (Genera PR, ULSD (diesel); previous check 21:58)
 2026-11-22 22:14 AST  UNIT OFF  Palo Seco GT/CT / GT1                   15.3 MW ->     0.4 MW  (Genera PR, ULSD (diesel); previous check 21:58)
 2026-11-22 22:14 AST  UNIT OFF  Palo Seco GT/CT / GT2                   16.3 MW ->     0.5 MW  (Genera PR, ULSD (diesel); previous check 21:58)
+2026-11-22 22:28 AST  UNIT ON   GT stations (peakers) / Palo Seco        0.9 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 22:14)
+2026-11-22 22:28 AST  UNIT ON   Wind / Punta Lima                        0.1 MW ->     5.1 MW  (Independent (PPOA), Wind; previous check 22:14)
