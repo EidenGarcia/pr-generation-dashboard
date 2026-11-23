@@ -9,3 +9,4 @@
 2026-11-23 01:29 AST  UNIT ON   Wind / Pattern                           0.3 MW ->     3.7 MW  (Independent (PPOA), Wind; previous check 01:14)
 2026-11-23 01:44 AST  UNIT OFF  GT stations (peakers) / Palo Seco        1.0 MW ->     0.9 MW  (Genera PR, ULSD (diesel); previous check 01:29)
 2026-11-23 01:44 AST  UNIT OFF  Wind / Pattern                           3.7 MW ->     0.0 MW  (Independent (PPOA), Wind; previous check 01:29)
+2026-11-23 02:14 AST  UNIT ON   GT stations (peakers) / Palo Seco        1.0 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 01:58)
