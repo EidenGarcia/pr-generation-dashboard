@@ -24,3 +24,4 @@
 2026-11-23 05:42 AST  UNIT OFF  Wind / Punta Lima                        1.8 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 05:29)
 2026-11-23 05:58 AST  UNIT ON   GT stations (peakers) / Palo Seco        0.9 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 05:42)
 2026-11-23 06:14 AST  UNIT OFF  GT stations (peakers) / Palo Seco        1.0 MW ->     0.9 MW  (Genera PR, ULSD (diesel); previous check 05:58)
+2026-11-23 06:28 AST  UNIT OFF  Wind / Pattern                           1.9 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 06:14)
