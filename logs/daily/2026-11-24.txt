@@ -1,43 +1,43 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Tuesday, November 24, 2026 (Puerto Rico time, UTC-4)
-Status .......... In progress (updated 2026-11-24 08:45 AST)
-Coverage ........ 8.8 h of feed checks (36 checks), 105 five-minute readings
+Status .......... In progress (updated 2026-11-24 09:00 AST)
+Coverage ........ 9.0 h of feed checks (37 checks), 108 five-minute readings
 
 DEMAND (PREPA total generation at each check)
   Maximum ....... 2,202 MW at 00:12
   Minimum ....... 1,965 MW at 03:58
-  Average ....... 2,051 MW
+  Average ....... 2,050 MW
   PREPA peak .... 2,216 MW (as reported by PREPA)
 
 GENERATION (5-minute readings, dataGraph.js)
-  Maximum ....... 2,206.4 MW at 00:03
-  Minimum ....... 1,962.2 MW at 03:58
+  Maximum ....... 2,206.4 MW at 00:04
+  Minimum ....... 1,962.4 MW at 03:54
   Average ....... 2,050 MW
-  Energy ........ 17,940 MWh
+  Energy ........ 18,446 MWh
 
 FREQUENCY (5-minute readings)
   Maximum ....... 60.10 Hz
-  Minimum ....... 59.90 Hz
-  Average ....... 59.997 Hz
+  Minimum ....... 59.80 Hz
+  Average ....... 59.995 Hz
   In Normal band  100.0 %   Excursions: 0
 
 FUEL USE (share of energy, time-weighted from unit outputs)
-  LNG ............   12,018 MWh   64.5 %
-  Bunker C .......    2,455 MWh   13.2 %
-  Diesel (ULSD) ..    2,108 MWh   11.3 %
-  Coal ...........    1,963 MWh   10.5 %
-  Solar ..........       47 MWh   0.3 %
-  Wind ...........       37 MWh   0.2 %
+  LNG ............   12,351 MWh   64.4 %
+  Bunker C .......    2,528 MWh   13.2 %
+  Diesel (ULSD) ..    2,159 MWh   11.3 %
+  Coal ...........    2,018 MWh   10.5 %
+  Solar ..........       60 MWh   0.3 %
+  Wind ...........       38 MWh   0.2 %
   Hydro ..........       15 MWh   0.1 %
   Majority fuel . LNG
 
 COST (dispatch cost: MW x each unit's reported cost)
-  Total cost of the day ... $3,701,167 over 8.8 h  (full-day estimate $10,129,264)
-  Average cost ............ $0.1985 per kWh
+  Total cost of the day ... $3,803,204 over 9.0 h  (full-day estimate $10,117,210)
+  Average cost ............ $0.1984 per kWh
 
 RAMPS (change in generation over 60 minutes, 5-minute readings)
-  Max ramp up ... +91 MW/h at 06:18
-  Max ramp down . -99 MW/h at 01:08
+  Max ramp up ... +91 MW/h at 06:19
+  Max ramp down . -99 MW/h at 01:09
   Demand swing .. 237 MW (max minus min)
 
 UNIT EVENTS (units that went off or came on)
