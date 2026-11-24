@@ -33,3 +33,4 @@
 2026-11-24 09:14 AST  UNIT OFF  AES / Unit 2                            10.0 MW ->     0.0 MW  (Independent (PPOA), Coal; previous check 08:59)
 2026-11-24 09:14 AST  UNIT OFF  Wind / Pattern                           2.5 MW ->     0.8 MW  (Independent (PPOA), Wind; previous check 08:59)
 2026-11-24 09:14 AST  UNIT ON   Solar / Horizon                          0.6 MW ->     2.6 MW  (Independent (PPOA), Solar; previous check 08:59)
+2026-11-24 09:28 AST  UNIT ON   Wind / Pattern                           0.8 MW ->     2.8 MW  (Independent (PPOA), Wind; previous check 09:14)
