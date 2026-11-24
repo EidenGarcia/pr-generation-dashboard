@@ -64,3 +64,4 @@
 2026-11-24 17:14 AST  UNIT OFF  Solar / Fonroche                         1.4 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:58)
 2026-11-24 17:28 AST  UNIT ON   Wind / Punta Lima                        0.9 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 17:14)
 2026-11-24 17:42 AST  UNIT OFF  Solar / Oriana                           1.5 MW ->     0.1 MW  (Independent (PPOA), Solar; previous check 17:28)
+2026-11-24 18:14 AST  UNIT ON   Cambalache / Gas 2                       0.0 MW ->    21.0 MW  (Genera PR, ULSD (diesel); previous check 17:58)
