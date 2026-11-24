@@ -44,3 +44,5 @@
 2026-11-24 13:58 AST  UNIT OFF  Mayagüez / Gas 2                         1.6 MW ->     0.7 MW  (Genera PR, ULSD (diesel); previous check 13:44)
 2026-11-24 13:58 AST  UNIT ON   Aguirre CC 2 / Gas 2                     0.0 MW ->    30.7 MW  (Genera PR, ULSD (diesel); previous check 13:44)
 2026-11-24 13:58 AST  UNIT ON   Solar / Oriana                           0.8 MW ->     1.5 MW  (Independent (PPOA), Solar; previous check 13:44)
+2026-11-24 14:12 AST  UNIT ON   GT stations (peakers) / Daguao           0.3 MW ->    13.9 MW  (Genera PR, ULSD (diesel); previous check 13:58)
+2026-11-24 14:12 AST  UNIT ON   Mayagüez / Gas 2                         0.7 MW ->    21.2 MW  (Genera PR, ULSD (diesel); previous check 13:58)
