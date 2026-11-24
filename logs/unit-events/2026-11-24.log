@@ -62,3 +62,4 @@
 2026-11-24 17:14 AST  UNIT ON   Dos Bocas (hydro) / Hidro 2              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:58)
 2026-11-24 17:14 AST  UNIT OFF  Wind / Punta Lima                        2.9 MW ->     0.9 MW  (Independent (PPOA), Wind; previous check 16:58)
 2026-11-24 17:14 AST  UNIT OFF  Solar / Fonroche                         1.4 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:58)
+2026-11-24 17:28 AST  UNIT ON   Wind / Punta Lima                        0.9 MW ->     1.0 MW  (Independent (PPOA), Wind; previous check 17:14)
