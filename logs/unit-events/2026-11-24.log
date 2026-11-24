@@ -26,3 +26,7 @@
 2026-11-24 08:12 AST  UNIT OFF  Solar / Coto Laurel                      2.0 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 07:58)
 2026-11-24 08:29 AST  UNIT OFF  Aguirre CC 2 / Gas 2                    29.8 MW ->     0.0 MW  (Genera PR, ULSD (diesel); previous check 08:12)
 2026-11-24 08:29 AST  UNIT OFF  Wind / Punta Lima                        1.9 MW ->     0.1 MW  (Independent (PPOA), Wind; previous check 08:12)
+2026-11-24 08:43 AST  UNIT OFF  Aguirre CC 2 / Gas 4                    30.7 MW ->     0.3 MW  (Genera PR, ULSD (diesel); previous check 08:29)
+2026-11-24 08:43 AST  UNIT ON   Wind / Punta Lima                        0.1 MW ->     1.6 MW  (Independent (PPOA), Wind; previous check 08:29)
+2026-11-24 08:43 AST  UNIT OFF  Solar / Horizon                          5.0 MW ->     0.8 MW  (Independent (PPOA), Solar; previous check 08:29)
+2026-11-24 08:43 AST  UNIT ON   Solar / Coto Laurel                      0.6 MW ->     3.2 MW  (Independent (PPOA), Solar; previous check 08:29)
