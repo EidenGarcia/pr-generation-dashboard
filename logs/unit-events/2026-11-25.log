@@ -2,3 +2,4 @@
 # Units going off and coming on. A unit counts as off below 1 MW. Times are when the change was first seen; it happened after the previous check.
 2026-11-25 00:30 AST  UNIT OFF  Wind / Punta Lima                        1.5 MW ->     0.7 MW  (Independent (PPOA), Wind; previous check 23:56)
 2026-11-25 00:44 AST  UNIT ON   AES / Unit 2                             0.0 MW ->    11.0 MW  (Independent (PPOA), Coal; previous check 00:30)
+2026-11-25 01:44 AST  UNIT ON   Wind / Punta Lima                        0.9 MW ->     4.4 MW  (Independent (PPOA), Wind; previous check 01:28)
