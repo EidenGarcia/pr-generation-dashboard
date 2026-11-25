@@ -45,3 +45,4 @@
 2026-11-25 17:11 AST  UNIT OFF  Solar / Fonroche                         3.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:54)
 2026-11-25 17:38 AST  UNIT OFF  Solar / Oriana                           1.9 MW ->     0.0 MW  (Independent (PPOA), Solar; previous check 17:25)
 2026-11-25 17:55 AST  UNIT ON   Cambalache / Gas 2                       0.0 MW ->    21.1 MW  (Genera PR, ULSD (diesel); previous check 17:38)
+2026-11-25 18:24 AST  UNIT ON   Palo Seco GT/CT / GT2                    0.0 MW ->    16.5 MW  (Genera PR, ULSD (diesel); previous check 18:10)
