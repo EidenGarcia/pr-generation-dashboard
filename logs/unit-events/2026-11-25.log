@@ -31,3 +31,6 @@
 2026-11-25 14:56 AST  UNIT ON   Aguirre CC 2 / Gas 2                     0.2 MW ->    29.1 MW  (Genera PR, ULSD (diesel); previous check 14:40)
 2026-11-25 15:40 AST  UNIT ON   Aguirre CC 1 / Gas 1                     0.1 MW ->    30.3 MW  (Genera PR, ULSD (diesel); previous check 15:26)
 2026-11-25 15:56 AST  UNIT ON   Aguirre CC 2 / Gas 4                     0.0 MW ->    30.9 MW  (Genera PR, ULSD (diesel); previous check 15:40)
+2026-11-25 16:24 AST  UNIT ON   GT stations (peakers) / Palo Seco        0.1 MW ->    15.9 MW  (Genera PR, ULSD (diesel); previous check 16:11)
+2026-11-25 16:24 AST  UNIT ON   GT stations (peakers) / Daguao           0.1 MW ->    14.6 MW  (Genera PR, ULSD (diesel); previous check 16:11)
+2026-11-25 16:24 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.0 MW ->    15.9 MW  (Genera PR, ULSD (diesel); previous check 16:11)
