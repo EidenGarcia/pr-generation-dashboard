@@ -40,3 +40,6 @@
 2026-11-25 16:54 AST  UNIT ON   Cambalache / Gas 3                       0.0 MW ->    20.5 MW  (Genera PR, ULSD (diesel); previous check 16:40)
 2026-11-25 16:54 AST  UNIT OFF  Solar / San Fermin                       1.0 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 16:40)
 2026-11-25 16:54 AST  UNIT OFF  Solar / Horizon                          1.1 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 16:40)
+2026-11-25 17:11 AST  UNIT ON   Yauco (hydro) / Hidro 3                  0.0 MW ->     2.2 MW  (PREPA (hydro), Hydro; previous check 16:54)
+2026-11-25 17:11 AST  UNIT OFF  Solar / Ilumina                          1.9 MW ->     0.4 MW  (Independent (PPOA), Solar; previous check 16:54)
+2026-11-25 17:11 AST  UNIT OFF  Solar / Fonroche                         3.1 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:54)
