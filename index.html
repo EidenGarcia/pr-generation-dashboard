@@ -10,17 +10,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css?v=20261124">
 <link rel="stylesheet" href="assets/live.css?v=20261124">
+<link rel="stylesheet" href="assets/divisions.css?v=20261125f">
 </head>
 <body>
-<div class="wrap">
-  <header class="topbar">
-    <div class="brand">
+<header class="site-header">
+  <div class="sh-top"><div class="sh-inner">
+    <div class="brand"><div class="sh-text">
       <h1>Puerto Rico generation, live</h1>
       <p id="feed-line">Reading PREPA’s operational feed…</p>
-    </div>
+    </div></div>
+    <div class="sh-status">
     <span class="supply-chip" id="supply-chip">Supply</span>
     <span class="portal" id="portal-pill" title="Health of PREPA’s operational data portal"><span class="lamp"></span><span id="portal-text">Checking portal</span></span>
-  </header>
+    </div>
+  </div></div>
+</header>
+<nav class="site-nav" aria-label="Main"><div class="sh-inner"><div class="div-tabs" id="div-tabs"><a href="#home" data-tab="home">Home</a><a href="#now" data-tab="now">Right Now</a><a href="#plants" data-tab="plants">Plants</a><a href="#history" data-tab="history">History</a><a href="#price" data-tab="price">Price per kWh</a><a href="#trends" data-tab="trends">Generation</a><a href="#reliability" data-tab="reliability">Reliability</a><a href="#frequency" data-tab="frequency">Frequency</a><a href="#cost" data-tab="cost">Cost &amp; Dispatch</a><a href="#records" data-tab="records">Records</a><a href="#glossary" data-tab="glossary">Glossary</a><a href="#about" data-tab="about">About</a></div></div></nav>
+<div class="status-strip"><div class="sh-inner">
   <div class="livectl" id="livectl" role="status" aria-live="polite">
     <span class="live-dot" aria-hidden="true"></span>
     <span class="live-stat" id="live-stat">Connecting to PREPA…</span>
@@ -32,48 +38,130 @@
     <span id="hist-text">Loading the history saved on this device…</span>
     <button class="btn ghost" id="hist-csv" type="button">Download history (CSV)</button>
   </div>
-
-  <nav class="jump" aria-label="Sections">
-    <a href="#price">Price per kWh</a><a href="#overview">Overview</a><a href="#plants">Plants right now</a><a href="#overtime">Over time</a><a href="#ramps">Ramps</a><a href="#outages">Unit events</a><a href="#adq-card">Reserves</a><a href="#frequency">Frequency</a><a href="#units">Unit gauges</a><a href="#cost">Cost and dispatch</a><a href="#summary">Daily summary</a><a href="#portal">Portal health</a>
-  </nav>
-
+</div></div>
+<div class="wrap">
   <div class="shed" id="shed-banner" role="alert" hidden></div>
 
+  <section class="division intro" id="div-home" data-div="home" aria-labelledby="intro-h">
+    <div class="home-hero">
+      <div class="hh-text">
+        <p class="hh-kicker">Puerto Rico electric system · Public data</p>
+        <h2 id="intro-h">Live generation, cost and reliability for Puerto Rico's power grid</h2>
+        <p>An independent dashboard built on PREPA's public operational feeds. It tracks every plant and unit on the island, what the power costs, and how close the grid runs to its limits, updated every few minutes.</p>
+        <div class="hh-actions"><a class="hh-btn primary" href="#now">View live status</a><a class="hh-btn" href="#price">Check your price per kWh</a></div>
+      </div>
+      <dl class="hh-facts">
+        <div><dt>5 min</dt><dd>Live reads from PREPA while the page is open</dd></div>
+        <div><dt>15 min</dt><dd>Shared record kept on GitHub around the clock</dd></div>
+        <div><dt>9 sections</dt><dd>Organized by the question each one answers</dd></div>
+      </dl>
+    </div>
+
+    <div class="home-about">
+      <div>
+        <h2 class="home-h">About this dashboard</h2>
+        <p>Puerto Rico's generation fleet is a mix of older steam plants, combined-cycle units, diesel peakers, independent producers and renewables. Which ones run at any hour decides both what customers pay and how much margin the grid has if a unit trips.</p>
+        <p>This site brings that information together in one place. Each section below covers one topic and starts with a short explanation. New to the terms? The <a href="#glossary">Glossary</a> explains them, and <a href="#about">About</a> covers data sources and methods.</p>
+      </div>
+      <aside class="home-note">
+        <h3>Your saved history</h3>
+        <p>Every reading this browser takes is stored on this device, so charts keep growing between visits. Moving between sections or reloading never removes it. Use <b>Download history (CSV)</b> at the top of the page to export it.</p>
+      </aside>
+    </div>
+
+    <h2 class="home-h">Explore the dashboard</h2>
+    <div class="ex-grid">
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+        <h3><a href="#now">Right now</a></h3>
+        <p>The live state of the grid at the latest reading: unit alerts, demand and frequency for the last 24 hours with the forecast for the next 24, and the reserves held to cover a unit that trips.</p>
+        <ul><li><a href="#alert-banner">Unit alerts</a></li><li><a href="#overview">Demand and frequency</a></li><li><a href="#reserve-card">Reserves</a></li></ul>
+        <a class="ex-more" href="#now">View section <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l5 3V10l5 3V5h4l1 16zM3 21h18"/><path d="M7 17h1M11 17h1M15 17h1"/></svg></div>
+        <h3><a href="#plants">Plants and units</a></h3>
+        <p>Every power plant on the island at the latest reading: where it is, what it produces and what it costs, on a map with the high-voltage lines, in a sortable table, and as a gauge for each generating unit.</p>
+        <ul><li><a href="#plants">Map and plant table</a></li><li><a href="#units">Unit gauges</a></li></ul>
+        <a class="ex-more" href="#plants">View section <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><path d="M3 4v4h4"/></svg></div>
+        <h3><a href="#history">Plant history</a></h3>
+        <p>The story of every plant and unit: when it entered service, how old it is, how big it is, whether it is public or private, and where the money to build it came from, ordered from the oldest to the newest. All from public records.</p>
+        <ul><li><a href="#hi-decades-card">By decade</a></li><li><a href="#hi-timeline-h">Timeline</a></li><li><a href="#hi-table-h">Table</a></li><li><a href="#hi-sources-h">Sources</a></li></ul>
+        <a class="ex-more" href="#history">View section <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5s-5 1.6-5 3.5 2.2 3.2 5 3.5 5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"/></svg></div>
+        <h3><a href="#price">Your price per kWh</a></h3>
+        <p>What a kilowatt-hour costs the customer: the generation part estimated from the live cost of the plants, plus the fixed charges approved for this quarter, with a calculator for your own monthly bill.</p>
+        <ul><li><a href="#price">Price breakdown</a></li><li><a href="#tf-calc-out">Bill calculator</a></li></ul>
+        <a class="ex-more" href="#price">View section <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></div>
+        <h3><a href="#trends">Generation trends</a></h3>
+        <p>How generation changes over hours, days and weeks: output by plant or by fuel, reactive power and power factor, and how fast the system has to ramp up and down to follow demand.</p>
+        <ul><li><a href="#overtime">Generation over time</a></li><li><a href="#rq-card">Reactive power</a></li><li><a href="#ramps">Ramp rates</a></li></ul>
+        <a class="ex-more" href="#trends">View section <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+        <h3><a href="#reliability">Reliability</a></h3>
+        <p>Is the grid secure? Reserve adequacy against losing the largest unit, which units are off right now, and the record of every unit going off and coming back on.</p>
+        <ul><li><a href="#adq-card">Reserve adequacy</a></li><li><a href="#outages">Unit status and events</a></li><li><a href="#offline-trend-card">Units off vs. reserve</a></li></ul>
+        <a class="ex-more" href="#reliability">View section <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c2-6 4-6 6 0s4 6 6 0 4-6 6 0"/><path d="M2 5h20M2 19h20" stroke-dasharray="2 3"/></svg></div>
+        <h3><a href="#frequency">Grid frequency</a></h3>
+        <p>The grid runs at 60 Hz, and how far and how long it strays shows how stressed it is. Every 5-minute reading is measured against IEEE 1547-2018 limits, with statistics and a log of each excursion.</p>
+        <ul><li><a href="#frequency">Last 24 hours and levels</a></li><li><a href="#fqs-card">Excursion statistics</a></li><li><a href="#fq-table">Excursion log</a></li></ul>
+        <a class="ex-more" href="#frequency">View section <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3><a href="#cost">Cost and dispatch</a></h3>
+        <p>What generation costs and why: the energy mix and dispatch cost now, cost through the day by fuel and plant, which plants cost more than they contribute, and how a cheapest-first dispatch would compare.</p>
+        <ul><li><a href="#cost">Mix and cost now</a></li><li><a href="#rank-table">Highest-cost plants</a></li><li><a href="#merit-chart">Merit order and dispatch</a></li></ul>
+        <a class="ex-more" href="#cost">View section <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ex-card">
+        <div class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h3><a href="#records">Records and data health</a></h3>
+        <p>The permanent record: one summary row per day written automatically on GitHub, and the health of PREPA's data portal that feeds everything on this site.</p>
+        <ul><li><a href="#summary">Daily summary</a></li><li><a href="#portal">Portal health</a></li></ul>
+        <a class="ex-more" href="#records">View section <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+
+    <div class="home-help">
+      <a href="#glossary" class="hp-card"><span class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2.5zM20 19v3H6"/><path d="M9 7h7M9 11h5"/></svg></span><span><b>Glossary</b><small>Plain-language definitions of MW, reserves, N-1, FCA, PPCA and more.</small></span></a>
+      <a href="#about" class="hp-card"><span class="ex-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg></span><span><b>About this site</b><small>Purpose, data sources, how data is saved, and limitations.</small></span></a>
+    </div>
+
+    <h2 class="home-h">How the data works</h2>
+    <ol class="home-steps">
+      <li><b>PREPA publishes</b><span>Plant and unit output, frequency, reserves and costs on its operational data portal.</span></li>
+      <li><b>This page reads it live</b><span>Your browser requests the feed every 5 minutes and saves each reading on this device.</span></li>
+      <li><b>GitHub keeps the record</b><span>An automated job checks every 15 minutes, day and night, and writes the shared history and daily logs.</span></li>
+    </ol>
+  </section>
+
+  <section class="division" id="div-now" data-div="now" aria-labelledby="dh-now" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Right now</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><div>
+    <span class="div-num">Section 01 of 09</span>
+    <h2 class="div-title" id="dh-now">Right now</h2>
+    <p class="div-lead">The live state of the grid at the latest reading: unit alerts, demand and frequency for the last 24 hours with the forecast for the next 24, and the reserves held to cover a unit that trips.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#alert-banner">Unit alerts</a><a href="#overview">Demand and frequency</a><a href="#reserve-card">Reserves</a></nav>
+  </header>
   <div class="gx-alert" id="alert-banner">
     <div class="gx-alert-h"><span class="gx-alert-ic" aria-hidden="true">!</span><b>Unit alerts</b><span class="gx-alert-age" id="alert-age"></span></div>
     <div class="gx-alert-b dash-skeleton" id="alert-body"></div>
-  </div>
-
-  <!-- Hero: generation, frequency, capacity and forecast -->
-  <!-- What a kWh costs the customer -->
-  <h2 class="gx-sec" id="price">What a kWh costs you</h2>
-  <p class="gx-secnote">Your bill has two kinds of charges. The cost of <b>generating</b> the power (fuel, and energy bought from private producers) changes by the hour with which plants are running; on the bill it is averaged and updated every three months as the FCA and PPCA charges. The rest (the base rate that pays for operating the system, subsidies and municipal contributions) is fixed until the Energy Bureau revises it. This section estimates the generation part from the live cost of the plants and adds the fixed part approved for the current quarter.</p>
-  <div class="gx-card" id="price-body" style="margin-bottom:var(--cds-gap-lg)">
-    <div class="card-head">
-      <div class="gx-seg" id="tf-view" role="group" aria-label="View"><button data-v="charge" aria-pressed="true">By charge</button><button data-v="who" aria-pressed="false">Who gets it</button></div>
-      <div class="gx-seg" id="tf-period" role="group" aria-label="Period"><button data-v="now" aria-pressed="true">Right now</button><button data-v="today" aria-pressed="false">Today</button><button data-v="yday" aria-pressed="false">Last full day</button><button data-v="7d" aria-pressed="false">Last 7 days</button><button data-v="30d" aria-pressed="false">Last 30 days</button></div>
-      <div class="chk-row" style="margin:0"><label class="chk"><input type="checkbox" id="tf-fixed" checked> Include fixed charges (everything that is not generation)</label><label class="chk"><input type="checkbox" id="tf-sold"> Per kWh billed (adjust for losses)</label></div>
-    </div>
-    <div class="gx-kpis tf-kpis" id="tf-kpis"></div>
-    <div class="tf-grid">
-      <div class="tf-donut-wrap"><h4 class="sub-h" id="tf-donut-h" style="margin:0">What your price per kWh is made of</h4><div id="tf-donut"></div><div class="tf-legend" id="tf-donut-legend"></div><p class="gx-note" id="tf-who-note" style="margin:4px 0 0"></p></div>
-      <div>
-        <h4 class="sub-h" style="margin-top:0">Estimated from the live cost vs. approved on the bill (¢ per kWh)</h4>
-        <div id="tf-bars"></div>
-        <h4 class="sub-h">How the cost per kWh changes through the period</h4>
-        <div class="gx-legend" id="tf-chart-legend"></div>
-        <div class="gx-chart" id="tf-chart" style="min-height:280px"></div>
-        <p class="an-sum" id="tf-chart-sum"></p>
-      </div>
-    </div>
-    <h4 class="sub-h">Breakdown</h4>
-    <div class="gx-tablewrap" style="max-height:none"><table class="gx-table" id="tf-table"><thead><tr><th>Component</th><th>Basis</th><th class="num">This estimate</th><th class="num">Approved on the bill</th><th class="num" id="tf-th-usd">At 800 kWh</th><th class="num">Share</th></tr></thead><tbody></tbody></table></div>
-    <h4 class="sub-h">Your bill</h4>
-    <div class="tf-calc"><label class="sel-l" for="tf-kwh">Monthly consumption (kWh)</label><input type="number" id="tf-kwh" min="50" max="5000" step="10" value="800"><input type="range" id="tf-kwh-range" min="100" max="2000" step="10" value="800" aria-label="Monthly consumption"></div>
-    <div class="tf-calc-out" id="tf-calc-out"></div>
-    <p class="gx-note" id="tf-note" style="margin-top:12px"></p>
-    <p class="gx-note" id="tf-eff"></p>
-    <details class="tf-docs"><summary>Documents: Energy Bureau resolutions, the base rate case and sources</summary><div id="tf-docs"></div></details>
   </div>
 
   <div class="fs-wrap" id="hero-wrap">
@@ -100,24 +188,18 @@
     <div class="gx-chart" id="reserve-chart" style="min-height:220px"></div>
   </div>
   </div>
+  </section>
 
-
-  <!-- Reserve adequacy -->
-  <div class="gx-card" id="adq-card" style="margin-bottom:var(--cds-gap-lg)">
-    <div class="card-head"><h3>Reserve adequacy: could the system lose its largest unit?</h3>
-      <div class="gx-seg" id="adq-period" role="group" aria-label="Period"><button data-v="7" aria-pressed="false">7 days</button><button data-v="30" aria-pressed="false">30 days</button><button data-v="all" aria-pressed="true">All</button></div></div>
-    <p class="gx-note an-what">Reserve is generation held ready to replace a unit that trips. The minimum required here follows an N-1 rule: there must be enough reserve to cover losing the largest unit online at that moment (N-1-1: the two largest). When the reserve is below that, losing that unit could mean load shedding.</p>
-    <div class="gx-controls">
-      <div class="gx-seg" id="adq-res" role="group" aria-label="Reserve"><button data-v="spin" aria-pressed="true">Spinning reserve</button><button data-v="oper" aria-pressed="false">Operating reserve</button></div>
-      <div class="gx-seg" id="adq-rule" role="group" aria-label="Requirement"><button data-v="n1" aria-pressed="true">N-1: largest unit</button><button data-v="n2" aria-pressed="false">N-1-1: two largest units</button></div>
-    </div>
-    <div class="adq-bigs" id="adq-big"></div>
-    <div class="gx-kpis" id="adq-kpis" style="margin:10px 0"></div>
-    <div class="gx-legend" id="adq-legend"></div>
-    <div class="gx-chart" id="adq-chart" style="min-height:260px"></div>
-    <p class="gx-note" id="adq-note"></p>
-  </div>
-
+  <section class="division" id="div-plants" data-div="plants" aria-labelledby="dh-plants" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Plants and units</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l5 3V10l5 3V5h4l1 16zM3 21h18"/><path d="M7 17h1M11 17h1M15 17h1"/></svg></span><div>
+    <span class="div-num">Section 02 of 09</span>
+    <h2 class="div-title" id="dh-plants">Plants and units</h2>
+    <p class="div-lead">Every power plant on the island at the latest reading: where it is, what it produces and what it costs, on a map with the high-voltage lines, in a sortable table, and as a gauge for each generating unit.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#plants">Map and plant table</a><a href="#units">Unit gauges</a></nav>
+  </header>
   <!-- Plants right now: map and full table -->
   <h2 class="gx-sec" id="plants">Plants right now</h2>
   <p class="gx-secnote">Where the island’s power comes from at the latest reading, and the high-voltage lines that carry it from the plants in the south to the load centers in the north. Dots sit at each plant’s approximate location, sized by output. Select a dot or a table row to see that plant’s units; sort by any column and narrow the list with the filters.</p>
@@ -152,6 +234,115 @@
     </div>
   </div>
 
+  <!-- Plant board -->
+  <h2 class="gx-sec" id="units">Unit gauges</h2>
+  <p class="gx-secnote">Each unit as a gauge from 0 to its rated capacity, with its status. The pale band marks the lowest and highest output seen while it was running since monitoring began. Where no rating is published, the scale uses the highest output observed (marked “obs.”).</p>
+  <div class="gx-controls">
+    <div class="gx-seg" id="board-filter" role="group" aria-label="Operator">
+      <button data-v="Genera PR" aria-pressed="true">Genera PR</button>
+      <button data-v="Independent (PPOA)" aria-pressed="false">Independent producers</button>
+      <button data-v="PREPA (hydro)" aria-pressed="false">Hydro</button>
+      <button data-v="all" aria-pressed="false">All</button>
+    </div>
+    <div class="gx-seg" id="gauge-mode" role="group" aria-label="Quantity"><button data-v="mw" aria-pressed="true">MW</button><button data-v="mvar" aria-pressed="false">MVAr and power factor</button></div>
+  </div>
+  <div class="gauges" id="gauges"></div>
+  </section>
+
+  <section class="division" id="div-history" data-div="history" aria-labelledby="dh-history" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Plant history</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><path d="M3 4v4h4"/></svg></span><div>
+    <span class="div-num">Section 03 of 09</span>
+    <h2 class="div-title" id="dh-history">Plant history</h2>
+    <p class="div-lead">The story of every plant and unit: when it entered service, how old it is, how big it is, whether it is public or private, and where the money to build it came from, ordered from the oldest to the newest. All from public records.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#hi-decades-card">By decade</a><a href="#hi-timeline-h">Timeline</a><a href="#hi-table-h">Table</a><a href="#hi-sources-h">Sources</a></nav>
+  </header>
+  <div class="gx-kpis hi-kpis" id="hi-kpis"></div>
+  <div class="gx-card" id="hi-decades-card" style="margin-bottom:var(--cds-gap-lg)">
+    <h3>Capacity by the decade it entered service</h3>
+    <p class="gx-note">Megawatts of plants and units still listed (retired units left out), by the decade they began commercial operation. <span class="hi-key"><i class="pub"></i>Public (PREPA)</span> <span class="hi-key"><i class="pri"></i>Private</span></p>
+    <div id="hi-decades" class="hi-decades"></div>
+  </div>
+
+  <h2 class="gx-sec" id="hi-timeline-h">Timeline</h2>
+  <p class="gx-secnote">Every plant and unit in the order it entered service, with its age, size, who owns and runs it, and where the money to build it came from. Key moments in the history of Puerto Rico's power system are marked in between.</p>
+  <div class="gx-controls hi-controls">
+    <div class="gx-seg" id="hi-order" role="group" aria-label="Order"><button data-v="old" aria-pressed="true">Oldest first</button><button data-v="new" aria-pressed="false">Newest first</button></div>
+    <div class="gx-seg" id="hi-sector" role="group" aria-label="Ownership"><button data-v="all" aria-pressed="true">All</button><button data-v="public" aria-pressed="false">Public</button><button data-v="private" aria-pressed="false">Private</button></div>
+    <div class="gx-seg" id="hi-type" role="group" aria-label="Type"><button data-v="all" aria-pressed="true">All types</button><button data-v="Hydro" aria-pressed="false">Hydro</button><button data-v="Steam" aria-pressed="false">Steam</button><button data-v="Combined cycle" aria-pressed="false">Combined cycle</button><button data-v="Gas turbine" aria-pressed="false">Gas turbine</button><button data-v="Renewable" aria-pressed="false">Solar, wind, landfill</button></div>
+    <input type="search" id="hi-q" placeholder="Search plant, town or fuel…" aria-label="Search plants">
+    <label class="chk"><input type="checkbox" id="hi-miles" checked> Show milestones</label>
+  </div>
+  <p class="gx-note" id="hi-count"></p>
+  <ol class="hi-timeline" id="hi-timeline"></ol>
+
+  <h2 class="gx-sec" id="hi-table-h">All plants and units at a glance</h2>
+  <p class="gx-secnote">The same list as a table. "Now" is the output in PREPA's latest reading.</p>
+  <div class="gx-card"><div class="gx-tablewrap" style="max-height:none">
+    <table class="gx-table" id="hi-table"><thead><tr><th>In service</th><th class="num">Age (years)</th><th>Plant</th><th>Unit</th><th class="num">MW</th><th>Type</th><th>Fuel</th><th>Ownership</th><th>Status</th><th class="num">Now (MW)</th></tr></thead><tbody></tbody></table>
+  </div></div>
+
+  <h2 class="gx-sec" id="hi-sources-h">Sources and notes</h2>
+  <div class="gx-card">
+    <p class="gx-note">Dates are when each unit began commercial operation, from the Energy Bureau's independent engineering reports, PREPA filings and other public records listed below. Ages are counted from that year. Status is as reported in those documents (mostly 2020–2023) and may have changed; the live column shows what each unit is doing now. Capacities are nameplate ratings, which older units often can no longer reach. The data lives in <code>data/unit_history.json</code> and can be corrected there.</p>
+    <ol class="hi-sources" id="hi-sources"></ol>
+  </div>
+  </section>
+
+  <section class="division" id="div-price" data-div="price" aria-labelledby="dh-price" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Your price per kWh</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5s-5 1.6-5 3.5 2.2 3.2 5 3.5 5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"/></svg></span><div>
+    <span class="div-num">Section 04 of 09</span>
+    <h2 class="div-title" id="dh-price">Your price per kWh</h2>
+    <p class="div-lead">What a kilowatt-hour costs the customer: the generation part estimated from the live cost of the plants, plus the fixed charges approved for this quarter, with a calculator for your own monthly bill.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#price">Price breakdown</a><a href="#tf-calc-out">Bill calculator</a></nav>
+  </header>
+  <!-- What a kWh costs the customer -->
+  <h2 class="gx-sec" id="price">What a kWh costs you</h2>
+  <p class="gx-secnote">Your bill has two kinds of charges. The cost of <b>generating</b> the power (fuel, and energy bought from private producers) changes by the hour with which plants are running; on the bill it is averaged and updated every three months as the FCA and PPCA charges. The rest (the base rate that pays for operating the system, subsidies and municipal contributions) is fixed until the Energy Bureau revises it. This section estimates the generation part from the live cost of the plants and adds the fixed part approved for the current quarter.</p>
+  <div class="gx-card" id="price-body" style="margin-bottom:var(--cds-gap-lg)">
+    <div class="card-head">
+      <div class="gx-seg" id="tf-view" role="group" aria-label="View"><button data-v="charge" aria-pressed="true">By charge</button><button data-v="who" aria-pressed="false">Who gets it</button></div>
+      <div class="gx-seg" id="tf-period" role="group" aria-label="Period"><button data-v="now" aria-pressed="true">Right now</button><button data-v="today" aria-pressed="false">Today</button><button data-v="yday" aria-pressed="false">Last full day</button><button data-v="7d" aria-pressed="false">Last 7 days</button><button data-v="30d" aria-pressed="false">Last 30 days</button></div>
+      <div class="chk-row" style="margin:0"><label class="chk"><input type="checkbox" id="tf-fixed" checked> Include fixed charges (everything that is not generation)</label><label class="chk"><input type="checkbox" id="tf-sold"> Per kWh billed (adjust for losses)</label></div>
+    </div>
+    <div class="gx-kpis tf-kpis" id="tf-kpis"></div>
+    <div class="tf-grid">
+      <div class="tf-donut-wrap"><h4 class="sub-h" id="tf-donut-h" style="margin:0">What your price per kWh is made of</h4><div id="tf-donut"></div><div class="tf-legend" id="tf-donut-legend"></div><p class="gx-note" id="tf-who-note" style="margin:4px 0 0"></p></div>
+      <div>
+        <h4 class="sub-h" style="margin-top:0">Estimated from the live cost vs. approved on the bill (¢ per kWh)</h4>
+        <div id="tf-bars"></div>
+        <h4 class="sub-h">How the cost per kWh changes through the period</h4>
+        <div class="gx-legend" id="tf-chart-legend"></div>
+        <div class="gx-chart" id="tf-chart" style="min-height:280px"></div>
+        <p class="an-sum" id="tf-chart-sum"></p>
+      </div>
+    </div>
+    <h4 class="sub-h">Breakdown</h4>
+    <div class="gx-tablewrap" style="max-height:none"><table class="gx-table" id="tf-table"><thead><tr><th>Component</th><th>Basis</th><th class="num">This estimate</th><th class="num">Approved on the bill</th><th class="num" id="tf-th-usd">At 800 kWh</th><th class="num">Share</th></tr></thead><tbody></tbody></table></div>
+    <h4 class="sub-h">Your bill</h4>
+    <div class="tf-calc"><label class="sel-l" for="tf-kwh">Monthly consumption (kWh)</label><input type="number" id="tf-kwh" min="50" max="5000" step="10" value="800"><input type="range" id="tf-kwh-range" min="100" max="2000" step="10" value="800" aria-label="Monthly consumption"></div>
+    <div class="tf-calc-out" id="tf-calc-out"></div>
+    <p class="gx-note" id="tf-note" style="margin-top:12px"></p>
+    <p class="gx-note" id="tf-eff"></p>
+    <details class="tf-docs"><summary>Documents: Energy Bureau resolutions, the base rate case and sources</summary><div id="tf-docs"></div></details>
+  </div>
+  </section>
+
+  <section class="division" id="div-trends" data-div="trends" aria-labelledby="dh-trends" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Generation trends</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><div>
+    <span class="div-num">Section 05 of 09</span>
+    <h2 class="div-title" id="dh-trends">Generation trends</h2>
+    <p class="div-lead">How generation changes over hours, days and weeks: output by plant or by fuel, reactive power and power factor, and how fast the system has to ramp up and down to follow demand.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#overtime">Generation over time</a><a href="#rq-card">Reactive power</a><a href="#ramps">Ramp rates</a></nav>
+  </header>
   <!-- Generation over time -->
   <h2 class="gx-sec" id="overtime">Generation over time</h2>
   <p class="gx-secnote">The whole generation: every plant’s output added up, by plant or by fuel. Pick today (from 12 AM), the last full day, any date, or the last 7 or 30 days. The dashed line is demand, PREPA’s own figure. The right axis shows the ramp of whatever plants are shown: hide plants in the legend to see one plant’s ramp. Drag to zoom.</p>
@@ -218,6 +409,33 @@
     </div>
     <p class="gx-note" id="ramp-note"></p>
   </div>
+  </section>
+
+  <section class="division" id="div-reliability" data-div="reliability" aria-labelledby="dh-reliability" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Reliability</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div>
+    <span class="div-num">Section 06 of 09</span>
+    <h2 class="div-title" id="dh-reliability">Reliability</h2>
+    <p class="div-lead">Is the grid secure? Reserve adequacy against losing the largest unit, which units are off right now, and the record of every unit going off and coming back on.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#adq-card">Reserve adequacy</a><a href="#outages">Unit status and events</a><a href="#offline-trend-card">Units off vs. reserve</a></nav>
+  </header>
+  <!-- Reserve adequacy -->
+  <div class="gx-card" id="adq-card" style="margin-bottom:var(--cds-gap-lg)">
+    <div class="card-head"><h3>Reserve adequacy: could the system lose its largest unit?</h3>
+      <div class="gx-seg" id="adq-period" role="group" aria-label="Period"><button data-v="7" aria-pressed="false">7 days</button><button data-v="30" aria-pressed="false">30 days</button><button data-v="all" aria-pressed="true">All</button></div></div>
+    <p class="gx-note an-what">Reserve is generation held ready to replace a unit that trips. The minimum required here follows an N-1 rule: there must be enough reserve to cover losing the largest unit online at that moment (N-1-1: the two largest). When the reserve is below that, losing that unit could mean load shedding.</p>
+    <div class="gx-controls">
+      <div class="gx-seg" id="adq-res" role="group" aria-label="Reserve"><button data-v="spin" aria-pressed="true">Spinning reserve</button><button data-v="oper" aria-pressed="false">Operating reserve</button></div>
+      <div class="gx-seg" id="adq-rule" role="group" aria-label="Requirement"><button data-v="n1" aria-pressed="true">N-1: largest unit</button><button data-v="n2" aria-pressed="false">N-1-1: two largest units</button></div>
+    </div>
+    <div class="adq-bigs" id="adq-big"></div>
+    <div class="gx-kpis" id="adq-kpis" style="margin:10px 0"></div>
+    <div class="gx-legend" id="adq-legend"></div>
+    <div class="gx-chart" id="adq-chart" style="min-height:260px"></div>
+    <p class="gx-note" id="adq-note"></p>
+  </div>
 
   <!-- Outages -->
   <h2 class="gx-sec" id="outages">Unit status and events</h2>
@@ -257,7 +475,18 @@
     <p class="gx-note">From every reading. Red area: Genera units not generating (left scale). Green line: spinning reserve in MW (right scale). Gaps mean no reading at that time.</p>
     <div class="gx-chart" id="offline-trend" style="min-height:200px"></div>
   </div>
+  </section>
 
+  <section class="division" id="div-frequency" data-div="frequency" aria-labelledby="dh-frequency" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Grid frequency</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c2-6 4-6 6 0s4 6 6 0 4-6 6 0"/><path d="M2 5h20M2 19h20" stroke-dasharray="2 3"/></svg></span><div>
+    <span class="div-num">Section 07 of 09</span>
+    <h2 class="div-title" id="dh-frequency">Grid frequency</h2>
+    <p class="div-lead">The grid runs at 60 Hz, and how far and how long it strays shows how stressed it is. Every 5-minute reading is measured against IEEE 1547-2018 limits, with statistics and a log of each excursion.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#frequency">Last 24 hours and levels</a><a href="#fqs-card">Excursion statistics</a><a href="#fq-table">Excursion log</a></nav>
+  </header>
   <!-- Frequency against limits -->
   <h2 class="gx-sec" id="frequency">Frequency against IEEE limits</h2>
   <p class="gx-secnote">The grid runs at 60 Hz. The further frequency strays and the longer it stays away, the closer generators and inverters get to tripping off. Each 5-minute reading from PREPA is placed in a level below; any reading outside Normal starts an excursion, logged with its duration and whether it outlasted the time allowed at that level.</p>
@@ -300,21 +529,18 @@
       </table>
     </div>
   </div>
+  </section>
 
-  <!-- Plant board -->
-  <h2 class="gx-sec" id="units">Unit gauges</h2>
-  <p class="gx-secnote">Each unit as a gauge from 0 to its rated capacity, with its status. The pale band marks the lowest and highest output seen while it was running since monitoring began. Where no rating is published, the scale uses the highest output observed (marked “obs.”).</p>
-  <div class="gx-controls">
-    <div class="gx-seg" id="board-filter" role="group" aria-label="Operator">
-      <button data-v="Genera PR" aria-pressed="true">Genera PR</button>
-      <button data-v="Independent (PPOA)" aria-pressed="false">Independent producers</button>
-      <button data-v="PREPA (hydro)" aria-pressed="false">Hydro</button>
-      <button data-v="all" aria-pressed="false">All</button>
-    </div>
-    <div class="gx-seg" id="gauge-mode" role="group" aria-label="Quantity"><button data-v="mw" aria-pressed="true">MW</button><button data-v="mvar" aria-pressed="false">MVAr and power factor</button></div>
-  </div>
-  <div class="gauges" id="gauges"></div>
-
+  <section class="division" id="div-cost" data-div="cost" aria-labelledby="dh-cost" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Cost and dispatch</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div>
+    <span class="div-num">Section 08 of 09</span>
+    <h2 class="div-title" id="dh-cost">Cost and dispatch</h2>
+    <p class="div-lead">What generation costs and why: the energy mix and dispatch cost now, cost through the day by fuel and plant, which plants cost more than they contribute, and how a cheapest-first dispatch would compare.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#cost">Mix and cost now</a><a href="#rank-table">Highest-cost plants</a><a href="#merit-chart">Merit order and dispatch</a></nav>
+  </header>
   <!-- Energy mix and cost now -->
   <h2 class="gx-sec" id="cost">Cost and energy mix right now</h2>
   <div class="gx-grid">
@@ -415,7 +641,18 @@
       <p class="an-sum" id="ldc-sum"></p>
     </div>
   </div>
+  </section>
 
+  <section class="division" id="div-records" data-div="records" aria-labelledby="dh-records" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Records and data health</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><div>
+    <span class="div-num">Section 09 of 09</span>
+    <h2 class="div-title" id="dh-records">Records and data health</h2>
+    <p class="div-lead">The permanent record: one summary row per day written automatically on GitHub, and the health of PREPA's data portal that feeds everything on this site.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#summary">Daily summary</a><a href="#portal">Portal health</a></nav>
+  </header>
   <!-- Daily summary -->
   <h2 class="gx-sec" id="summary">Daily summary</h2>
   <p class="gx-secnote">Written automatically on GitHub after every check, as a text log for each day. Demand comes from PREPA’s total at each check, generation and frequency from the 5-minute readings, fuel shares and cost from each unit’s output and reported cost.</p>
@@ -456,11 +693,168 @@
       </table>
     </div>
   </div>
+  </section>
 
-  <footer class="footer">
-    <p>Live data is read directly from PREPA every 5 minutes while this page is open, and every 15 minutes by a GitHub Action that keeps the unit event log, the daily summary text logs, frequency excursions and portal health. Sources: PREPA operational data — <a href="https://operationdata.prepa.pr.gov/dataSource.js" rel="noopener">dataSource.js</a> (plants, units, metrics) and <a href="https://operationdata.prepa.pr.gov/dataGraph.js" rel="noopener">dataGraph.js</a> (24-hour generation), checked hourly. Units below 1 MW count as offline; the feed does not say whether a unit is on outage, maintenance or reserve. Frequency levels: IEEE 1547-2018 continuous-operation range and default trip settings, generator continuous-operation limits used in WECC and AESO practice, and a ±0.2 Hz normal range set in data/frequency_limits.json. The forecast is this dashboard’s own estimate, not PREPA’s. Unit rankings use Genera’s quarterly filings in PREB docket NEPR-MI-2019-0007.</p>
-  </footer>
+  <section class="division" id="div-glossary" data-div="glossary" aria-labelledby="dh-glossary" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>Glossary</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2.5zM20 19v3H6"/><path d="M9 7h7M9 11h5"/></svg></span><div>
+    <span class="div-num">Help</span>
+    <h2 class="div-title" id="dh-glossary">Glossary</h2>
+    <p class="div-lead">Plain-language definitions of the terms used across this site, from megawatts and reserves to the charges on your bill. Type in the search box to find a term.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#gl-power-and-energy">Power and energy</a><a href="#gl-running-the-grid">Running the grid</a><a href="#gl-plants-and-dispatch">Plants and dispatch</a><a href="#gl-organizations">Organizations</a><a href="#gl-your-bill">Your bill</a><a href="#gl-frequency-limits">Frequency limits</a></nav>
+  </header>
+  <div class="gl-tools">
+    <input type="search" id="gl-q" placeholder="Search terms, for example reserve or FCA" aria-label="Search the glossary">
+    <span class="gl-count" id="gl-count" aria-live="polite"></span>
+  </div>
+  <p class="gx-note" id="gl-empty" hidden>No terms match that search.</p>
+    <section class="gl-group" aria-labelledby="gl-power-and-energy">
+      <h3 class="gl-gh" id="gl-power-and-energy">Power and energy</h3>
+      <dl class="gl-list">
+        <div class="gl-item"><dt>MW (megawatt)</dt><dd>A rate of power: how much electricity is being produced or used at a given moment. 1 MW = 1,000 kW.</dd></div>
+        <div class="gl-item"><dt>MWh / kWh</dt><dd>An amount of energy: power sustained over time. 1 MW for one hour is 1 MWh. Your bill is measured in kWh (1 MWh = 1,000 kWh).</dd></div>
+        <div class="gl-item"><dt>MVAr (reactive power)</dt><dd>Power that does no useful work but is needed to keep voltage up so real power can flow through the lines. Generators supply it alongside their MW.</dd></div>
+        <div class="gl-item"><dt>Power factor</dt><dd>The share of total power that is real power (MW). 1.0 is ideal; lower values mean more reactive power is flowing for the same useful output.</dd></div>
+        <div class="gl-item"><dt>Frequency (Hz)</dt><dd>How many times per second the alternating current cycles. Puerto Rico's grid runs at 60 Hz. It drops when demand exceeds generation and rises when generation exceeds demand.</dd></div>
+      </dl>
+    </section>
+    <section class="gl-group" aria-labelledby="gl-running-the-grid">
+      <h3 class="gl-gh" id="gl-running-the-grid">Running the grid</h3>
+      <dl class="gl-list">
+        <div class="gl-item"><dt>Demand (load)</dt><dd>How much electricity customers are using at a moment. On this site it is PREPA's own system total.</dd></div>
+        <div class="gl-item"><dt>Generation</dt><dd>The sum of the output of every generating unit. It runs a little above demand because some power is lost in the lines.</dd></div>
+        <div class="gl-item"><dt>Available capacity</dt><dd>The output the units that are online or ready could deliver right now.</dd></div>
+        <div class="gl-item"><dt>Capacity margin</dt><dd>Available capacity minus demand: how much room is left before the system cannot meet load.</dd></div>
+        <div class="gl-item"><dt>Spinning reserve</dt><dd>Extra output from units already running and synchronized, available within seconds to minutes if another unit trips.</dd></div>
+        <div class="gl-item"><dt>Operating reserve</dt><dd>Spinning reserve plus units that can be started and loaded within about an hour.</dd></div>
+        <div class="gl-item"><dt>N-1 / N-1-1</dt><dd>Reliability rules. N-1: the system must survive losing its single largest unit online. N-1-1: it must survive losing the two largest.</dd></div>
+        <div class="gl-item"><dt>Load shedding</dt><dd>Deliberately cutting power to some customers to keep the rest of the grid from collapsing when supply cannot meet demand.</dd></div>
+        <div class="gl-item"><dt>Ramp rate</dt><dd>How fast output changes, in MW per hour. Demand rises steeply in the afternoon and evening, and plants must ramp to follow it.</dd></div>
+        <div class="gl-item"><dt>Load duration curve</dt><dd>Every reading in a period sorted from highest to lowest demand. It shows how much load is always present (base) and how much comes and goes.</dd></div>
+      </dl>
+    </section>
+    <section class="gl-group" aria-labelledby="gl-plants-and-dispatch">
+      <h3 class="gl-gh" id="gl-plants-and-dispatch">Plants and dispatch</h3>
+      <dl class="gl-list">
+        <div class="gl-item"><dt>Baseload plant</dt><dd>A plant run most hours of the day, usually large steam or combined-cycle units that are slow to start and stop.</dd></div>
+        <div class="gl-item"><dt>Peaker</dt><dd>A plant started for the highest demand, usually fast diesel combustion turbines that cost more per kWh.</dd></div>
+        <div class="gl-item"><dt>Combined cycle</dt><dd>A plant that burns fuel in a gas turbine and reuses its hot exhaust to make steam for a second turbine, getting more power from the same fuel.</dd></div>
+        <div class="gl-item"><dt>Steam unit</dt><dd>A unit that burns fuel (such as Bunker C) in a boiler to drive a steam turbine. Most of the island's older large units are of this type.</dd></div>
+        <div class="gl-item"><dt>Bunker C</dt><dd>A heavy residual fuel oil burned in older steam units.</dd></div>
+        <div class="gl-item"><dt>Dispatch</dt><dd>Deciding which units run and how much each produces at each moment.</dd></div>
+        <div class="gl-item"><dt>Dispatch cost</dt><dd>Each unit's output multiplied by its reported cost per MWh, added up across units ($ per hour).</dd></div>
+        <div class="gl-item"><dt>Merit order</dt><dd>Units ranked from cheapest to most expensive to run. Following it means using the cheapest available power first.</dd></div>
+        <div class="gl-item"><dt>Out of merit</dt><dd>A unit running even though cheaper units have room, for example for voltage support, reliability or because it cannot be shut down quickly.</dd></div>
+      </dl>
+    </section>
+    <section class="gl-group" aria-labelledby="gl-organizations">
+      <h3 class="gl-gh" id="gl-organizations">Organizations</h3>
+      <dl class="gl-list">
+        <div class="gl-item"><dt>PREPA</dt><dd>Puerto Rico Electric Power Authority (AEE). It owns the public generation fleet and publishes the operational data used on this site.</dd></div>
+        <div class="gl-item"><dt>Genera PR</dt><dd>The private company that operates PREPA's legacy power plants.</dd></div>
+        <div class="gl-item"><dt>LUMA</dt><dd>The private company that operates the transmission and distribution system, including announcing load relief.</dd></div>
+        <div class="gl-item"><dt>Independent producers (PPOA)</dt><dd>Privately owned plants that sell power to PREPA under power purchase and operating agreements, such as the gas, coal and renewable plants.</dd></div>
+        <div class="gl-item"><dt>Energy Bureau (PREB / NEPR)</dt><dd>The Puerto Rico Energy Bureau, the regulator that approves rates and quarterly fuel and purchased-power charges.</dd></div>
+      </dl>
+    </section>
+    <section class="gl-group" aria-labelledby="gl-your-bill">
+      <h3 class="gl-gh" id="gl-your-bill">Your bill</h3>
+      <dl class="gl-list">
+        <div class="gl-item"><dt>FCA</dt><dd>Fuel Charge Adjustment: passes through the cost of fuel for Genera's plants. Set every quarter.</dd></div>
+        <div class="gl-item"><dt>PPCA</dt><dd>Purchased Power Charge Adjustment: passes through the cost of energy bought from independent producers. Set every quarter.</dd></div>
+        <div class="gl-item"><dt>Base rate</dt><dd>The part of the price that pays for operating and maintaining the system. Fixed until the Energy Bureau revises it.</dd></div>
+        <div class="gl-item"><dt>CELI</dt><dd>Contribution in lieu of taxes: the charge that covers electricity supplied to municipalities.</dd></div>
+        <div class="gl-item"><dt>Subsidies</dt><dd>Charges that fund discounted rates for eligible groups and public uses.</dd></div>
+      </dl>
+    </section>
+    <section class="gl-group" aria-labelledby="gl-frequency-limits">
+      <h3 class="gl-gh" id="gl-frequency-limits">Frequency limits</h3>
+      <dl class="gl-list">
+        <div class="gl-item"><dt>Excursion</dt><dd>A period when frequency leaves the Normal range. Each one is logged with its duration and most extreme value.</dd></div>
+        <div class="gl-item"><dt>Normal</dt><dd>59.8 to 60.2 Hz. This dashboard's setting for normal regulation.</dd></div>
+        <div class="gl-item"><dt>Watch</dt><dd>59.4 to 59.8 Hz or 60.2 to 60.6 Hz. Within the limits conventional generators can operate in continuously.</dd></div>
+        <div class="gl-item"><dt>Alert</dt><dd>58.8 to 59.4 Hz or 60.6 to 61.2 Hz. Inside IEEE 1547-2018 continuous operation, but time-limited for generators (about 3 minutes).</dd></div>
+        <div class="gl-item"><dt>Critical</dt><dd>Below 58.8 Hz or above 61.2 Hz. Outside IEEE 1547-2018 continuous operation; ride-through for up to 299 seconds, then trip settings apply.</dd></div>
+        <div class="gl-item"><dt>IEEE 1547-2018</dt><dd>The US standard for connecting generators and inverters to the grid, including the frequencies at which they must stay online or trip.</dd></div>
+      </dl>
+    </section>
+  </section>
+
+  <section class="division" id="div-about" data-div="about" aria-labelledby="dh-about" hidden>
+  <header class="div-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">›</span><span>About this site</span></nav>
+    <div class="div-head-row"><span class="div-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg></span><div>
+    <span class="div-num">About</span>
+    <h2 class="div-title" id="dh-about">About this site</h2>
+    <p class="div-lead">What this dashboard is for, where its data comes from, how it is updated and saved, and the limits of what it can show.</p>
+    </div></div>
+    <nav class="div-inside" aria-label="On this page"><span>On this page</span><a href="#ab-purpose">Purpose</a><a href="#ab-data">Data sources</a><a href="#ab-update">Updates and saved data</a><a href="#ab-limits">Limitations</a></nav>
+  </header>
+  <div class="ab-grid">
+    <div class="ab-main">
+      <section class="ab-sec" id="ab-purpose">
+        <h3>Purpose</h3>
+        <p>Puerto Rico's electricity is among the most expensive and least reliable in the United States, yet the information that explains why is scattered across operational feeds, regulatory filings and reports. This site gathers it in one place and keeps it updated, so residents, journalists, researchers and decision makers can see what the grid is doing and what it costs.</p>
+      </section>
+      <section class="ab-sec" id="ab-data">
+        <h3>Where the data comes from</h3>
+        <ul>
+          <li><b>PREPA operational data portal:</b> <a href="https://operationdata.prepa.pr.gov/dataSource.js" rel="noopener">dataSource.js</a> (plants, units, metrics) and <a href="https://operationdata.prepa.pr.gov/dataGraph.js" rel="noopener">dataGraph.js</a> (24-hour generation and frequency at 5-minute intervals).</li>
+          <li><b>Energy Bureau (PREB):</b> approved base rate, FCA and PPCA factors and quarterly filings, including Genera's filings in docket NEPR-MI-2019-0007 used to rank units.</li>
+          <li><b>Transmission map:</b> Energy Bureau filing NEPR-MI-2024-0005, the 2023 PREPA Fiscal Plan and LUMA reports, as cited on the Plants page.</li>
+          <li><b>Frequency limits:</b> IEEE 1547-2018 and generator operating practice in North America.</li>
+        </ul>
+      </section>
+      <section class="ab-sec" id="ab-update">
+        <h3>How it is updated and saved</h3>
+        <ul>
+          <li><b>In your browser:</b> while the page is open it reads PREPA's feed every 5 minutes and stores every reading in this device's own database, so charts keep growing between visits. <b>Download history (CSV)</b> exports it. Moving between tabs or reloading never deletes it.</li>
+          <li><b>On GitHub:</b> an automated job checks the feeds every 15 minutes, day and night, and commits the shared history, unit event logs, daily summaries and portal health to the repository, so every visitor sees the same record.</li>
+        </ul>
+      </section>
+      <section class="ab-sec" id="ab-limits">
+        <h3>Methods and limitations</h3>
+        <ul>
+          <li>Readings are 5 to 15 minutes apart, so short events between readings can be missed and durations are estimates.</li>
+          <li>A unit producing under 1 MW counts as offline. The feed does not say whether a unit is on forced outage, maintenance or reserve.</li>
+          <li>The 24-hour forecast and the price-per-kWh estimate are this site's own calculations, not official figures.</li>
+          <li>Costs use each unit's reported cost; units without a reported cost are left out of cost totals.</li>
+        </ul>
+      </section>
+    </div>
+    <aside class="ab-side">
+      <div class="ab-box ab-warn">
+        <h3>Disclaimer</h3>
+        <p>This is an independent project. It is not an official product of PREPA, Genera PR, LUMA or the Energy Bureau. Supply warnings here are early indications from public data; LUMA announces actual load relief.</p>
+      </div>
+      <div class="ab-box">
+        <h3>Download the data</h3>
+        <ul class="ab-links">
+          <li><a href="logs/daily_summary.csv">Daily summary (CSV)</a></li>
+          <li><a href="data/daily_summary.json">Daily summary (JSON)</a></li>
+          <li><a href="data/unit_events.json">Unit events (JSON)</a></li>
+          <li><a href="data/frequency_events.json">Frequency excursions (JSON)</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+  </section>
+
 </div>
+<footer class="site-footer">
+  <div class="sh-inner">
+    <div class="sf-cols">
+      <div class="sf-about"><p class="sf-brand">Puerto Rico generation, live</p><p>An independent view of Puerto Rico's power generation built from PREPA's public operational data. Not an official PREPA, Genera PR, LUMA or Energy Bureau product.</p></div>
+      <div><h3>Sections</h3><ul><li><a href="#home">Home</a></li><li><a href="#now">Right now</a></li><li><a href="#plants">Plants and units</a></li><li><a href="#history">Plant history</a></li><li><a href="#price">Your price per kWh</a></li><li><a href="#trends">Generation trends</a></li><li><a href="#reliability">Reliability</a></li><li><a href="#frequency">Grid frequency</a></li><li><a href="#cost">Cost and dispatch</a></li><li><a href="#records">Records and data health</a></li></ul></div>
+      <div><h3>Help and data</h3><ul><li><a href="#glossary">Glossary</a></li><li><a href="#about">About this site</a></li><li><a href="https://operationdata.prepa.pr.gov/dataSource.js" rel="noopener">PREPA dataSource.js</a></li><li><a href="https://operationdata.prepa.pr.gov/dataGraph.js" rel="noopener">PREPA dataGraph.js</a></li><li><a href="logs/daily_summary.csv">Daily summary (CSV)</a></li></ul></div>
+    </div>
+    <div class="footer">
+    <p>Live data is read directly from PREPA every 5 minutes while this page is open, and every 15 minutes by a GitHub Action that keeps the unit event log, the daily summary text logs, frequency excursions and portal health. Sources: PREPA operational data — <a href="https://operationdata.prepa.pr.gov/dataSource.js" rel="noopener">dataSource.js</a> (plants, units, metrics) and <a href="https://operationdata.prepa.pr.gov/dataGraph.js" rel="noopener">dataGraph.js</a> (24-hour generation), checked hourly. Units below 1 MW count as offline; the feed does not say whether a unit is on outage, maintenance or reserve. Frequency levels: IEEE 1547-2018 continuous-operation range and default trip settings, generator continuous-operation limits used in WECC and AESO practice, and a ±0.2 Hz normal range set in data/frequency_limits.json. The forecast is this dashboard’s own estimate, not PREPA’s. Unit rankings use Genera’s quarterly filings in PREB docket NEPR-MI-2019-0007.</p>
+    </div>
+  </div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="assets/core.js?v=20261124"></script>
@@ -475,5 +869,7 @@
 <script src="assets/tariff.js?v=20261124"></script>
 <script src="assets/adequacy.js?v=20261124"></script>
 <script src="assets/live.js?v=20261124"></script>
+<script src="assets/divisions.js?v=20261125f"></script>
+<script src="assets/history.js?v=20261125f"></script>
 </body>
 </html>

@@ -1,0 +1,1499 @@
+{
+ "updated": "2026-11-25",
+ "note": "Public record of when each generating plant and unit entered commercial service, with capacity, ownership and funding. Edit freely; 'live' lists the dashboard unit ids used to show current output.",
+ "sources": {
+  "sl_sj": {
+   "title": "Sargent & Lundy, San Juan Power Plant independent engineering report (draft, Nov 2020), filed with the PR Energy Bureau",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.SJ_San-Juan-IE-Report_-Draft-13Nov2020.pdf"
+  },
+  "sl_ps": {
+   "title": "Sargent & Lundy, Palo Seco Steam Plant independent engineering report (Oct 2021)",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.PS_Palo-Seco-IE-Report_Final_08Oct21.pdf"
+  },
+  "sl_cs": {
+   "title": "Sargent & Lundy, Costa Sur Steam Plant independent engineering report (Oct 2021)",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.CS_Costa-Sur-IE-Report_Final.pdf"
+  },
+  "sl_ag": {
+   "title": "Sargent & Lundy, Aguirre Power Plant Complex independent engineering report (Sep 2021)",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.AG_Aguirre-IE-Report_Final_24Sep2021.pdf"
+  },
+  "sl_mg": {
+   "title": "Sargent & Lundy, Central Hidro Gas Mayagüez independent engineering report (Aug 2021)",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.MG_Mayaguez-IE-Report_Final_31Aug21.pdf"
+  },
+  "p3_peak": {
+   "title": "P3 Authority, Partnership Committee Report, PREPA thermal generation facilities (peaker build years)",
+   "url": "https://docs.pr.gov/files/P3-PublicaPrivadas/Projects/Projects/THERMAL%20GENERATION%20FACILITIES/LGA%20-%20Partnership%20Report.pdf"
+  },
+  "rfq_2020": {
+   "title": "PREPA Request for Qualifications 2020-1, thermal generation facilities",
+   "url": "https://docs.pr.gov/files/P3-PublicaPrivadas/Projects/Projects/THERMAL%20GENERATION%20FACILITIES/Request-for-Qualifications-PREPA-Generation-Thermal-Facilities-RFQ-2020-1-1.pdf"
+  },
+  "gen_peak": {
+   "title": "Genera PR, BESS and peakers program",
+   "url": "https://genera-pr.com/bess_peakers"
+  },
+  "gem_cb": {
+   "title": "Global Energy Monitor, Cambalache power station",
+   "url": "https://www.gem.wiki/Cambalache_power_station"
+  },
+  "fema_temp": {
+   "title": "PREPA urgent motion on transferring the FEMA temporary generation units to PREPA (Jan 2024), PR Energy Bureau",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2024/01/20240114-MI20210002-Urgent-Motion-Submitting-for-Review-and-Approval-the-Scope-of-Work-for-the-TransferOwnership-to-PREPA-of-the-Temporary-Generation-Units.pdf"
+  },
+  "re_2018": {
+   "title": "PREPA IRP 2019, Appendix 3: Renewable Energy Project Status (Dec 2018)",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2019/02/PREPA-Ex.-1.03-IRP-2019-Appendix-3-Renewable-Energy-Project-Status.pdf"
+  },
+  "transf": {
+   "title": "Government of Puerto Rico, Energy Transformation timeline",
+   "url": "https://www.energy.pr.gov/en/transformation"
+  },
+  "epa_eco": {
+   "title": "US EPA, EcoEléctrica PSD permit (2018)",
+   "url": "https://www.epa.gov/sites/production/files/2018-03/documents/ecoelectrica_psd_permit_-_march_13_2018.pdf"
+  },
+  "gem_eco": {
+   "title": "Global Energy Monitor, EcoEléctrica power station (ownership)",
+   "url": "https://www.gem.wiki/EcoElectrica_power_station"
+  },
+  "aes_ppoa": {
+   "title": "PR Energy Bureau, AES Puerto Rico PPOA filing (2023)",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2023/11/20231116-AP20230005-Motion-Submitting-Redacted-PPOA.pdf"
+  },
+  "aes_bn": {
+   "title": "BNamericas, consultation on change to AES Puerto Rico coal plant PPA",
+   "url": "https://bnamericas.com/en/news/consultation-begins-for-change-to-aes-puerto-rico-coal-plant-ppa"
+  },
+  "coop_hydro": {
+   "title": "Cooperativa Hidroeléctrica de la Montaña, history of Puerto Rico's hydroelectric plants",
+   "url": "https://cooperativahidroelectrica.coop/en/history-of-hydroenergy/index.html"
+  },
+  "enc": {
+   "title": "Encyclopedia of Puerto Rico, History of the Puerto Rico Electric Power Authority",
+   "url": "https://en.enciclopediapr.org/content/history-puerto-rico-power-authority/"
+  },
+  "lnd_tn2": {
+   "title": "Living New Deal, Toro Negro Hydroelectric Plant No. 2",
+   "url": "https://livingnewdeal.org/sites/toro-negro-hydroelectric-plant-no-2-toro-negro-river-pr/"
+  },
+  "lnd_garzas": {
+   "title": "Living New Deal, Garzas Dam, Adjuntas",
+   "url": "https://livingnewdeal.org/projects/garzas-dam-adjuntas-pr/"
+  },
+  "metro_tn": {
+   "title": "Metro Puerto Rico, Villalba and the Toro Negro plant (2018)",
+   "url": "https://www.metro.pr/pr/noticias/2018/10/03/adelantan-pasos-separarse-aee.html"
+  },
+  "hydro_2023": {
+   "title": "PREPA hydroelectric fleet application package (Jul 2023), PR Energy Bureau",
+   "url": "https://energia.pr.gov/wp-content/uploads/sites/7/2023/07/20230710-MI20210002-Motion-to-submit-PREPA-hydro-application-package.pdf"
+  },
+  "crs": {
+   "title": "Congressional Research Service R49489, PREPA: History and Finances (Oct 2026)",
+   "url": "https://www.everycrsreport.com/reports/R49489.html"
+  }
+ },
+ "units": [
+  {
+   "year": 1929,
+   "plant": "Toro Negro 1",
+   "unit": "Hydro plant",
+   "place": "Villalba",
+   "type": "Hydro",
+   "fuel": "Water",
+   "mw": 8.6,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Built by the island government's water-resources agency (Utilización de las Fuentes Fluviales) before PREPA existed.",
+   "status": "Operating",
+   "story": "The oldest plant still feeding the grid. It began producing electricity in 1929 and was restarted after Hurricane María with help from the municipality and volunteers.",
+   "live": [
+    "Toro Negro (hydro)|Hidro 1",
+    "Toro Negro (hydro)|Hidro 2",
+    "Toro Negro (hydro)|Hidro 3",
+    "Toro Negro (hydro)|Hidro 4",
+    "Toro Negro (hydro)|Hidro 5"
+   ],
+   "live_note": "Live output is the whole Toro Negro system (plants 1 and 2).",
+   "src": [
+    "metro_tn",
+    "enc"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1937,
+   "year_note": "Built 1936–1937",
+   "plant": "Toro Negro 2",
+   "unit": "Hydro plant",
+   "place": "Villalba",
+   "type": "Hydro",
+   "fuel": "Water",
+   "mw": 1.9,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Federal New Deal money through the Puerto Rico Reconstruction Administration (PRRA).",
+   "status": "Listed inactive in 2021; repairs planned",
+   "story": "A second, smaller powerhouse on the Toro Negro river, part of the New Deal's rural electrification program.",
+   "src": [
+    "lnd_tn2",
+    "enc"
+   ],
+   "kind": "unit",
+   "live": []
+  },
+  {
+   "year": 1941,
+   "year_note": "About 1941",
+   "plant": "Garzas 1 and 2",
+   "unit": "Hydro plants",
+   "place": "Adjuntas / Peñuelas",
+   "type": "Hydro",
+   "fuel": "Water",
+   "mw": 12.2,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Federal New Deal money through the Puerto Rico Reconstruction Administration (PRRA).",
+   "status": "Partly operating",
+   "story": "Built around the Garzas dam as part of the PRRA's island-wide rural electrification plan. Two powerhouses share 12.2 MW.",
+   "live": [
+    "Garzas (hydro)|Hidro 1",
+    "Garzas (hydro)|Hidro 2",
+    "Garzas (hydro)|Hidro 3"
+   ],
+   "src": [
+    "lnd_garzas",
+    "enc",
+    "hydro_2023"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1942,
+   "year_note": "Built 1937–1942",
+   "plant": "Dos Bocas",
+   "unit": "Hydro plant (3 units)",
+   "place": "Utuado",
+   "type": "Hydro",
+   "fuel": "Water",
+   "mw": 18,
+   "mw_note": "Original 18 MW (3 × 6 MW); listed at 15 MW today",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Federal New Deal money through the Puerto Rico Reconstruction Administration (PRRA).",
+   "status": "Operating",
+   "story": "Once one of the island's largest plants. Its reservoir has lost much of its storage to sediment and now also supplies drinking water to the North Coast Superaqueduct.",
+   "live": [
+    "Dos Bocas (hydro)|Hidro 1",
+    "Dos Bocas (hydro)|Hidro 2",
+    "Dos Bocas (hydro)|Hidro 3"
+   ],
+   "src": [
+    "coop_hydro",
+    "enc"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1949,
+   "plant": "Caonillas 1",
+   "unit": "Hydro plant",
+   "place": "Utuado",
+   "type": "Hydro",
+   "fuel": "Water",
+   "mw": 20,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Built by the Water Resources Authority (now PREPA) as part of the Caonillas system (1942–1953).",
+   "status": "Out of service (per the hydro cooperative)",
+   "story": "The main plant of the Caonillas hydroelectric system, fed by the Caonillas reservoir built in 1948.",
+   "live": [
+    "Caonillas (hydro)|Hidro 1",
+    "Caonillas (hydro)|Hidro 2"
+   ],
+   "live_note": "Live output is the whole Caonillas system.",
+   "src": [
+    "coop_hydro"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1950,
+   "plant": "Caonillas 2",
+   "unit": "Hydro plant",
+   "place": "Utuado",
+   "type": "Hydro",
+   "fuel": "Water",
+   "mw": 4,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Built by the Water Resources Authority (now PREPA).",
+   "status": "Out of service (per the hydro cooperative)",
+   "story": "A small second powerhouse in the Caonillas system.",
+   "src": [
+    "coop_hydro"
+   ],
+   "kind": "unit",
+   "live": []
+  },
+  {
+   "year": 1959,
+   "plant": "Costa Sur Steam",
+   "unit": "Unit 1",
+   "place": "Guayanilla",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 50,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Retired (last ran 2003)",
+   "story": "First unit at Costa Sur. Declared irreparable and decommissioned by PREPA's board.",
+   "src": [
+    "sl_cs"
+   ],
+   "kind": "unit",
+   "live": []
+  },
+  {
+   "year": 1960,
+   "plant": "Costa Sur Steam",
+   "unit": "Unit 2",
+   "place": "Guayanilla",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 50,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Retired (last ran 2003)",
+   "story": "Twin of Unit 1, retired at the same time.",
+   "src": [
+    "sl_cs"
+   ],
+   "kind": "unit",
+   "live": []
+  },
+  {
+   "year": 1960,
+   "plant": "Palo Seco Steam",
+   "unit": "Unit 1",
+   "place": "Toa Baja",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 85,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "End of life (out of service since Aug 2020 per 2021 report)",
+   "story": "The oldest steam unit at Palo Seco, a GE-built 85 MW unit. Parts from Unit 2 have been used to keep it running.",
+   "live": [
+    "Palo Seco Steam|Unit 1"
+   ],
+   "src": [
+    "sl_ps"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1961,
+   "plant": "Palo Seco Steam",
+   "unit": "Unit 2",
+   "place": "Toa Baja",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 85,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Irreparable (out since Dec 2016)",
+   "story": "Out of service after a feedwater pump failure in 2016 and used as a source of spare parts.",
+   "live": [
+    "Palo Seco Steam|Unit 2"
+   ],
+   "src": [
+    "sl_ps"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1962,
+   "plant": "Costa Sur Steam",
+   "unit": "Unit 3",
+   "place": "Guayanilla",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 85,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Out of service since 2016; awaiting decommissioning",
+   "story": "GE turbine. Considered unsafe for normal service.",
+   "live": [
+    "Costa Sur Steam|Unit 3"
+   ],
+   "src": [
+    "sl_cs"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1963,
+   "plant": "Costa Sur Steam",
+   "unit": "Unit 4",
+   "place": "Guayanilla",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 85,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Out of service since 2016; awaiting decommissioning",
+   "story": "Twin of Unit 3.",
+   "live": [
+    "Costa Sur Steam|Unit 4"
+   ],
+   "src": [
+    "sl_cs"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1965,
+   "date": "1965-12-23",
+   "plant": "San Juan Steam",
+   "unit": "Unit 7",
+   "place": "San Juan",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 100,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating (limited)",
+   "story": "Began commercial operation on December 23, 1965, east of the site's original 1950s units, which were 22 MW each and have since been retired.",
+   "live": [
+    "San Juan Steam|Unit 7"
+   ],
+   "src": [
+    "sl_sj"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1966,
+   "date": "1966-07-15",
+   "plant": "San Juan Steam",
+   "unit": "Unit 8",
+   "place": "San Juan",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 100,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Limited by air-emission (MATS) rules",
+   "story": "Began commercial operation on July 15, 1966.",
+   "live": [
+    "San Juan Steam|Unit 8"
+   ],
+   "src": [
+    "sl_sj"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1967,
+   "year_note": "1967–1968",
+   "plant": "Palo Seco Steam",
+   "unit": "Unit 3",
+   "place": "Toa Baja",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 216,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "End of life (2021 report)",
+   "story": "One of two larger 216 MW Combustion Engineering boilers added at Palo Seco in the late 1960s.",
+   "live": [
+    "Palo Seco Steam|Unit 3"
+   ],
+   "src": [
+    "sl_ps"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1967,
+   "year_note": "1967–1968",
+   "plant": "Palo Seco Steam",
+   "unit": "Unit 4",
+   "place": "Toa Baja",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 216,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating at reduced output (2021 report)",
+   "story": "Twin of Unit 3; in 2021 it was limited to 66–150 MW by air leaks in the boiler.",
+   "live": [
+    "Palo Seco Steam|Unit 4"
+   ],
+   "src": [
+    "sl_ps"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1967,
+   "date": "1967-11-09",
+   "plant": "San Juan Steam",
+   "unit": "Unit 9",
+   "place": "San Juan",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 100,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating",
+   "story": "Began commercial operation on November 9, 1967, west of the original units.",
+   "live": [
+    "San Juan Steam|Unit 9"
+   ],
+   "src": [
+    "sl_sj"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1968,
+   "date": "1968-06-07",
+   "plant": "San Juan Steam",
+   "unit": "Unit 10",
+   "place": "San Juan",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 100,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Long-term outage",
+   "story": "Began commercial operation on June 7, 1968: the last steam unit built at San Juan.",
+   "live": [
+    "San Juan Steam|Unit 10"
+   ],
+   "src": [
+    "sl_sj"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1971,
+   "plant": "Aguirre Steam",
+   "unit": "Unit 1",
+   "place": "Salinas",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 450,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating",
+   "story": "One of the two largest units on the island. Its GE turbine was upgraded toward 500 MW in 1991. The independent engineer found Aguirre near the end of its useful life.",
+   "live": [
+    "Aguirre Steam|Unit 1"
+   ],
+   "src": [
+    "sl_ag"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1971,
+   "plant": "Peaker stations",
+   "unit": "Vega Baja (2 gas turbines)",
+   "place": "Vega Baja",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 42,
+   "mw_note": "About 42 MW (two turbines)",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Classified unavailable (2024); moving toward decommissioning",
+   "story": "One of the small early-1970s peaking stations spread around the island to cover the highest demand.",
+   "live": [
+    "GT stations (peakers)|Vega Baja"
+   ],
+   "src": [
+    "p3_peak",
+    "rfq_2020"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1971,
+   "plant": "Peaker stations",
+   "unit": "Jobos (2 gas turbines)",
+   "place": "Guayama",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 42,
+   "mw_note": "About 42 MW (two turbines)",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating; replacement peakers planned by Genera",
+   "story": "Early-1970s peaking station. Genera lists new 40–48 MW peakers for the site.",
+   "live": [
+    "GT stations (peakers)|Jobos"
+   ],
+   "src": [
+    "p3_peak",
+    "rfq_2020",
+    "gen_peak"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1971,
+   "plant": "Peaker stations",
+   "unit": "Yabucoa (2 gas turbines)",
+   "place": "Yabucoa",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 42,
+   "mw_note": "About 42 MW (two turbines)",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Partly out of service; replacement planned",
+   "story": "One unit has been out since 2016. Genera has listed the old peakers for demolition and new units for the site.",
+   "live": [
+    "GT stations (peakers)|Yabucoa"
+   ],
+   "src": [
+    "p3_peak",
+    "rfq_2020",
+    "gen_peak"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1972,
+   "plant": "Aguirre Steam",
+   "unit": "Unit 2",
+   "place": "Salinas",
+   "type": "Steam",
+   "fuel": "Heavy fuel oil",
+   "mw": 450,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating",
+   "story": "Twin of Unit 1, built a year later.",
+   "live": [
+    "Aguirre Steam|Unit 2"
+   ],
+   "src": [
+    "sl_ag"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1972,
+   "plant": "Costa Sur Steam",
+   "unit": "Unit 5",
+   "place": "Guayanilla",
+   "type": "Steam",
+   "fuel": "Natural gas / heavy fuel oil",
+   "mw": 410,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating",
+   "story": "Originally designed for heavy fuel oil; retrofitted in 2010–2011 to burn natural gas from the nearby EcoEléctrica terminal. Damaged in the January 2020 earthquakes and repaired.",
+   "live": [
+    "Costa Sur Steam|Unit 5"
+   ],
+   "src": [
+    "sl_cs"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1972,
+   "plant": "Aguirre GT/CT",
+   "unit": "Black-start turbines 2-1 and 2-2",
+   "place": "Salinas",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 42,
+   "mw_note": "2 × 21 MW",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "One operating, one under repair (2021)",
+   "story": "Small turbines that can start without grid power, used to restart the big Aguirre units after a blackout.",
+   "live": [
+    "Aguirre GT/CT|GT1",
+    "Aguirre GT/CT|GT2"
+   ],
+   "src": [
+    "sl_ag"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1972,
+   "plant": "Costa Sur GT/CT",
+   "unit": "Black-start turbines 1.1 and 1.2",
+   "place": "Guayanilla",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 42,
+   "mw_note": "2 × 21 MW",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Repaired after long outage",
+   "story": "Black-start units. The turbine in 1.2 was replaced with a decommissioned turbine taken from the old Mayagüez plant.",
+   "live": [
+    "Costa Sur GT/CT|GT1",
+    "Costa Sur GT/CT|GT2"
+   ],
+   "src": [
+    "sl_cs"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1972,
+   "plant": "Peaker stations",
+   "unit": "Daguao (2 gas turbines)",
+   "place": "Ceiba",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 42,
+   "mw_note": "About 42 MW (two turbines)",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating; replacement peakers planned by Genera",
+   "story": "Eastern peaking station near the old Roosevelt Roads base.",
+   "live": [
+    "GT stations (peakers)|Daguao"
+   ],
+   "src": [
+    "p3_peak",
+    "rfq_2020",
+    "gen_peak"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1972,
+   "year_note": "1972–1973",
+   "plant": "Palo Seco GT/CT",
+   "unit": "Gas turbines (3 blocks of 2)",
+   "place": "Toa Baja",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 126,
+   "mw_note": "6 × 21 MW",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Mostly out of service or restricted by EPA permit (2021)",
+   "story": "Six GE turbines (built under license by Hitachi) in three blocks sharing step-up transformers.",
+   "live": [
+    "Palo Seco GT/CT|GT1",
+    "Palo Seco GT/CT|GT2",
+    "Palo Seco GT/CT|GT3",
+    "Palo Seco GT/CT|GT4",
+    "Palo Seco GT/CT|GT5",
+    "Palo Seco GT/CT|GT6"
+   ],
+   "live_note": "Matched to the feed's GT1–GT6 by count; the feed does not label build years.",
+   "src": [
+    "sl_ps"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1973,
+   "plant": "Costa Sur Steam",
+   "unit": "Unit 6",
+   "place": "Guayanilla",
+   "type": "Steam",
+   "fuel": "Natural gas / heavy fuel oil",
+   "mw": 410,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating",
+   "story": "Twin of Unit 5, also converted to natural gas. Knocked offline by the January 2020 earthquakes and repaired.",
+   "live": [
+    "Costa Sur Steam|Unit 6"
+   ],
+   "src": [
+    "sl_cs"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1977,
+   "plant": "Aguirre CC 1",
+   "unit": "Combined cycle 1 (4 gas turbines + 1 steam turbine)",
+   "place": "Salinas",
+   "type": "Combined cycle",
+   "fuel": "Diesel",
+   "mw": 296,
+   "mw_note": "4 × 50 MW gas turbines + 96 MW steam turbine",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Partly operating; several turbines under repair (2021)",
+   "story": "Built in 1977 as a 4-on-1 combined cycle burning oil. Its GE gas turbines were converted from model 7B to 7EA between 1997 and 2001.",
+   "live": [
+    "Aguirre CC 1|Gas 1",
+    "Aguirre CC 1|Gas 2",
+    "Aguirre CC 1|Gas 3",
+    "Aguirre CC 1|Gas 4",
+    "Aguirre CC 1|STG 1"
+   ],
+   "src": [
+    "sl_ag"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1977,
+   "plant": "Aguirre CC 2",
+   "unit": "Combined cycle 2 (4 gas turbines + 1 steam turbine)",
+   "place": "Salinas",
+   "type": "Combined cycle",
+   "fuel": "Diesel",
+   "mw": 296,
+   "mw_note": "4 × 50 MW gas turbines + 96 MW steam turbine",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Partly operating; several turbines under repair (2021)",
+   "story": "Built in 1977 as a 4-on-1 combined cycle burning oil. Its GE gas turbines were converted from model 7B to 7EA between 1997 and 2001.",
+   "live": [
+    "Aguirre CC 2|Gas 1",
+    "Aguirre CC 2|Gas 2",
+    "Aguirre CC 2|Gas 3",
+    "Aguirre CC 2|Gas 4",
+    "Aguirre CC 2|STG 2"
+   ],
+   "src": [
+    "sl_ag"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 1997,
+   "plant": "Cambalache",
+   "unit": "Combustion turbines 1–3",
+   "place": "Arecibo",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 248,
+   "mw_note": "3 × about 82 MW",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating",
+   "story": "Three simple-cycle turbines on the north coast, among PREPA's newer peaking units.",
+   "live": [
+    "Cambalache|Gas 1",
+    "Cambalache|Gas 2",
+    "Cambalache|Gas 3"
+   ],
+   "src": [
+    "gem_cb"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2000,
+   "plant": "EcoEléctrica",
+   "unit": "Combined cycle (2 gas turbines + steam turbine)",
+   "place": "Peñuelas",
+   "type": "Combined cycle",
+   "fuel": "Natural gas (LNG)",
+   "mw": 507,
+   "mw_note": "About 507 MW at 230 kV (EPA permit)",
+   "sector": "private",
+   "owner": "EcoEléctrica LP (Naturgy 47.5%, ENGIE 35%, Mitsui 15%, other 2.5%)",
+   "operator": "EcoEléctrica",
+   "funding": "Private money: built and financed by its owners. PREPA buys the power under a long-term power purchase and operating agreement (PPOA).",
+   "status": "Operating",
+   "story": "Puerto Rico's first private power plant and first natural-gas cogeneration plant, with its own LNG import terminal. It supplies roughly a sixth of the island's electricity and the gas that Costa Sur 5 and 6 now burn.",
+   "live": [
+    "EcoEléctrica|Gas 1",
+    "EcoEléctrica|Gas 2",
+    "EcoEléctrica|STG"
+   ],
+   "src": [
+    "transf",
+    "epa_eco",
+    "gem_eco",
+    "crs"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2002,
+   "plant": "AES Puerto Rico",
+   "unit": "Units 1 and 2",
+   "place": "Guayama",
+   "type": "Cogeneration (steam)",
+   "fuel": "Coal",
+   "mw": 454,
+   "mw_note": "2 × 227 MW",
+   "sector": "private",
+   "owner": "AES Corporation (US)",
+   "operator": "AES Puerto Rico",
+   "funding": "Private money: built and financed by AES. PREPA buys the power under a 25-year PPOA signed October 11, 1994, which runs to 2027.",
+   "status": "Operating; coal must end by 2027 under Act 17-2019",
+   "story": "The island's only coal plant. Puerto Rico law requires coal-fired generation to stop by the end of 2027.",
+   "live": [
+    "AES|Unit 1",
+    "AES|Unit 2"
+   ],
+   "src": [
+    "transf",
+    "aes_ppoa",
+    "aes_bn"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2008,
+   "date": "2008-10",
+   "plant": "San Juan CC",
+   "unit": "Combined cycle 5 (CTG 5 + STG 5)",
+   "place": "San Juan",
+   "type": "Combined cycle",
+   "fuel": "Natural gas / diesel",
+   "mw": 232,
+   "mw_note": "168 MW gas turbine + 64 MW steam turbine (nameplate per report)",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating",
+   "story": "Built in the middle of the San Juan site where the original 1950s units stood. Began commercial operation in October 2008 with a Westinghouse/Siemens 501F gas turbine; now also burns natural gas.",
+   "live": [
+    "San Juan CC|CTG 5",
+    "San Juan CC|STG 5"
+   ],
+   "src": [
+    "sl_sj"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2008,
+   "date": "2008-10",
+   "plant": "San Juan CC",
+   "unit": "Combined cycle 6 (CTG 6 + STG 6)",
+   "place": "San Juan",
+   "type": "Combined cycle",
+   "fuel": "Natural gas / diesel",
+   "mw": 232,
+   "mw_note": "168 MW gas turbine + 64 MW steam turbine (nameplate per report)",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating",
+   "story": "Twin of unit 5; together they are among PREPA's newest large units.",
+   "live": [
+    "San Juan CC|CTG 6",
+    "San Juan CC|STG 6"
+   ],
+   "src": [
+    "sl_sj"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2009,
+   "year_note": "2008–2009",
+   "plant": "Mayagüez",
+   "unit": "Unit 1 (TwinPac 1A + 1B)",
+   "place": "Mayagüez",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 55,
+   "mw_note": "2 × 27.5 MW",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating (individual turbines go in and out of repair)",
+   "story": "Four TwinPac packages (two turbines on one generator) replaced the old Hidro-Gas plant's four 21 MW units. Plans exist to convert the site to natural gas.",
+   "live": [
+    "Mayagüez|Gas 1"
+   ],
+   "src": [
+    "sl_mg"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2009,
+   "year_note": "2008–2009",
+   "plant": "Mayagüez",
+   "unit": "Unit 2 (TwinPac 2A + 2B)",
+   "place": "Mayagüez",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 55,
+   "mw_note": "2 × 27.5 MW",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating (individual turbines go in and out of repair)",
+   "story": "Four TwinPac packages (two turbines on one generator) replaced the old Hidro-Gas plant's four 21 MW units. Plans exist to convert the site to natural gas.",
+   "live": [
+    "Mayagüez|Gas 2"
+   ],
+   "src": [
+    "sl_mg"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2009,
+   "year_note": "2008–2009",
+   "plant": "Mayagüez",
+   "unit": "Unit 3 (TwinPac 3A + 3B)",
+   "place": "Mayagüez",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 55,
+   "mw_note": "2 × 27.5 MW",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating (individual turbines go in and out of repair)",
+   "story": "Four TwinPac packages (two turbines on one generator) replaced the old Hidro-Gas plant's four 21 MW units. Plans exist to convert the site to natural gas.",
+   "live": [
+    "Mayagüez|Gas 3"
+   ],
+   "src": [
+    "sl_mg"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2009,
+   "year_note": "2008–2009",
+   "plant": "Mayagüez",
+   "unit": "Unit 4 (TwinPac 4A + 4B)",
+   "place": "Mayagüez",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 55,
+   "mw_note": "2 × 27.5 MW",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating (individual turbines go in and out of repair)",
+   "story": "Four TwinPac packages (two turbines on one generator) replaced the old Hidro-Gas plant's four 21 MW units. Plans exist to convert the site to natural gas.",
+   "live": [
+    "Mayagüez|Gas 4"
+   ],
+   "src": [
+    "sl_mg"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2019,
+   "plant": "Palo Seco GT/CT",
+   "unit": "Mobile turbines MP1–MP3",
+   "place": "Toa Baja",
+   "type": "Gas turbine",
+   "fuel": "Diesel",
+   "mw": 81,
+   "mw_note": "3 × 27 MW (limited to 5–22 MW each in 2021)",
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Public money: built by PREPA (then the Water Resources Authority), a public corporation that pays for plants from electricity sales and its own revenue bonds, not from the Commonwealth's general budget.",
+   "status": "Operating, limited output",
+   "story": "Three mobile packages installed after Hurricane María. In 2021 they were limited by a lack of water for NOx control.",
+   "live": [
+    "Palo Seco GT/CT|CT Block 1",
+    "Palo Seco GT/CT|CT Block 2",
+    "Palo Seco GT/CT|CT Block 3"
+   ],
+   "live_note": "Matched to the feed's CT Block 1–3 by count; the feed does not label build years.",
+   "src": [
+    "sl_ps"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2023,
+   "date": "2023-05-29",
+   "plant": "FEMA temporary generation",
+   "unit": "Palo Seco units",
+   "place": "Toa Baja",
+   "type": "Gas turbine",
+   "fuel": "Natural gas / diesel",
+   "mw": 150,
+   "sector": "public",
+   "owner": "FEMA, transferred to PREPA (2024)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Federal money: installed by FEMA as Direct Federal Assistance after PREPA and COR3 asked for emergency generation in October 2022. FEMA then arranged to transfer ownership to PREPA.",
+   "status": "Operating",
+   "story": "Commissioned on May 29, 2023 to add capacity during a generation shortage.",
+   "live": [
+    "GT stations (peakers)|FEMA GT PS"
+   ],
+   "src": [
+    "fema_temp"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2023,
+   "plant": "FEMA temporary generation",
+   "unit": "San Juan units",
+   "place": "San Juan",
+   "type": "Gas turbine",
+   "fuel": "Natural gas / diesel",
+   "mw": 200,
+   "sector": "public",
+   "owner": "FEMA, transferred to PREPA (2024)",
+   "operator": "Genera PR (private operator, since July 2023)",
+   "funding": "Federal money: FEMA Direct Federal Assistance, later transferred to PREPA.",
+   "status": "Operating",
+   "story": "Installed in 2023 alongside the Palo Seco units, bringing the FEMA emergency fleet to 350 MW.",
+   "live": [
+    "GT stations (peakers)|FEMA GT SJ"
+   ],
+   "src": [
+    "fema_temp"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2011,
+   "date": "2011-09-07",
+   "year_note": null,
+   "plant": "Windmar Cantera Martino",
+   "unit": "Solar",
+   "place": "Ponce",
+   "type": "Solar",
+   "fuel": "Sun",
+   "mw": 2.1,
+   "sector": "private",
+   "owner": "Windmar Cantera Martino",
+   "operator": "Windmar Cantera Martino",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 15¢/kWh.",
+   "status": "Operating",
+   "story": "One of the first utility solar contracts to reach operation, on a former quarry in Ponce.",
+   "live": [],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2012,
+   "date": "2012-11-28",
+   "year_note": null,
+   "plant": "AES Ilumina",
+   "unit": "Solar",
+   "place": "Guayama",
+   "type": "Solar",
+   "fuel": "Sun",
+   "mw": 20,
+   "sector": "private",
+   "owner": "AES Ilumina",
+   "operator": "AES Ilumina",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 15¢/kWh.",
+   "status": "Operating",
+   "story": "The island's first large solar farm, next to the AES coal plant.",
+   "live": [
+    "Solar|Ilumina"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2012,
+   "date": "2012-12-05",
+   "year_note": null,
+   "plant": "Pattern Santa Isabel",
+   "unit": "Wind",
+   "place": "Santa Isabel",
+   "type": "Wind",
+   "fuel": "Wind",
+   "mw": 95,
+   "sector": "private",
+   "owner": "Pattern Santa Isabel",
+   "operator": "Pattern Santa Isabel",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 12.5¢/kWh.",
+   "status": "Operating",
+   "story": "The largest wind farm in Puerto Rico; PREPA has limited it to 75 MW until it meets technical requirements.",
+   "live": [
+    "Wind|Pattern"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2012,
+   "date": "2012-12-17",
+   "year_note": null,
+   "plant": "Punta Lima Wind Farm",
+   "unit": "Wind",
+   "place": "Naguabo",
+   "type": "Wind",
+   "fuel": "Wind",
+   "mw": 26,
+   "sector": "private",
+   "owner": "Punta Lima Wind Farm",
+   "operator": "Punta Lima Wind Farm",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 12.5¢/kWh.",
+   "status": "Operating",
+   "story": "Badly damaged by Hurricane María in 2017 and rebuilt.",
+   "live": [
+    "Wind|Punta Lima"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2015,
+   "date": "2015-08-18",
+   "year_note": null,
+   "plant": "Horizon Energy (Salinas Solar Farm)",
+   "unit": "Solar",
+   "place": "Salinas",
+   "type": "Solar",
+   "fuel": "Sun",
+   "mw": 10,
+   "sector": "private",
+   "owner": "Horizon Energy",
+   "operator": "Horizon Energy",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 14.3¢/kWh.",
+   "status": "Operating",
+   "story": "One of 18 solar contracts renegotiated in 2013–14 to fit what the grid could absorb.",
+   "live": [
+    "Solar|Horizon"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2015,
+   "date": "2015-12-16",
+   "year_note": null,
+   "plant": "San Fermín Solar Farm",
+   "unit": "Solar",
+   "place": "Loíza",
+   "type": "Solar",
+   "fuel": "Sun",
+   "mw": 20,
+   "sector": "private",
+   "owner": "San Fermín Solar Farm",
+   "operator": "San Fermín Solar Farm",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 15¢/kWh.",
+   "status": "Operating",
+   "story": "Solar farm on the northeast coast.",
+   "live": [
+    "Solar|San Fermin"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2016,
+   "date": "2016-10-01",
+   "year_note": null,
+   "plant": "Landfill Gas Technologies (Fajardo)",
+   "unit": "Landfill gas",
+   "place": "Fajardo",
+   "type": "Landfill gas",
+   "fuel": "Landfill gas",
+   "mw": 2.4,
+   "sector": "private",
+   "owner": "Landfill Gas Technologies",
+   "operator": "Landfill Gas Technologies",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 10¢/kWh.",
+   "status": "Operating",
+   "story": "Burns methane captured from the Fajardo landfill.",
+   "live": [
+    "Landfill|Fajardo"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2016,
+   "date": "2016-11-17",
+   "year_note": "Interconnected Nov 2016",
+   "plant": "Coto Laurel Solar Farm (Windmar)",
+   "unit": "Solar",
+   "place": "Ponce",
+   "type": "Solar",
+   "fuel": "Sun",
+   "mw": 10,
+   "sector": "private",
+   "owner": "Coto Laurel Solar Farm",
+   "operator": "Coto Laurel Solar Farm",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 15¢/kWh.",
+   "status": "Operating",
+   "story": "First connected to the grid in November 2016.",
+   "live": [
+    "Solar|Coto Laurel"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2016,
+   "date": "2016-12-16",
+   "year_note": "First phase interconnected Dec 2016",
+   "plant": "Humacao Solar Project (Fonroche)",
+   "unit": "Solar",
+   "place": "Humacao",
+   "type": "Solar",
+   "fuel": "Sun",
+   "mw": 40,
+   "sector": "private",
+   "owner": "Humacao Solar Project",
+   "operator": "Humacao Solar Project",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 15¢/kWh.",
+   "status": "Operating",
+   "story": "Built in two 20 MW phases; the second phase was under construction when Hurricane María hit and was rebuilt.",
+   "live": [
+    "Solar|Fonroche"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2016,
+   "date": "2016-12-20",
+   "year_note": null,
+   "plant": "Oriana Energy (Yarotek)",
+   "unit": "Solar",
+   "place": "Isabela",
+   "type": "Solar",
+   "fuel": "Sun",
+   "mw": 45,
+   "sector": "private",
+   "owner": "Oriana Energy",
+   "operator": "Oriana Energy",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 15¢/kWh.",
+   "status": "Operating",
+   "story": "The largest solar farm of its generation on the island.",
+   "live": [
+    "Solar|Oriana"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": 2017,
+   "date": "2017-02-15",
+   "year_note": "Interconnected Feb 2017",
+   "plant": "Landfill Gas Technologies (Toa Baja)",
+   "unit": "Landfill gas",
+   "place": "Toa Baja",
+   "type": "Landfill gas",
+   "fuel": "Landfill gas",
+   "mw": 2.4,
+   "sector": "private",
+   "owner": "Landfill Gas Technologies",
+   "operator": "Landfill Gas Technologies",
+   "funding": "Private money: built and financed by the developer. PREPA pays a fixed price per kWh under a 20–25 year PPOA. Starting price 10¢/kWh.",
+   "status": "Operating",
+   "story": "Finished testing in July 2017, just before Hurricanes Irma and María.",
+   "live": [
+    "Landfill|Toa Baja"
+   ],
+   "src": [
+    "re_2018"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": null,
+   "plant": "Yauco 1 and 2",
+   "unit": "Hydro plants",
+   "place": "Yauco",
+   "type": "Hydro",
+   "fuel": "Water",
+   "mw": 34,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Public (PREPA).",
+   "status": "Yauco 2 available (2023)",
+   "story": "The largest hydro system by capacity. Its in-service years were not found in the public sources checked.",
+   "live": [
+    "Yauco (hydro)|Hidro 1",
+    "Yauco (hydro)|Hidro 2",
+    "Yauco (hydro)|Hidro 3"
+   ],
+   "src": [
+    "hydro_2023"
+   ],
+   "kind": "unit"
+  },
+  {
+   "year": null,
+   "plant": "Río Blanco",
+   "unit": "Hydro plant",
+   "place": "Naguabo",
+   "type": "Hydro",
+   "fuel": "Water",
+   "mw": 5,
+   "sector": "public",
+   "owner": "PREPA (public)",
+   "operator": "PREPA",
+   "funding": "Public (PREPA).",
+   "status": "Offline in 2021; repairs planned",
+   "story": "A small eastern hydro plant. Its in-service year was not found in the public sources checked.",
+   "live": [
+    "Rio Blanco (hydro)|Hidro 1",
+    "Rio Blanco (hydro)|Hidro 2"
+   ],
+   "src": [
+    "hydro_2023"
+   ],
+   "kind": "unit"
+  }
+ ],
+ "milestones": [
+  {
+   "year": 1915,
+   "title": "Government starts making electricity",
+   "text": "The South Coast Irrigation Service's Carite plant becomes the first hydro plant owned by the government of Puerto Rico.",
+   "src": [
+    "coop_hydro",
+    "enc"
+   ]
+  },
+  {
+   "year": 1941,
+   "title": "Water Resources Authority created",
+   "text": "The Autoridad de las Fuentes Fluviales, PREPA's predecessor, is created as a public corporation able to issue its own bonds.",
+   "src": [
+    "crs",
+    "enc"
+   ]
+  },
+  {
+   "year": 1974,
+   "title": "Revenue bond trust agreement",
+   "text": "PREPA signs the trust agreement under which it issues power revenue bonds, payable only from its own revenues. It still governs PREPA's bonds.",
+   "src": [
+    "crs"
+   ]
+  },
+  {
+   "year": 1979,
+   "title": "Renamed PREPA",
+   "text": "Act 57-1979 renames the authority the Puerto Rico Electric Power Authority, reflecting the shift from hydro to oil. By then nearly all generation burned oil.",
+   "src": [
+    "crs",
+    "coop_hydro"
+   ]
+  },
+  {
+   "year": 2017,
+   "title": "Hurricane María and bankruptcy",
+   "text": "PREPA, carrying about $9 billion of debt, enters Title III bankruptcy under PROMESA on July 2, 2017. Hurricane María devastates the grid that September.",
+   "src": [
+    "crs"
+   ]
+  },
+  {
+   "year": 2021,
+   "title": "LUMA takes over the grid",
+   "text": "On June 1, 2021, LUMA Energy begins operating transmission and distribution under a 15-year contract.",
+   "src": [
+    "crs"
+   ]
+  },
+  {
+   "year": 2023,
+   "title": "Genera PR takes over the plants",
+   "text": "On July 1, 2023, Genera PR, a New Fortress Energy subsidiary, begins operating PREPA's non-hydro power plants. PREPA keeps running the hydro plants; the plants remain public property.",
+   "src": [
+    "crs"
+   ]
+  }
+ ]
+}
