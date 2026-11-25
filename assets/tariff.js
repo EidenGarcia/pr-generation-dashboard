@@ -13,7 +13,20 @@
   const cents = (v) => (v * 100).toFixed(2) + ' ¢';
   const usd = (v) => '$' + d3.format(',.2f')(v);
   const PPOA = new Set(['AES', 'EcoEléctrica', 'Solar', 'Wind', 'Landfill gas']); // energy bought from private producers
-  let period = 'now', showFixed = true, perSold = false, kwh = 800;
+  let period = 'now', showFixed = true, perSold = false, kwh = 800, view = 'charge';
+  // Who receives each part of the bill (same totals, regrouped)
+  function recipients(T, P) {
+    const R = T.recipients || { base_split: { luma: 0.68, genera: 0.17, prepa: 0.15 } }, sp = R.base_split, v = (k) => (P.find((p) => p.k === k) || { v: 0 }).v;
+    const base = v('base_var') + v('base_fix'), approx = R.base_split_is_approximate ? ' (share approximate)' : '';
+    return [
+      { k: 'w_fuel', label: 'Fuel for Genera’s plants', what: 'The FCA: pays the fuel suppliers for the fuel burned in the plants Genera PR operates.', v: v('fca'), color: 'var(--tf-fca)', variable: true },
+      { k: 'w_private', label: 'Private generators', what: 'The PPCA: AES, EcoEléctrica and the solar, wind and landfill-gas plants.', v: v('ppca'), color: 'var(--tf-ppca)', variable: true },
+      { k: 'w_luma', label: 'LUMA', what: 'Operates the grid, billing and customer service. Its budget comes from the base rate' + approx + '.', v: base * sp.luma, color: 'var(--tf-luma)' },
+      { k: 'w_genera', label: 'Genera PR', what: 'Operates PREPA’s power plants (its fee and plant maintenance, not the fuel)' + approx + '.', v: base * sp.genera, color: 'var(--tf-genera)' },
+      { k: 'w_prepa', label: 'PREPA (AEE)', what: 'PREPA’s own operations and its employees’ pensions, which moved into the base rate in 2026' + approx + '.', v: base * sp.prepa, color: 'var(--tf-prepa)' },
+      { k: 'w_gov', label: 'Government and municipalities', what: 'Contribution to municipalities (CELI) and government programs: social subsidies, other subsidies and energy efficiency.', v: v('subs'), color: 'var(--tf-subs)' },
+    ];
+  }
 
   // hourly rows: energy generated and cost split into Genera fuel (FCA) and purchased power (PPCA)
   function hourly() {
@@ -72,9 +85,13 @@
     const E = estimate(T), A = T.approved;
     const kp = $('tf-kpis'); kp.replaceChildren();
     if (!E) { kp.append(el('p', 'gx-note', 'Waiting for cost readings.')); return; }
-    const P = parts(T, E.fca, E.ppca, kwh), shown = P.filter((p) => showFixed || p.variable);
+    seg('tf-view', view);
+    let P = parts(T, E.fca, E.ppca, kwh);
+    if (view === 'who') P = recipients(T, P);
+    const shown = P.filter((p) => showFixed || p.variable);
     const total = d3.sum(shown, (p) => p.v), genCost = E.fca + E.ppca;
-    const apprP = parts(T, A.fca_usd_kwh, A.ppca_usd_kwh, kwh), apprTotal = d3.sum(apprP.filter((p) => showFixed || p.variable), (p) => p.v);
+    let apprP = parts(T, A.fca_usd_kwh, A.ppca_usd_kwh, kwh); if (view === 'who') apprP = recipients(T, apprP);
+    const apprTotal = d3.sum(apprP.filter((p) => showFixed || p.variable), (p) => p.v);
     const k = (label, value, note, cls) => { const d = el('div', 'gx-kpi' + (cls ? ' ' + cls : '')); d.append(el('div', 'gx-kpi-l', label), el('div', 'gx-kpi-v', value), el('div', 'gx-kpi-n', note)); kp.append(d); };
     k(showFixed ? 'Estimated price per kWh' : 'Estimated generation cost per kWh', cents(total), PERIOD_LABEL[period] + (period === 'now' ? ', ' + tFmt(E.at) : ''), 'tf-main');
     k('Fuel (FCA), estimated', cents(E.fca), 'approved on the bill: ' + cents(A.fca_usd_kwh));
@@ -84,6 +101,8 @@
     k('Estimate vs. approved', (diff >= 0 ? '+' : '−') + cents(Math.abs(diff)), diff >= 0 ? 'generation is costing more than the bill charges' : 'generation is costing less than the bill charges', diff > 0.005 ? 'bad' : '');
 
     donut(shown, total); bars(P, apprP); timeline(T); table(P, apprP); calc(T, E);
+    const wn = $('tf-who-note'); if (wn) wn.textContent = view === 'who' && T.recipients ? T.recipients.note : '';
+    const dh = $('tf-donut-h'); if (dh) dh.textContent = view === 'who' ? 'Who gets what portion of your bill' : 'What your price per kWh is made of';
     $('tf-note').textContent = 'How the estimate works: FCA = cost of the fuel Genera’s plants are burning ÷ energy generated; PPCA = cost of energy from AES, EcoEléctrica and renewables ÷ energy generated, using the cost PREPA reports for each unit' + (period === 'now' ? ' at the latest reading.' : ', added up over ' + E.n + ' hour(s) of readings.') +
       (perSold && E.adj < 1 ? ' Adjusted to kWh billed: only about ' + G.pct(E.adj * 100) + ' of what is generated is sold (the rest is lost in the lines or not billed), so each billed kWh carries more cost.' : ' Per kWh generated. The bill divides by kWh sold, which is fewer than those generated, so the billed figure is higher; turn on “per kWh billed” to adjust.') +
       ' The bill’s FCA also includes ' + usd(A.fca_reconciliation_usd / 1e6) + ' million carried over from June to August (about ' + cents(A.fca_reconciliation_usd / A.sales_kwh_quarter) + '/kWh), and its PPCA includes capacity payments that the live feed does not show. Solar and wind report no cost in the feed.';
@@ -180,7 +199,7 @@
     }
     $('tf-eff').textContent = 'Fixed charges in effect: ' + T.period_label + ' (Energy Bureau resolution of September 30, 2026). Next change: ' + T.next_change + '. ' + T.fixed.base_note;
   }
-  document.addEventListener('click', (e) => { const b = e.target.closest('#tf-period button'); if (b) { period = b.dataset.v; render(); } });
+  document.addEventListener('click', (e) => { const b = e.target.closest('#tf-period button'); if (b) { period = b.dataset.v; render(); } const v = e.target.closest('#tf-view button'); if (v) { view = v.dataset.v; render(); } });
   document.addEventListener('change', (e) => { if (e.target.id === 'tf-fixed') { showFixed = e.target.checked; render(); } if (e.target.id === 'tf-sold') { perSold = e.target.checked; render(); } });
   document.addEventListener('input', (e) => { if (e.target.id === 'tf-kwh' || e.target.id === 'tf-kwh-range') { const v = Math.max(50, Math.min(5000, Number(e.target.value) || 0)); if (v) { kwh = v; render(); } } });
   dash.onData(() => { try { render(); docs(); } catch (e) { console.error('tariff', e); } });

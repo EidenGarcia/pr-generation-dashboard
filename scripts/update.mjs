@@ -168,6 +168,27 @@ const recoveredDays = mergeRecovered();
 const SETTINGS = (readJSON('settings.json', [])[0]) || {};
 const START = SETTINGS.start_date || null;
 
+/* Older readings kept only plant totals: estimate the largest unit online from each plant's output and its unit sizes. */
+function estimateLargest(checks) {
+  const cap = (readJSON('unit_capacity.json', [{}])[0] || {}).units || {}, rng = readJSON('unit_ranges.json', {}), live = readJSON('live_units.json', []);
+  const sizes = {}; // plant group -> size of each unit (rated MW, or the most it has been seen producing), largest first
+  const ids = new Set([...Object.keys(cap), ...Object.keys(rng), ...live.map((x) => x.unit_id)]); // unit ids are "plant|unit"
+  for (const id of ids) { const plant = id.split('|')[0], g = globalThis.PREPA.plantGroup(plant), r = (cap[id] || {}).rated_mw || (rng[id] || {}).max_on_mw; if (r) (sizes[g] = sizes[g] || []).push(r); }
+  for (const g in sizes) sizes[g].sort((a, b) => b - a);
+  for (const c of checks) {
+    if (Number.isFinite(c.largest_unit_mw) || !c.plant_mw) continue;
+    const parts = [];
+    for (const [g, mw] of Object.entries(c.plant_mw)) {
+      if (!(mw >= 1) || /^(Solar|Wind|Hydro|Landfill gas)$/.test(g)) continue;
+      const s = sizes[g]; if (!s || !s.length) { parts.push(mw); continue; }
+      let n = 1; while (n < s.length && s.slice(0, n).reduce((a, b) => a + b, 0) < mw) n++; // fewest of its units that can produce this much
+      const top = s.slice(0, n), tot = top.reduce((a, b) => a + b, 0); for (const sz of top) parts.push((mw * sz) / tot); // split in proportion to unit size
+    }
+    parts.sort((a, b) => b - a);
+    c.largest_unit_mw = Math.round((parts[0] || 0) * 10) / 10; c.second_unit_mw = Math.round((parts[1] || 0) * 10) / 10; c.largest_unit_est = true;
+  }
+}
+
 /* ---------------- main ---------------- */
 const health = readJSON('feed_health.json', []);
 const status = (readJSON('status.json', [{}])[0]) || {};
@@ -290,7 +311,7 @@ if (graph) for (const r of graph.rows) { const d = r.time.slice(0, 10); const D 
 // one-time clean-up: days saved before traces were stored by slot, and summaries from before the energy fix
 for (const f of fs.readdirSync(DAYS).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x))) {
   const d = f.slice(0, 10), old = (readJSON('daily_summary.json', []).find((x) => x.day === d) || {});
-  if (old.calc_version !== 3) { slotMapOf(getDay(d)); touched.add(d); }
+  if (old.calc_version !== 4) { slotMapOf(getDay(d)); touched.add(d); }
 }
 for (const [d, D] of dayCache) { if (D._map) { D.trace = [...D._map.values()].sort((a, b) => (a.time < b.time ? -1 : 1)); delete D._map; } D.checks.sort((a, b) => (a.at < b.at ? -1 : 1)); fs.writeFileSync(dayFile(d), JSON.stringify(D)); }
 // remove day files older than 35 days
@@ -316,6 +337,7 @@ for (const d of touched) {
   const D = getDay(d);
   const allEvents = readJSON('unit_events.json', []).filter((e) => e.detected_at.slice(0, 10) === d && (e.event === 'Went offline' || e.event === 'Back online'));
   const fev = readJSON('frequency_events.json', []).filter((e) => e.start.slice(0, 10) === d);
+  estimateLargest(D.checks);
   const sm = summarizeDay(d, D.checks, D.trace, allEvents, fev, LIM, d < todayAST, NOW);
   const i = summaries.findIndex((x) => x.day === d); if (i >= 0) summaries[i] = sm; else summaries.push(sm);
   fs.writeFileSync(path.join(LOGS, 'daily', d + '.txt'), dailyText(sm, allEvents));
@@ -461,6 +483,45 @@ for (const h of health.slice().reverse()) { if (h.feed !== 'dataSource') continu
 status.consecutive_failures = streak;
 writeJSON('status.json', [status]);
 console.log('done', { snapshot: src && src.snap, graphRows: graph ? graph.rows.length : 0, events: events.length, history: hist.length, forecast: fc.rows.length });
+
+// Frequency statistics: excursions per day, by hour of day, peak vs off-peak and by operating reserve,
+// each with the hours of readings spent in that condition so rates can be compared fairly.
+{
+  const S = (readJSON('settings.json', [])[0]) || {}, PEAK = S.peak_hours || [16, 20], LOW = S.low_reserve_mw ?? 100;
+  const BINS = [[-Infinity, 100, 'Under 100 MW'], [100, 200, '100–200 MW'], [200, 300, '200–300 MW'], [300, 500, '300–500 MW'], [500, Infinity, '500 MW or more']];
+  const binOf = (v) => BINS.findIndex(([lo, hi]) => v >= lo && v < hi);
+  const hourOf = (iso) => Number(iso.slice(11, 13)), inPeak = (h) => h >= PEAK[0] && h < PEAK[1];
+  const checks = [], slotsByHour = Array(24).fill(0);
+  for (const f of fs.readdirSync(DAYS).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x)).sort()) {
+    if (START && f.slice(0, 10) < START) continue;
+    const D = dayCache.get(f.slice(0, 10)) || JSON.parse(fs.readFileSync(path.join(DAYS, f), 'utf8'));
+    for (const c of D.checks || []) if (Number.isFinite(c.operating_mw)) checks.push({ t: new Date(c.at).getTime(), at: c.at, op: c.operating_mw, sp: c.spinning_mw });
+    for (const r of D.trace || []) if (Number.isFinite(r.frequency_hz)) slotsByHour[hourOf(r.time)]++;
+  }
+  checks.sort((a, b) => a.t - b.t);
+  const binHours = BINS.map(() => 0); let lowHours = 0;
+  checks.forEach((c, i) => { const w = Math.min(i < checks.length - 1 ? (checks[i + 1].t - c.t) / 3600000 : 0.25, 0.5); binHours[binOf(c.op)] += w; if (c.op < LOW) lowHours += w; });
+  const nearest = (t) => { let lo = 0, hi = checks.length - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (checks[m].t < t) lo = m + 1; else hi = m; } const cand = [checks[lo - 1], checks[lo]].filter(Boolean).sort((a, b) => Math.abs(a.t - t) - Math.abs(b.t - t))[0]; return cand && Math.abs(cand.t - t) <= 30 * 60000 ? cand : null; };
+  const evs = readJSON('frequency_events.json', []).filter((e) => !START || e.start.slice(0, 10) >= START);
+  let changed = false;
+  for (const e of evs) { if (e.reserve_operating_mw === undefined) { const c = nearest(new Date(e.start).getTime()); e.reserve_operating_mw = c ? c.op : null; e.reserve_spinning_mw = c ? c.sp ?? null : null; changed = true; } }
+  if (changed) writeJSON('frequency_events.json', evs);
+  const days = new Map(), byHour = Array.from({ length: 24 }, (_, h) => ({ h, count: 0, exposure_h: Math.round((slotsByHour[h] * 5 / 60) * 10) / 10 }));
+  const bins = BINS.map(([lo, hi, label], i) => ({ label, lo: Number.isFinite(lo) ? lo : null, hi: Number.isFinite(hi) ? hi : null, count: 0, exposure_h: Math.round(binHours[i] * 10) / 10 }));
+  let peakN = 0, offN = 0, lowN = 0, noRes = 0;
+  for (const e of evs) {
+    const d = e.start.slice(0, 10), o = days.get(d) || { day: d, count: 0, watch: 0, alert: 0, critical: 0, low_freq: 0, high_freq: 0, minutes: 0 };
+    o.count++; o[(e.worst_level || 'Watch').toLowerCase()] = (o[(e.worst_level || 'Watch').toLowerCase()] || 0) + 1; o[e.direction === 'Low' ? 'low_freq' : 'high_freq']++; o.minutes += Math.round((e.approx_duration_s || 300) / 60); days.set(d, o);
+    const h = hourOf(e.start); byHour[h].count++; if (inPeak(h)) peakN++; else offN++;
+    if (e.reserve_operating_mw == null) noRes++; else { bins[binOf(e.reserve_operating_mw)].count++; if (e.reserve_operating_mw < LOW) lowN++; }
+  }
+  const peakH = byHour.filter((b) => inPeak(b.h)).reduce((s, b) => s + b.exposure_h, 0), offH = byHour.filter((b) => !inPeak(b.h)).reduce((s, b) => s + b.exposure_h, 0);
+  // every day with trace data, including days with no excursion
+  for (const f of fs.readdirSync(DAYS).filter((x) => /^\d{4}-\d{2}-\d{2}\.json$/.test(x))) { const d = f.slice(0, 10); if ((!START || d >= START) && !days.has(d)) days.set(d, { day: d, count: 0, watch: 0, alert: 0, critical: 0, low_freq: 0, high_freq: 0, minutes: 0 }); }
+  writeJSON('frequency_stats.json', [{ generated_at: isoAST(NOW), peak_hours: PEAK, low_reserve_mw: LOW, total: evs.length, days: [...days.values()].sort((a, b) => (a.day < b.day ? -1 : 1)), by_hour: byHour,
+    peak: { count: peakN, exposure_h: Math.round(peakH * 10) / 10 }, offpeak: { count: offN, exposure_h: Math.round(offH * 10) / 10 },
+    reserve_bins: bins, low_reserve: { count: lowN, exposure_h: Math.round(lowHours * 10) / 10 }, without_reserve_reading: noRes }]);
+}
 
 // Remove everything before the start date (data/settings.json), so history begins where you chose.
 if (START) {

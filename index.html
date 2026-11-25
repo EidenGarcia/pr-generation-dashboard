@@ -8,8 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/theme.css?v=20261116">
-<link rel="stylesheet" href="assets/live.css?v=20261116">
+<link rel="stylesheet" href="assets/theme.css?v=20261124">
+<link rel="stylesheet" href="assets/live.css?v=20261124">
 </head>
 <body>
 <div class="wrap">
@@ -34,7 +34,7 @@
   </div>
 
   <nav class="jump" aria-label="Sections">
-    <a href="#price">Price per kWh</a><a href="#overview">Overview</a><a href="#plants">Plants right now</a><a href="#overtime">Over time</a><a href="#ramps">Ramps</a><a href="#outages">Unit events</a><a href="#frequency">Frequency</a><a href="#units">Unit gauges</a><a href="#cost">Cost and dispatch</a><a href="#summary">Daily summary</a><a href="#portal">Portal health</a>
+    <a href="#price">Price per kWh</a><a href="#overview">Overview</a><a href="#plants">Plants right now</a><a href="#overtime">Over time</a><a href="#ramps">Ramps</a><a href="#outages">Unit events</a><a href="#adq-card">Reserves</a><a href="#frequency">Frequency</a><a href="#units">Unit gauges</a><a href="#cost">Cost and dispatch</a><a href="#summary">Daily summary</a><a href="#portal">Portal health</a>
   </nav>
 
   <div class="shed" id="shed-banner" role="alert" hidden></div>
@@ -50,12 +50,13 @@
   <p class="gx-secnote">Your bill has two kinds of charges. The cost of <b>generating</b> the power (fuel, and energy bought from private producers) changes by the hour with which plants are running; on the bill it is averaged and updated every three months as the FCA and PPCA charges. The rest (the base rate that pays for operating the system, subsidies and municipal contributions) is fixed until the Energy Bureau revises it. This section estimates the generation part from the live cost of the plants and adds the fixed part approved for the current quarter.</p>
   <div class="gx-card" id="price-body" style="margin-bottom:var(--cds-gap-lg)">
     <div class="card-head">
+      <div class="gx-seg" id="tf-view" role="group" aria-label="View"><button data-v="charge" aria-pressed="true">By charge</button><button data-v="who" aria-pressed="false">Who gets it</button></div>
       <div class="gx-seg" id="tf-period" role="group" aria-label="Period"><button data-v="now" aria-pressed="true">Right now</button><button data-v="today" aria-pressed="false">Today</button><button data-v="yday" aria-pressed="false">Last full day</button><button data-v="7d" aria-pressed="false">Last 7 days</button><button data-v="30d" aria-pressed="false">Last 30 days</button></div>
       <div class="chk-row" style="margin:0"><label class="chk"><input type="checkbox" id="tf-fixed" checked> Include fixed charges (everything that is not generation)</label><label class="chk"><input type="checkbox" id="tf-sold"> Per kWh billed (adjust for losses)</label></div>
     </div>
     <div class="gx-kpis tf-kpis" id="tf-kpis"></div>
     <div class="tf-grid">
-      <div class="tf-donut-wrap"><div id="tf-donut"></div><div class="tf-legend" id="tf-donut-legend"></div></div>
+      <div class="tf-donut-wrap"><h4 class="sub-h" id="tf-donut-h" style="margin:0">What your price per kWh is made of</h4><div id="tf-donut"></div><div class="tf-legend" id="tf-donut-legend"></div><p class="gx-note" id="tf-who-note" style="margin:4px 0 0"></p></div>
       <div>
         <h4 class="sub-h" style="margin-top:0">Estimated from the live cost vs. approved on the bill (¢ per kWh)</h4>
         <div id="tf-bars"></div>
@@ -101,6 +102,22 @@
   </div>
 
 
+  <!-- Reserve adequacy -->
+  <div class="gx-card" id="adq-card" style="margin-bottom:var(--cds-gap-lg)">
+    <div class="card-head"><h3>Reserve adequacy: could the system lose its largest unit?</h3>
+      <div class="gx-seg" id="adq-period" role="group" aria-label="Period"><button data-v="7" aria-pressed="false">7 days</button><button data-v="30" aria-pressed="false">30 days</button><button data-v="all" aria-pressed="true">All</button></div></div>
+    <p class="gx-note an-what">Reserve is generation held ready to replace a unit that trips. The minimum required here follows an N-1 rule: there must be enough reserve to cover losing the largest unit online at that moment (N-1-1: the two largest). When the reserve is below that, losing that unit could mean load shedding.</p>
+    <div class="gx-controls">
+      <div class="gx-seg" id="adq-res" role="group" aria-label="Reserve"><button data-v="spin" aria-pressed="true">Spinning reserve</button><button data-v="oper" aria-pressed="false">Operating reserve</button></div>
+      <div class="gx-seg" id="adq-rule" role="group" aria-label="Requirement"><button data-v="n1" aria-pressed="true">N-1: largest unit</button><button data-v="n2" aria-pressed="false">N-1-1: two largest units</button></div>
+    </div>
+    <div class="adq-bigs" id="adq-big"></div>
+    <div class="gx-kpis" id="adq-kpis" style="margin:10px 0"></div>
+    <div class="gx-legend" id="adq-legend"></div>
+    <div class="gx-chart" id="adq-chart" style="min-height:260px"></div>
+    <p class="gx-note" id="adq-note"></p>
+  </div>
+
   <!-- Plants right now: map and full table -->
   <h2 class="gx-sec" id="plants">Plants right now</h2>
   <p class="gx-secnote">Where the island’s power comes from at the latest reading, and the high-voltage lines that carry it from the plants in the south to the load centers in the north. Dots sit at each plant’s approximate location, sized by output. Select a dot or a table row to see that plant’s units; sort by any column and narrow the list with the filters.</p>
@@ -126,7 +143,8 @@
       <p class="refs">References: line numbers and lengths from the <a href="https://energia.pr.gov/wp-content/uploads/sites/7/2025/05/20250429-MI20240005-Motion-to-Subm-Corrected-Exhibit-1.pdf" target="_blank" rel="noopener">Energy Bureau filing NEPR-MI-2024-0005</a> (230 kV line numbers, end points, lengths), the <a href="https://docs.pr.gov/files/AAFAF/Financial_Documents/Fiscal%20Plans/CERTIFIED%20FISCAL%20PLANS/2023/June/FOMB%20-%202023%20PREPA%20Fiscal%20Plan%20FY24%20-%20June%2023,%202023.pdf" target="_blank" rel="noopener">2023 PREPA Fiscal Plan</a> (the three 230 kV loops) and <a href="https://energia.pr.gov/wp-content/uploads/sites/7/2025/07/20250627-MI20240005-Motion-to-Subm-June-2025-Monthly-Collaborative-Report.pdf" target="_blank" rel="noopener">LUMA’s June 2025 report</a> (San Juan-area 115 kV lines). Transmission map traced from <a href="https://www.bnamericas.com/en/news/puerto-rico-opens-3600mw-to-private-operators" target="_blank" rel="noopener">BNamericas, “Puerto Rico opens 3,600MW to private operators”</a> (Aug 11, 2020).</p>
     </div>
     <div>
-      <div class="pt-tablewrap">
+      <div class="filt-bar" id="pt-filtbar" hidden></div>
+        <div class="pt-tablewrap">
         <table class="gx-table" id="pt-table"><thead><tr></tr></thead><tbody></tbody></table>
         <p class="gx-note" id="pt-empty" hidden>No plants or units match these filters.</p>
         <p class="gx-note" id="fuel-method" style="margin:8px 4px"></p>
@@ -255,6 +273,21 @@
       <ul class="fq-levels" id="fq-levels"></ul>
       <p class="gx-note" style="margin-top:12px">Readings are 5 minutes apart, so short dips between readings can be missed and durations are estimates. “Possibly exceeded” means a single reading was outside the range and the event could have lasted longer than allowed.</p>
     </div>
+  </div>
+  <div class="gx-card" id="fqs-card" style="margin-bottom:var(--cds-gap-md)">
+    <div class="card-head"><h3>Excursion statistics</h3>
+      <div class="gx-seg" id="fqs-period" role="group" aria-label="Period"><button data-v="7" aria-pressed="false">7 days</button><button data-v="30" aria-pressed="false">30 days</button><button data-v="all" aria-pressed="true">All</button></div></div>
+    <p class="gx-note an-what">How often frequency leaves the Normal range, whether that is getting more or less frequent, and when it happens: at the evening peak, and when the operating reserve is low.</p>
+    <div class="gx-kpis fqs-kpis" id="fqs-kpis"></div>
+    <h4 class="sub-h">Excursions per day</h4>
+    <div class="gx-legend" id="fqs-days-legend"></div>
+    <div class="gx-chart" id="fqs-days" style="min-height:240px"></div>
+    <p class="an-sum" id="fqs-days-sum"></p>
+    <div class="gx-grid an-grid">
+      <div><h4 class="sub-h">By hour of day (excursions per 10 hours)</h4><div class="gx-chart" id="fqs-hours" style="min-height:240px"></div></div>
+      <div><h4 class="sub-h">By operating reserve at the time (excursions per 10 hours)</h4><div class="gx-chart" id="fqs-reserve" style="min-height:240px"></div></div>
+    </div>
+    <p class="gx-note" id="fqs-note"></p>
   </div>
   <div class="gx-card" style="margin-bottom:var(--cds-gap-md)">
     <h3>Frequency excursions</h3>
@@ -430,16 +463,17 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/core.js?v=20261116"></script>
-<script src="assets/prepa-core.js?v=20261116"></script>
-<script src="assets/calcs.js?v=20261116"></script>
-<script src="assets/history-db.js?v=20261116"></script>
-<script src="assets/live-feed.js?v=20261116"></script>
-<script src="assets/costs.js?v=20261116"></script>
-<script src="assets/live-extra.js?v=20261116"></script>
-<script src="assets/dispatch.js?v=20261116"></script>
-<script src="assets/ramps.js?v=20261116"></script>
-<script src="assets/tariff.js?v=20261116"></script>
-<script src="assets/live.js?v=20261116"></script>
+<script src="assets/core.js?v=20261124"></script>
+<script src="assets/prepa-core.js?v=20261124"></script>
+<script src="assets/calcs.js?v=20261124"></script>
+<script src="assets/history-db.js?v=20261124"></script>
+<script src="assets/live-feed.js?v=20261124"></script>
+<script src="assets/costs.js?v=20261124"></script>
+<script src="assets/live-extra.js?v=20261124"></script>
+<script src="assets/dispatch.js?v=20261124"></script>
+<script src="assets/ramps.js?v=20261124"></script>
+<script src="assets/tariff.js?v=20261124"></script>
+<script src="assets/adequacy.js?v=20261124"></script>
+<script src="assets/live.js?v=20261124"></script>
 </body>
 </html>

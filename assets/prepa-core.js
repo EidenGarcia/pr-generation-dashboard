@@ -355,6 +355,21 @@ function rampsOf(slots) {
   return { ramp_up_max_mw_h: up ? Math.round(up.r) : null, ramp_up_at: up ? hm(up.t) : null, ramp_down_max_mw_h: down ? Math.round(down.r) : null, ramp_down_at: down ? hm(down.t) : null,
     demand_swing_mw: null };
 }
+// Reserve adequacy for a day: how many readings had spinning / operating reserve below the N-1 requirement
+// (largest unit online) and below N-1-1 (largest two units).
+function reserveStats(cs) {
+  const ok = cs.filter((c) => Number.isFinite(c.largest_unit_mw) && c.largest_unit_mw > 0);
+  if (!ok.length) return { reserve_readings: 0 };
+  const n1 = (c) => c.largest_unit_mw, n2 = (c) => c.largest_unit_mw + (c.second_unit_mw || 0);
+  const short = (key, req) => ok.filter((c) => Number.isFinite(c[key]) && c[key] < req(c)).length;
+  const minM = (key, req) => { const m = ok.filter((c) => Number.isFinite(c[key])).map((c) => c[key] - req(c)); return m.length ? Math.round(Math.min(...m)) : null; };
+  const avg = (f) => Math.round(ok.reduce((s, c) => s + f(c), 0) / ok.length);
+  return { reserve_readings: ok.length, reserve_estimated: ok.filter((c) => c.largest_unit_est).length,
+    req_n1_avg_mw: avg(n1), req_n2_avg_mw: avg(n2),
+    spin_short_n1: short('spinning_mw', n1), spin_short_n2: short('spinning_mw', n2), oper_short_n1: short('operating_mw', n1), oper_short_n2: short('operating_mw', n2),
+    spin_margin_min_n1: minM('spinning_mw', n1), oper_margin_min_n1: minM('operating_mw', n1), spin_margin_min_n2: minM('spinning_mw', n2), oper_margin_min_n2: minM('operating_mw', n2),
+    spin_avg_mw: avg((c) => Number(c.spinning_mw) || 0), oper_avg_mw: avg((c) => Number(c.operating_mw) || 0) };
+}
 function summarizeDay(day, checks, trace, events, fev, L, complete, now) {
   now = now || new Date();
   const t = (iso) => new Date(iso).getTime();
@@ -387,7 +402,7 @@ function summarizeDay(day, checks, trace, events, fev, L, complete, now) {
   const avg = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : null);
   const tw = (k) => (coverage ? cs.reduce((a, c, i) => a + (Number(c[k]) || 0) * w[i], 0) / coverage : null);
   return {
-    calc_version: 3, ...rampsOf(tr), day, status: complete ? (coverage >= 20 ? 'Complete' : 'Ended, partial data') : 'In progress', updated_at: isoAST(now), coverage_h: r1(coverage), checks: cs.length, trace_readings: tr.length,
+    calc_version: 4, ...rampsOf(tr), day, status: complete ? (coverage >= 20 ? 'Complete' : 'Ended, partial data') : 'In progress', updated_at: isoAST(now), coverage_h: r1(coverage), checks: cs.length, trace_readings: tr.length,
     demand_max_mw: dmax ? dmax.total_mw : null, demand_max_at: dmax ? hhmm(dmax.at) : null, demand_min_mw: dmin ? dmin.total_mw : null, demand_min_at: dmin ? hhmm(dmin.at) : null,
     demand_avg_mw: tw('total_mw') == null ? null : Math.round(tw('total_mw')), prepa_peak_mw: cs.reduce((a, c) => Math.max(a, Number(c.peak_today_mw) || 0), 0) || null,
     gen_max_mw: gmax ? Math.round(gmax.generation_mw * 10) / 10 : null, gen_max_at: gmax ? hhmm(gmax.time) : null, gen_min_mw: gmin ? Math.round(gmin.generation_mw * 10) / 10 : null, gen_min_at: gmin ? hhmm(gmin.time) : null,
@@ -400,6 +415,7 @@ function summarizeDay(day, checks, trace, events, fev, L, complete, now) {
     energy_by_fuel_mwh: Object.fromEntries(FUEL_KEYS.map(([k]) => [k, Math.round(energy[k] || 0)])),
     total_cost_usd: Math.round(costSum), cost_full_day_estimate_usd: coverage ? Math.round((costSum / coverage) * 24) : null,
     avg_cost_usd_per_kwh: energySum ? Math.round((costSum / (energySum * 1000)) * 10000) / 10000 : null,
+    ...reserveStats(cs),
     units_went_offline: events.filter((e) => e.event === 'Went offline').length, units_came_back: events.filter((e) => e.event === 'Back online').length,
     plant_energy_mwh: (() => { const o = {}; cs.forEach((c, i) => { for (const [p, mw] of Object.entries(c.plant_mw || {})) o[p] = (o[p] || 0) + mw * w[i]; }); for (const p in o) o[p] = Math.round(o[p]); return o; })(),
   };
@@ -437,6 +453,11 @@ function buildHistoryRow(src, graph, now) {
   for (const u of src.units) { const g = plantGroup(u.plant); row.plant_mvar[g] = Math.round(((row.plant_mvar[g] || 0) + (Number(u.mvar) || 0)) * 10) / 10; }
   row.mvar_total = Math.round(sum(src.units, (u) => Number(u.mvar) || 0) * 10) / 10;
   row.power_factor = powerFactor(row.gen_mw, row.mvar_total);
+  // largest single contingencies: the two biggest units generating now (N-1 and N-1-1 reserve requirements)
+  const online = src.units.filter((u) => u.status === 'Generating').sort((a, b) => b.mw - a.mw);
+  row.largest_unit_mw = online[0] ? Math.round(online[0].mw * 10) / 10 : 0;
+  row.largest_unit = online[0] ? online[0].plant + ' ' + online[0].unit : null;
+  row.second_unit_mw = online[1] ? Math.round(online[1].mw * 10) / 10 : 0;
   return row;
 }
 // power factor = MW / sqrt(MW² + MVAr²), 0 to 1
