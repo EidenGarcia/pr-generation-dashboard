@@ -36,3 +36,7 @@
 2026-11-25 16:24 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.0 MW ->    15.9 MW  (Genera PR, ULSD (diesel); previous check 16:11)
 2026-11-25 16:40 AST  UNIT OFF  Solar / Coto Laurel                      1.9 MW ->     0.9 MW  (Independent (PPOA), Solar; previous check 16:24)
 2026-11-25 16:40 AST  UNIT ON   Palo Seco GT/CT / CT Block 1             0.0 MW ->    16.4 MW  (Genera PR, ULSD (diesel); previous check 16:24)
+2026-11-25 16:54 AST  UNIT ON   Garzas (hydro) / Hidro 1                 0.0 MW ->     3.0 MW  (PREPA (hydro), Hydro; previous check 16:40)
+2026-11-25 16:54 AST  UNIT ON   Cambalache / Gas 3                       0.0 MW ->    20.5 MW  (Genera PR, ULSD (diesel); previous check 16:40)
+2026-11-25 16:54 AST  UNIT OFF  Solar / San Fermin                       1.0 MW ->     0.7 MW  (Independent (PPOA), Solar; previous check 16:40)
+2026-11-25 16:54 AST  UNIT OFF  Solar / Horizon                          1.1 MW ->     0.3 MW  (Independent (PPOA), Solar; previous check 16:40)
