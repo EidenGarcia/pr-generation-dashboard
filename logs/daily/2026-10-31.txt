@@ -1,6 +1,6 @@
 PUERTO RICO GENERATION - DAILY SUMMARY
 Date ............ Saturday, October 31, 2026 (Puerto Rico time, UTC-4)
-Status .......... Complete (updated 2026-11-08 17:30 AST)
+Status .......... Complete (updated 2026-11-24 20:42 AST)
 Coverage ........ 23.3 h of feed checks (97 checks), 288 five-minute readings
 
 DEMAND (PREPA total generation at each check)
@@ -41,85 +41,85 @@ RAMPS (change in generation over 60 minutes, 5-minute readings)
   Max ramp down . -90 MW/h at 01:28
   Demand swing .. 768 MW (max minus min)
 
-OUTAGES (units that stopped or restarted)
-  Went offline: 38   Came back: 40
-  01:14  ONLINE   Wind / Pattern  0.3 -> 1.3 MW
-  01:29  OFFLINE  Aguirre CC 2 / Gas 4  9.1 -> 0.0 MW
-  01:29  OFFLINE  Wind / Pattern  1.3 -> 0.1 MW
-  01:42  OFFLINE  Mayagüez / Gas 2  1.8 -> 0.0 MW
-  01:59  OFFLINE  Mayagüez / Gas 4  1.6 -> 0.0 MW
-  01:59  OFFLINE  Aguirre CC 1 / Gas 1  30.3 -> 0.3 MW
-  02:58  ONLINE   Wind / Pattern  0.3 -> 1.7 MW
-  03:12  OFFLINE  Wind / Pattern  1.7 -> 0.8 MW
-  03:28  ONLINE   Costa Sur Steam / Unit 5  0.5 -> 12.8 MW
-  03:44  OFFLINE  Costa Sur Steam / Unit 5  12.8 -> 0.0 MW
-  03:58  ONLINE   Costa Sur Steam / Unit 5  0.0 -> 26.0 MW
-  04:12  OFFLINE  Aguirre CC 1 / Gas 4  28.7 -> 0.3 MW
-  04:12  OFFLINE  Aguirre CC 2 / Gas 2  24.8 -> 0.3 MW
-  04:29  OFFLINE  Mayagüez / Gas 3  1.5 -> 0.1 MW
-  04:36  ONLINE   Wind / Punta Lima  0.9 -> 1.0 MW
-  04:59  OFFLINE  Wind / Punta Lima  1.0 -> 0.5 MW
-  05:58  OFFLINE  GT stations (peakers) / FEMA GT SJ  23.2 -> 0.0 MW
-  06:58  OFFLINE  Cambalache / Gas 2  12.9 -> 0.0 MW
-  06:58  ONLINE   Solar / Oriana  0.2 -> 1.6 MW
-  07:13  ONLINE   Solar / San Fermin  0.2 -> 1.2 MW
-  07:13  ONLINE   Solar / Ilumina  0.5 -> 1.3 MW
-  07:13  ONLINE   Solar / Horizon  0.2 -> 1.1 MW
-  07:13  ONLINE   Solar / Fonroche  0.2 -> 2.2 MW
-  07:28  ONLINE   Wind / Pattern  0.3 -> 1.2 MW
-  07:28  ONLINE   Solar / Coto Laurel  1.0 -> 1.6 MW
-  07:42  OFFLINE  Wind / Pattern  1.2 -> 0.8 MW
-  07:42  OFFLINE  Solar / Horizon  2.1 -> 0.9 MW
-  07:58  ONLINE   Solar / Horizon  0.9 -> 2.7 MW
-  08:28  ONLINE   Wind / Pattern  0.1 -> 1.9 MW
-  08:44  ONLINE   Wind / Punta Lima  0.4 -> 2.4 MW
-  08:58  OFFLINE  GT stations (peakers) / Palo Seco  24.3 -> 0.1 MW
-  13:28  OFFLINE  Solar / San Fermin  1.7 -> 0.8 MW
-  13:58  ONLINE   GT stations (peakers) / Palo Seco  0.1 -> 1.3 MW
-  14:12  ONLINE   Solar / San Fermin  1.0 -> 1.2 MW
-  14:42  ONLINE   GT stations (peakers) / FEMA GT SJ  0.0 -> 2.0 MW
-  14:59  OFFLINE  Solar / San Fermin  1.2 -> 0.6 MW
-  14:59  OFFLINE  Solar / Coto Laurel  2.3 -> 0.8 MW
-  15:02  OFFLINE  Solar / Oriana  1.1 -> 0.9 MW
-  15:13  ONLINE   Solar / Coto Laurel  0.9 -> 1.0 MW
-  15:28  ONLINE   Cambalache / Gas 2  0.0 -> 20.8 MW
-  15:28  ONLINE   Aguirre CC 1 / Gas 4  0.0 -> 29.5 MW
-  15:28  OFFLINE  Solar / Coto Laurel  1.0 -> 0.9 MW
-  15:44  ONLINE   Aguirre CC 2 / Gas 2  0.0 -> 30.6 MW
-  15:44  ONLINE   Solar / Coto Laurel  0.9 -> 1.3 MW
-  15:44  ONLINE   Palo Seco GT/CT / CT Block 1  0.0 -> 18.0 MW
-  15:44  ONLINE   Palo Seco GT/CT / GT2  0.0 -> 18.0 MW
-  15:58  ONLINE   Aguirre CC 2 / Gas 4  0.0 -> 21.2 MW
-  15:58  OFFLINE  Wind / Pattern  4.2 -> 0.4 MW
-  15:58  OFFLINE  Wind / Punta Lima  1.6 -> 0.8 MW
-  16:12  ONLINE   Wind / Punta Lima  0.8 -> 2.4 MW
-  16:28  ONLINE   Aguirre CC 1 / Gas 1  0.1 -> 30.2 MW
-  16:28  ONLINE   Wind / Pattern  0.6 -> 5.0 MW
-  16:58  OFFLINE  Solar / Horizon  2.2 -> 0.9 MW
-  16:58  OFFLINE  Solar / Coto Laurel  1.1 -> 0.8 MW
-  17:14  ONLINE   Mayagüez / Gas 3  0.1 -> 26.2 MW
-  17:14  OFFLINE  Wind / Pattern  1.0 -> 0.9 MW
-  17:14  OFFLINE  Solar / Ilumina  1.4 -> 0.6 MW
-  17:28  ONLINE   Dos Bocas (hydro) / Hidro 3  0.0 -> 5.3 MW
-  17:28  ONLINE   GT stations (peakers) / Jobos  0.0 -> 18.1 MW
-  17:28  OFFLINE  Wind / Punta Lima  2.2 -> 0.9 MW
-  17:28  OFFLINE  Solar / Fonroche  1.6 -> 0.7 MW
-  17:44  ONLINE   Dos Bocas (hydro) / Hidro 2  0.0 -> 5.3 MW
-  17:58  ONLINE   Mayagüez / Gas 4  0.0 -> 23.7 MW
-  18:13  ONLINE   Mayagüez / Gas 2  0.0 -> 22.2 MW
-  18:13  ONLINE   Wind / Punta Lima  0.9 -> 1.5 MW
-  18:42  ONLINE   Wind / Pattern  0.0 -> 1.4 MW
-  18:58  OFFLINE  Wind / Pattern  1.4 -> 0.7 MW
-  19:14  ONLINE   GT stations (peakers) / Daguao  0.0 -> 14.4 MW
-  19:42  ONLINE   Palo Seco GT/CT / GT1  0.0 -> 18.0 MW
-  20:14  ONLINE   Wind / Pattern  0.0 -> 1.3 MW
-  20:44  OFFLINE  GT stations (peakers) / Jobos  18.8 -> 0.0 MW
-  20:59  OFFLINE  GT stations (peakers) / Daguao  1.5 -> 0.9 MW
-  21:42  OFFLINE  Dos Bocas (hydro) / Hidro 2  5.2 -> 0.0 MW
-  21:42  OFFLINE  Dos Bocas (hydro) / Hidro 3  5.1 -> 0.0 MW
-  21:42  OFFLINE  Wind / Pattern  1.0 -> 0.6 MW
-  22:12  OFFLINE  San Juan CC / CTG 5  5.7 -> 0.0 MW
-  23:26  OFFLINE  Cambalache / Gas 2  18.9 -> 0.2 MW
-  23:59  OFFLINE  Cambalache / Gas 3  8.1 -> 0.0 MW
+UNIT EVENTS (units that went off or came on)
+  Went off: 38   Came on: 40
+  01:14  ON   Wind / Pattern  0.3 -> 1.3 MW
+  01:29  OFF  Aguirre CC 2 / Gas 4  9.1 -> 0.0 MW
+  01:29  OFF  Wind / Pattern  1.3 -> 0.1 MW
+  01:42  OFF  Mayagüez / Gas 2  1.8 -> 0.0 MW
+  01:59  OFF  Mayagüez / Gas 4  1.6 -> 0.0 MW
+  01:59  OFF  Aguirre CC 1 / Gas 1  30.3 -> 0.3 MW
+  02:58  ON   Wind / Pattern  0.3 -> 1.7 MW
+  03:12  OFF  Wind / Pattern  1.7 -> 0.8 MW
+  03:28  ON   Costa Sur Steam / Unit 5  0.5 -> 12.8 MW
+  03:44  OFF  Costa Sur Steam / Unit 5  12.8 -> 0.0 MW
+  03:58  ON   Costa Sur Steam / Unit 5  0.0 -> 26.0 MW
+  04:12  OFF  Aguirre CC 1 / Gas 4  28.7 -> 0.3 MW
+  04:12  OFF  Aguirre CC 2 / Gas 2  24.8 -> 0.3 MW
+  04:29  OFF  Mayagüez / Gas 3  1.5 -> 0.1 MW
+  04:36  ON   Wind / Punta Lima  0.9 -> 1.0 MW
+  04:59  OFF  Wind / Punta Lima  1.0 -> 0.5 MW
+  05:58  OFF  GT stations (peakers) / FEMA GT SJ  23.2 -> 0.0 MW
+  06:58  OFF  Cambalache / Gas 2  12.9 -> 0.0 MW
+  06:58  ON   Solar / Oriana  0.2 -> 1.6 MW
+  07:13  ON   Solar / San Fermin  0.2 -> 1.2 MW
+  07:13  ON   Solar / Ilumina  0.5 -> 1.3 MW
+  07:13  ON   Solar / Horizon  0.2 -> 1.1 MW
+  07:13  ON   Solar / Fonroche  0.2 -> 2.2 MW
+  07:28  ON   Wind / Pattern  0.3 -> 1.2 MW
+  07:28  ON   Solar / Coto Laurel  1.0 -> 1.6 MW
+  07:42  OFF  Wind / Pattern  1.2 -> 0.8 MW
+  07:42  OFF  Solar / Horizon  2.1 -> 0.9 MW
+  07:58  ON   Solar / Horizon  0.9 -> 2.7 MW
+  08:28  ON   Wind / Pattern  0.1 -> 1.9 MW
+  08:44  ON   Wind / Punta Lima  0.4 -> 2.4 MW
+  08:58  OFF  GT stations (peakers) / Palo Seco  24.3 -> 0.1 MW
+  13:28  OFF  Solar / San Fermin  1.7 -> 0.8 MW
+  13:58  ON   GT stations (peakers) / Palo Seco  0.1 -> 1.3 MW
+  14:12  ON   Solar / San Fermin  1.0 -> 1.2 MW
+  14:42  ON   GT stations (peakers) / FEMA GT SJ  0.0 -> 2.0 MW
+  14:59  OFF  Solar / San Fermin  1.2 -> 0.6 MW
+  14:59  OFF  Solar / Coto Laurel  2.3 -> 0.8 MW
+  15:02  OFF  Solar / Oriana  1.1 -> 0.9 MW
+  15:13  ON   Solar / Coto Laurel  0.9 -> 1.0 MW
+  15:28  ON   Cambalache / Gas 2  0.0 -> 20.8 MW
+  15:28  ON   Aguirre CC 1 / Gas 4  0.0 -> 29.5 MW
+  15:28  OFF  Solar / Coto Laurel  1.0 -> 0.9 MW
+  15:44  ON   Aguirre CC 2 / Gas 2  0.0 -> 30.6 MW
+  15:44  ON   Solar / Coto Laurel  0.9 -> 1.3 MW
+  15:44  ON   Palo Seco GT/CT / CT Block 1  0.0 -> 18.0 MW
+  15:44  ON   Palo Seco GT/CT / GT2  0.0 -> 18.0 MW
+  15:58  ON   Aguirre CC 2 / Gas 4  0.0 -> 21.2 MW
+  15:58  OFF  Wind / Pattern  4.2 -> 0.4 MW
+  15:58  OFF  Wind / Punta Lima  1.6 -> 0.8 MW
+  16:12  ON   Wind / Punta Lima  0.8 -> 2.4 MW
+  16:28  ON   Aguirre CC 1 / Gas 1  0.1 -> 30.2 MW
+  16:28  ON   Wind / Pattern  0.6 -> 5.0 MW
+  16:58  OFF  Solar / Horizon  2.2 -> 0.9 MW
+  16:58  OFF  Solar / Coto Laurel  1.1 -> 0.8 MW
+  17:14  ON   Mayagüez / Gas 3  0.1 -> 26.2 MW
+  17:14  OFF  Wind / Pattern  1.0 -> 0.9 MW
+  17:14  OFF  Solar / Ilumina  1.4 -> 0.6 MW
+  17:28  ON   Dos Bocas (hydro) / Hidro 3  0.0 -> 5.3 MW
+  17:28  ON   GT stations (peakers) / Jobos  0.0 -> 18.1 MW
+  17:28  OFF  Wind / Punta Lima  2.2 -> 0.9 MW
+  17:28  OFF  Solar / Fonroche  1.6 -> 0.7 MW
+  17:44  ON   Dos Bocas (hydro) / Hidro 2  0.0 -> 5.3 MW
+  17:58  ON   Mayagüez / Gas 4  0.0 -> 23.7 MW
+  18:13  ON   Mayagüez / Gas 2  0.0 -> 22.2 MW
+  18:13  ON   Wind / Punta Lima  0.9 -> 1.5 MW
+  18:42  ON   Wind / Pattern  0.0 -> 1.4 MW
+  18:58  OFF  Wind / Pattern  1.4 -> 0.7 MW
+  19:14  ON   GT stations (peakers) / Daguao  0.0 -> 14.4 MW
+  19:42  ON   Palo Seco GT/CT / GT1  0.0 -> 18.0 MW
+  20:14  ON   Wind / Pattern  0.0 -> 1.3 MW
+  20:44  OFF  GT stations (peakers) / Jobos  18.8 -> 0.0 MW
+  20:59  OFF  GT stations (peakers) / Daguao  1.5 -> 0.9 MW
+  21:42  OFF  Dos Bocas (hydro) / Hidro 2  5.2 -> 0.0 MW
+  21:42  OFF  Dos Bocas (hydro) / Hidro 3  5.1 -> 0.0 MW
+  21:42  OFF  Wind / Pattern  1.0 -> 0.6 MW
+  22:12  OFF  San Juan CC / CTG 5  5.7 -> 0.0 MW
+  23:26  OFF  Cambalache / Gas 2  18.9 -> 0.2 MW
+  23:59  OFF  Cambalache / Gas 3  8.1 -> 0.0 MW
 
 Sources: PREPA operational data (dataSource.js, dataGraph.js). Generated automatically by the GitHub Action.
