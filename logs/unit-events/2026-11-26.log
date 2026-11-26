@@ -1,3 +1,5 @@
 # Unit event log, 2026-11-26 (Puerto Rico time, UTC-4)
 # Units going off and coming on. A unit counts as off below 1 MW. Times are when the change was first seen; it happened after the previous check.
 2026-11-26 00:26 AST  UNIT OFF  Wind / Pattern                           3.1 MW ->     0.5 MW  (Independent (PPOA), Wind; previous check 00:10)
+2026-11-26 00:40 AST  UNIT ON   Wind / Pattern                           0.5 MW ->     2.7 MW  (Independent (PPOA), Wind; previous check 00:26)
+2026-11-26 00:40 AST  UNIT OFF  Palo Seco GT/CT / GT1                    3.1 MW ->     0.4 MW  (Genera PR, ULSD (diesel); previous check 00:26)
