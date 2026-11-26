@@ -39,3 +39,5 @@
 2026-11-26 17:10 AST  UNIT OFF  Solar / Coto Laurel                      1.2 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 16:56)
 2026-11-26 17:26 AST  UNIT OFF  Solar / Ilumina                          1.1 MW ->     0.4 MW  (Independent (PPOA), Solar; previous check 17:10)
 2026-11-26 17:26 AST  UNIT OFF  Solar / Fonroche                         2.9 MW ->     0.0 MW  (Independent (PPOA), Solar; previous check 17:10)
+2026-11-26 17:56 AST  UNIT ON   Mayagüez / Gas 2                         0.0 MW ->    21.7 MW  (Genera PR, ULSD (diesel); previous check 17:40)
+2026-11-26 17:56 AST  UNIT ON   Mayagüez / Gas 4                         0.0 MW ->    21.8 MW  (Genera PR, ULSD (diesel); previous check 17:40)
