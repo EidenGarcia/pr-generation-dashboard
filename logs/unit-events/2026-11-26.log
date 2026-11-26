@@ -14,3 +14,5 @@
 2026-11-26 07:24 AST  UNIT ON   Solar / Fonroche                         0.7 MW ->     4.2 MW  (Independent (PPOA), Solar; previous check 07:14)
 2026-11-26 07:40 AST  UNIT ON   Solar / Coto Laurel                      0.4 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:24)
 2026-11-26 07:40 AST  UNIT OFF  Palo Seco GT/CT / CT Block 1            16.5 MW ->     0.8 MW  (Genera PR, ULSD (diesel); previous check 07:24)
+2026-11-26 07:56 AST  UNIT ON   Solar / San Fermin                       0.8 MW ->     1.1 MW  (Independent (PPOA), Solar; previous check 07:40)
+2026-11-26 07:56 AST  UNIT ON   Solar / Horizon                          0.7 MW ->     2.9 MW  (Independent (PPOA), Solar; previous check 07:40)
