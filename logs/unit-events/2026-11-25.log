@@ -46,3 +46,5 @@
 2026-11-25 17:38 AST  UNIT OFF  Solar / Oriana                           1.9 MW ->     0.0 MW  (Independent (PPOA), Solar; previous check 17:25)
 2026-11-25 17:55 AST  UNIT ON   Cambalache / Gas 2                       0.0 MW ->    21.1 MW  (Genera PR, ULSD (diesel); previous check 17:38)
 2026-11-25 18:24 AST  UNIT ON   Palo Seco GT/CT / GT2                    0.0 MW ->    16.5 MW  (Genera PR, ULSD (diesel); previous check 18:10)
+2026-11-25 21:26 AST  UNIT OFF  Yauco (hydro) / Hidro 3                  2.2 MW ->     0.0 MW  (PREPA (hydro), Hydro; previous check 21:10)
+2026-11-25 21:26 AST  UNIT OFF  Cambalache / Gas 2                      51.5 MW ->     0.7 MW  (Genera PR, ULSD (diesel); previous check 21:10)
