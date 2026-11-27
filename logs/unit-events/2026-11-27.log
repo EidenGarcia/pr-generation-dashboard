@@ -29,3 +29,6 @@
 2026-11-27 15:14 AST  UNIT OFF  GT stations (peakers) / Palo Seco        1.0 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 14:58)
 2026-11-27 15:14 AST  UNIT ON   Solar / San Fermin                       0.8 MW ->     1.9 MW  (Independent (PPOA), Solar; previous check 14:58)
 2026-11-27 15:28 AST  UNIT ON   GT stations (peakers) / Palo Seco        1.0 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 15:14)
+2026-11-27 15:44 AST  UNIT OFF  GT stations (peakers) / Palo Seco        1.0 MW ->     1.0 MW  (Genera PR, ULSD (diesel); previous check 15:28)
+2026-11-27 15:44 AST  UNIT ON   Aguirre CC 1 / Gas 4                     0.0 MW ->    28.4 MW  (Genera PR, ULSD (diesel); previous check 15:28)
+2026-11-27 15:44 AST  UNIT ON   Aguirre CC 2 / Gas 2                     0.0 MW ->    21.7 MW  (Genera PR, ULSD (diesel); previous check 15:28)
