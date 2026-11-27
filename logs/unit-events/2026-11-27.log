@@ -44,3 +44,8 @@
 2026-11-27 16:42 AST  UNIT ON   Palo Seco GT/CT / CT Block 1             0.9 MW ->    16.3 MW  (Genera PR, ULSD (diesel); previous check 16:29)
 2026-11-27 16:58 AST  UNIT ON   GT stations (peakers) / Daguao           0.8 MW ->    13.8 MW  (Genera PR, ULSD (diesel); previous check 16:42)
 2026-11-27 16:58 AST  UNIT ON   Palo Seco GT/CT / GT1                    0.4 MW ->    16.4 MW  (Genera PR, ULSD (diesel); previous check 16:42)
+2026-11-27 17:12 AST  UNIT ON   Dos Bocas (hydro) / Hidro 2              0.1 MW ->     5.4 MW  (PREPA (hydro), Hydro; previous check 16:58)
+2026-11-27 17:12 AST  UNIT ON   Dos Bocas (hydro) / Hidro 3              0.0 MW ->     5.3 MW  (PREPA (hydro), Hydro; previous check 16:58)
+2026-11-27 17:12 AST  UNIT OFF  Solar / Horizon                          1.9 MW ->     0.6 MW  (Independent (PPOA), Solar; previous check 16:58)
+2026-11-27 17:12 AST  UNIT OFF  Solar / Coto Laurel                      1.1 MW ->     0.5 MW  (Independent (PPOA), Solar; previous check 16:58)
+2026-11-27 17:12 AST  UNIT OFF  Solar / Fonroche                         1.4 MW ->     0.4 MW  (Independent (PPOA), Solar; previous check 16:58)
