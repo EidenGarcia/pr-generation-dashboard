@@ -44,3 +44,4 @@
 2026-11-26 18:56 AST  UNIT ON   GT stations (peakers) / Daguao           0.9 MW ->    14.4 MW  (Genera PR, ULSD (diesel); previous check 18:40)
 2026-11-26 19:26 AST  UNIT OFF  Wind / Pattern                           1.4 MW ->     0.4 MW  (Independent (PPOA), Wind; previous check 19:12)
 2026-11-26 23:26 AST  UNIT ON   Wind / Pattern                           0.3 MW ->     1.7 MW  (Independent (PPOA), Wind; previous check 23:12)
+2026-11-26 23:55 AST  UNIT OFF  Palo Seco GT/CT / GT1                   16.2 MW ->     0.2 MW  (Genera PR, ULSD (diesel); previous check 23:38)
