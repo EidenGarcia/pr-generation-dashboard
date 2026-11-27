@@ -13,3 +13,7 @@
 2026-11-27 07:10 AST  UNIT ON   Wind / Pattern                           0.9 MW ->     1.6 MW  (Independent (PPOA), Wind; previous check 06:56)
 2026-11-27 07:10 AST  UNIT ON   Solar / Oriana                           0.3 MW ->     1.6 MW  (Independent (PPOA), Solar; previous check 06:56)
 2026-11-27 07:10 AST  UNIT ON   Solar / Fonroche                         0.3 MW ->     2.2 MW  (Independent (PPOA), Solar; previous check 06:56)
+2026-11-27 07:41 AST  UNIT ON   Yauco (hydro) / Hidro 3                  0.0 MW ->     2.5 MW  (PREPA (hydro), Hydro; previous check 07:26)
+2026-11-27 07:41 AST  UNIT ON   Solar / Ilumina                          0.7 MW ->     2.7 MW  (Independent (PPOA), Solar; previous check 07:26)
+2026-11-27 07:41 AST  UNIT ON   Solar / Horizon                          1.0 MW ->     1.9 MW  (Independent (PPOA), Solar; previous check 07:26)
+2026-11-27 07:41 AST  UNIT ON   Solar / Coto Laurel                      0.7 MW ->     1.2 MW  (Independent (PPOA), Solar; previous check 07:26)
